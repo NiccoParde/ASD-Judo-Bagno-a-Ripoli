@@ -1,0 +1,159 @@
+/* Variabili condivise del sito */
+:root {
+  --font-title: "Dela Gothic One", Arial, sans-serif;
+  --font-text: "DM Serif Text", Georgia, serif;
+  --color-white: #ffffff;
+  --header-height: 120px;
+}
+
+/* Reset leggero per rendere le misure piu' prevedibili */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-size: 16px;
+  font-family: var(--font-text);
+  color: #111111;
+  background: #ffffff;
+}
+
+/* Immagini elastiche dentro al loro contenitore */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Titoli principali */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 400;
+}
+
+/* Header (contenente il selettore) fisso sempre visibile in alto */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  min-height: var(--header-height);
+  overflow: hidden;
+}
+
+/* Sfumatura dietro al menu */
+.site-header__background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.85) 8.65%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Contenitore dei link del selettore */
+.site-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--header-height);
+  width: 100%;
+  max-width: 1706px;
+  margin: 0 auto;
+  padding: 0 clamp(2px, 1.2vw, 48px);
+  overflow: hidden;
+}
+
+/* Singolo link del menu */
+.site-nav__link {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 8px clamp(2px, 1.6vw, 30px);
+  font-family: var(--font-title);
+  font-size: clamp(6px, 1.8vw, 24px);
+  line-height: 1.2;
+  color: var(--color-white);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Separatore verticale tra le voci */
+.site-nav__link + .site-nav__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: clamp(1px, 0.16vw, 3px);
+  height: clamp(10px, 1.56vw, 30px);
+  border-radius: 10px;
+  background: #d9d9d9;
+  transform: translateY(-50%);
+}
+
+/* Linea hover che si apre dal centro */
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(100% - clamp(4px, 3.2vw, 60px));
+  height: clamp(1px, 0.16vw, 3px);
+  border-radius: 10px;
+  background: #ffffff;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 300ms ease;
+}
+
+/* Stato della pagina corrente */
+.site-nav__link--active {
+  opacity: 1;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+  text-decoration: none;
+}
+
+.site-nav__link:hover::after,
+.site-nav__link:focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Spazio sotto l'header fisso per le pagine */
+main {
+  padding-top: var(--header-height);
+}
+
+/* Adattamento del menu su schermi stretti */
+@media (max-width: 900px) {
+  :root {
+    --header-height: 120px;
+  }
+
+  .site-nav {
+    justify-content: center;
+    padding-inline: 2px;
+  }
+
+  .site-nav__link {
+    padding-inline: clamp(2px, 0.8vw, 18px);
+  }
+}

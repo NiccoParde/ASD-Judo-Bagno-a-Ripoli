@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <!-- Impostazioni base della pagina -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Titolo della pagina -->
+    <title>A.S.D. Judo Bagno a Ripoli</title>
+    <!-- Immagine della pagina -->
+    <link rel="icon" type="image/png" href="./assets/global/logo.png">
+
+    <!-- Font usati nel design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Dela Gothic One, font utilizzato per titoli, intestazioni... -->
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet" />
+
+    <!-- Riferimenti ai file CSS per lo stile della home e gli stili globali -->
+    <link href="./css/style.css" rel="stylesheet" />
+    <link href="./css/home.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header fisso con il menu principale, fisso in cima alla pagina -->
+    <header class="site-header">
+      <!-- Sfondo del selettore -->
+      <div class="site-header__background" aria-hidden="true"></div>
+
+      <!-- Link di navigazione del sito -->
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <a class="site-nav__link site-nav__link--active" href="index.html">Home</a>
+        <a class="site-nav__link" href="unisciti_a_noi.html">Unisciti a noi</a>
+        <a class="site-nav__link" href="storia.html">Storia</a>
+        <a class="site-nav__link" href="info_e_orari.html">Info e orari</a>
+        <a class="site-nav__link" href="shoku_geiko.html">Shoku Geiko</a>
+        <a class="site-nav__link" href="news.html">News</a>
+        <a class="site-nav__link" href="calendario_eventi.html">Calendario eventi</a>
+      </nav>
+    </header>
+
+    <!-- Contenuto principale della home -->
+    <main class="home-page">
+      <!-- Sezione 1: immagine principale sotto al selettore -->
+      <section class="home-hero" aria-label="Immagine principale ASD Judo Bagno a Ripoli">
+        <img
+          class="immagine_sfondo_sezione_1"
+          src="./assets/home/immagine_sfondo_sezione_1.png"
+          alt="ASD Judo Bagno a Ripoli"
+        />
+
+        <!-- Logo sovrapposto all'immagine principale -->
+        <img
+          class="logo_judo"
+          src="./assets/home/logo_judo.png"
+          alt="Logo ASD Judo Bagno a Ripoli"
+        />
+      </section>
+
+      <!-- Sezione 1: titolo e sottotitolo sotto l'immagine -->
+      <section class="testo_sezione_1" aria-labelledby="titolo-sezione-1">
+        <!-- Sfondo scuro del blocco titolo -->
+        <div class="sfondo_titolo_sezione_1" aria-hidden="true"></div>
+
+        <!-- Titolo principale della prima sezione -->
+        <h1 class="titolo_sezione_1" id="titolo-sezione-1">
+          A.S.D. - JUDO BAGNO A RIPOLI
+        </h1>
+
+        <!-- Sottotitolo della prima sezione -->
+        <p class="sottotitolo_sezione_1">
+          Intraprendi la via della consapevolezza
+        </p>
+      </section>
+
+      <!-- Sezione 2: contenuti sotto la prima sezione -->
+      <section class="sezione_2" aria-labelledby="titolo-sezione-2">
+        <!-- Immagine laterale destra della seconda sezione -->
+        <img
+          class="immagine_sezione_2"
+          src="./assets/home/immagine_sezione_2.png"
+          alt="Allenamento sul tatami"
+        />
+
+        <!-- Titolo introduttivo della seconda sezione -->
+        <div class="testo_sezione_2">
+          <!-- Sfondo scuro del titolo -->
+          <div class="sfondo_titolo_sezione_2" aria-hidden="true"></div>
+
+          <!-- Titolo della seconda sezione -->
+          <h2 class="titolo_sezione_2" id="titolo-sezione-2">
+            Passione oltre il Tatami
+          </h2>
+        </div>
+
+        <!-- Linea divisoria sotto il titolo della seconda sezione -->
+        <div class="linea_sezione_2" aria-hidden="true"></div>
+
+        <!-- Testo descrittivo della seconda sezione -->
+        <div class="descrizione_sezione_2">
+          <p>
+            Nata nel 1975 l’A.S.D Judo Bagno a Ripoli insegna da ormai 50 anni i
+            valori del rispetto e della mutua collaborazione, tramite una delle
+            discipline orientali più nobili al mondo. I nostri maestri provvedono
+            a far apprendere a grandi e piccoli l’arte del Judo in maniera
+            divertente e sicura, mantenendo la tradizionalità caratteristica di un
+            Dojo.
+          </p>
+
+          <p>
+            I nostri corsi, aperti anche ai bambini a partire dai 6 anni per il
+            corso piccoli e 13 per il corso grandi, vengono svolti all’interno
+            della scuola Francesco Granacci di Bagno a Ripoli, sotto la
+            supervisione dei maestri Gianni, André e Claudia, insieme ad i nostri
+            atleti più grandi.
+          </p>
+        </div>
+
+        <!-- Pulsante verso la pagina Storia -->
+        <a class="pulsante_storia_sezione_2" href="storia.html" aria-label="Scopri di più sulla storia">
+          <span class="linea_verticale_pulsante_storia" aria-hidden="true"></span>
+          <span class="testo_pulsante_storia">Scopri di più</span>
+          <span class="freccia_pulsante_storia" aria-hidden="true">
+            <img
+              class="immagine_sfondo_sezione_1"
+              src="./assets/home/freccia_pulsante_sezione_2.svg"
+            />
+          </span>
+        </a>
+      </section>
+    </main>
+
+    <!-- Script specifico della home -->
+    <script src="./javascript/home.js" defer></script>
+  </body>
+</html>
