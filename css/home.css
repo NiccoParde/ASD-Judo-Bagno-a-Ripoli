@@ -246,3 +246,30 @@
   bottom: 0;
   transform: rotate(45deg);
 }
+
+/* Sezione 3 */
+.sezione_3 {
+  --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
+  position: relative;
+  min-height: clamp(294px, 56.25vw, 1080px);
+  overflow: hidden;
+}
+
+/* Titolo sezione 3 */
+.titolo_sezione_3 {
+  position: relative;
+  width: min(
+    811px,
+    calc(
+      100% - var(--distanza-sinistra-sezioni)
+    )
+  );
+  height: clamp(28px, 4.69vw, 90px);
+  margin-top: clamp(32px, 5vw, 96px);
+  margin-left: var(--distanza-sinistra-sezioni);
+  color: #2A2A2A;
+  font-size: clamp(10px, 2.86vw, 55px);
+  line-height: clamp(28px, 4.69vw, 90px);
+  overflow: hidden;
+}
+
