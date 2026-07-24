@@ -183,68 +183,57 @@
 
 /* Pulsante che porta alla pagina Storia */
 .pulsante_storia_sezione_2 {
-  position: relative;
-  display: block;
-  width: clamp(112px, 11.56vw, 222px);
-  height: clamp(24px, 2.29vw, 44px);
-  margin-top: clamp(20px, 2.66vw, 51px);
-  margin-left: var(--distanza-sinistra-sezioni);
-  color: #000000;
-  font-family: var(--font-text);
-  text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(12px, 1.25vw, 24px);   /* distanza testo-freccia */
+
+    min-height: clamp(24px, 2.29vw, 44px);
+    padding-right: 4px;
+
+    margin-top: clamp(20px, 2.66vw, 51px);
+    margin-left: var(--distanza-sinistra-sezioni);
+
+    color: #000;
+    font-family: var(--font-text);
+    text-decoration: none;
 }
 
-/* Linea verticale a sinistra del pulsante */
-.linea_verticale_pulsante_storia {
-  position: absolute;
-  top: clamp(5px, 0.52vw, 10px);
-  left: 0;
-  width: clamp(1px, 0.1vw, 2px);
-  height: clamp(16px, 1.51vw, 29px);
-  background: #000000;
+/* Linea verticale */
+.linea_verticale_pulsante{
+    width: clamp(1px,0.1vw,2px);
+    height: clamp(16px,1.51vw,29px);
+    background:#000;
+    flex-shrink:0;
 }
 
-/* Testo del pulsante */
-.testo_pulsante_storia {
-  position: absolute;
-  top: 0;
-  left: clamp(9px, 0.94vw, 18px);
-  width: clamp(92px, 9.58vw, 184px);
-  font-size: clamp(16px, 1.67vw, 32px);
-  font-weight: 400;
-  line-height: clamp(24px, 2.29vw, 44px);
-  text-align: left;
-  white-space: nowrap;
+/* Testo */
+.testo_pulsante{
+    position: static;
+    width: auto;
+
+    font-size: clamp(16px,1.67vw,32px);
+    line-height: clamp(24px,2.29vw,44px);
+    white-space: nowrap;
 }
 
-/* Contenitore della freccia a destra */
-.freccia_pulsante_storia {
-  position: absolute;
-  top: clamp(5px, 0.52vw, 10px);
-  right: 0;
-  width: clamp(8px, 0.78vw, 15px);
-  height: clamp(14px, 1.46vw, 28px);
+/* Freccia */
+.freccia_pulsante{
+    position: static;
+
+    width: clamp(8px,0.78vw,15px);
+    height: clamp(14px,1.46vw,28px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
 }
 
-/* Linee della freccia */
-.freccia_pulsante_storia_sopra,
-.freccia_pulsante_storia_sotto {
-  position: absolute;
-  right: 0;
-  width: clamp(1px, 0.1vw, 2px);
-  height: clamp(10px, 1.04vw, 11px);
-  background: #000000;
-  transform-origin: center;
-}
-
-.freccia_pulsante_storia_sopra {
-  top: 0;
-  transform: rotate(-45deg);
-}
-
-.freccia_pulsante_storia_sotto {
-  bottom: 0;
-  transform: rotate(45deg);
+.freccia_pulsante img{
+    width:100%;
+    height:100%;
+    display:block;
 }
 
 /* Sezione 3 */
@@ -273,3 +262,44 @@
   overflow: hidden;
 }
 
+/* Testo riempitivo zona notizie (nessuna notizia) */
+
+.pannello_notizie_sezione_3{
+    width: min(1634px, 100%);
+    height: clamp(250px, 43vw, 700px);
+
+    margin: clamp(32px, 5vw, 96px) auto 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.testo_riempitivo_sezione_3{
+    margin: 0;
+
+    font-family: var(--font-text2);
+    font-style: italic;
+    color: #2A2A2A;
+
+    font-size: clamp(10px, 2.86vw, 55px);
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+.pulsante_news_sezione_3 {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(12px, 1.25vw, 24px);   /* distanza testo-freccia */
+
+    min-height: clamp(24px, 2.29vw, 44px);
+    padding-right: 4px;
+
+    margin-top: clamp(20px, 2.66vw, 51px);
+    margin-left: var(--distanza-sinistra-sezioni);
+
+    color: #000;
+    font-family: var(--font-text);
+    text-decoration: none;
+}

@@ -2,6 +2,7 @@
 :root {
   --font-title: "Dela Gothic One", Arial, sans-serif;
   --font-text: "DM Serif Text", Georgia, serif;
+  --font-text2: "DM Serif Display", Georgia, serif italic;
   --color-white: #ffffff;
   --header-height: 120px;
 }
