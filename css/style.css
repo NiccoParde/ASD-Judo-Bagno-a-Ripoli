@@ -23,6 +23,8 @@ body {
   font-family: var(--font-text);
   color: #111111;
   background: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Immagini elastiche dentro al loro contenitore */
@@ -30,6 +32,11 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+footer {
+  width: 100%;
+  margin-top: auto;
 }
 
 /* Titoli principali */
@@ -157,4 +164,184 @@ main {
   .site-nav__link {
     padding-inline: clamp(2px, 0.8vw, 18px);
   }
+}
+
+.sezione_finale {
+  width: 100%;
+  aspect-ratio: 1920 / 500; /* Mantiene sempre la proporzione esatta del footer di Figma */
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.sfondo_sezione_finale {
+  width: 100%;
+  height: 100%;
+  background: rgba(41,41,41,1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Usiamo clamp o vw basati su 1920px (es. 170px su 1920px = ~8.85vw) */
+.contenitore_testo_sezione_finale {
+  width: calc(640 / 1920 * 100vw);
+  height: calc(206 / 1920 * 100vw);
+  position: absolute;
+  top: calc(170 / 500 * 100%);
+  left: calc(668 / 1920 * 100vw);
+  overflow: hidden;
+}
+
+.email {
+  width: 100%;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(50 / 206 * 100%);
+  left: 0;
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  text-align: left;
+}
+
+.indirizzo {
+  width: 100%;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  text-align: left;
+}
+
+.instagram {
+  width: 100%;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(109 / 206 * 100%);
+  left: 0;
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  text-align: left;
+}
+
+.form {
+  width: 100%;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(168 / 206 * 100%);
+  left: 0;
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  text-align: left;
+}
+
+.testo_info_e_preventivi {
+  width: calc(512 / 1920 * 100vw);
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(123 / 500 * 100%);
+  left: calc(611 / 1920 * 100vw);
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(24 / 1920 * 100vw), 24px);
+  text-align: left;
+}
+
+.crediti {
+  width: calc(169 / 1920 * 100vw);
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(469 / 500 * 100%);
+  left: calc(875 / 1920 * 100vw);
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(6px, calc(10 / 1920 * 100vw), 10px);
+  text-align: center;
+}
+
+.titolo_sezione_finale {
+  width: calc(512 / 1920 * 100vw);
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: calc(64 / 500 * 100%);
+  left: calc(704 / 1920 * 100vw);
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: clamp(10px, calc(24 / 1920 * 100vw), 24px);
+  text-align: center;
+}
+
+.contenitore_loghi_sezione_finale {
+  width: calc(391 / 1920 * 100vw);
+  height: calc(80 / 500 * 100%);
+  position: absolute;
+  top: calc(411 / 500 * 100%);
+  left: calc(9 / 1920 * 100vw);
+  overflow: hidden;
+}
+
+.sfondo_loghi_sezione_finale {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.contenitore_interno_loghi_sezione_finale {
+  width: calc(374 / 391 * 100%);
+  height: calc(60 / 80 * 100%);
+  position: absolute;
+  top: calc(10 / 80 * 100%);
+  left: calc(10 / 391 * 100%);
+  overflow: hidden;
+}
+
+.logo_fijlkam {
+  width: calc(60 / 374 * 100%);
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: calc(72 / 374 * 100%);
+}
+
+.logo_federazione {
+  width: calc(60 / 374 * 100%);
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logo_uisp {
+  width: calc(78 / 374 * 100%);
+  height: auto;
+  position: absolute;
+  top: calc(10 / 60 * 100%);
+  left: calc(224 / 374 * 100%);
+}
+
+.logo_csen {
+  width: calc(60 / 374 * 100%);
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: calc(314 / 374 * 100%);
+}
+
+.logo_coni {
+  width: calc(68 / 374 * 100%);
+  height: auto;
+  position: absolute;
+  top: calc(3 / 60 * 100%);
+  left: calc(144 / 374 * 100%);
 }
