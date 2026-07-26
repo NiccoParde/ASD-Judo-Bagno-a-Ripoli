@@ -168,7 +168,8 @@ main {
 
 .sezione_finale {
   width: 100%;
-  aspect-ratio: 1920 / 500; /* Mantiene sempre la proporzione esatta del footer di Figma */
+  aspect-ratio: 1920 / 500;
+  margin-top: clamp(19px, 1.97vw, 38px);
   position: relative;
   overflow: hidden;
   background-repeat: no-repeat;
@@ -179,10 +180,8 @@ main {
 .sfondo_sezione_finale {
   width: 100%;
   height: 100%;
-  background: rgba(41,41,41,1);
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: rgba(41, 41, 41, 1);
+  position: relative;
 }
 
 /* Usiamo clamp o vw basati su 1920px (es. 170px su 1920px = ~8.85vw) */
@@ -195,6 +194,22 @@ main {
   overflow: hidden;
 }
 
+.icone_contatti {
+  position: absolute;
+
+  /* calcolo dimensioni .svg in base alla dimensione dello schermo (aumentate dimensioni standard di 5px per un bug ignoto che le mostrava poco più piccole con i rapporti originali) */
+  width: clamp(17px, calc(45 / 1920 * 100vw), 45px);
+  height: clamp(50px, calc(211 / 1920 * 100vw), 211px);
+
+  /* posizione relativa al footer */
+  left: 31.8%;
+  top: 35%;
+
+  margin: 0;
+
+  display: block;
+}
+
 .email {
   width: 100%;
   color: rgba(255,255,255,1);
@@ -203,7 +218,7 @@ main {
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px); /* dimensione del font basata sulla grandezza dello schermo */
   text-align: left;
 }
 
