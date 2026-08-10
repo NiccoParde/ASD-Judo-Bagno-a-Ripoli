@@ -1,0 +1,431 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   SEZIONE 1
+   Reference originale: 1920x1080
+   Tutte le proporzioni sono rapportate alla viewport.
+   ========================================================= */
+
+.sezione_1 {
+    width: 100%;
+    min-height: 100vh;
+
+    background: url("../images/v2011_72.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    opacity: 1;
+    position: relative;
+
+    overflow: hidden;
+
+    /*
+     * Rapporto di riferimento 1920x1080.
+     * min-height evita che la sezione collassi su viewport
+     * particolarmente basse.
+     */
+    aspect-ratio: 16 / 9;
+}
+
+
+/* =========================================================
+   SFONDO SCURO
+   ========================================================= */
+
+.contenitore_sezione_1 {
+    width: 100%;
+    height: 100%;
+
+    background: rgba(41, 41, 41, 1);
+
+    opacity: 1;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TITOLO
+   Posizione reference:
+   x = 58px / 1920
+   y = 156px / 1080
+   font = 70px
+   ========================================================= */
+
+.titolo_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 14.444vh;
+    left: 3.021vw;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    /*
+     * 70px su 1920x1080
+     */
+    font-size: clamp(32px, 3.646vw, 70px);
+
+    line-height: 1.05;
+
+    opacity: 1;
+    text-align: left;
+}
+
+
+/* =========================================================
+   SOTTOTITOLO 1
+   ========================================================= */
+
+.sottotitolo_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 29.352vh;
+    left: 3.021vw;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(20px, 2.083vw, 40px);
+
+    line-height: 1.1;
+
+    opacity: 1;
+    text-align: left;
+
+    /*
+     * Simula la sottolineatura della reference
+     */
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+
+/* =========================================================
+   TESTO PRINCIPALE
+   ========================================================= */
+
+.testo_1_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 37.222vh;
+    left: 3.021vw;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(14px, 1.406vw, 27px);
+
+    line-height: 1.25;
+
+    opacity: 1;
+    text-align: left;
+}
+
+
+/* =========================================================
+   SOTTOTITOLO 2
+   ========================================================= */
+
+.sottotitolo_2_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 50.37vh;
+    left: 3.021vw;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(20px, 2.083vw, 40px);
+
+    line-height: 1.1;
+
+    opacity: 1;
+    text-align: left;
+
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+
+/* =========================================================
+   ELENCO 1
+   ========================================================= */
+
+.testo_2_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 58.24vh;
+    left: 3.021vw;
+
+    /*
+     * Importante:
+     * eliminiamo il margine predefinito del browser
+     * e gestiamo noi il rientro dei pallini.
+     */
+    margin: 0;
+    padding-left: 1.35em;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(14px, 1.406vw, 27px);
+
+    line-height: 1.25;
+
+    opacity: 1;
+    text-align: left;
+}
+
+
+/*
+ * Ogni elemento è una riga separata
+ */
+
+.testo_2_sezione_1 li {
+    margin: 0;
+    padding-left: 0.15em;
+}
+
+
+/*
+ * Pallino bianco
+ */
+
+.testo_2_sezione_1 li::marker {
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.8em;
+}
+
+
+/* =========================================================
+   SOTTOTITOLO 3
+   ========================================================= */
+
+.sottotitolo_3_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 72.222vh;
+    left: 3.021vw;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(20px, 2.083vw, 40px);
+
+    line-height: 1.1;
+
+    opacity: 1;
+    text-align: left;
+
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+
+/* =========================================================
+   ELENCO 2
+   ========================================================= */
+
+.testo_3_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+
+    top: 78.333vh;
+    left: 3.021vw;
+
+    margin: 0;
+    padding-left: 1.35em;
+
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(14px, 1.406vw, 27px);
+
+    line-height: 1.25;
+
+    opacity: 1;
+    text-align: left;
+}
+
+
+/*
+ * Ogni voce è separata.
+ */
+
+.testo_3_sezione_1 li {
+    margin: 0;
+    padding-left: 0.15em;
+}
+
+
+/*
+ * Pallini bianchi
+ */
+
+.testo_3_sezione_1 li::marker {
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.8em;
+}
+
+
+/* =========================================================
+   SEPARATORE
+   ========================================================= */
+
+.separatore_sezione_1 {
+    width: calc(100% - 6.04vw);
+
+    height: clamp(2px, 0.26vw, 5px);
+
+    background: rgba(255, 255, 255, 1);
+
+    opacity: 1;
+
+    position: absolute;
+
+    top: 25.556vh;
+    left: 3.021vw;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/*
+ * Schermi più stretti.
+ * Manteniamo le proporzioni ma impediamo che il testo
+ * diventi troppo piccolo.
+ */
+
+@media (max-width: 900px) {
+
+    .sezione_1 {
+        min-height: 700px;
+        aspect-ratio: auto;
+    }
+
+    .titolo_sezione_1 {
+        top: 70px;
+    }
+
+    .sottotitolo_sezione_1 {
+        top: 145px;
+    }
+
+    .testo_1_sezione_1 {
+        top: 210px;
+    }
+
+    .sottotitolo_2_sezione_1 {
+        top: 330px;
+    }
+
+    .testo_2_sezione_1 {
+        top: 390px;
+    }
+
+    .sottotitolo_3_sezione_1 {
+        top: 500px;
+    }
+
+    .testo_3_sezione_1 {
+        top: 560px;
+    }
+
+    .separatore_sezione_1 {
+        top: 125px;
+    }
+}
+
+
+/*
+ * Smartphone
+ */
+
+@media (max-width: 600px) {
+
+    .sezione_1 {
+        min-height: 900px;
+    }
+
+    .titolo_sezione_1 {
+        left: 24px;
+        width: calc(100% - 48px);
+        font-size: clamp(28px, 9vw, 45px);
+    }
+
+    .sottotitolo_sezione_1,
+    .sottotitolo_2_sezione_1,
+    .sottotitolo_3_sezione_1 {
+        left: 24px;
+        width: calc(100% - 48px);
+        font-size: clamp(19px, 6vw, 30px);
+    }
+
+    .testo_1_sezione_1,
+    .testo_2_sezione_1,
+    .testo_3_sezione_1 {
+        left: 24px;
+        width: calc(100% - 48px);
+        font-size: clamp(14px, 4vw, 20px);
+    }
+
+    .separatore_sezione_1 {
+        left: 24px;
+        width: calc(100% - 48px);
+    }
+}

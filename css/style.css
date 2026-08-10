@@ -148,7 +148,7 @@ h6 {
 
 /* Spazio sotto l'header fisso per le pagine */
 main {
-  padding-top: var(--header-height);
+  padding-top: 0;
 }
 
 /* Adattamento del menu su schermi stretti */
