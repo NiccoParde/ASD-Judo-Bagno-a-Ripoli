@@ -429,3 +429,619 @@ body {
         width: calc(100% - 48px);
     }
 }
+
+.sezione_2 {
+  width: 100%;
+  height: 56.25vw; /* 1080 / 1920 * 100 */
+  margin-top: 2.135vw;
+
+  background: url("../assets/unisciti_a_noi/v2011_73.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TITOLO
+   Reference:
+   x = 10px
+   y = 0px
+   width = 991px
+   font = 55px
+   ========================================================= */
+
+.titolo_sezione_2 {
+  width: 51.615vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0vw;
+  left: 0.521vw;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 2.865vw;
+
+  line-height: 1.05;
+
+  opacity: 1;
+  text-align: left;
+}
+
+
+/* =========================================================
+   JUDOGI
+   Reference:
+   x = 0
+   y = 157
+   width = 595
+   height = 595
+   ========================================================= */
+
+.judogi {
+  width: 30.99vw;
+  height: 30.99vw;
+
+  background: url("../assets/unisciti_a_noi/judogi.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 8.177vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CONTENITORE ELEMENTI SEZIONE 2
+   Reference:
+   x = 897
+   y = 139
+   width = 832
+   height = 689
+   ========================================================= */
+
+.contenitore_elementi_sezione_2 {
+  width: 43.333vw;
+  height: 35.885vw;
+
+  background: url("../assets/unisciti_a_noi/v2008_67.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 7.240vw;
+  left: 46.719vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CINTURE
+   Reference:
+   x = 0
+   y = 5
+   width = 526
+   height = 680
+   ========================================================= */
+
+.cinture_sezione_2 {
+  width: 27.396vw;
+  height: 35.417vw;
+
+  background: url("../assets/unisciti_a_noi/v2008_66.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0.260vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CINTURE - COLONNA SINISTRA
+   ========================================================= */
+
+.bianca {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/bianca.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.gialla {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/gialla.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 4.167vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.arancione {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/arancione.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 8.333vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.verde {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/verde.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 12.500vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.blu {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/blu.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 16.667vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.marrone {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/marrone.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 20.833vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.nera {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/nera.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 25.000vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.bianco_rossa {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/bianco_rossa.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 29.167vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.rossa {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/rossa.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 33.333vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CINTURE - COLONNA DESTRA
+   ========================================================= */
+
+.bianco_gialla {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/bianco_gialla.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 1.979vw;
+  left: 21.979vw;
+
+  overflow: hidden;
+}
+
+.giallo_arancione {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/giallo_arancione.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 6.146vw;
+  left: 21.979vw;
+
+  overflow: hidden;
+}
+
+.arancio_verde {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/arancio_verde.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 10.313vw;
+  left: 21.979vw;
+
+  overflow: hidden;
+}
+
+.verde_blu {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/verde_blu.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 14.479vw;
+  left: 21.979vw;
+
+  overflow: hidden;
+}
+
+.blu_marrone {
+  width: 5.417vw;
+  height: 2.083vw;
+
+  background: url("../assets/unisciti_a_noi/blu_marrone.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 18.646vw;
+  left: 21.979vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TESTI
+   Reference:
+   x = 104
+   y = 0
+   width = 728
+   height = 689
+   ========================================================= */
+
+.testi_sezione_2 {
+  width: 37.917vw;
+  height: 35.885vw;
+
+  background: url("../assets/unisciti_a_noi/v2008_65.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0vw;
+  left: 5.417vw;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TESTI
+   Reference:
+   width = 306px
+   font = 32px
+   ========================================================= */
+
+.testo_1_sezione_2,
+.testo_2_sezione_2,
+.testo_3_sezione_2,
+.testo_4_sezione_2,
+.testo_5_sezione_2,
+.testo_6_sezione_2,
+.testo_7_sezione_2,
+.testo_8_sezione_2,
+.testo_9_sezione_2,
+.testo_10_sezione_2,
+.testo_11_sezione_2,
+.testo_12_sezione_2,
+.testo_13_sezione_2,
+.testo_14_sezione_2 {
+  width: 15.938vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 1.667vw;
+
+  line-height: 1.1;
+
+  opacity: 1;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   POSIZIONI TESTI
+   ========================================================= */
+
+.testo_1_sezione_2 {
+  top: 0vw;
+  left: 0vw;
+}
+
+.testo_2_sezione_2 {
+  top: 1.979vw;
+  left: 21.979vw;
+}
+
+.testo_3_sezione_2 {
+  top: 6.146vw;
+  left: 21.979vw;
+}
+
+.testo_4_sezione_2 {
+  top: 10.313vw;
+  left: 21.979vw;
+}
+
+.testo_5_sezione_2 {
+  top: 14.479vw;
+  left: 21.979vw;
+}
+
+.testo_6_sezione_2 {
+  top: 18.646vw;
+  left: 21.979vw;
+}
+
+.testo_7_sezione_2 {
+  top: 20.833vw;
+  left: 0vw;
+}
+
+.testo_8_sezione_2 {
+  top: 25.000vw;
+  left: 0vw;
+}
+
+.testo_9_sezione_2 {
+  top: 29.167vw;
+  left: 0vw;
+}
+
+.testo_10_sezione_2 {
+  top: 33.333vw;
+  left: 0vw;
+}
+
+.testo_11_sezione_2 {
+  top: 16.667vw;
+  left: 0vw;
+}
+
+.testo_12_sezione_2 {
+  top: 12.500vw;
+  left: 0vw;
+}
+
+.testo_13_sezione_2 {
+  top: 8.333vw;
+  left: 0vw;
+}
+
+.testo_14_sezione_2 {
+  top: 4.167vw;
+  left: 0vw;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/*
+ * Non servono breakpoint per ridimensionare il layout.
+ *
+ * TUTTO usa vw:
+ *
+ * 1920px -> 100%
+ * 1600px -> 83.33%
+ * 1366px -> 71.15%
+ * 1280px -> 66.67%
+ * 1024px -> 53.33%
+ * 768px  -> 40%
+ * 480px  -> 25%
+ *
+ * Quindi anche div, immagini, testi, distanze e coordinate
+ * vengono ridotti nella stessa identica proporzione.
+ */
+
+
+/* =========================================================
+   SCHERMI MOLTO PICCOLI
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /*
+   * Nessuna modifica alle proporzioni.
+   * La composizione continua semplicemente a scalare.
+   */
+
+  .sezione_2 {
+    width: 100%;
+    height: 56.25vw;
+  }
+
+  .titolo_sezione_2 {
+    font-size: 2.865vw;
+  }
+
+  .testo_1_sezione_2,
+  .testo_2_sezione_2,
+  .testo_3_sezione_2,
+  .testo_4_sezione_2,
+  .testo_5_sezione_2,
+  .testo_6_sezione_2,
+  .testo_7_sezione_2,
+  .testo_8_sezione_2,
+  .testo_9_sezione_2,
+  .testo_10_sezione_2,
+  .testo_11_sezione_2,
+  .testo_12_sezione_2,
+  .testo_13_sezione_2,
+  .testo_14_sezione_2 {
+    font-size: 1.667vw;
+  }
+}
