@@ -5,6 +5,7 @@
   --font-text2: "DM Serif Display", Georgia, serif italic;
   --color-white: #ffffff;
   --header-height: 120px;
+  --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
 }
 
 /* Reset leggero per rendere le misure piu' prevedibili */
