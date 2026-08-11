@@ -386,7 +386,7 @@ SEZIONE 2
 
 .sezione_2 {
   width: 100%;
-  height: 56.25vw;
+  height: 43.125vw;
 
   /*
   * Distanza dalla Sezione 1:
@@ -979,6 +979,8 @@ La sezione rimane nel normale flusso della pagina.
 .sezione_3 {
   width: 100%;
   height: 20.833333vw;
+  margin-top: 3.59375vw;
+  margin-bottom: 3.59375vw;
 
   background: url("../images/v2011_78.png");
   background-repeat: no-repeat;
