@@ -1,439 +1,399 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-    font-size: 14px;
-    overflow-x: hidden;
+  font-size: 14px;
+  overflow-x: hidden;
 }
 
 /* =========================================================
-   SEZIONE 1
-   Reference originale: 1920x1080
-   Tutte le proporzioni sono rapportate alla viewport.
-   ========================================================= */
+SEZIONE 1
+Reference originale: 1920x1080
+Tutte le proporzioni sono rapportate alla viewport.
+========================================================= */
 
 .sezione_1 {
-    width: 100%;
-    min-height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 
-    background: url("../images/v2011_72.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  background: url("../images/v2011_72.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 
-    opacity: 1;
-    position: relative;
+  opacity: 1;
+  position: relative;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    /*
-     * Rapporto di riferimento 1920x1080.
-     * min-height evita che la sezione collassi su viewport
-     * particolarmente basse.
-     */
-    aspect-ratio: 16 / 9;
+  /*
+  * Rapporto di riferimento 1920x1080.
+  * min-height evita che la sezione collassi su viewport
+  * particolarmente basse.
+  */
+  aspect-ratio: 16 / 9;
 }
 
-
 /* =========================================================
-   SFONDO SCURO
-   ========================================================= */
+SFONDO SCURO
+========================================================= */
 
 .contenitore_sezione_1 {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    background: rgba(41, 41, 41, 1);
+  background: rgba(41, 41, 41, 1);
 
-    opacity: 1;
+  opacity: 1;
 
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
-
 /* =========================================================
-   TITOLO
-   Posizione reference:
-   x = 58px / 1920
-   y = 156px / 1080
-   font = 70px
-   ========================================================= */
+TITOLO
+Posizione reference:
+x = 58px / 1920
+y = 156px / 1080
+font = 70px
+========================================================= */
 
 .titolo_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 14.444vh;
-    left: 3.021vw;
+  top: 14.444vh;
+  left: 3.021vw;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    /*
-     * 70px su 1920x1080
-     */
-    font-size: clamp(32px, 3.646vw, 70px);
+  font-size: clamp(32px, 3.646vw, 70px);
 
-    line-height: 1.05;
+  line-height: 1.05;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 }
 
-
 /* =========================================================
-   SOTTOTITOLO 1
-   ========================================================= */
+SOTTOTITOLO 1
+========================================================= */
 
 .sottotitolo_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 29.352vh;
-    left: 3.021vw;
+  top: 29.352vh;
+  left: 3.021vw;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(20px, 2.083vw, 40px);
+  font-size: clamp(20px, 2.083vw, 40px);
 
-    line-height: 1.1;
+  line-height: 1.1;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 
-    /*
-     * Simula la sottolineatura della reference
-     */
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 5px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
 
-
 /* =========================================================
-   TESTO PRINCIPALE
-   ========================================================= */
+TESTO PRINCIPALE
+========================================================= */
 
 .testo_1_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 37.222vh;
-    left: 3.021vw;
+  top: 37.222vh;
+  left: 3.021vw;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(14px, 1.406vw, 27px);
+  font-size: clamp(14px, 1.406vw, 27px);
 
-    line-height: 1.25;
+  line-height: 1.25;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 }
 
-
 /* =========================================================
-   SOTTOTITOLO 2
-   ========================================================= */
+SOTTOTITOLO 2
+========================================================= */
 
 .sottotitolo_2_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 50.37vh;
-    left: 3.021vw;
+  top: 50.37vh;
+  left: 3.021vw;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(20px, 2.083vw, 40px);
+  font-size: clamp(20px, 2.083vw, 40px);
 
-    line-height: 1.1;
+  line-height: 1.1;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 5px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
 
-
 /* =========================================================
-   ELENCO 1
-   ========================================================= */
+ELENCO 1
+========================================================= */
 
 .testo_2_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 58.24vh;
-    left: 3.021vw;
+  top: 58.24vh;
+  left: 3.021vw;
 
-    /*
-     * Importante:
-     * eliminiamo il margine predefinito del browser
-     * e gestiamo noi il rientro dei pallini.
-     */
-    margin: 0;
-    padding-left: 1.35em;
+  margin: 0;
+  padding-left: 1.35em;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(14px, 1.406vw, 27px);
+  font-size: clamp(14px, 1.406vw, 27px);
 
-    line-height: 1.25;
+  line-height: 1.25;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 }
-
-
-/*
- * Ogni elemento è una riga separata
- */
 
 .testo_2_sezione_1 li {
-    margin: 0;
-    padding-left: 0.15em;
+  margin: 0;
+  padding-left: 0.15em;
 }
-
-
-/*
- * Pallino bianco
- */
 
 .testo_2_sezione_1 li::marker {
-    color: rgba(255, 255, 255, 1);
-    font-size: 0.8em;
+  color: rgba(255, 255, 255, 1);
+  font-size: 0.8em;
 }
 
-
 /* =========================================================
-   SOTTOTITOLO 3
-   ========================================================= */
+SOTTOTITOLO 3
+========================================================= */
 
 .sottotitolo_3_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 72.222vh;
-    left: 3.021vw;
+  top: 72.222vh;
+  left: 3.021vw;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(20px, 2.083vw, 40px);
+  font-size: clamp(20px, 2.083vw, 40px);
 
-    line-height: 1.1;
+  line-height: 1.1;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 5px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
 
-
 /* =========================================================
-   ELENCO 2
-   ========================================================= */
+ELENCO 2
+========================================================= */
 
 .testo_3_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 
-    position: absolute;
+  position: absolute;
 
-    top: 78.333vh;
-    left: 3.021vw;
+  top: 78.333vh;
+  left: 3.021vw;
 
-    margin: 0;
-    padding-left: 1.35em;
+  margin: 0;
+  padding-left: 1.35em;
 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
 
-    font-size: clamp(14px, 1.406vw, 27px);
+  font-size: clamp(14px, 1.406vw, 27px);
 
-    line-height: 1.25;
+  line-height: 1.25;
 
-    opacity: 1;
-    text-align: left;
+  opacity: 1;
+  text-align: left;
 }
-
-
-/*
- * Ogni voce è separata.
- */
 
 .testo_3_sezione_1 li {
-    margin: 0;
-    padding-left: 0.15em;
+  margin: 0;
+  padding-left: 0.15em;
 }
-
-
-/*
- * Pallini bianchi
- */
 
 .testo_3_sezione_1 li::marker {
-    color: rgba(255, 255, 255, 1);
-    font-size: 0.8em;
+  color: rgba(255, 255, 255, 1);
+  font-size: 0.8em;
 }
 
-
 /* =========================================================
-   SEPARATORE
-   ========================================================= */
+SEPARATORE
+========================================================= */
 
 .separatore_sezione_1 {
-    width: calc(100% - 6.04vw);
+  width: calc(100% - 6.04vw);
 
-    height: clamp(2px, 0.26vw, 5px);
+  height: clamp(2px, 0.26vw, 5px);
 
-    background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1);
 
-    opacity: 1;
+  opacity: 1;
 
-    position: absolute;
+  position: absolute;
 
-    top: 25.556vh;
-    left: 3.021vw;
+  top: 25.556vh;
+  left: 3.021vw;
 
-    overflow: hidden;
+  overflow: hidden;
 }
-
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-/*
- * Schermi più stretti.
- * Manteniamo le proporzioni ma impediamo che il testo
- * diventi troppo piccolo.
- */
+RESPONSIVE
+========================================================= */
 
 @media (max-width: 900px) {
+  .sezione_1 {
+    min-height: 700px;
+    aspect-ratio: auto;
+  }
 
-    .sezione_1 {
-        min-height: 700px;
-        aspect-ratio: auto;
-    }
+  .titolo_sezione_1 {
+    top: 70px;
+  }
 
-    .titolo_sezione_1 {
-        top: 70px;
-    }
+  .sottotitolo_sezione_1 {
+    top: 145px;
+  }
 
-    .sottotitolo_sezione_1 {
-        top: 145px;
-    }
+  .testo_1_sezione_1 {
+    top: 210px;
+  }
 
-    .testo_1_sezione_1 {
-        top: 210px;
-    }
+  .sottotitolo_2_sezione_1 {
+    top: 330px;
+  }
 
-    .sottotitolo_2_sezione_1 {
-        top: 330px;
-    }
+  .testo_2_sezione_1 {
+    top: 390px;
+  }
 
-    .testo_2_sezione_1 {
-        top: 390px;
-    }
+  .sottotitolo_3_sezione_1 {
+    top: 500px;
+  }
 
-    .sottotitolo_3_sezione_1 {
-        top: 500px;
-    }
+  .testo_3_sezione_1 {
+    top: 560px;
+  }
 
-    .testo_3_sezione_1 {
-        top: 560px;
-    }
-
-    .separatore_sezione_1 {
-        top: 125px;
-    }
+  .separatore_sezione_1 {
+    top: 125px;
+  }
 }
 
-
-/*
- * Smartphone
- */
+/* =========================================================
+SMARTPHONE
+========================================================= */
 
 @media (max-width: 600px) {
+  .sezione_1 {
+    min-height: 900px;
+  }
 
-    .sezione_1 {
-        min-height: 900px;
-    }
+  .titolo_sezione_1 {
+    left: 24px;
+    width: calc(100% - 48px);
+    font-size: clamp(28px, 9vw, 45px);
+  }
 
-    .titolo_sezione_1 {
-        left: 24px;
-        width: calc(100% - 48px);
-        font-size: clamp(28px, 9vw, 45px);
-    }
+  .sottotitolo_sezione_1,
+  .sottotitolo_2_sezione_1,
+  .sottotitolo_3_sezione_1 {
+    left: 24px;
+    width: calc(100% - 48px);
+    font-size: clamp(19px, 6vw, 30px);
+  }
 
-    .sottotitolo_sezione_1,
-    .sottotitolo_2_sezione_1,
-    .sottotitolo_3_sezione_1 {
-        left: 24px;
-        width: calc(100% - 48px);
-        font-size: clamp(19px, 6vw, 30px);
-    }
+  .testo_1_sezione_1,
+  .testo_2_sezione_1,
+  .testo_3_sezione_1 {
+    left: 24px;
+    width: calc(100% - 48px);
+    font-size: clamp(14px, 4vw, 20px);
+  }
 
-    .testo_1_sezione_1,
-    .testo_2_sezione_1,
-    .testo_3_sezione_1 {
-        left: 24px;
-        width: calc(100% - 48px);
-        font-size: clamp(14px, 4vw, 20px);
-    }
-
-    .separatore_sezione_1 {
-        left: 24px;
-        width: calc(100% - 48px);
-    }
+  .separatore_sezione_1 {
+    left: 24px;
+    width: calc(100% - 48px);
+  }
 }
+
+/* =========================================================
+SEZIONE 2
+========================================================= */
 
 .sezione_2 {
   width: 100%;
-  height: 56.25vw; /* 1080 / 1920 * 100 */
-  margin-top: 2.135vw;
+  height: 56.25vw;
+
+  /*
+  * Distanza dalla Sezione 1:
+  * 69px a 1920px
+  * completamente elastica.
+  */
+  margin-top: 3.59375vw;
 
   background: url("../assets/unisciti_a_noi/v2011_73.png");
   background-repeat: no-repeat;
@@ -447,15 +407,14 @@ body {
   overflow: hidden;
 }
 
-
 /* =========================================================
-   TITOLO
-   Reference:
-   x = 10px
-   y = 0px
-   width = 991px
-   font = 55px
-   ========================================================= */
+TITOLO
+Reference:
+x = 10px
+y = 0px
+width = 991px
+font = 55px
+========================================================= */
 
 .titolo_sezione_2 {
   width: 51.615vw;
@@ -465,7 +424,7 @@ body {
   position: absolute;
 
   top: 0vw;
-  left: 0.521vw;
+  left: 3.0729167vw;
 
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
@@ -478,15 +437,14 @@ body {
   text-align: left;
 }
 
-
 /* =========================================================
-   JUDOGI
-   Reference:
-   x = 0
-   y = 157
-   width = 595
-   height = 595
-   ========================================================= */
+JUDOGI
+Reference:
+x = 0
+y = 157
+width = 595
+height = 595
+========================================================= */
 
 .judogi {
   width: 30.99vw;
@@ -507,15 +465,14 @@ body {
   overflow: hidden;
 }
 
-
 /* =========================================================
-   CONTENITORE ELEMENTI SEZIONE 2
-   Reference:
-   x = 897
-   y = 139
-   width = 832
-   height = 689
-   ========================================================= */
+CONTENITORE ELEMENTI SEZIONE 2
+Reference:
+x = 897
+y = 139
+width = 832
+height = 689
+========================================================= */
 
 .contenitore_elementi_sezione_2 {
   width: 43.333vw;
@@ -530,21 +487,20 @@ body {
 
   position: absolute;
 
-  top: 7.240vw;
+  top: 7.24vw;
   left: 46.719vw;
 
   overflow: hidden;
 }
 
-
 /* =========================================================
-   CINTURE
-   Reference:
-   x = 0
-   y = 5
-   width = 526
-   height = 680
-   ========================================================= */
+CINTURE
+Reference:
+x = 0
+y = 5
+width = 526
+height = 680
+========================================================= */
 
 .cinture_sezione_2 {
   width: 27.396vw;
@@ -559,16 +515,15 @@ body {
 
   position: absolute;
 
-  top: 0.260vw;
+  top: 0.26vw;
   left: 0vw;
 
   overflow: hidden;
 }
 
-
 /* =========================================================
-   CINTURE - COLONNA SINISTRA
-   ========================================================= */
+CINTURE - COLONNA SINISTRA
+========================================================= */
 
 .bianca {
   width: 5.417vw;
@@ -640,7 +595,7 @@ body {
 
   position: absolute;
 
-  top: 12.500vw;
+  top: 12.5vw;
   left: 0vw;
 
   overflow: hidden;
@@ -697,7 +652,7 @@ body {
 
   position: absolute;
 
-  top: 25.000vw;
+  top: 25vw;
   left: 0vw;
 
   overflow: hidden;
@@ -741,10 +696,9 @@ body {
   overflow: hidden;
 }
 
-
 /* =========================================================
-   CINTURE - COLONNA DESTRA
-   ========================================================= */
+CINTURE - COLONNA DESTRA
+========================================================= */
 
 .bianco_gialla {
   width: 5.417vw;
@@ -841,15 +795,14 @@ body {
   overflow: hidden;
 }
 
-
 /* =========================================================
-   TESTI
-   Reference:
-   x = 104
-   y = 0
-   width = 728
-   height = 689
-   ========================================================= */
+TESTI
+Reference:
+x = 104
+y = 0
+width = 728
+height = 689
+========================================================= */
 
 .testi_sezione_2 {
   width: 37.917vw;
@@ -870,13 +823,12 @@ body {
   overflow: hidden;
 }
 
-
 /* =========================================================
-   TESTI
-   Reference:
-   width = 306px
-   font = 32px
-   ========================================================= */
+TESTI
+Reference:
+width = 306px
+font = 32px
+========================================================= */
 
 .testo_1_sezione_2,
 .testo_2_sezione_2,
@@ -910,10 +862,9 @@ body {
   text-align: center;
 }
 
-
 /* =========================================================
-   POSIZIONI TESTI
-   ========================================================= */
+POSIZIONI TESTI
+========================================================= */
 
 .testo_1_sezione_2 {
   top: 0vw;
@@ -951,7 +902,7 @@ body {
 }
 
 .testo_8_sezione_2 {
-  top: 25.000vw;
+  top: 25vw;
   left: 0vw;
 }
 
@@ -971,7 +922,7 @@ body {
 }
 
 .testo_12_sezione_2 {
-  top: 12.500vw;
+  top: 12.5vw;
   left: 0vw;
 }
 
@@ -985,40 +936,11 @@ body {
   left: 0vw;
 }
 
-
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-/*
- * Non servono breakpoint per ridimensionare il layout.
- *
- * TUTTO usa vw:
- *
- * 1920px -> 100%
- * 1600px -> 83.33%
- * 1366px -> 71.15%
- * 1280px -> 66.67%
- * 1024px -> 53.33%
- * 768px  -> 40%
- * 480px  -> 25%
- *
- * Quindi anche div, immagini, testi, distanze e coordinate
- * vengono ridotti nella stessa identica proporzione.
- */
-
-
-/* =========================================================
-   SCHERMI MOLTO PICCOLI
-   ========================================================= */
+RESPONSIVE SEZIONE 2
+========================================================= */
 
 @media (max-width: 600px) {
-
-  /*
-   * Nessuna modifica alle proporzioni.
-   * La composizione continua semplicemente a scalare.
-   */
-
   .sezione_2 {
     width: 100%;
     height: 56.25vw;
@@ -1043,5 +965,518 @@ body {
   .testo_13_sezione_2,
   .testo_14_sezione_2 {
     font-size: 1.667vw;
+  }
+}
+
+/* =========================================================
+SEZIONE 3
+Reference originale: 1920x1080
+
+Tutto scala proporzionalmente alla larghezza della viewport.
+La sezione rimane nel normale flusso della pagina.
+========================================================= */
+
+.sezione_3 {
+  width: 100%;
+  height: 20.833333vw;
+
+  background: url("../images/v2011_78.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+TITOLO
+Reference:
+x = 59px
+y = 69px
+font = 55px
+========================================================= */
+
+.titolo_sezione_3 {
+  width: 100%;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  left: 3.0729167vw;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 2.8645833vw;
+
+  line-height: 1.05;
+
+  opacity: 1;
+  text-align: left;
+
+  margin: 0;
+}
+
+/* =========================================================
+SOTTOTITOLO
+Reference:
+x = 59px
+width = 1811px
+height = 90px
+========================================================= */
+
+.sottotitolo_sezione_3 {
+  width: 94.3229167vw;
+  height: 4.6875vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 4.5833333vw;
+  left: 3.0729167vw;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 1.40625vw;
+  line-height: 1.25;
+
+  opacity: 1;
+  text-align: left;
+
+  margin: 0;
+}
+
+/* =========================================================
+TESTO SOPRA I PULSANTI
+========================================================= */
+
+.testo_pulsante_1 {
+  width: 18.4895833vw;
+
+  color: rgba(0, 0, 0, 1);
+
+  position: absolute;
+
+  top: 11.9791667vw;
+  left: 2.5520833vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 2.0833333vw;
+  line-height: 1.1;
+
+  opacity: 1;
+  text-align: center;
+
+  margin: 0;
+}
+
+.testo_pulsante_2 {
+  width: 29.7916667vw;
+
+  color: rgba(0, 0, 0, 1);
+
+  position: absolute;
+
+  top: 11.9791667vw;
+  left: 26.8229167vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 2.0833333vw;
+  line-height: 1.1;
+
+  opacity: 1;
+  text-align: center;
+
+  margin: 0;
+}
+
+.testo_pulsante_3 {
+  width: 28.90625vw;
+
+  color: rgba(0, 0, 0, 1);
+
+  position: absolute;
+
+  top: 11.9791667vw;
+  left: 62.3958333vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 2.0833333vw;
+  line-height: 1.1;
+
+  opacity: 1;
+  text-align: center;
+
+  margin: 0;
+}
+
+/* =========================================================
+PULSANTE 1
+========================================================= */
+
+.pulsante_1 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2011_74.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 16.1458333vw;
+  left: 5.3125vw;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  display: block;
+}
+
+/* ---------------------------------------------------------
+TESTO "CLICCA QUI"
+--------------------------------------------------------- */
+
+.clicca_qui_1 {
+  width: 7.8125vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 1.40625vw;
+  left: 2.6041667vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 1.6666667vw;
+  line-height: 1;
+
+  opacity: 1;
+  text-align: center;
+
+  z-index: 2;
+
+  transition: color 0.5s ease;
+}
+
+/* ---------------------------------------------------------
+BOX
+--------------------------------------------------------- */
+
+.box_pulsante_1 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2009_44.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  border: 1px solid rgba(41, 41, 41, 1);
+
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+OVERLAY ANIMATO
+--------------------------------------------------------- */
+
+.box_pulsante_1::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(41, 41, 41, 1);
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  pointer-events: none;
+}
+
+.pulsante_1:hover .box_pulsante_1::after {
+  opacity: 1;
+}
+
+.pulsante_1:hover .clicca_qui_1 {
+  color: white;
+}
+
+/* =========================================================
+PULSANTE 2
+========================================================= */
+
+.pulsante_2 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2011_75.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 16.1458333vw;
+  left: 35.2083333vw;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  display: block;
+}
+
+/* ---------------------------------------------------------
+TESTO "CLICCA QUI"
+--------------------------------------------------------- */
+
+.clicca_qui_2 {
+  width: 7.8125vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 1.40625vw;
+  left: 2.6041667vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 1.6666667vw;
+  line-height: 1;
+
+  opacity: 1;
+  text-align: center;
+
+  z-index: 2;
+
+  transition: color 0.5s ease;
+}
+
+/* ---------------------------------------------------------
+BOX
+--------------------------------------------------------- */
+
+.box_pulsante_2 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2009_57.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  border: 1px solid rgba(41, 41, 41, 1);
+
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+OVERLAY ANIMATO
+--------------------------------------------------------- */
+
+.box_pulsante_2::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(41, 41, 41, 1);
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  pointer-events: none;
+}
+
+.pulsante_2:hover .box_pulsante_2::after {
+  opacity: 1;
+}
+
+.pulsante_2:hover .clicca_qui_2 {
+  color: white;
+}
+
+/* =========================================================
+PULSANTE 3
+========================================================= */
+
+.pulsante_3 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2011_76.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 16.1458333vw;
+  left: 70.3645833vw;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  display: block;
+}
+
+/* ---------------------------------------------------------
+TESTO "CLICCA QUI"
+--------------------------------------------------------- */
+
+.clicca_qui_3 {
+  width: 7.8125vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 1.40625vw;
+  left: 2.6041667vw;
+
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+
+  font-size: 1.6666667vw;
+  line-height: 1;
+
+  opacity: 1;
+  text-align: center;
+
+  z-index: 2;
+
+  transition: color 0.5s ease;
+}
+
+/* ---------------------------------------------------------
+BOX
+--------------------------------------------------------- */
+
+.box_pulsante_3 {
+  width: 13.0208333vw;
+  height: 4.6875vw;
+
+  background: url("../images/v2009_65.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  border: 1px solid rgba(41, 41, 41, 1);
+
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+OVERLAY ANIMATO
+--------------------------------------------------------- */
+
+.box_pulsante_3::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(41, 41, 41, 1);
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  pointer-events: none;
+}
+
+.pulsante_3:hover .box_pulsante_3::after {
+  opacity: 1;
+}
+
+.pulsante_3:hover .clicca_qui_3 {
+  color: white;
+}
+
+/* =========================================================
+RESPONSIVE SEZIONE 3
+
+Nessuna modifica alle proporzioni.
+La composizione continua semplicemente a scalare.
+========================================================= */
+
+@media (max-width: 600px) {
+  .sezione_3 {
+    width: 100%;
+    height: 20.833333vw;
+  }
+
+  .titolo_sezione_3 {
+    font-size: 2.8645833vw;
+  }
+
+  .sottotitolo_sezione_3 {
+    font-size: 1.40625vw;
+  }
+
+  .testo_pulsante_1,
+  .testo_pulsante_2,
+  .testo_pulsante_3 {
+    font-size: 2.0833333vw;
+  }
+
+  .clicca_qui_1,
+  .clicca_qui_2,
+  .clicca_qui_3 {
+    font-size: 1.6666667vw;
   }
 }
