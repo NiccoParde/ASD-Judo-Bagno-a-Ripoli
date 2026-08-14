@@ -93,12 +93,6 @@ font = 275px
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-}
-
 .sezione_2 {
   width: 100%;
   height: 130.2083333vw;
@@ -205,5 +199,272 @@ body {
 .grassetto {
   font-weight: 600;
   font-family: "DM Serif Text";
-  font-style: italic;
+}
+
+.sezione_3 {
+  width: 100%;
+  height: 200.46875vw;
+
+  background: url("../images/v2047_74.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: relative;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_sezione_3 {
+  width: 100%;
+  height: 200.46875vw;
+
+  background: url("../images/v2047_71.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_1 {
+  width: 37.5vw;
+  height: 46.4583333vw;
+
+  background: url("../assets/storia/foto_1.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_2 {
+  width: 100%;
+  height: 45.625vw;
+
+  background: url("../assets/storia/foto_2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 39.5833333vw;
+  left: 37.5vw;
+
+  overflow: hidden;
+}
+
+.foto_3 {
+  width: 31.6145833vw;
+  height: 22.34375vw;
+
+  background: url("../assets/storia/foto_3.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 200.46875vw;
+  left: 77.65625vw;
+
+  transform: rotate(-90deg);
+
+  overflow: hidden;
+}
+
+.foto_4 {
+  width: 37.5vw;
+  height: 27.5vw;
+
+  background: url("../assets/storia/foto_4.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 172.96875vw;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_5 {
+  width: 40.15625vw;
+  height: 31.6145833vw;
+
+  background: url("../assets/storia/foto_5.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 168.8541667vw;
+  left: 37.5vw;
+
+  overflow: hidden;
+}
+
+.foto_6 {
+  width: 100%;
+  height: 40.5208333vw;
+
+  background: url("../assets/storia/foto_6.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 85.2083333vw;
+  left: 37.5vw;
+
+  overflow: hidden;
+}
+
+.foto_7 {
+  width: 100%;
+  height: 39.5833333vw;
+
+  background: url("../assets/storia/foto_7.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 37.5vw;
+
+  overflow: hidden;
+}
+
+.foto_8 {
+  width: 37.5vw;
+  height: 24.6354167vw;
+
+  background: url("../assets/storia/foto_8.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 96.25vw;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_9 {
+  width: 37.5vw;
+  height: 28.125vw;
+
+  background: url("../assets/storia/foto_9.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 120.8854167vw;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_10 {
+  width: 100%;
+  height: 43.125vw;
+
+  background: url("../assets/storia/foto_4.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 125.7291667vw;
+  left: 37.5vw;
+
+  overflow: hidden;
+}
+
+.foto_11 {
+  width: 37.5vw;
+  height: 49.7916667vw;
+
+  background: url("../assets/storia/foto_11.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 46.4583333vw;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.foto_12 {
+  width: 37.5vw;
+  height: 23.9583333vw;
+
+  background: url("../assets/storia/foto_12.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 148.9583333vw;
+  left: 0;
+
+  overflow: hidden;
 }

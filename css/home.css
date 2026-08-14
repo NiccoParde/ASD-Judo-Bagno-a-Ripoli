@@ -241,6 +241,7 @@
   --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
   position: relative;
   min-height: clamp(294px, 56.25vw, 1080px);
+  margin-bottom: clamp(19px, 1.97vw, 38px);
   overflow: hidden;
 }
 
