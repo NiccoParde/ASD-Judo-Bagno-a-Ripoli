@@ -1,0 +1,209 @@
+/* =========================================================
+SEZIONE 1
+Reference originale: 1920x1176
+
+Tutto scala proporzionalmente alla larghezza della viewport.
+1920px = 100vw
+1176px = 61.25vw
+========================================================= */
+
+.sezione_1 {
+  width: 100%;
+  height: 61.25vw;
+
+  background: url("../images/v2047_72.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+IMMAGINE SFONDO SEZIONE 1
+
+Reference:
+width  = 1920px
+height = 1176px
+
+Occupa esattamente tutta la sezione.
+========================================================= */
+
+.immagine_sfondo_sezione_1 {
+  width: 100%;
+  height: 100%;
+
+  background: url("../assets/storia/immagine_sfondo_sezione_1.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+TITOLO
+
+Reference:
+x = 0px
+y = 288px
+width = 1920px
+font = 275px
+
+288 / 1920 = 15vw
+275 / 1920 = 14.3229167vw
+========================================================= */
+
+.titolo_sezione_1 {
+  width: 100%;
+
+  color: rgba(255, 255, 255, 1);
+
+  position: absolute;
+
+  top: 15vw;
+  left: 0;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 14.3229167vw;
+
+  line-height: 1;
+
+  opacity: 1;
+
+  text-align: center;
+
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.sezione_2 {
+  width: 100%;
+  height: 130.2083333vw;
+
+  background: url("../images/v2047_73.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  opacity: 1;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.sfondo_titolo_sezione_2 {
+  width: 100%;
+  height: 11.0416667vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.titolo_sezione_2 {
+  width: 84.375vw;
+  height: 8.4375vw;
+
+  color: rgba(255, 255, 255, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 1.5vw;
+
+  margin-left: 0.8333333vw;
+
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+
+  font-size: 3.1770833vw;
+
+  line-height: 1;
+
+  opacity: 1;
+
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+}
+
+.separatore_sezione_2 {
+  width: 93.9583333vw;
+  height: 0.2604167vw;
+
+  background: rgba(255, 255, 255, 1);
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 8.4375vw;
+  left: 2.34375vw;
+
+  overflow: hidden;
+}
+
+.testo_sezione_2 {
+  width: 88.9583333vw;
+  height: 117.4479167vw;
+
+  color: rgba(0, 0, 0, 1);
+
+  position: absolute;
+
+  top: 11.0416667vw;
+  margin-left: 1.5vw;
+
+  margin-top: 1.71875vw;
+
+  font-family: "DM Serif Text";
+  font-weight: 500;
+
+  font-size: 2.0833333vw;
+
+  line-height: 1.2;
+
+  opacity: 1;
+
+  text-align: left;
+
+  margin-left: 2.2916667vw;
+}
+
+.grassetto {
+  font-weight: 600;
+  font-family: "DM Serif Text";
+  font-style: italic;
+}
