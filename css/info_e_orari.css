@@ -1,181 +1,601 @@
+/* STRUTTURA INFO E ORARI */
+
+body:has(.sezione_2) main {
+    position: relative;
+    height: 87vw;
+    min-height: 0;
+}
+
+
+/* SEZIONE 1 */
+
 .sezione_1 {
-  width: 93vw;
-  height: 48vw;
-  background: url("../images/v2023_45.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 7.3958333vw;
-  left: 3.59vw;
-  overflow: hidden;
+    width: 93vw;
+    height: 48vw;
+    background: url("../images/v2023_45.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 7.3958333vw;
+    left: 3.59vw;
+    overflow: hidden;
 }
 
 .titolo_sezione_1 {
-  width: 32.91vw;
-  height: 9.44vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 4.1666667vw;
-  text-decoration: underline;
-  opacity: 1;
-  text-align: left;
+    width: 32.91vw;
+    height: 9.44vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 4.1666667vw;
+    text-decoration: underline;
+    opacity: 1;
+    text-align: left;
 }
 
 .info_sezione_1 {
-  width: 93vw;
-  height: 39.07vw;
-  background: url("../images/v2023_44.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 6.44vw;
-  left: 0;
-  overflow: hidden;
+    width: 93vw;
+    height: 39.07vw;
+    background: url("../images/v2023_44.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 6.44vw;
+    left: 0;
+    overflow: hidden;
 }
 
 .testo_sezione_1 {
-  width: 100%;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+    width: 100%;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
 .testo_sezione_1 a {
-  color: rgba(41, 41, 41, 1);
-  text-decoration: underline;
+    color: rgba(41, 41, 41, 1);
+    text-decoration: underline;
 }
 
 .testo_indirizzo_sezione_1 {
-  width: 100%;
-  height: 10.18vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 6.875vw;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+    width: 100%;
+    height: 10.18vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 6.875vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
-.indirizzo {
-  width: 33.3333333vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 7.03125vw;
-  left: 14.6875vw;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+.indirizzo_info_e_orari {
+    width: 33.3333333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 7.03125vw;
+    left: 14.6875vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
 .testo_info_contatto {
-  width: 16.25vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 9.6354167vw;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+    width: 16.25vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 9.6354167vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
 .icona_pin {
-  width: 1.6145833vw;
-  height: 1.9791667vw;
-  background: url("../assets/info_e_orari/icona_pin.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 1;
-  position: absolute;
-  top: 7.2916667vw;
-  left: 12.30vw;
-  border: 0;
+    width: 1.6145833vw;
+    height: 1.9791667vw;
+    background: url("../assets/info_e_orari/icona_pin.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 1;
+    position: absolute;
+    top: 7.2916667vw;
+    left: 12.30vw;
+    border: 0;
 }
 
-.email {
-  width: 33.3333333vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 9.53125vw;
-  left: 19.7395833vw;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+.email_info_e_orari {
+    width: 33.3333333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 9.53125vw;
+    left: 19.7395833vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
 .icona_mail {
-  width: 1.6145833vw;
-  height: 1.3020833vw;
-  background: url("../assets/info_e_orari/icona_mail.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 1;
-  position: absolute;
-  top: 10.2083333vw;
-  left: 17.0833333vw;
-  border: 0;
+    width: 1.6145833vw;
+    height: 1.3020833vw;
+    background: url("../assets/info_e_orari/icona_mail.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 1;
+    position: absolute;
+    top: 10.2083333vw;
+    left: 17.0833333vw;
+    border: 0;
 }
 
 .testo_prezzi_sezione_1 {
-  width: 15.2604167vw;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 13.6979167vw;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  text-decoration: underline;
-  opacity: 1;
-  text-align: left;
+    width: 15.2604167vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 13.6979167vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    text-decoration: underline;
+    opacity: 1;
+    text-align: left;
 }
 
 .prezzi_adulti {
-  width: 100%;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 16.9791667vw;
-  left: 0;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+    width: 100%;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 16.9791667vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
 }
 
 .prezzi_bambini {
-  width: 100%;
-  color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 19.4791667vw;
-  left: 0.0520833vw;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-size: 1.4583333vw;
-  opacity: 1;
-  text-align: left;
+    width: 100%;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 19.4791667vw;
+    left: 0.0520833vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: left;
+}
+
+
+/* SEZIONE 2 */
+
+.sezione_2 {
+    width: 88.4375vw;
+    height: 67vw;
+    background: url("../images/v2023_46.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 36vw;
+    left: 3.59vw;
+    overflow: hidden;
+}
+
+.titolo_sezione_2 {
+    width: 13.6979167vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 4.1666667vw;
+    opacity: 1;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.orari_adulti {
+    width: 19.4270833vw;
+    height: 12.3958333vw;
+    background: url("../images/v2021_141.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 6.875vw;
+    left: 56.4583333vw;
+    overflow: hidden;
+}
+
+.titolo_orari_adulti {
+    width: 16.6145833vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 1.40625vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.orario_1_adulti {
+    width: 19.4270833vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 5.6770833vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_2_adulti {
+    width: 19.4270833vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 10.15625vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_3_adulti {
+    width: 19.4270833vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 7.9166667vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orari_medie {
+    width: 21.4583333vw;
+    height: 12.0833333vw;
+    background: url("../images/v2021_138.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 7.1875vw;
+    left: 27.9166667vw;
+    overflow: hidden;
+}
+
+.titolo_orari_medie {
+    width: 19.0625vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 1.1458333vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.orario_1_medie {
+    width: 21.4583333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 4.5833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_2_medie {
+    width: 21.4583333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 9.5833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_3_medie {
+    width: 21.4583333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 7.0833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orari_elementari {
+    width: 20.78125vw;
+    height: 12.0833333vw;
+    background: url("../images/v2021_137.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 7.1875vw;
+    left: 0;
+    overflow: hidden;
+}
+
+.titolo_orari_elementari {
+    width: 19.0625vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 0.8854167vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.orario_1_elementari {
+    width: 20.78125vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 4.5833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_2_elementari {
+    width: 20.78125vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 9.5833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_3_elementari {
+    width: 20.78125vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 7.0833333vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.tabella_orari {
+    width: 84.2187vw;
+    height: 43.7037vw;
+    background: url("../images/v2022_34.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 22.7604167vw;
+    left: 4.21875vw;
+    overflow: hidden;
+}
+
+.calendario_annuale {
+    width: 37.96875vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 23.125vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.grafico_orari {
+    width: 84.2187vw;
+    height: 31.8518vw;
+    background: url("../images/v2022_33.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    top: 6.6666667vw;
+    left: 0;
+    overflow: hidden;
+}
+
+.linea_grafico_1 {
+    width: 0.1041667vw;
+    height: 15.1041667vw;
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 2.5vw;
+    overflow: hidden;
+}
+
+.linea_grafico_2 {
+    width: 0.1041667vw;
+    height: 15.1041667vw;
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 28.6979167vw;
+    overflow: hidden;
+}
+
+.linea_grafico_3 {
+    width: 0.1041667vw;
+    height: 15.1041667vw;
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 54.9479167vw;
+    overflow: hidden;
+}
+
+.linea_grafico_4 {
+    width: 0.1041667vw;
+    height: 15.1041667vw;
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 81.1458333vw;
+    overflow: hidden;
+}
+
+.orario_1 {
+    width: 5.2083333vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 15.4166667vw;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.titolo_elementari_grafico {
+    width: 13.90625vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 6.3020833vw;
+    left: 8.75vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.titolo_medie_grafico {
+    width: 13.90625vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 6.3020833vw;
+    left: 35vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.titolo_adulti_grafico {
+    width: 13.90625vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 6.3020833vw;
+    left: 61.1979167vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_2 {
+    width: 5.4166667vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 15.4166667vw;
+    left: 26.09375vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_3 {
+    width: 5.3125vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 15.4166667vw;
+    left: 52.3958333vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
+}
+
+.orario_4 {
+    width: 5.9375vw;
+    color: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 15.4166667vw;
+    left: 78.28125vw;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    opacity: 1;
+    text-align: center;
 }
