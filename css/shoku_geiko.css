@@ -1,0 +1,151 @@
+body{
+    position: relative;
+}
+
+.sezione_1 {
+    width: 100%;
+    height: 50vw;
+    background: url("../images/v2035_35.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.immagine_sezione_1 {
+    width: 100%;
+    height: 74.1666667vw;
+    background: url("../assets/shoku_geiko/immagine_sfondo_sezione_1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+.testo_sezione_1 {
+    width: 100%;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    text-shadow: -0.4166667vw 0.4166667vw 0.2083333vw rgba(0, 0, 0, 0.25);
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 10.6770833vw;
+    opacity: 1;
+    text-align: center;
+}
+
+/* SEZIONE 2 */
+
+.sezione_2 {
+    width: 91.14vw;
+    height: 83.05vw;
+    background: url("../images/v2035_36.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 55vw;
+    left: 4.42vw;
+    overflow: hidden;
+}
+
+.titolo_sezione_2 {
+    width: 48.12vw;
+    height: 13vh;
+    background: url("../images/v2032_92.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.sfondo_titolo_sezione_2 {
+    width: 100%;
+    height: 100%;
+    background: rgba(41, 41, 41, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.testo_titolo_sezione_2 {
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: -1vh;
+    left: 0;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 3.6979167vw;
+    line-height: 1;
+    opacity: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.separatore_sezione_2 {
+    width: 100%;
+    height: 0.2604167vw;
+    background: rgba(41, 41, 41, 1);
+    opacity: 1;
+    position: absolute;
+    top: 7.7604167vw;
+    left: 0;
+    overflow: hidden;
+}
+
+.testo_sezione_2 {
+    width: 100%;
+    color: rgba(77, 77, 77, 1);
+    position: absolute;
+    top: 9.0625vw;
+    left: 0;
+    font-family: "DM Serif Text", Georgia, serif;
+    font-weight: 400;
+    font-size: 2.0833333vw;
+    opacity: 1;
+    text-align: left;
+}
+
+/* SEZIONE 3*/
+
+.sezione_3 {
+    position: absolute;
+
+    /* Distanza dalla cima */
+    top: 112vw;
+
+    /* Distanza da sinistra */
+    left: 4.21875vw;
+
+    /* Larghezza scalabile */
+    width: 91.5625vw;
+    height: auto;
+    aspect-ratio: 1748 / 3842;
+
+    background-image: url("../assets/shoku_geiko/orari_sezione_3.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
