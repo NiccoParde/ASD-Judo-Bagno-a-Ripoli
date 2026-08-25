@@ -1,0 +1,201 @@
+.sezione_1 {
+  width: 93.95vw;
+  height: 7.44vw;
+
+  background: url("../images/v2020_63.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  opacity: 1;
+  position: absolute;
+  top: 6.25vw;
+  left: 3.43vw;
+  overflow: hidden;
+}
+
+.titolo_sezione_1 {
+  width: 48.28vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: Regular;
+  font-size: 2.865vw;
+
+  opacity: 1;
+  text-align: left;
+}
+
+.separatore_sezione_1 {
+  width: 100%;
+  height: 0.26vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  opacity: 1;
+  position: absolute;
+  top: 4.415vw;
+  left: 0vw;
+  overflow: hidden;
+}
+
+.sottotitolo_sezione_1 {
+  width: 29.74vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+  top: 5.352vw;
+
+  font-family: "DM Serif Display";
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.754vw;
+
+  opacity: 1;
+  text-align: left;
+}
+
+/* BARRA DI RICERCA*/
+
+.barra_di_ricerca {
+  width: 27.62vw;
+  height: 3.07vw;
+
+  background: url("../images/v2020_62.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  opacity: 1;
+
+  position: absolute;
+  top: 15.05vw;
+  left: 3.43vw;
+
+  overflow: hidden;
+
+  /* Permette di cliccare anche sulla zona vuota della barra */
+  cursor: text;
+}
+.sfondo_barra_di_ricerca {
+  width: 27.39vw;
+  height: 2.86vw;
+
+  background: rgba(217, 217, 217, 1);
+
+  opacity: 1;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+.icona_barra_di_ricerca {
+  width: 1.66vw;
+  height: 1.66vw;
+
+  background: url("../assets/news/icona_barra_di_ricerca.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  position: absolute;
+
+  top: 0.625vw;
+  left: 0.625vw;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+.input_barra_di_ricerca {
+  position: absolute;
+
+  /*
+     * Parte dopo l'icona
+     */
+  left: 2.76vw;
+
+  /*
+     * 12px dalla reference 1920px:
+     *
+     * 12 / 1920 * 100 = 0.625vw
+     *
+     * Quindi il testo non arriverà mai
+     * a meno di 12px dal bordo destro.
+     */
+  right: 0.625vw;
+
+  /*
+     * Altezza utile della barra
+     */
+  top: 0.52vw;
+  height: 1.98vw;
+
+  width: auto;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  /*
+     * Font della reference
+     */
+  font-family: "DM Serif Text", Georgia, serif;
+  font-weight: normal;
+  font-size: 1.25vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  text-align: left;
+
+  /*
+     * Impedisce al testo di andare su più righe.
+     */
+  white-space: nowrap;
+
+  /*
+     * Il testo lungo viene gestito come
+     * una normale barra di ricerca.
+     */
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /*
+     * Nasconde la scrollbar dell'input.
+     */
+  scrollbar-width: none;
+
+  z-index: 3;
+
+  cursor: text;
+}
+
+/* Chrome / Edge / Opera */
+.input_barra_di_ricerca::-webkit-scrollbar {
+  display: none;
+}
+.input_barra_di_ricerca::placeholder {
+  color: rgba(166, 166, 166, 1);
+
+  opacity: 1;
+
+  font-family: "DM Serif Text", Georgia, serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.input_barra_di_ricerca:focus {
+  outline: none;
+}
