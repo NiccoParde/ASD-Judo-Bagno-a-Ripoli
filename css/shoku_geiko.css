@@ -1,151 +1,470 @@
-body{
-    position: relative;
+body {
+  position: relative;
+  margin: 0;
+}
+
+main {
+  position: relative;
+  height: 567vw;
+  padding-top: 0;
+}
+
+footer {
+  position: absolute;
+  top: 567vw;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
 }
 
 .sezione_1 {
-    width: 100%;
-    height: 50vw;
-    background: url("../images/v2035_35.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
+  width: 100%;
+  height: 50vw;
+  background: url("../images/v2035_35.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .immagine_sezione_1 {
-    width: 100%;
-    height: 74.1666667vw;
-    background: url("../assets/shoku_geiko/immagine_sfondo_sezione_1.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    overflow: hidden;
+  width: 100%;
+  height: 74.1666667vw;
+  background: url("../assets/shoku_geiko/immagine_sfondo_sezione_1.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  overflow: hidden;
 }
 
 .testo_sezione_1 {
-    width: 100%;
-    color: rgba(255, 255, 255, 1);
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    text-shadow: -0.4166667vw 0.4166667vw 0.2083333vw rgba(0, 0, 0, 0.25);
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-size: 10.6770833vw;
-    opacity: 1;
-    text-align: center;
+  width: 100%;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-shadow: -0.4166667vw 0.4166667vw 0.2083333vw rgba(0, 0, 0, 0.25);
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 10.6770833vw;
+  opacity: 1;
+  text-align: center;
 }
 
 /* SEZIONE 2 */
 
 .sezione_2 {
-    width: 91.14vw;
-    height: 83.05vw;
-    background: url("../images/v2035_36.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 55vw;
-    left: 4.42vw;
-    overflow: hidden;
+  width: 91.14vw;
+  height: 83.05vw;
+  background: url("../images/v2035_36.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 55vw;
+  left: 4.42vw;
+  overflow: hidden;
 }
 
 .titolo_sezione_2 {
-    width: 48.12vw;
-    height: 13vh;
-    background: url("../images/v2032_92.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
+  width: 48.12vw;
+  height: 13vh;
+  background: url("../images/v2032_92.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .sfondo_titolo_sezione_2 {
-    width: 100%;
-    height: 100%;
-    background: rgba(41, 41, 41, 1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .testo_titolo_sezione_2 {
-    width: 100%;
-    height: 100%;
-    color: rgba(255, 255, 255, 1);
-    position: absolute;
-    top: -1vh;
-    left: 0;
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-size: 3.6979167vw;
-    line-height: 1;
-    opacity: 1;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: -1vh;
+  left: 0;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 3.6979167vw;
+  line-height: 1;
+  opacity: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
 .separatore_sezione_2 {
-    width: 100%;
-    height: 0.2604167vw;
-    background: rgba(41, 41, 41, 1);
-    opacity: 1;
-    position: absolute;
-    top: 7.7604167vw;
-    left: 0;
-    overflow: hidden;
+  width: 100%;
+  height: 0.2604167vw;
+  background: rgba(41, 41, 41, 1);
+  opacity: 1;
+  position: absolute;
+  top: 7.7604167vw;
+  left: 0;
+  overflow: hidden;
 }
 
 .testo_sezione_2 {
-    width: 100%;
-    color: rgba(77, 77, 77, 1);
-    position: absolute;
-    top: 9.0625vw;
-    left: 0;
-    font-family: "DM Serif Text", Georgia, serif;
-    font-weight: 400;
-    font-size: 2.0833333vw;
-    opacity: 1;
-    text-align: left;
+  width: 100%;
+  color: rgba(77, 77, 77, 1);
+  position: absolute;
+  top: 9.0625vw;
+  left: 0;
+  font-family: "DM Serif Text", Georgia, serif;
+  font-weight: 400;
+  font-size: 2.0833333vw;
+  opacity: 1;
+  text-align: left;
 }
 
 /* SEZIONE 3*/
 
 .sezione_3 {
-    position: absolute;
+  position: absolute;
 
-    /* Distanza dalla cima */
-    top: 112vw;
+  /* Distanza dalla cima */
+  top: 112vw;
 
-    /* Distanza da sinistra */
-    left: 4.21875vw;
+  /* Distanza da sinistra */
+  left: 4.21875vw;
 
-    /* Larghezza scalabile */
-    width: 91.5625vw;
-    height: auto;
-    aspect-ratio: 1748 / 3842;
+  /* Larghezza scalabile */
+  width: 91.5625vw;
+  height: auto;
+  aspect-ratio: 1748 / 3842;
 
-    background-image: url("../assets/shoku_geiko/orari_sezione_3.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url("../assets/shoku_geiko/orari_sezione_3.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* SEZIONE 4*/
+
+.sezione_4 {
+  width: 55.83vw;
+  height: 18.125vw;
+  background: url("../images/v2035_37.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 318vw;
+  left: 4.21875vw;
+  overflow: hidden;
+}
+
+.info_hotel {
+  width: 100%;
+  height: 18.125vw;
+  background: url("../images/v2035_33.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.titolo_sezione_4 {
+  width: 22.9166667vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.71875vw;
+  opacity: 1;
+  text-align: left;
+}
+
+.indirizzo_info_hotel {
+  width: 100%;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 3.90625vw;
+  left: 3.3854167vw;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.71875vw;
+  opacity: 1;
+  text-align: left;
+}
+
+.sito_info_hotel {
+  width: 20.625vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 7.8125vw;
+  left: 3.3854167vw;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.71875vw;
+  opacity: 1;
+  text-align: left;
+}
+
+.numero_info_hotel {
+  width: 15.8854167vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 11.71875vw;
+  left: 3.3854167vw;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.71875vw;
+  opacity: 1;
+  text-align: left;
+}
+
+.mail_info_hotel {
+  width: 25.78125vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 15.625vw;
+  left: 3.3854167vw;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-size: 1.71875vw;
+  opacity: 1;
+  text-align: left;
+}
+
+.icone_info_hotel {
+  background: url("../assets/shoku_geiko/icone_info_hotel.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.5vw;
+  height: 14.21875vw;
+  margin-top: 3.90625vw;
+  margin-left: 0;
+  display: inline-block;
+}
+
+/*SEZIONE 5*/
+
+.sezione_5 {
+  width: 100%;
+  height: 222vw;
+  background: url("../assets/shoku_geiko/v2035_38.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 345vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagini_sezione_5 {
+  width: 100%;
+  height: 222vw;
+  background: url("../assets/shoku_geiko/v2035_34.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_1 {
+  width: 51.6145833vw;
+  height: 38.6979167vw;
+  background: url("../assets/shoku_geiko/immagine_1.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_2 {
+  width: 48.3854167vw;
+  height: 21.7708333vw;
+  background: url("../assets/shoku_geiko/immagine_2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 51.6145833vw;
+  overflow: hidden;
+}
+
+.immagine_3 {
+  width: 51.6145833vw;
+  height: 34.375vw;
+  background: url("../assets/shoku_geiko/immagine_3.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 38.6979167vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_4 {
+  width: 48.3854167vw;
+  height: 36.40625vw;
+  background: url("../assets/shoku_geiko/immagine_4.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 21.71875vw;
+  left: 51.6145833vw;
+  overflow: hidden;
+}
+
+.immagine_5 {
+  width: 51.6145833vw;
+  height: 38.6979167vw;
+  background: url("../assets/shoku_geiko/immagine_5.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 73.0729167vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_6 {
+  width: 48.3854167vw;
+  height: 36.3020833vw;
+  background: url("../assets/shoku_geiko/immagine_6.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 58.125vw;
+  left: 51.6145833vw;
+  overflow: hidden;
+}
+
+.immagine_7 {
+  width: 51.6145833vw;
+  height: 34.4791667vw;
+  background: url("../assets/shoku_geiko/immagine_7.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 111.7708333vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_8 {
+  width: 48.3854167vw;
+  height: 100%;
+  background: url("../assets/shoku_geiko/immagine_8.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 94.4270833vw;
+  left: 51.6145833vw;
+  overflow: hidden;
+}
+
+.immagine_9 {
+  width: 51.6145833vw;
+  height: 34.4270833vw;
+  background: url("../assets/shoku_geiko/immagine_9.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 146.25vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_10 {
+  width: 48.3854167vw;
+  height: 38.6979167vw;
+  background: url("../assets/shoku_geiko/immagine_10.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 154.8958333vw;
+  left: 51.6145833vw;
+  overflow: hidden;
+}
+
+.immagine_11 {
+  width: 51.6145833vw;
+  height: 41.3020833vw;
+  background: url("../assets/shoku_geiko/immagine_11.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 180.6770833vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.immagine_12 {
+  width: 48.3854167vw;
+  height: 28.3854167vw;
+  background: url("../assets/shoku_geiko/immagine_12.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 193.59375vw;
+  left: 51.6145833vw;
+  overflow: hidden;
 }
