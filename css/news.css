@@ -1,6 +1,6 @@
-/* ======================================================
-   RESET
-   ====================================================== */
+/* ====================================================== */
+/* RESET */
+/* ====================================================== */
 
 * {
   box-sizing: border-box;
@@ -14,6 +14,7 @@ body {
 
 body {
   font-size: 0.729vw;
+
   overflow-x: hidden;
 }
 
@@ -21,9 +22,9 @@ body.popup_aperto {
   overflow: hidden;
 }
 
-/* ======================================================
-   SEZIONE 1
-   ====================================================== */
+/* ====================================================== */
+/* SEZIONE 1 */
+/* ====================================================== */
 
 .sezione_1 {
   width: 93.95vw;
@@ -86,9 +87,10 @@ body.popup_aperto {
 
   top: 5.352vw;
 
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: "DM Serif Display";
 
   font-style: italic;
+
   font-weight: 600;
 
   font-size: 1.754vw;
@@ -98,9 +100,9 @@ body.popup_aperto {
   text-align: left;
 }
 
-/* ======================================================
-   BARRA DI RICERCA
-   ====================================================== */
+/* ====================================================== */
+/* BARRA DI RICERCA */
+/* ====================================================== */
 
 .barra_di_ricerca {
   width: 27.62vw;
@@ -215,6 +217,7 @@ body.popup_aperto {
   font-family: "DM Serif Text", Georgia, serif;
 
   font-style: italic;
+
   font-weight: normal;
 }
 
@@ -222,9 +225,9 @@ body.popup_aperto {
   outline: none;
 }
 
-/* ======================================================
-   SEZIONE 2
-   ====================================================== */
+/* ====================================================== */
+/* SEZIONE 2 */
+/* ====================================================== */
 
 .sezione_2 {
   position: absolute;
@@ -234,12 +237,13 @@ body.popup_aperto {
   height: auto;
 
   top: 20.78vw;
+
   left: 3.43vw;
 }
 
-/* ======================================================
-   NOTIZIA PICCOLA
-   ====================================================== */
+/* ====================================================== */
+/* NOTIZIA PICCOLA */
+/* ====================================================== */
 
 .notizia_1 {
   width: 94.01vw;
@@ -249,20 +253,6 @@ body.popup_aperto {
   position: absolute;
 
   left: 2.604vw;
-
-  /*
-        56px sulla reference 1920x1080:
-
-        56 / 1920 * 100
-        = 2.91667vw
-
-        Altezza card:
-        16.04vw
-
-        Distanza totale tra i top:
-        16.04vw + 2.91667vw
-        = 18.95667vw
-    */
 
   top: 0vw;
 
@@ -283,12 +273,13 @@ body.popup_aperto {
   transform: scale(0.97);
 }
 
-/* ======================================================
-   SFONDO NEWS
-   ====================================================== */
+/* ====================================================== */
+/* SFONDO NEWS PICCOLA */
+/* ====================================================== */
 
 .sfondo_notizia_1 {
   width: 92.96vw;
+
   height: 16.04vw;
 
   background: rgba(255, 255, 255, 1);
@@ -296,6 +287,7 @@ body.popup_aperto {
   position: absolute;
 
   left: 1.25vw;
+
   top: 0vw;
 
   z-index: 1;
@@ -303,23 +295,36 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   IMMAGINE NEWS
-   ====================================================== */
+/* ====================================================== */
+/* IMMAGINE NEWS PICCOLA */
+/* ====================================================== */
 
 .immagine_notizia_1 {
   width: 24.688vw;
+
   height: 16.042vw;
 
-  background: url("../assets/news/immagine_notizia_1.png");
+  /*
+        NON mettiamo più un placeholder
+        permanente qui.
+
+        Se Firebase ha una immagine,
+        il JS la assegnerà.
+
+        Se non c'è,
+        rimarrà semplicemente vuoto.
+    */
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   position: absolute;
 
   top: 0vw;
+
   left: 0vw;
 
   overflow: hidden;
@@ -329,9 +334,9 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   DATA NEWS
-   ====================================================== */
+/* ====================================================== */
+/* DATA NEWS PICCOLA */
+/* ====================================================== */
 
 .data_notizia_1 {
   width: 13.854vw;
@@ -341,6 +346,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0.8vw;
+
   left: 25.625vw;
 
   font-family: "DM Serif Text", Georgia, serif;
@@ -358,12 +364,13 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   TITOLO NEWS
-   ====================================================== */
+/* ====================================================== */
+/* TITOLO NEWS PICCOLA */
+/* ====================================================== */
 
 .titolo_notizia_1 {
   width: 56.4vw;
+
   height: 2.39vw;
 
   color: rgba(41, 41, 41, 1);
@@ -371,6 +378,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 2.292vw;
+
   left: 25.625vw;
 
   font-family: "Dela Gothic One", Arial, sans-serif;
@@ -379,6 +387,8 @@ body.popup_aperto {
 
   font-size: 1.25vw;
 
+  line-height: normal;
+
   opacity: 1;
 
   text-align: left;
@@ -386,14 +396,23 @@ body.popup_aperto {
   z-index: 4;
 
   pointer-events: none;
+
+  white-space: normal;
+
+  overflow: hidden;
+
+  overflow-wrap: anywhere;
+
+  word-break: normal;
 }
 
-/* ======================================================
-   TESTO NEWS
-   ====================================================== */
+/* ====================================================== */
+/* TESTO NEWS PICCOLA */
+/* ====================================================== */
 
 .testo_notizia_1 {
   width: 66.14583vw;
+
   height: 9.21875vw;
 
   color: rgba(41, 41, 41, 1);
@@ -401,6 +420,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 5.208vw;
+
   left: 25.625vw;
 
   font-family: "DM Serif Text", Georgia, serif;
@@ -408,6 +428,8 @@ body.popup_aperto {
   font-weight: normal;
 
   font-size: 0.938vw;
+
+  line-height: normal;
 
   opacity: 1;
 
@@ -421,21 +443,24 @@ body.popup_aperto {
 
   overflow-wrap: anywhere;
 
-  word-break: break-word;
+  word-break: normal;
 
   overflow: hidden;
 }
 
-/* ======================================================
-   NOTIZIA FOCUS
-   ====================================================== */
+/* ====================================================== */
+/* NOTIZIA FOCUS */
+/* ====================================================== */
 
 .notizia_focus {
   width: 100%;
+
   height: 100vh;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 0;
@@ -443,9 +468,11 @@ body.popup_aperto {
   position: fixed;
 
   top: 0;
+
   left: 0;
 
   overflow-y: auto;
+
   overflow-x: hidden;
 
   z-index: 100;
@@ -465,9 +492,9 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   SCROLLBAR POPUP
-   ====================================================== */
+/* ====================================================== */
+/* SCROLLBAR */
+/* ====================================================== */
 
 .notizia_focus {
   scrollbar-width: auto;
@@ -491,12 +518,13 @@ body.popup_aperto {
   background: rgba(0, 0, 0, 0.75);
 }
 
-/* ======================================================
-   OFFUSCAMENTO
-   ====================================================== */
+/* ====================================================== */
+/* OFFUSCAMENTO */
+/* ====================================================== */
 
 .offuscamento_background {
   width: 100%;
+
   height: 100vh;
 
   background: rgba(0, 0, 0, 0.5);
@@ -504,6 +532,7 @@ body.popup_aperto {
   position: fixed;
 
   top: 0;
+
   left: 0;
 
   z-index: 1;
@@ -511,9 +540,9 @@ body.popup_aperto {
   pointer-events: auto;
 }
 
-/* ======================================================
-   NOTIZIA GRANDE
-   ====================================================== */
+/* ====================================================== */
+/* NOTIZIA GRANDE */
+/* ====================================================== */
 
 .notizia {
   width: 92.96vw;
@@ -521,7 +550,9 @@ body.popup_aperto {
   height: 94.42vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -529,6 +560,7 @@ body.popup_aperto {
   position: relative;
 
   top: 6.25vw;
+
   left: 3.48vw;
 
   margin-bottom: 12.5vw;
@@ -540,8 +572,13 @@ body.popup_aperto {
   flex-shrink: 0;
 }
 
+/* ====================================================== */
+/* SFONDO NOTIZIA GRANDE */
+/* ====================================================== */
+
 .sfondo_notizia {
   width: 100%;
+
   height: 100%;
 
   background: rgba(255, 255, 255, 1);
@@ -551,6 +588,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   box-shadow: -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
@@ -560,14 +598,19 @@ body.popup_aperto {
   pointer-events: none;
 }
 
+/* ====================================================== */
+/* IMMAGINE NOTIZIA GRANDE */
+/* ====================================================== */
+
 .immagine_notizia {
   width: 100%;
+
   height: 60.41vw;
 
-  background: url("../assets/news/immagine_notizia_1.png");
-
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -575,6 +618,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   overflow: hidden;
@@ -584,8 +628,13 @@ body.popup_aperto {
   pointer-events: none;
 }
 
+/* ====================================================== */
+/* DATA NOTIZIA GRANDE */
+/* ====================================================== */
+
 .data_notizia {
   width: 13.85vw;
+
   height: 3.125vw;
 
   color: rgba(41, 41, 41, 1);
@@ -593,6 +642,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 61.35vw;
+
   left: 2.44vw;
 
   font-family: "DM Serif Text", Georgia, serif;
@@ -610,8 +660,13 @@ body.popup_aperto {
   pointer-events: none;
 }
 
+/* ====================================================== */
+/* TITOLO NOTIZIA GRANDE */
+/* ====================================================== */
+
 .titolo_notizia {
   width: 93.9vw;
+
   height: 3.75vw;
 
   color: rgba(41, 41, 41, 1);
@@ -619,6 +674,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 64.11vw;
+
   left: 2.44vw;
 
   font-family: "Dela Gothic One", Arial, sans-serif;
@@ -626,6 +682,8 @@ body.popup_aperto {
   font-weight: normal;
 
   font-size: 2.5vw;
+
+  line-height: normal;
 
   opacity: 1;
 
@@ -636,8 +694,13 @@ body.popup_aperto {
   pointer-events: none;
 }
 
+/* ====================================================== */
+/* TESTO NOTIZIA GRANDE */
+/* ====================================================== */
+
 .testo_notizia {
   width: 88.02vw;
+
   height: auto;
 
   color: rgba(41, 41, 41, 1);
@@ -645,6 +708,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 68.43vw;
+
   left: 2.81vw;
 
   font-family: "DM Serif Text", Georgia, serif;
@@ -670,16 +734,52 @@ body.popup_aperto {
   word-break: normal;
 }
 
-/* ======================================================
-   PULSANTE ESCI
-   ====================================================== */
+/* ====================================================== */
+/* NOTIZIA SENZA IMMAGINE */
+/* ====================================================== */
+
+.notizia.notizia_senza_immagine {
+  height: auto;
+}
+
+/* Nasconde completamente lo spazio
+   dell'immagine */
+
+.notizia.notizia_senza_immagine .immagine_notizia {
+  display: none;
+}
+
+/* Data */
+
+.notizia.notizia_senza_immagine .data_notizia {
+  top: 2.44vw;
+}
+
+/* Titolo */
+
+.notizia.notizia_senza_immagine .titolo_notizia {
+  top: 5.2vw;
+}
+
+/* Testo */
+
+.notizia.notizia_senza_immagine .testo_notizia {
+  top: 9.5vw;
+}
+
+/* ====================================================== */
+/* PULSANTE ESCI */
+/* ====================================================== */
 
 .pulsante_esci {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -687,6 +787,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0.9375vw;
+
   right: 0.9375vw;
 
   overflow: hidden;
@@ -704,6 +805,7 @@ body.popup_aperto {
 
 .sfondo_pulsante_esci {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background: rgba(0, 0, 0, 0.5);
@@ -713,6 +815,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   border-radius: 50%;
@@ -722,12 +825,15 @@ body.popup_aperto {
 
 .icona_pulsante_esci {
   width: 1.82vw;
+
   height: 1.82vw;
 
   background: url("../assets/news/icona_pulsante_esci.svg");
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -735,6 +841,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0.93vw;
+
   left: 0.93vw;
 
   overflow: hidden;
@@ -742,16 +849,19 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   PULSANTE DESTRA
-   ====================================================== */
+/* ====================================================== */
+/* PULSANTE DESTRA */
+/* ====================================================== */
 
 .pulsante_scorri_destra {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -759,6 +869,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 28.6458vw;
+
   right: 0.9375vw;
 
   overflow: hidden;
@@ -770,6 +881,7 @@ body.popup_aperto {
 
 .sfondo_pulsante_scorri_destra {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background: rgba(0, 0, 0, 0.5);
@@ -777,6 +889,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   border-radius: 50%;
@@ -786,12 +899,15 @@ body.popup_aperto {
 
 .icona_pulsante_scorri_destra {
   width: 1.82vw;
+
   height: 1.82vw;
 
   background: url("../assets/news/icona_pulsante_scorri_destra.svg");
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -799,6 +915,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0.93vw;
+
   left: 0.93vw;
 
   overflow: hidden;
@@ -806,16 +923,19 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* ======================================================
-   PULSANTE SINISTRA
-   ====================================================== */
+/* ====================================================== */
+/* PULSANTE SINISTRA */
+/* ====================================================== */
 
 .pulsante_scorri_sinistra {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -823,6 +943,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 28.6458vw;
+
   left: 0.9375vw;
 
   overflow: hidden;
@@ -834,6 +955,7 @@ body.popup_aperto {
 
 .sfondo_pulsante_scorri_sinistra {
   width: 3.64vw;
+
   height: 3.64vw;
 
   background: rgba(0, 0, 0, 0.5);
@@ -841,6 +963,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   border-radius: 50%;
@@ -850,12 +973,15 @@ body.popup_aperto {
 
 .icona_pulsante_scorri_sinistra {
   width: 1.82vw;
+
   height: 1.82vw;
 
   background: url("../assets/news/icona_pulsante_scorri_sinistra.svg");
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -863,6 +989,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0.93vw;
+
   left: 0.93vw;
 
   overflow: hidden;

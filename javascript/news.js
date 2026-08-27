@@ -24,32 +24,28 @@ let elencoNews = [];
 let indiceNewsAperta = 0;
 
 // ======================================================
-// CONFIGURAZIONE NEWS
+// CONFIGURAZIONE
 // ======================================================
-
-/*
-    Numero massimo di news mostrate
-    contemporaneamente nella sezione 2.
-*/
 
 const MASSIMO_NEWS_VISIBILI = 3;
 
-/*
-    Distanza verticale tra una news e la successiva.
-
-    Altezza news:
-    16.04vw
-
-    Spazio desiderato:
-    56px
-
-    56 / 1920 * 100
-    = 2.91667vw
-
-    Totale:
-    16.04 + 2.91667
-    = 18.95667vw
-*/
+// ======================================================
+// DISTANZA NEWS
+// ======================================================
+//
+// Altezza card:
+// 16.04vw
+//
+// Spazio richiesto:
+// 56px
+//
+// 56 / 1920 * 100
+// = 2.91667vw
+//
+// Distanza totale tra i TOP:
+// 16.04 + 2.91667
+// = 18.95667vw
+// ======================================================
 
 const DISTANZA_NEWS = 18.95667;
 
@@ -64,19 +60,11 @@ function formattaData(timestamp) {
 
   let data;
 
-  // Timestamp Firestore
-
   if (typeof timestamp.toDate === "function") {
     data = timestamp.toDate();
-  }
-
-  // Data JS
-  else if (timestamp instanceof Date) {
+  } else if (timestamp instanceof Date) {
     data = timestamp;
-  }
-
-  // Altri formati
-  else {
+  } else {
     data = new Date(timestamp);
   }
 
@@ -92,17 +80,116 @@ function formattaData(timestamp) {
 }
 
 // ======================================================
-// CARICAMENTO NEWS DA FIRESTORE
+// ADATTAMENTO TESTO
+// ======================================================
+
+function adattaTesto(elemento, testoCompleto, suffisso = " [...]") {
+  if (!elemento) {
+    return;
+  }
+
+  if (!testoCompleto) {
+    elemento.textContent = "";
+
+    return;
+  }
+
+  // ==================================================
+  // PROVIAMO IL TESTO COMPLETO
+  // ==================================================
+
+  elemento.textContent = testoCompleto;
+
+  if (elemento.scrollHeight <= elemento.clientHeight + 1) {
+    return;
+  }
+
+  // ==================================================
+  // RICERCA BINARIA SUI CARATTERI
+  // ==================================================
+
+  let sinistra = 0;
+
+  let destra = testoCompleto.length;
+
+  let migliore = "";
+
+  while (sinistra <= destra) {
+    const centro = Math.floor((sinistra + destra) / 2);
+
+    const candidato = testoCompleto.substring(0, centro).trim() + suffisso;
+
+    elemento.textContent = candidato;
+
+    if (elemento.scrollHeight <= elemento.clientHeight + 1) {
+      migliore = candidato;
+
+      sinistra = centro + 1;
+    } else {
+      destra = centro - 1;
+    }
+  }
+
+  // ==================================================
+  // CERCHIAMO L'ULTIMO SPAZIO
+  // ==================================================
+
+  if (!migliore) {
+    elemento.textContent = suffisso;
+
+    return;
+  }
+
+  let base = migliore.substring(0, migliore.length - suffisso.length).trim();
+
+  const ultimoSpazio = base.lastIndexOf(" ");
+
+  // ==================================================
+  // EVITIAMO PAROLE SPEZZATE
+  // ==================================================
+
+  if (ultimoSpazio > 0) {
+    base = base.substring(0, ultimoSpazio).trim();
+  }
+
+  let risultato = base + suffisso;
+
+  elemento.textContent = risultato;
+
+  // ==================================================
+  // PROVIAMO A RECUPERARE ALTRO SPAZIO
+  // ==================================================
+
+  let indice = base.length;
+
+  while (indice < testoCompleto.length) {
+    const candidato = testoCompleto.substring(0, indice + 1).trim() + suffisso;
+
+    elemento.textContent = candidato;
+
+    if (elemento.scrollHeight <= elemento.clientHeight + 1) {
+      risultato = candidato;
+
+      indice++;
+    } else {
+      break;
+    }
+  }
+
+  // ==================================================
+  // CONTROLLO FINALE
+  // ==================================================
+
+  elemento.textContent = risultato;
+}
+
+// ======================================================
+// CARICAMENTO NEWS
 // ======================================================
 
 async function caricaNews() {
   try {
     const newsRef = collection(db, "news");
-
-    /*
-        Firebase ordina dalla più recente
-        alla più vecchia.
-    */
 
     const q = query(newsRef, orderBy("data", "desc"));
 
@@ -113,12 +200,16 @@ async function caricaNews() {
     snapshot.forEach((documento) => {
       const dati = documento.data();
 
-      /*
-            Mostriamo solamente
-            le news pubblicate.
-        */
-
       if (dati.pubblicata === true) {
+        /*
+                        SUPPORTIAMO ENTRAMBI I NOMI:
+
+                        image
+                        immagine
+                    */
+
+        const immagine = dati.image ?? dati.immagine ?? "";
+
         elencoNews.push({
           id: documento.id,
 
@@ -128,30 +219,12 @@ async function caricaNews() {
 
           data: dati.data || null,
 
-          immagine: dati.immagine || "",
+          immagine: typeof immagine === "string" ? immagine.trim() : "",
         });
       }
     });
 
-    /*
-        ==================================================
-        MASSIMO 3 NEWS
-        ==================================================
-
-        Siccome l'array è già ordinato:
-
-        [0] = più nuova
-        [1] = seconda più nuova
-        [2] = terza più nuova
-        [3] = quarta più nuova
-        ...
-
-        prendiamo solamente le prime 3.
-    */
-
-    elencoNews = elencoNews.slice(0, MASSIMO_NEWS_VISIBILI);
-
-    console.log("News visualizzate:", elencoNews);
+    console.log("News caricate:", elencoNews);
 
     creaNewsPiccole();
 
@@ -174,16 +247,25 @@ function creaNewsPiccole() {
     return;
   }
 
-  /*
-      Elimina eventuali vecchie news
-      generate precedentemente.
-  */
+  // ==================================================
+  // PULIZIA
+  // ==================================================
 
   sezione2.querySelectorAll(".notizia_1").forEach((elemento) => {
     elemento.remove();
   });
 
-  elencoNews.forEach((news, indice) => {
+  // ==================================================
+  // MASSIMO 3 NEWS
+  // ==================================================
+
+  const newsDaMostrare = elencoNews.slice(0, MASSIMO_NEWS_VISIBILI);
+
+  // ==================================================
+  // CREAZIONE
+  // ==================================================
+
+  newsDaMostrare.forEach((news, indice) => {
     const notiziaPiccola = document.createElement("div");
 
     notiziaPiccola.className = "notizia_1";
@@ -206,8 +288,19 @@ function creaNewsPiccole() {
 
     immagine.className = "immagine_notizia_1";
 
+    /*
+                Se c'è un'immagine:
+                la visualizziamo.
+
+                Se non c'è:
+                lasciamo semplicemente
+                lo spazio vuoto.
+            */
+
     if (news.immagine) {
       immagine.style.backgroundImage = `url("${news.immagine}")`;
+    } else {
+      immagine.style.backgroundImage = "none";
     }
 
     // ==================================================
@@ -228,8 +321,6 @@ function creaNewsPiccole() {
 
     titolo.className = "titolo_notizia_1";
 
-    titolo.textContent = news.titolo;
-
     // ==================================================
     // TESTO
     // ==================================================
@@ -238,26 +329,13 @@ function creaNewsPiccole() {
 
     testo.className = "testo_notizia_1";
 
-    /*
-          Puliamo il testo proveniente
-          da Firebase.
-      */
-
     const testoPulito = news.testo
       .replace(/<br\s*\/?>/gi, " ")
       .replace(/\s+/g, " ")
       .trim();
 
-    /*
-          Salviamo il testo completo
-          per poterlo ricalcolare
-          al resize.
-      */
-
-    testo.dataset.testoCompleto = testoPulito;
-
     // ==================================================
-    // INSERIMENTO
+    // ASSEMBLAGGIO
     // ==================================================
 
     notiziaPiccola.appendChild(sfondo);
@@ -281,130 +359,29 @@ function creaNewsPiccole() {
     });
 
     // ==================================================
-    // INSERIMENTO NELLA SEZIONE
+    // INSERIMENTO
     // ==================================================
 
     sezione2.appendChild(notiziaPiccola);
 
     // ==================================================
-    // PRIMO CALCOLO DEL TESTO
+    // ADATTAMENTO TESTI
     // ==================================================
 
     requestAnimationFrame(() => {
-      adattaTestoAnteprima(testo, testoPulito);
+      adattaTesto(titolo, news.titolo, " [...]");
+
+      adattaTesto(testo, testoPulito, " [...]");
 
       aggiornaAltezzaSezione2();
     });
-
-    // ==================================================
-    // OSSERVATORE DELLA CARD
-    // ==================================================
-
-    const osservatoreCard = new ResizeObserver(() => {
-      adattaTestoAnteprima(testo, testoPulito);
-
-      aggiornaAltezzaSezione2();
-    });
-
-    osservatoreCard.observe(notiziaPiccola);
   });
 
   posizionaNews();
-}
 
-// ======================================================
-// ADATTAMENTO TESTO ANTEPRIMA
-// ======================================================
-
-function adattaTestoAnteprima(testo, testoPulito) {
-  const suffisso = " [...]";
-
-  if (!testoPulito) {
-    testo.textContent = "";
-
-    return;
-  }
-
-  // ====================================================
-  // CONTROLLO
-  // ====================================================
-
-  function entraNellaBox(contenuto) {
-    testo.textContent = contenuto;
-
-    return testo.scrollHeight <= testo.clientHeight + 1;
-  }
-
-  // ====================================================
-  // TESTO COMPLETO
-  // ====================================================
-
-  if (entraNellaBox(testoPulito)) {
-    return;
-  }
-
-  // ====================================================
-  // DIVISIONE IN PAROLE
-  // ====================================================
-
-  const parole = testoPulito.split(/\s+/);
-
-  let migliore = "";
-
-  // ====================================================
-  // RICERCA DEL MASSIMO TESTO
-  // ====================================================
-
-  for (let i = 0; i < parole.length; i++) {
-    const candidatoBase = (migliore ? migliore + " " : "") + parole[i];
-
-    const candidato = candidatoBase + suffisso;
-
-    // ------------------------------------------------
-    // PAROLA INTERA
-    // ------------------------------------------------
-
-    if (entraNellaBox(candidato)) {
-      migliore = candidatoBase;
-
-      continue;
-    }
-
-    // ------------------------------------------------
-    // PARTE DELLA PAROLA
-    // ------------------------------------------------
-
-    const testoPrima = migliore ? migliore + " " : "";
-
-    let parteParola = "";
-
-    for (let j = 0; j < parole[i].length; j++) {
-      const candidatoParziale =
-        testoPrima + parole[i].substring(0, j + 1) + suffisso;
-
-      if (entraNellaBox(candidatoParziale)) {
-        parteParola = parole[i].substring(0, j + 1);
-      } else {
-        break;
-      }
-    }
-
-    if (parteParola) {
-      migliore = testoPrima + parteParola;
-    }
-
-    break;
-  }
-
-  // ====================================================
-  // RISULTATO
-  // ====================================================
-
-  if (migliore) {
-    testo.textContent = migliore.trim() + suffisso;
-  } else {
-    testo.textContent = suffisso;
-  }
+  requestAnimationFrame(() => {
+    aggiornaAltezzaSezione2();
+  });
 }
 
 // ======================================================
@@ -420,13 +397,15 @@ function posizionaNews() {
 
   news.forEach((newsElement, indice) => {
     /*
-          0 = news più nuova
-          1 = seconda
-          2 = terza
+                NEWS 1:
+                0vw
 
-          Ogni news è distante
-          18.95667vw dalla precedente.
-      */
+                NEWS 2:
+                18.95667vw
+
+                NEWS 3:
+                37.91334vw
+            */
 
     newsElement.style.top = `${indice * DISTANZA_NEWS}vw`;
   });
@@ -443,41 +422,41 @@ function preparaFocus() {
 
   notiziaFocus.innerHTML = "";
 
-  // ====================================================
-  // SFONDO SCURO
-  // ====================================================
+  // ==================================================
+  // OFFUSCAMENTO
+  // ==================================================
 
   const offuscamento = document.createElement("div");
 
   offuscamento.className = "offuscamento_background";
 
-  // ====================================================
+  // ==================================================
   // NOTIZIA
-  // ====================================================
+  // ==================================================
 
   const notizia = document.createElement("div");
 
   notizia.className = "notizia";
 
-  // ====================================================
-  // SFONDO BIANCO
-  // ====================================================
+  // ==================================================
+  // SFONDO
+  // ==================================================
 
   const sfondo = document.createElement("div");
 
   sfondo.className = "sfondo_notizia";
 
-  // ====================================================
+  // ==================================================
   // IMMAGINE
-  // ====================================================
+  // ==================================================
 
   const immagine = document.createElement("div");
 
   immagine.className = "immagine_notizia";
 
-  // ====================================================
+  // ==================================================
   // DATA
-  // ====================================================
+  // ==================================================
 
   const data = document.createElement("span");
 
@@ -485,9 +464,9 @@ function preparaFocus() {
 
   data.id = "dataNotizia";
 
-  // ====================================================
+  // ==================================================
   // TITOLO
-  // ====================================================
+  // ==================================================
 
   const titolo = document.createElement("span");
 
@@ -495,9 +474,9 @@ function preparaFocus() {
 
   titolo.id = "titoloNotizia";
 
-  // ====================================================
+  // ==================================================
   // TESTO
-  // ====================================================
+  // ==================================================
 
   const testo = document.createElement("span");
 
@@ -505,9 +484,9 @@ function preparaFocus() {
 
   testo.id = "testoNotizia";
 
-  // ====================================================
+  // ==================================================
   // PULSANTE ESCI
-  // ====================================================
+  // ==================================================
 
   const pulsanteEsci = document.createElement("div");
 
@@ -527,9 +506,9 @@ function preparaFocus() {
 
   pulsanteEsci.appendChild(iconaEsci);
 
-  // ====================================================
+  // ==================================================
   // PULSANTE DESTRA
-  // ====================================================
+  // ==================================================
 
   const pulsanteDestra = document.createElement("div");
 
@@ -547,9 +526,9 @@ function preparaFocus() {
 
   pulsanteDestra.appendChild(iconaDestra);
 
-  // ====================================================
+  // ==================================================
   // PULSANTE SINISTRA
-  // ====================================================
+  // ==================================================
 
   const pulsanteSinistra = document.createElement("div");
 
@@ -567,9 +546,9 @@ function preparaFocus() {
 
   pulsanteSinistra.appendChild(iconaSinistra);
 
-  // ====================================================
+  // ==================================================
   // ASSEMBLAGGIO
-  // ====================================================
+  // ==================================================
 
   notizia.appendChild(sfondo);
 
@@ -591,9 +570,9 @@ function preparaFocus() {
 
   notiziaFocus.appendChild(notizia);
 
-  // ====================================================
-  // EVENTI
-  // ====================================================
+  // ==================================================
+  // EVENTO ESCI
+  // ==================================================
 
   pulsanteEsci.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -601,9 +580,9 @@ function preparaFocus() {
     chiudiNotizia();
   });
 
-  // ====================================================
-  // DESTRA
-  // ====================================================
+  // ==================================================
+  // EVENTO DESTRA
+  // ==================================================
 
   pulsanteDestra.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -621,9 +600,9 @@ function preparaFocus() {
     aggiornaNotiziaFocus(indiceNewsAperta);
   });
 
-  // ====================================================
-  // SINISTRA
-  // ====================================================
+  // ==================================================
+  // EVENTO SINISTRA
+  // ==================================================
 
   pulsanteSinistra.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -641,9 +620,9 @@ function preparaFocus() {
     aggiornaNotiziaFocus(indiceNewsAperta);
   });
 
-  // ====================================================
-  // CLICK SFONDO
-  // ====================================================
+  // ==================================================
+  // CLICK SU SFONDO
+  // ==================================================
 
   offuscamento.addEventListener("click", () => {
     chiudiNotizia();
@@ -687,7 +666,7 @@ function chiudiNotizia() {
 }
 
 // ======================================================
-// AGGIORNA CONTENUTO FOCUS
+// AGGIORNA FOCUS
 // ======================================================
 
 function aggiornaNotiziaFocus(indice) {
@@ -705,43 +684,94 @@ function aggiornaNotiziaFocus(indice) {
 
   const immagine = notiziaFocus.querySelector(".immagine_notizia");
 
-  // ====================================================
+  const notizia = notiziaFocus.querySelector(".notizia");
+
+  const pulsanteDestra = notiziaFocus.querySelector(".pulsante_scorri_destra");
+
+  const pulsanteSinistra = notiziaFocus.querySelector(
+    ".pulsante_scorri_sinistra",
+  );
+
+  // ==================================================
   // DATA
-  // ====================================================
+  // ==================================================
 
   if (data) {
     data.textContent = formattaData(news.data);
   }
 
-  // ====================================================
+  // ==================================================
   // TITOLO
-  // ====================================================
+  // ==================================================
 
   if (titolo) {
     titolo.textContent = news.titolo;
   }
 
-  // ====================================================
+  // ==================================================
   // TESTO
-  // ====================================================
+  // ==================================================
 
   if (testo) {
     testo.innerHTML = news.testo || "";
   }
 
-  // ====================================================
-  // IMMAGINE
-  // ====================================================
+  // ==================================================
+  // CONTROLLO IMMAGINE
+  // ==================================================
 
-  if (immagine) {
-    if (news.immagine) {
-      immagine.style.background = `url("${news.immagine}") center center / cover no-repeat`;
+  const senzaImmagine = !news.immagine || news.immagine.trim() === "";
+
+  // ==================================================
+  // CLASSE SENZA IMMAGINE
+  // ==================================================
+
+  if (notizia) {
+    if (senzaImmagine) {
+      notizia.classList.add("notizia_senza_immagine");
     } else {
-      immagine.style.background = "none";
+      notizia.classList.remove("notizia_senza_immagine");
     }
   }
 
-  aggiornaAltezzaNotizia();
+  // ==================================================
+  // IMMAGINE
+  // ==================================================
+
+  if (immagine) {
+    if (senzaImmagine) {
+      /*
+                Nessuna immagine:
+                eliminiamo completamente
+                lo spazio dell'immagine
+                tramite CSS.
+            */
+
+      immagine.style.backgroundImage = "none";
+    } else {
+      immagine.style.backgroundImage = `url("${news.immagine}")`;
+    }
+  }
+
+  // ==================================================
+  // PULSANTI SINISTRA / DESTRA
+  // ==================================================
+
+  if (pulsanteDestra) {
+    pulsanteDestra.style.display = senzaImmagine ? "none" : "";
+  }
+
+  if (pulsanteSinistra) {
+    pulsanteSinistra.style.display = senzaImmagine ? "none" : "";
+  }
+
+  // ==================================================
+  // AGGIORNAMENTO ALTEZZA
+  // ==================================================
+
+  requestAnimationFrame(() => {
+    aggiornaAltezzaNotizia();
+  });
 }
 
 // ======================================================
@@ -757,18 +787,28 @@ function aggiornaAltezzaNotizia() {
     return;
   }
 
+  // ==================================================
+  // ALTEZZA REALE DEL TESTO
+  // ==================================================
+
   const altezzaRealeTesto = testoNotizia.scrollHeight;
+
+  // ==================================================
+  // FINE DEL TESTO
+  // ==================================================
 
   const fineTesto = testoNotizia.offsetTop + altezzaRealeTesto;
 
   /*
-      50px sulla reference:
+        50px:
 
-      50 / 1920 * 100
-      = 2.60417vw
-  */
+        50 / 1920 * 100
+        = 2.60417vw
+    */
 
-  const altezzaNotizia = fineTesto + (2.60417 * window.innerWidth) / 100;
+  const spazioFinale = (2.60417 * window.innerWidth) / 100;
+
+  const altezzaNotizia = fineTesto + spazioFinale;
 
   notizia.style.height = `${altezzaNotizia}px`;
 }
@@ -800,55 +840,39 @@ function aggiornaAltezzaSezione2() {
     }
   });
 
-  /*
-      20px:
-
-      20 / 1920 * 100
-      = 1.04167vw
-  */
+  // 20px = 1.04167vw
 
   sezione2.style.height = `calc(${altezzaMassima}px + 1.04167vw)`;
 }
 
 // ======================================================
-// RICALCOLO ANTEPRIME
-// ======================================================
-
-function ricalcolaAnteprime() {
-  if (!sezione2) {
-    return;
-  }
-
-  const news = sezione2.querySelectorAll(".notizia_1");
-
-  news.forEach((notiziaElement) => {
-    const testo = notiziaElement.querySelector(".testo_notizia_1");
-
-    if (!testo) {
-      return;
-    }
-
-    const testoCompleto = testo.dataset.testoCompleto;
-
-    if (!testoCompleto) {
-      return;
-    }
-
-    adattaTestoAnteprima(testo, testoCompleto);
-  });
-
-  aggiornaAltezzaSezione2();
-}
-
-// ======================================================
-// LOAD
+// RESIZE
 // ======================================================
 
 window.addEventListener("load", () => {
   posizionaNews();
 
   requestAnimationFrame(() => {
-    ricalcolaAnteprime();
+    document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+      const news = elencoNews[indice];
+
+      if (!news) {
+        return;
+      }
+
+      const titolo = card.querySelector(".titolo_notizia_1");
+
+      const testo = card.querySelector(".testo_notizia_1");
+
+      const testoPulito = news.testo
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      adattaTesto(titolo, news.titolo, " [...]");
+
+      adattaTesto(testo, testoPulito, " [...]");
+    });
 
     aggiornaAltezzaNotizia();
 
@@ -857,18 +881,37 @@ window.addEventListener("load", () => {
 });
 
 // ======================================================
-// RESIZE
+// RESIZE FINESTRA
 // ======================================================
 
 let resizeTimer;
 
 window.addEventListener("resize", () => {
-  posizionaNews();
-
   clearTimeout(resizeTimer);
 
   resizeTimer = setTimeout(() => {
-    ricalcolaAnteprime();
+    posizionaNews();
+
+    document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+      const news = elencoNews[indice];
+
+      if (!news) {
+        return;
+      }
+
+      const titolo = card.querySelector(".titolo_notizia_1");
+
+      const testo = card.querySelector(".testo_notizia_1");
+
+      const testoPulito = news.testo
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      adattaTesto(titolo, news.titolo, " [...]");
+
+      adattaTesto(testo, testoPulito, " [...]");
+    });
 
     aggiornaAltezzaNotizia();
 
@@ -877,7 +920,7 @@ window.addEventListener("resize", () => {
 });
 
 // ======================================================
-// RESIZE OBSERVER SEZIONE 2
+// RESIZE OBSERVER
 // ======================================================
 
 const osservatore = new ResizeObserver(() => {
@@ -897,7 +940,26 @@ if (sezione2) {
 if (document.fonts) {
   document.fonts.ready.then(() => {
     requestAnimationFrame(() => {
-      ricalcolaAnteprime();
+      document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+        const news = elencoNews[indice];
+
+        if (!news) {
+          return;
+        }
+
+        const titolo = card.querySelector(".titolo_notizia_1");
+
+        const testo = card.querySelector(".testo_notizia_1");
+
+        const testoPulito = news.testo
+          .replace(/<br\s*\/?>/gi, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        adattaTesto(titolo, news.titolo, " [...]");
+
+        adattaTesto(testo, testoPulito, " [...]");
+      });
 
       aggiornaAltezzaNotizia();
 
