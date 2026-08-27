@@ -2,7 +2,6 @@
   width: 93.95vw;
   height: 7.44vw;
 
-  background: url("../images/v2020_63.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -65,7 +64,6 @@
   width: 27.62vw;
   height: 3.07vw;
 
-  background: url("../images/v2020_62.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -200,12 +198,14 @@
   outline: none;
 }
 
-/* SEZIONE 2*/
+/* SEZIONE 2 */
 
 .sezione_2 {
   position: absolute;
+
   width: 94.01vw;
-  height: 56.3vw;
+
+  height: auto;
 
   top: 20.78vw;
   left: 3.43vw;
@@ -310,8 +310,8 @@ body.popup_aperto {
 }
 
 .testo_notizia_1 {
-  width: 66.14vw;
-  height: 9.21vw;
+  width: 66.14583vw;
+  height: 9.21875vw;
   color: rgba(41, 41, 41, 1);
   position: absolute;
   top: 5.208vw;
@@ -323,6 +323,11 @@ body.popup_aperto {
   text-align: left;
   z-index: 4;
   pointer-events: none;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow: hidden;
 }
 
 /* NOTIZIA FOCUS */
@@ -330,7 +335,6 @@ body.popup_aperto {
 .notizia_focus {
   width: 100%;
   height: 100vh;
-  background: url("../images/v2141_173.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -395,15 +399,14 @@ body.popup_aperto {
 .notizia {
   width: 92.96vw;
   height: 94.42vw;
-  background: url("../images/v2140_154.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
   position: relative;
-  top: 8.43vw;
+  top: 6.25vw;
   left: 3.48vw;
-  margin-bottom: 5.208333vw;
+  margin-bottom: 12.5vw;
   overflow: hidden;
   z-index: 2;
   flex-shrink: 0;
@@ -485,6 +488,11 @@ body.popup_aperto {
   text-align: left;
   z-index: 4;
   pointer-events: none;
+
+  /* Permette al testo di andare correttamente a capo */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 /* PULSANTE ESCI */
@@ -541,7 +549,6 @@ body.popup_aperto {
 .pulsante_scorri_destra {
   width: 3.64vw;
   height: 3.64vw;
-  background: url("../images/v2141_170.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -585,7 +592,6 @@ body.popup_aperto {
 .pulsante_scorri_sinistra {
   width: 3.64vw;
   height: 3.64vw;
-  background: url("../images/v2141_171.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
