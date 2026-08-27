@@ -1059,7 +1059,31 @@ body.popup_aperto {
 
   background: url("../assets/news/icona_carica_altro.svg");
 }
+.testo_notizie_assenti {
+  width: 48vw;
+  height: 2.39vw;
 
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: #2a2a2a;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-style: italic;
+
+  font-weight: 600;
+
+  font-size: 1.875vw;
+
+  text-align: center;
+
+  opacity: 1;
+}
 /* ====================================================== */
 /* MAIN E FOOTER DINAMICO */
 /* ====================================================== */

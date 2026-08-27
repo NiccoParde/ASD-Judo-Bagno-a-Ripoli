@@ -204,6 +204,7 @@ async function caricaNews() {
     console.log("News caricate:", elencoNews);
 
     creaNewsPiccole();
+    aggiornaTestoNotizieAssenti();
     aggiornaPulsanteCaricaAltro();
 
     if (elencoNews.length > 0) {
@@ -215,6 +216,30 @@ async function caricaNews() {
 }
 
 // ======================================================
+// GESTIONE TESTO NEWS ASSENTI
+// ======================================================
+
+function aggiornaTestoNotizieAssenti() {
+  if (!sezione2) {
+    return;
+  }
+
+  const testoAssente = sezione2.querySelector(".testo_notizie_assenti");
+
+  if (!testoAssente) {
+    return;
+  }
+
+  if (elencoNews.length === 0) {
+    testoAssente.style.display = "block";
+
+    sezione2.style.height = "53.43vw";
+  } else {
+    testoAssente.style.display = "none";
+  }
+}
+
+// ======================================================
 // CREAZIONE NEWS PICCOLE
 // ======================================================
 
@@ -222,6 +247,8 @@ function creaNewsPiccole() {
   if (!sezione2) {
     return;
   }
+
+  aggiornaTestoNotizieAssenti();
 
   // ==================================================
   // PULIZIA
