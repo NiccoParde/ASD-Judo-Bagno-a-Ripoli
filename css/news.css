@@ -10,11 +10,14 @@ html,
 body {
   display: flex;
   flex-direction: column;
+
   min-height: 100vh;
+
   margin: 0;
   padding: 0;
 
   font-size: 0.729vw;
+
   overflow-x: hidden;
 }
 
@@ -28,10 +31,13 @@ body.popup_aperto {
 
 .sezione_1 {
   width: 93.95vw;
+
   height: 7.44vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -39,6 +45,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 6.25vw;
+
   left: 3.43vw;
 
   overflow: hidden;
@@ -64,6 +71,7 @@ body.popup_aperto {
 
 .separatore_sezione_1 {
   width: 100%;
+
   height: 0.26vw;
 
   background: rgba(41, 41, 41, 1);
@@ -73,6 +81,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 4.415vw;
+
   left: 0vw;
 
   overflow: hidden;
@@ -106,10 +115,13 @@ body.popup_aperto {
 
 .barra_di_ricerca {
   width: 27.62vw;
+
   height: 3.07vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
@@ -117,6 +129,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 15.05vw;
+
   left: 3.43vw;
 
   overflow: hidden;
@@ -126,6 +139,7 @@ body.popup_aperto {
 
 .sfondo_barra_di_ricerca {
   width: 27.39vw;
+
   height: 2.86vw;
 
   background: rgba(217, 217, 217, 1);
@@ -135,6 +149,7 @@ body.popup_aperto {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -146,17 +161,21 @@ body.popup_aperto {
 
 .icona_barra_di_ricerca {
   width: 1.66vw;
+
   height: 1.66vw;
 
   background: url("../assets/news/icona_barra_di_ricerca.svg");
 
   background-repeat: no-repeat;
+
   background-position: center;
+
   background-size: contain;
 
   position: absolute;
 
   top: 0.625vw;
+
   left: 0.625vw;
 
   pointer-events: none;
@@ -168,6 +187,7 @@ body.popup_aperto {
   position: absolute;
 
   left: 2.76vw;
+
   right: 0.625vw;
 
   top: 0.52vw;
@@ -179,6 +199,7 @@ body.popup_aperto {
   padding: 0;
 
   border: none;
+
   outline: none;
 
   background: transparent;
@@ -196,6 +217,7 @@ body.popup_aperto {
   white-space: nowrap;
 
   overflow-x: auto;
+
   overflow-y: hidden;
 
   scrollbar-width: none;
@@ -210,7 +232,7 @@ body.popup_aperto {
 }
 
 .input_barra_di_ricerca::placeholder {
-  color: rgba(166, 166, 166, 1);
+  color: rgba(41, 41, 41, 1);
 
   opacity: 1;
 
@@ -226,7 +248,7 @@ body.popup_aperto {
 }
 
 /* ====================================================== */
-/* SEZIONE 2 (CONTENITORE DINAMICO NOTIZIE) */
+/* SEZIONE 2 */
 /* ====================================================== */
 
 .sezione_2 {
@@ -237,12 +259,48 @@ body.popup_aperto {
   height: auto;
 
   margin-top: 20.78vw;
+
   margin-left: 3.43vw;
+
   margin-right: 3.54167vw;
 }
 
 /* ====================================================== */
-/* NOTIZIA PICCOLA (SPAZIATURA COSTANTE A 2VW) */
+/* TESTO NEWS ASSENTI */
+/* ====================================================== */
+
+.testo_notizie_assenti {
+  display: none;
+
+  width: 48vw;
+
+  height: 2.39vw;
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: #2a2a2a;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-style: italic;
+
+  font-weight: 600;
+
+  font-size: 1.875vw;
+
+  text-align: center;
+
+  opacity: 1;
+}
+
+/* ====================================================== */
+/* NOTIZIA PICCOLA */
 /* ====================================================== */
 
 .notizia_piccola {
@@ -431,6 +489,44 @@ body.popup_aperto {
   word-break: normal;
 
   overflow: hidden;
+}
+
+/* ====================================================== */
+/* NEWS PICCOLA SENZA IMMAGINE */
+/* ====================================================== */
+
+.notizia_piccola.senza_immagine .immagine_notizia_piccola {
+  display: none;
+}
+
+.notizia_piccola.senza_immagine .data_notizia_piccola {
+  left: 0.93vw;
+
+  width: 87.479vw;
+}
+
+.notizia_piccola.senza_immagine .titolo_notizia_piccola {
+  left: 0.93vw;
+
+  width: 80.088vw;
+}
+
+.notizia_piccola.senza_immagine .testo_notizia_piccola {
+  left: 0.93vw;
+
+  width: 89.0625vw;
+}
+
+/* ====================================================== */
+/* EVIDENZIAZIONE RICERCA */
+/* ====================================================== */
+
+.evidenzia_ricerca {
+  background: #ffff00;
+
+  color: inherit;
+
+  padding: 0;
 }
 
 /* ====================================================== */
@@ -720,7 +816,7 @@ body.popup_aperto {
 }
 
 /* ====================================================== */
-/* NOTIZIA SENZA IMMAGINE */
+/* NOTIZIA SENZA IMMAGINE - FOCUS */
 /* ====================================================== */
 
 .notizia.notizia_senza_immagine {
@@ -974,53 +1070,30 @@ body.popup_aperto {
 }
 
 /* ====================================================== */
-/* NEWS PICCOLA SENZA IMMAGINE */
-/* ====================================================== */
-
-.notizia_piccola.senza_immagine .immagine_notizia_piccola {
-  display: none;
-}
-
-.notizia_piccola.senza_immagine .data_notizia_piccola {
-  left: 0.93vw;
-  top: 0.8vw;
-
-  width: 87.479vw;
-}
-
-.notizia_piccola.senza_immagine .titolo_notizia_piccola {
-  left: 0.93vw;
-  top: 2.292vw;
-
-  width: 80.088vw;
-}
-
-.notizia_piccola.senza_immagine .testo_notizia_piccola {
-  left: 0.93vw;
-  top: 5.208vw;
-
-  width: 89.0625vw;
-}
-
-/* ====================================================== */
-/* PULSANTE CARICA ALTRO (POSIZIONATO SOTTO LE NEWS) */
+/* PULSANTE CARICA ALTRO */
 /* ====================================================== */
 
 .pulsante_carica_altro {
   width: 15.52vw;
+
   height: 4.11vw;
 
   background-repeat: no-repeat;
+
   background-position: center center;
+
   background-size: cover;
 
   opacity: 1;
 
   position: relative;
+
   margin: 2vw auto 0 auto;
 
   overflow: hidden;
+
   cursor: pointer;
+
   z-index: 20;
 
   transition: transform 0.12s ease;
@@ -1052,56 +1125,46 @@ body.popup_aperto {
   position: absolute;
 
   width: 1.82vw;
+
   height: 1.82vw;
 
   top: 2.29vw;
+
   left: 7.29vw;
 
   background: url("../assets/news/icona_carica_altro.svg");
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  background-size: contain;
 }
-.testo_notizie_assenti {
-  width: 48vw;
-  height: 2.39vw;
 
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  color: #2a2a2a;
-
-  font-family: "DM Serif Display", Georgia, serif;
-
-  font-style: italic;
-
-  font-weight: 600;
-
-  font-size: 1.875vw;
-
-  text-align: center;
-
-  opacity: 1;
-}
 /* ====================================================== */
 /* MAIN E FOOTER DINAMICO */
 /* ====================================================== */
 
 main {
   display: flex;
+
   flex-direction: column;
+
   flex-grow: 1;
+
   position: relative;
+
   width: 100%;
 }
 
 footer {
   position: relative;
+
   width: 100%;
 
   margin-top: 4vw;
 
   top: auto;
+
   left: 0;
 }
