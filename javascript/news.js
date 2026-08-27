@@ -12,6 +12,7 @@ import { db } from "./firebase-config.js";
 // ======================================================
 
 const sezione2 = document.querySelector(".sezione_2");
+
 const notiziaFocus = document.getElementById("notiziaFocus");
 
 // ======================================================
@@ -19,7 +20,38 @@ const notiziaFocus = document.getElementById("notiziaFocus");
 // ======================================================
 
 let elencoNews = [];
+
 let indiceNewsAperta = 0;
+
+// ======================================================
+// CONFIGURAZIONE NEWS
+// ======================================================
+
+/*
+    Numero massimo di news mostrate
+    contemporaneamente nella sezione 2.
+*/
+
+const MASSIMO_NEWS_VISIBILI = 3;
+
+/*
+    Distanza verticale tra una news e la successiva.
+
+    Altezza news:
+    16.04vw
+
+    Spazio desiderato:
+    56px
+
+    56 / 1920 * 100
+    = 2.91667vw
+
+    Totale:
+    16.04 + 2.91667
+    = 18.95667vw
+*/
+
+const DISTANZA_NEWS = 18.95667;
 
 // ======================================================
 // FORMATTAZIONE DATA
@@ -33,6 +65,7 @@ function formattaData(timestamp) {
   let data;
 
   // Timestamp Firestore
+
   if (typeof timestamp.toDate === "function") {
     data = timestamp.toDate();
   }
@@ -66,6 +99,11 @@ async function caricaNews() {
   try {
     const newsRef = collection(db, "news");
 
+    /*
+        Firebase ordina dalla più recente
+        alla più vecchia.
+    */
+
     const q = query(newsRef, orderBy("data", "desc"));
 
     const snapshot = await getDocs(q);
@@ -75,19 +113,45 @@ async function caricaNews() {
     snapshot.forEach((documento) => {
       const dati = documento.data();
 
-      // Mostra solo quelle pubblicate
+      /*
+            Mostriamo solamente
+            le news pubblicate.
+        */
+
       if (dati.pubblicata === true) {
         elencoNews.push({
           id: documento.id,
+
           titolo: dati.titolo || "",
+
           testo: dati.testo || "",
+
           data: dati.data || null,
+
           immagine: dati.immagine || "",
         });
       }
     });
 
-    console.log("News caricate:", elencoNews);
+    /*
+        ==================================================
+        MASSIMO 3 NEWS
+        ==================================================
+
+        Siccome l'array è già ordinato:
+
+        [0] = più nuova
+        [1] = seconda più nuova
+        [2] = terza più nuova
+        [3] = quarta più nuova
+        ...
+
+        prendiamo solamente le prime 3.
+    */
+
+    elencoNews = elencoNews.slice(0, MASSIMO_NEWS_VISIBILI);
+
+    console.log("News visualizzate:", elencoNews);
 
     creaNewsPiccole();
 
@@ -110,7 +174,11 @@ function creaNewsPiccole() {
     return;
   }
 
-  // Elimina eventuali vecchie news generate
+  /*
+      Elimina eventuali vecchie news
+      generate precedentemente.
+  */
+
   sezione2.querySelectorAll(".notizia_1").forEach((elemento) => {
     elemento.remove();
   });
@@ -122,17 +190,17 @@ function creaNewsPiccole() {
 
     notiziaPiccola.id = `notiziaPiccola_${indice}`;
 
-    // --------------------------------------------------
+    // ==================================================
     // SFONDO
-    // --------------------------------------------------
+    // ==================================================
 
     const sfondo = document.createElement("div");
 
     sfondo.className = "sfondo_notizia_1";
 
-    // --------------------------------------------------
+    // ==================================================
     // IMMAGINE
-    // --------------------------------------------------
+    // ==================================================
 
     const immagine = document.createElement("div");
 
@@ -142,9 +210,9 @@ function creaNewsPiccole() {
       immagine.style.backgroundImage = `url("${news.immagine}")`;
     }
 
-    // --------------------------------------------------
+    // ==================================================
     // DATA
-    // --------------------------------------------------
+    // ==================================================
 
     const data = document.createElement("span");
 
@@ -152,9 +220,9 @@ function creaNewsPiccole() {
 
     data.textContent = formattaData(news.data);
 
-    // --------------------------------------------------
+    // ==================================================
     // TITOLO
-    // --------------------------------------------------
+    // ==================================================
 
     const titolo = document.createElement("span");
 
@@ -162,129 +230,35 @@ function creaNewsPiccole() {
 
     titolo.textContent = news.titolo;
 
-    // --------------------------------------------------
+    // ==================================================
     // TESTO
-    // --------------------------------------------------
+    // ==================================================
 
     const testo = document.createElement("span");
 
     testo.className = "testo_notizia_1";
 
-    // Puliamo il testo proveniente da Firebase
+    /*
+          Puliamo il testo proveniente
+          da Firebase.
+      */
+
     const testoPulito = news.testo
       .replace(/<br\s*\/?>/gi, " ")
       .replace(/\s+/g, " ")
       .trim();
 
-    // --------------------------------------------------
-    // SALVIAMO IL TESTO ORIGINALE
-    // --------------------------------------------------
+    /*
+          Salviamo il testo completo
+          per poterlo ricalcolare
+          al resize.
+      */
 
     testo.dataset.testoCompleto = testoPulito;
 
-    // --------------------------------------------------
-    // FUNZIONE PER ADATTARE IL TESTO
-    // --------------------------------------------------
-
-    function adattaTestoAnteprima() {
-      const suffisso = " [...]";
-
-      // Nessun testo
-      if (!testoPulito) {
-        testo.textContent = "";
-
-        return;
-      }
-
-      // ------------------------------------------------
-      // FUNZIONE DI CONTROLLO
-      // ------------------------------------------------
-
-      function entraNellaBox(contenuto) {
-        testo.textContent = contenuto;
-
-        return testo.scrollHeight <= testo.clientHeight + 1;
-      }
-
-      // ------------------------------------------------
-      // PROVIAMO PRIMA IL TESTO COMPLETO
-      // ------------------------------------------------
-
-      if (entraNellaBox(testoPulito)) {
-        return;
-      }
-
-      // ------------------------------------------------
-      // DIVIDIAMO IN PAROLE
-      // ------------------------------------------------
-
-      const parole = testoPulito.split(/\s+/);
-
-      let migliore = "";
-
-      // ------------------------------------------------
-      // AGGIUNGIAMO LE PAROLE UNA ALLA VOLTA
-      // ------------------------------------------------
-
-      for (let i = 0; i < parole.length; i++) {
-        const candidatoBase = (migliore ? migliore + " " : "") + parole[i];
-
-        const candidato = candidatoBase + suffisso;
-
-        // ----------------------------------------------
-        // SE LA PAROLA INTERA ENTRA
-        // ----------------------------------------------
-
-        if (entraNellaBox(candidato)) {
-          migliore = candidatoBase;
-        }
-
-        // ----------------------------------------------
-        // SE NON ENTRA
-        // PROVIAMO CARATTERE PER CARATTERE
-        // ----------------------------------------------
-        else {
-          const testoPrima = migliore ? migliore + " " : "";
-
-          let parteParola = "";
-
-          for (let j = 0; j < parole[i].length; j++) {
-            const candidatoParziale =
-              testoPrima + parole[i].substring(0, j + 1) + suffisso;
-
-            if (entraNellaBox(candidatoParziale)) {
-              parteParola = parole[i].substring(0, j + 1);
-            } else {
-              break;
-            }
-          }
-
-          // --------------------------------------------
-          // ABBIAMO TROVATO PARTE DELLA PAROLA
-          // --------------------------------------------
-
-          if (parteParola) {
-            migliore = testoPrima + parteParola;
-          }
-
-          break;
-        }
-      }
-
-      // ------------------------------------------------
-      // RISULTATO FINALE
-      // ------------------------------------------------
-
-      if (migliore) {
-        testo.textContent = migliore.trim() + suffisso;
-      } else {
-        testo.textContent = suffisso;
-      }
-    }
-
-    // --------------------------------------------------
+    // ==================================================
     // INSERIMENTO
-    // --------------------------------------------------
+    // ==================================================
 
     notiziaPiccola.appendChild(sfondo);
 
@@ -296,9 +270,9 @@ function creaNewsPiccole() {
 
     notiziaPiccola.appendChild(testo);
 
-    // --------------------------------------------------
+    // ==================================================
     // CLICK
-    // --------------------------------------------------
+    // ==================================================
 
     notiziaPiccola.addEventListener("click", () => {
       indiceNewsAperta = indice;
@@ -306,28 +280,28 @@ function creaNewsPiccole() {
       apriNotizia(indiceNewsAperta);
     });
 
-    // --------------------------------------------------
+    // ==================================================
     // INSERIMENTO NELLA SEZIONE
-    // --------------------------------------------------
+    // ==================================================
 
     sezione2.appendChild(notiziaPiccola);
 
-    // --------------------------------------------------
-    // PRIMO CALCOLO
-    // --------------------------------------------------
+    // ==================================================
+    // PRIMO CALCOLO DEL TESTO
+    // ==================================================
 
     requestAnimationFrame(() => {
-      adattaTestoAnteprima();
+      adattaTestoAnteprima(testo, testoPulito);
 
       aggiornaAltezzaSezione2();
     });
 
-    // --------------------------------------------------
-    // RESIZE DELLA SINGOLA CARD
-    // --------------------------------------------------
+    // ==================================================
+    // OSSERVATORE DELLA CARD
+    // ==================================================
 
     const osservatoreCard = new ResizeObserver(() => {
-      adattaTestoAnteprima();
+      adattaTestoAnteprima(testo, testoPulito);
 
       aggiornaAltezzaSezione2();
     });
@@ -339,7 +313,102 @@ function creaNewsPiccole() {
 }
 
 // ======================================================
-// POSIZIONAMENTO DELLE NEWS
+// ADATTAMENTO TESTO ANTEPRIMA
+// ======================================================
+
+function adattaTestoAnteprima(testo, testoPulito) {
+  const suffisso = " [...]";
+
+  if (!testoPulito) {
+    testo.textContent = "";
+
+    return;
+  }
+
+  // ====================================================
+  // CONTROLLO
+  // ====================================================
+
+  function entraNellaBox(contenuto) {
+    testo.textContent = contenuto;
+
+    return testo.scrollHeight <= testo.clientHeight + 1;
+  }
+
+  // ====================================================
+  // TESTO COMPLETO
+  // ====================================================
+
+  if (entraNellaBox(testoPulito)) {
+    return;
+  }
+
+  // ====================================================
+  // DIVISIONE IN PAROLE
+  // ====================================================
+
+  const parole = testoPulito.split(/\s+/);
+
+  let migliore = "";
+
+  // ====================================================
+  // RICERCA DEL MASSIMO TESTO
+  // ====================================================
+
+  for (let i = 0; i < parole.length; i++) {
+    const candidatoBase = (migliore ? migliore + " " : "") + parole[i];
+
+    const candidato = candidatoBase + suffisso;
+
+    // ------------------------------------------------
+    // PAROLA INTERA
+    // ------------------------------------------------
+
+    if (entraNellaBox(candidato)) {
+      migliore = candidatoBase;
+
+      continue;
+    }
+
+    // ------------------------------------------------
+    // PARTE DELLA PAROLA
+    // ------------------------------------------------
+
+    const testoPrima = migliore ? migliore + " " : "";
+
+    let parteParola = "";
+
+    for (let j = 0; j < parole[i].length; j++) {
+      const candidatoParziale =
+        testoPrima + parole[i].substring(0, j + 1) + suffisso;
+
+      if (entraNellaBox(candidatoParziale)) {
+        parteParola = parole[i].substring(0, j + 1);
+      } else {
+        break;
+      }
+    }
+
+    if (parteParola) {
+      migliore = testoPrima + parteParola;
+    }
+
+    break;
+  }
+
+  // ====================================================
+  // RISULTATO
+  // ====================================================
+
+  if (migliore) {
+    testo.textContent = migliore.trim() + suffisso;
+  } else {
+    testo.textContent = suffisso;
+  }
+}
+
+// ======================================================
+// POSIZIONAMENTO NEWS
 // ======================================================
 
 function posizionaNews() {
@@ -349,15 +418,22 @@ function posizionaNews() {
 
   const news = sezione2.querySelectorAll(".notizia_1");
 
-  const distanza = 17.5;
-
   news.forEach((newsElement, indice) => {
-    newsElement.style.top = `${indice * distanza}vw`;
+    /*
+          0 = news più nuova
+          1 = seconda
+          2 = terza
+
+          Ogni news è distante
+          18.95667vw dalla precedente.
+      */
+
+    newsElement.style.top = `${indice * DISTANZA_NEWS}vw`;
   });
 }
 
 // ======================================================
-// CREAZIONE / PREPARAZIONE FOCUS
+// PREPARAZIONE FOCUS
 // ======================================================
 
 function preparaFocus() {
@@ -367,41 +443,41 @@ function preparaFocus() {
 
   notiziaFocus.innerHTML = "";
 
-  // ----------------------------------------------------
+  // ====================================================
   // SFONDO SCURO
-  // ----------------------------------------------------
+  // ====================================================
 
   const offuscamento = document.createElement("div");
 
   offuscamento.className = "offuscamento_background";
 
-  // ----------------------------------------------------
-  // NOTIZIA GRANDE
-  // ----------------------------------------------------
+  // ====================================================
+  // NOTIZIA
+  // ====================================================
 
   const notizia = document.createElement("div");
 
   notizia.className = "notizia";
 
-  // ----------------------------------------------------
+  // ====================================================
   // SFONDO BIANCO
-  // ----------------------------------------------------
+  // ====================================================
 
   const sfondo = document.createElement("div");
 
   sfondo.className = "sfondo_notizia";
 
-  // ----------------------------------------------------
+  // ====================================================
   // IMMAGINE
-  // ----------------------------------------------------
+  // ====================================================
 
   const immagine = document.createElement("div");
 
   immagine.className = "immagine_notizia";
 
-  // ----------------------------------------------------
+  // ====================================================
   // DATA
-  // ----------------------------------------------------
+  // ====================================================
 
   const data = document.createElement("span");
 
@@ -409,9 +485,9 @@ function preparaFocus() {
 
   data.id = "dataNotizia";
 
-  // ----------------------------------------------------
+  // ====================================================
   // TITOLO
-  // ----------------------------------------------------
+  // ====================================================
 
   const titolo = document.createElement("span");
 
@@ -419,9 +495,9 @@ function preparaFocus() {
 
   titolo.id = "titoloNotizia";
 
-  // ----------------------------------------------------
+  // ====================================================
   // TESTO
-  // ----------------------------------------------------
+  // ====================================================
 
   const testo = document.createElement("span");
 
@@ -525,9 +601,9 @@ function preparaFocus() {
     chiudiNotizia();
   });
 
-  // ----------------------------------------------------
+  // ====================================================
   // DESTRA
-  // ----------------------------------------------------
+  // ====================================================
 
   pulsanteDestra.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -545,9 +621,9 @@ function preparaFocus() {
     aggiornaNotiziaFocus(indiceNewsAperta);
   });
 
-  // ----------------------------------------------------
+  // ====================================================
   // SINISTRA
-  // ----------------------------------------------------
+  // ====================================================
 
   pulsanteSinistra.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -565,9 +641,9 @@ function preparaFocus() {
     aggiornaNotiziaFocus(indiceNewsAperta);
   });
 
-  // ----------------------------------------------------
+  // ====================================================
   // CLICK SFONDO
-  // ----------------------------------------------------
+  // ====================================================
 
   offuscamento.addEventListener("click", () => {
     chiudiNotizia();
@@ -629,33 +705,33 @@ function aggiornaNotiziaFocus(indice) {
 
   const immagine = notiziaFocus.querySelector(".immagine_notizia");
 
-  // ----------------------------------------------------
+  // ====================================================
   // DATA
-  // ----------------------------------------------------
+  // ====================================================
 
   if (data) {
     data.textContent = formattaData(news.data);
   }
 
-  // ----------------------------------------------------
+  // ====================================================
   // TITOLO
-  // ----------------------------------------------------
+  // ====================================================
 
   if (titolo) {
     titolo.textContent = news.titolo;
   }
 
-  // ----------------------------------------------------
+  // ====================================================
   // TESTO
-  // ----------------------------------------------------
+  // ====================================================
 
   if (testo) {
     testo.innerHTML = news.testo || "";
   }
 
-  // ----------------------------------------------------
+  // ====================================================
   // IMMAGINE
-  // ----------------------------------------------------
+  // ====================================================
 
   if (immagine) {
     if (news.immagine) {
@@ -681,21 +757,16 @@ function aggiornaAltezzaNotizia() {
     return;
   }
 
-  // ----------------------------------------------------
-  // ALTEZZA REALE DEL TESTO
-  // ----------------------------------------------------
-
   const altezzaRealeTesto = testoNotizia.scrollHeight;
-
-  // ----------------------------------------------------
-  // POSIZIONE FINALE DEL TESTO
-  // ----------------------------------------------------
 
   const fineTesto = testoNotizia.offsetTop + altezzaRealeTesto;
 
-  // ----------------------------------------------------
-  // 50px = 2.60417vw
-  // ----------------------------------------------------
+  /*
+      50px sulla reference:
+
+      50 / 1920 * 100
+      = 2.60417vw
+  */
 
   const altezzaNotizia = fineTesto + (2.60417 * window.innerWidth) / 100;
 
@@ -729,18 +800,19 @@ function aggiornaAltezzaSezione2() {
     }
   });
 
-  // 20px rispetto alla reference 1920px
+  /*
+      20px:
+
+      20 / 1920 * 100
+      = 1.04167vw
+  */
+
   sezione2.style.height = `calc(${altezzaMassima}px + 1.04167vw)`;
 }
 
 // ======================================================
-// RICALCOLO DI TUTTE LE ANTEPRIME
+// RICALCOLO ANTEPRIME
 // ======================================================
-//
-// Questa funzione forza il ricalcolo del testo
-// di tutte le news quando cambia la dimensione
-// della pagina o vengono caricati i font.
-//
 
 function ricalcolaAnteprime() {
   if (!sezione2) {
@@ -762,103 +834,19 @@ function ricalcolaAnteprime() {
       return;
     }
 
-    const suffisso = " [...]";
-
-    // ----------------------------------------------
-    // CONTROLLO
-    // ----------------------------------------------
-
-    function entraNellaBox(contenuto) {
-      testo.textContent = contenuto;
-
-      return testo.scrollHeight <= testo.clientHeight + 1;
-    }
-
-    // ----------------------------------------------
-    // TESTO COMPLETO
-    // ----------------------------------------------
-
-    if (entraNellaBox(testoCompleto)) {
-      return;
-    }
-
-    // ----------------------------------------------
-    // PAROLE
-    // ----------------------------------------------
-
-    const parole = testoCompleto.split(/\s+/);
-
-    let migliore = "";
-
-    // ----------------------------------------------
-    // RICERCA MASSIMO CONTENUTO
-    // ----------------------------------------------
-
-    for (let i = 0; i < parole.length; i++) {
-      const candidatoBase = (migliore ? migliore + " " : "") + parole[i];
-
-      const candidato = candidatoBase + suffisso;
-
-      // --------------------------------------------
-      // PAROLA INTERA
-      // --------------------------------------------
-
-      if (entraNellaBox(candidato)) {
-        migliore = candidatoBase;
-
-        continue;
-      }
-
-      // --------------------------------------------
-      // PARTE DELLA PAROLA
-      // --------------------------------------------
-
-      const testoPrima = migliore ? migliore + " " : "";
-
-      let parteParola = "";
-
-      for (let j = 0; j < parole[i].length; j++) {
-        const candidatoParziale =
-          testoPrima + parole[i].substring(0, j + 1) + suffisso;
-
-        if (entraNellaBox(candidatoParziale)) {
-          parteParola = parole[i].substring(0, j + 1);
-        } else {
-          break;
-        }
-      }
-
-      if (parteParola) {
-        migliore = testoPrima + parteParola;
-      }
-
-      break;
-    }
-
-    // ----------------------------------------------
-    // RISULTATO
-    // ----------------------------------------------
-
-    if (migliore) {
-      testo.textContent = migliore.trim() + suffisso;
-    } else {
-      testo.textContent = suffisso;
-    }
+    adattaTestoAnteprima(testo, testoCompleto);
   });
 
-  // Aggiorniamo anche l'altezza
   aggiornaAltezzaSezione2();
 }
 
 // ======================================================
-// RESIZE
+// LOAD
 // ======================================================
 
 window.addEventListener("load", () => {
   posizionaNews();
 
-  // Aspettiamo un frame per permettere
-  // al browser di applicare dimensioni e font
   requestAnimationFrame(() => {
     ricalcolaAnteprime();
 
@@ -869,7 +857,7 @@ window.addEventListener("load", () => {
 });
 
 // ======================================================
-// RESIZE FINESTRA
+// RESIZE
 // ======================================================
 
 let resizeTimer;
@@ -877,8 +865,6 @@ let resizeTimer;
 window.addEventListener("resize", () => {
   posizionaNews();
 
-  // Evita centinaia di ricalcoli durante
-  // il trascinamento della finestra
   clearTimeout(resizeTimer);
 
   resizeTimer = setTimeout(() => {
@@ -895,12 +881,6 @@ window.addEventListener("resize", () => {
 // ======================================================
 
 const osservatore = new ResizeObserver(() => {
-  // Non richiamiamo direttamente
-  // ricalcolaAnteprime() qui perché
-  // modificare il testo può modificare
-  // a sua volta la sezione causando
-  // un ciclo di ResizeObserver.
-
   aggiornaAltezzaNotizia();
 
   aggiornaAltezzaSezione2();
@@ -916,8 +896,6 @@ if (sezione2) {
 
 if (document.fonts) {
   document.fonts.ready.then(() => {
-    // Aspettiamo che il browser abbia
-    // applicato realmente il font
     requestAnimationFrame(() => {
       ricalcolaAnteprime();
 

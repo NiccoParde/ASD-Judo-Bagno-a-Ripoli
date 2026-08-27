@@ -1,250 +1,137 @@
 <!doctype html>
 <html lang="it">
-
-<head>
-
+  <head>
     <!-- Impostazioni base della pagina -->
 
     <meta charset="UTF-8" />
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Titolo -->
 
-    <title>
-        News - A.S.D. Judo Bagno a Ripoli
-    </title>
+    <title>News - A.S.D. Judo Bagno a Ripoli</title>
 
     <!-- Favicon -->
 
-    <link
-        rel="icon"
-        type="image/png"
-        href="./assets/global/logo.png"
-    />
+    <link rel="icon" type="image/png" href="./assets/global/logo.png" />
 
     <!-- Font -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Serif+Text:ital@0;1&display=swap"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Serif+Text:ital@0;1&display=swap"
+      rel="stylesheet"
     />
 
     <!-- CSS globale -->
 
-    <link
-        href="./css/style.css"
-        rel="stylesheet"
-    />
+    <link href="./css/style.css" rel="stylesheet" />
 
     <!-- CSS pagina News -->
 
-    <link
-        href="./css/news.css"
-        rel="stylesheet"
-    />
+    <link href="./css/news.css" rel="stylesheet" />
+  </head>
 
-</head>
-
-
-<body>
-
-
+  <body>
     <!-- ================================================== -->
     <!-- HEADER -->
     <!-- ================================================== -->
 
     <header class="site-header">
+      <div class="site-header__background" aria-hidden="true"></div>
 
-        <div
-            class="site-header__background"
-            aria-hidden="true">
-        </div>
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <a class="site-nav__link" href="index.html"> Home </a>
 
+        <a class="site-nav__link" href="unisciti_a_noi.html">
+          Unisciti a noi
+        </a>
 
-        <nav
-            class="site-nav"
-            aria-label="Navigazione principale"
-        >
+        <a class="site-nav__link" href="storia.html"> Storia </a>
 
-            <a
-                class="site-nav__link"
-                href="index.html"
-            >
-                Home
-            </a>
+        <a class="site-nav__link" href="info_e_orari.html"> Info e orari </a>
 
+        <a class="site-nav__link" href="shoku_geiko.html"> Shoku Geiko </a>
 
-            <a
-                class="site-nav__link"
-                href="unisciti_a_noi.html"
-            >
-                Unisciti a noi
-            </a>
+        <a class="site-nav__link site-nav__link--active" href="news.html">
+          News
+        </a>
 
-
-            <a
-                class="site-nav__link"
-                href="storia.html"
-            >
-                Storia
-            </a>
-
-
-            <a
-                class="site-nav__link"
-                href="info_e_orari.html"
-            >
-                Info e orari
-            </a>
-
-
-            <a
-                class="site-nav__link"
-                href="shoku_geiko.html"
-            >
-                Shoku Geiko
-            </a>
-
-
-            <a
-                class="site-nav__link site-nav__link--active"
-                href="news.html"
-            >
-                News
-            </a>
-
-
-            <a
-                class="site-nav__link"
-                href="calendario_eventi.html"
-            >
-                Calendario eventi
-            </a>
-
-        </nav>
-
+        <a class="site-nav__link" href="calendario_eventi.html">
+          Calendario eventi
+        </a>
+      </nav>
     </header>
-
-
 
     <!-- ================================================== -->
     <!-- CONTENUTO -->
     <!-- ================================================== -->
 
     <main class="news-page">
+      <!-- ================================================== -->
+      <!-- SEZIONE 1 -->
+      <!-- ================================================== -->
 
+      <div class="sezione_1">
+        <span class="titolo_sezione_1"> AGGIORNAMENTI E NEWS </span>
 
-        <!-- ================================================== -->
-        <!-- SEZIONE 1 -->
-        <!-- ================================================== -->
+        <div class="separatore_sezione_1"></div>
 
-        <div class="sezione_1">
+        <span class="sottotitolo_sezione_1">
+          Tutte le novità e le notizie della società!
+        </span>
+      </div>
 
-            <span class="titolo_sezione_1">
-                AGGIORNAMENTI E NEWS
-            </span>
+      <!-- ================================================== -->
+      <!-- BARRA DI RICERCA -->
+      <!-- ================================================== -->
 
+      <div class="barra_di_ricerca">
+        <div class="sfondo_barra_di_ricerca"></div>
 
-            <div class="separatore_sezione_1">
-            </div>
+        <div class="icona_barra_di_ricerca"></div>
 
+        <input
+          type="text"
+          class="input_barra_di_ricerca"
+          placeholder="Cerca qui..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
 
-            <span class="sottotitolo_sezione_1">
-                Tutte le novità e le notizie della società!
-            </span>
+      <!-- ================================================== -->
+      <!-- SEZIONE 2 -->
+      <!-- ================================================== -->
 
-        </div>
+      <div class="sezione_2">
+        <!--
+                Le news vengono create
+                automaticamente da news.js.
 
-
-
-        <!-- ================================================== -->
-        <!-- BARRA DI RICERCA -->
-        <!-- ================================================== -->
-
-        <div class="barra_di_ricerca">
-
-            <div class="sfondo_barra_di_ricerca">
-            </div>
-
-
-            <div class="icona_barra_di_ricerca">
-            </div>
-
-
-            <input
-                type="text"
-                class="input_barra_di_ricerca"
-                placeholder="Cerca qui..."
-                autocomplete="off"
-                spellcheck="false"
-            />
-
-        </div>
-
-
-
-        <!-- ================================================== -->
-        <!-- SEZIONE 2 -->
-        <!-- ================================================== -->
-
-        <div class="sezione_2">
-
-            <!--
-
-                LE NEWS VERRANNO CREATE
-                AUTOMATICAMENTE DA news.js
-
+                MASSIMO 3 NEWS.
             -->
+      </div>
 
-        </div>
+      <!-- ================================================== -->
+      <!-- POPUP FOCUS -->
+      <!-- ================================================== -->
 
-
-
-        <!-- ================================================== -->
-        <!-- POPUP FOCUS -->
-        <!-- ================================================== -->
-
-        <div
-            class="notizia_focus"
-            id="notiziaFocus"
-        >
-
-            <!--
-
-                Anche il contenuto della notizia focus
-                viene creato automaticamente da news.js.
-
+      <div class="notizia_focus" id="notiziaFocus">
+        <!--
+                Il contenuto viene creato
+                automaticamente da news.js.
             -->
-
-        </div>
-
-
+      </div>
     </main>
-
-
 
     <!-- ================================================== -->
     <!-- JAVASCRIPT -->
     <!-- ================================================== -->
 
-    <script
-        type="module"
-        src="./javascript/news.js"
-    ></script>
-
-
-</body>
-
+    <script type="module" src="./javascript/news.js"></script>
+  </body>
 </html>

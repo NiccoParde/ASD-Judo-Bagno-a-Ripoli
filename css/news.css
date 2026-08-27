@@ -1,217 +1,6 @@
-.sezione_1 {
-  width: 93.95vw;
-  height: 7.44vw;
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-
-  opacity: 1;
-  position: absolute;
-  top: 6.25vw;
-  left: 3.43vw;
-  overflow: hidden;
-}
-
-.titolo_sezione_1 {
-  width: 48.28vw;
-
-  color: rgba(41, 41, 41, 1);
-
-  position: absolute;
-
-  font-family: "Dela Gothic One", Arial, sans-serif;
-  font-weight: Regular;
-  font-size: 2.865vw;
-
-  opacity: 1;
-  text-align: left;
-}
-
-.separatore_sezione_1 {
-  width: 100%;
-  height: 0.26vw;
-
-  background: rgba(41, 41, 41, 1);
-
-  opacity: 1;
-  position: absolute;
-  top: 4.415vw;
-  left: 0vw;
-  overflow: hidden;
-}
-
-.sottotitolo_sezione_1 {
-  width: 29.74vw;
-
-  color: rgba(41, 41, 41, 1);
-
-  position: absolute;
-  top: 5.352vw;
-
-  font-family: "DM Serif Display";
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.754vw;
-
-  opacity: 1;
-  text-align: left;
-}
-
-/* BARRA DI RICERCA*/
-
-.barra_di_ricerca {
-  width: 27.62vw;
-  height: 3.07vw;
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-
-  opacity: 1;
-
-  position: absolute;
-  top: 15.05vw;
-  left: 3.43vw;
-
-  overflow: hidden;
-
-  /* Permette di cliccare anche sulla zona vuota della barra */
-  cursor: text;
-}
-.sfondo_barra_di_ricerca {
-  width: 27.39vw;
-  height: 2.86vw;
-
-  background: rgba(217, 217, 217, 1);
-
-  opacity: 1;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-
-  overflow: hidden;
-
-  pointer-events: none;
-}
-.icona_barra_di_ricerca {
-  width: 1.66vw;
-  height: 1.66vw;
-
-  background: url("../assets/news/icona_barra_di_ricerca.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  position: absolute;
-
-  top: 0.625vw;
-  left: 0.625vw;
-
-  pointer-events: none;
-
-  z-index: 2;
-}
-.input_barra_di_ricerca {
-  position: absolute;
-
-  /*
-     * Parte dopo l'icona
-     */
-  left: 2.76vw;
-
-  /*
-     * 12px dalla reference 1920px:
-     *
-     * 12 / 1920 * 100 = 0.625vw
-     *
-     * Quindi il testo non arriverà mai
-     * a meno di 12px dal bordo destro.
-     */
-  right: 0.625vw;
-
-  /*
-     * Altezza utile della barra
-     */
-  top: 0.52vw;
-  height: 1.98vw;
-
-  width: auto;
-
-  padding: 0;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  /*
-     * Font della reference
-     */
-  font-family: "DM Serif Text", Georgia, serif;
-  font-weight: normal;
-  font-size: 1.25vw;
-
-  color: rgba(41, 41, 41, 1);
-
-  text-align: left;
-
-  /*
-     * Impedisce al testo di andare su più righe.
-     */
-  white-space: nowrap;
-
-  /*
-     * Il testo lungo viene gestito come
-     * una normale barra di ricerca.
-     */
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  /*
-     * Nasconde la scrollbar dell'input.
-     */
-  scrollbar-width: none;
-
-  z-index: 3;
-
-  cursor: text;
-}
-
-/* Chrome / Edge / Opera */
-.input_barra_di_ricerca::-webkit-scrollbar {
-  display: none;
-}
-.input_barra_di_ricerca::placeholder {
-  color: rgba(166, 166, 166, 1);
-
-  opacity: 1;
-
-  font-family: "DM Serif Text", Georgia, serif;
-  font-style: italic;
-  font-weight: normal;
-}
-.input_barra_di_ricerca:focus {
-  outline: none;
-}
-
-/* SEZIONE 2 */
-
-.sezione_2 {
-  position: absolute;
-
-  width: 94.01vw;
-
-  height: auto;
-
-  top: 20.78vw;
-  left: 3.43vw;
-}
-
-/* RESET */
+/* ======================================================
+   RESET
+   ====================================================== */
 
 * {
   box-sizing: border-box;
@@ -232,19 +21,261 @@ body.popup_aperto {
   overflow: hidden;
 }
 
-/* NOTIZIA PICCOLA */
+/* ======================================================
+   SEZIONE 1
+   ====================================================== */
+
+.sezione_1 {
+  width: 93.95vw;
+  height: 7.44vw;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 6.25vw;
+  left: 3.43vw;
+
+  overflow: hidden;
+}
+
+.titolo_sezione_1 {
+  width: 48.28vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  font-family: "Dela Gothic One", Arial, sans-serif;
+
+  font-weight: normal;
+
+  font-size: 2.865vw;
+
+  opacity: 1;
+
+  text-align: left;
+}
+
+.separatore_sezione_1 {
+  width: 100%;
+  height: 0.26vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 4.415vw;
+  left: 0vw;
+
+  overflow: hidden;
+}
+
+.sottotitolo_sezione_1 {
+  width: 29.74vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 5.352vw;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-style: italic;
+  font-weight: 600;
+
+  font-size: 1.754vw;
+
+  opacity: 1;
+
+  text-align: left;
+}
+
+/* ======================================================
+   BARRA DI RICERCA
+   ====================================================== */
+
+.barra_di_ricerca {
+  width: 27.62vw;
+  height: 3.07vw;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 15.05vw;
+  left: 3.43vw;
+
+  overflow: hidden;
+
+  cursor: text;
+}
+
+.sfondo_barra_di_ricerca {
+  width: 27.39vw;
+  height: 2.86vw;
+
+  background: rgba(217, 217, 217, 1);
+
+  opacity: 1;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.icona_barra_di_ricerca {
+  width: 1.66vw;
+  height: 1.66vw;
+
+  background: url("../assets/news/icona_barra_di_ricerca.svg");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  position: absolute;
+
+  top: 0.625vw;
+  left: 0.625vw;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+.input_barra_di_ricerca {
+  position: absolute;
+
+  left: 2.76vw;
+  right: 0.625vw;
+
+  top: 0.52vw;
+
+  height: 1.98vw;
+
+  width: auto;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-weight: normal;
+
+  font-size: 1.25vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+
+  z-index: 3;
+
+  cursor: text;
+}
+
+.input_barra_di_ricerca::-webkit-scrollbar {
+  display: none;
+}
+
+.input_barra_di_ricerca::placeholder {
+  color: rgba(166, 166, 166, 1);
+
+  opacity: 1;
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-style: italic;
+  font-weight: normal;
+}
+
+.input_barra_di_ricerca:focus {
+  outline: none;
+}
+
+/* ======================================================
+   SEZIONE 2
+   ====================================================== */
+
+.sezione_2 {
+  position: absolute;
+
+  width: 94.01vw;
+
+  height: auto;
+
+  top: 20.78vw;
+  left: 3.43vw;
+}
+
+/* ======================================================
+   NOTIZIA PICCOLA
+   ====================================================== */
 
 .notizia_1 {
   width: 94.01vw;
+
   height: 16.04vw;
+
   position: absolute;
+
   left: 2.604vw;
+
+  /*
+        56px sulla reference 1920x1080:
+
+        56 / 1920 * 100
+        = 2.91667vw
+
+        Altezza card:
+        16.04vw
+
+        Distanza totale tra i top:
+        16.04vw + 2.91667vw
+        = 18.95667vw
+    */
+
   top: 0vw;
+
   box-shadow: -1.042vw 1.042vw 0.208vw rgba(0, 0, 0, 0.25);
+
   overflow: visible;
+
   z-index: 10;
+
   cursor: pointer;
+
   transform: scale(1);
+
   transition: transform 0.12s ease;
 }
 
@@ -252,105 +283,181 @@ body.popup_aperto {
   transform: scale(0.97);
 }
 
+/* ======================================================
+   SFONDO NEWS
+   ====================================================== */
+
 .sfondo_notizia_1 {
   width: 92.96vw;
   height: 16.04vw;
+
   background: rgba(255, 255, 255, 1);
+
   position: absolute;
+
   left: 1.25vw;
   top: 0vw;
+
   z-index: 1;
+
   pointer-events: none;
 }
+
+/* ======================================================
+   IMMAGINE NEWS
+   ====================================================== */
 
 .immagine_notizia_1 {
   width: 24.688vw;
   height: 16.042vw;
+
   background: url("../assets/news/immagine_notizia_1.png");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   position: absolute;
+
   top: 0vw;
   left: 0vw;
+
   overflow: hidden;
+
   z-index: 2;
+
   pointer-events: none;
 }
 
+/* ======================================================
+   DATA NEWS
+   ====================================================== */
+
 .data_notizia_1 {
   width: 13.854vw;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 0.8vw;
   left: 25.625vw;
+
   font-family: "DM Serif Text", Georgia, serif;
+
   font-weight: normal;
+
   font-size: 0.938vw;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 3;
+
   pointer-events: none;
 }
+
+/* ======================================================
+   TITOLO NEWS
+   ====================================================== */
 
 .titolo_notizia_1 {
   width: 56.4vw;
   height: 2.39vw;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 2.292vw;
   left: 25.625vw;
+
   font-family: "Dela Gothic One", Arial, sans-serif;
+
   font-weight: normal;
+
   font-size: 1.25vw;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 4;
+
   pointer-events: none;
 }
+
+/* ======================================================
+   TESTO NEWS
+   ====================================================== */
 
 .testo_notizia_1 {
   width: 66.14583vw;
   height: 9.21875vw;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 5.208vw;
   left: 25.625vw;
+
   font-family: "DM Serif Text", Georgia, serif;
+
   font-weight: normal;
+
   font-size: 0.938vw;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 4;
+
   pointer-events: none;
 
   white-space: normal;
+
   overflow-wrap: anywhere;
+
   word-break: break-word;
+
   overflow: hidden;
 }
 
-/* NOTIZIA FOCUS */
+/* ======================================================
+   NOTIZIA FOCUS
+   ====================================================== */
 
 .notizia_focus {
   width: 100%;
   height: 100vh;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 0;
+
   position: fixed;
+
   top: 0;
   left: 0;
+
   overflow-y: auto;
   overflow-x: hidden;
+
   z-index: 100;
+
   pointer-events: none;
+
   transition: opacity 0.18s ease;
 }
 
 .notizia_focus.aperta {
   opacity: 1;
+
   pointer-events: auto;
 }
 
@@ -358,7 +465,9 @@ body.popup_aperto {
   pointer-events: none;
 }
 
-/* SCROLLBAR */
+/* ======================================================
+   SCROLLBAR POPUP
+   ====================================================== */
 
 .notizia_focus {
   scrollbar-width: auto;
@@ -374,6 +483,7 @@ body.popup_aperto {
 
 .notizia_focus::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.55);
+
   border-radius: 1vw;
 }
 
@@ -381,135 +491,210 @@ body.popup_aperto {
   background: rgba(0, 0, 0, 0.75);
 }
 
-/* OFFUSCAMENTO */
+/* ======================================================
+   OFFUSCAMENTO
+   ====================================================== */
 
 .offuscamento_background {
   width: 100%;
   height: 100vh;
+
   background: rgba(0, 0, 0, 0.5);
+
   position: fixed;
+
   top: 0;
   left: 0;
+
   z-index: 1;
+
   pointer-events: auto;
 }
 
-/* NOTIZIA GRANDE */
+/* ======================================================
+   NOTIZIA GRANDE
+   ====================================================== */
 
 .notizia {
   width: 92.96vw;
+
   height: 94.42vw;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: relative;
+
   top: 6.25vw;
   left: 3.48vw;
+
   margin-bottom: 12.5vw;
+
   overflow: hidden;
+
   z-index: 2;
+
   flex-shrink: 0;
 }
 
 .sfondo_notizia {
   width: 100%;
   height: 100%;
+
   background: rgba(255, 255, 255, 1);
+
   opacity: 1;
+
   position: absolute;
+
   top: 0;
   left: 0;
+
   box-shadow: -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+
   z-index: 1;
+
   pointer-events: none;
 }
 
 .immagine_notizia {
   width: 100%;
   height: 60.41vw;
+
   background: url("../assets/news/immagine_notizia_1.png");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 0;
   left: 0;
+
   overflow: hidden;
+
   z-index: 2;
+
   pointer-events: none;
 }
 
 .data_notizia {
   width: 13.85vw;
   height: 3.125vw;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 61.35vw;
   left: 2.44vw;
+
   font-family: "DM Serif Text", Georgia, serif;
+
   font-weight: normal;
+
   font-size: 1.875vw;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 3;
+
   pointer-events: none;
 }
 
 .titolo_notizia {
   width: 93.9vw;
   height: 3.75vw;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 64.11vw;
   left: 2.44vw;
+
   font-family: "Dela Gothic One", Arial, sans-serif;
+
   font-weight: normal;
+
   font-size: 2.5vw;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 4;
+
   pointer-events: none;
 }
 
 .testo_notizia {
   width: 88.02vw;
   height: auto;
+
   color: rgba(41, 41, 41, 1);
+
   position: absolute;
+
   top: 68.43vw;
   left: 2.81vw;
+
   font-family: "DM Serif Text", Georgia, serif;
+
   font-weight: normal;
+
   font-size: 1.87vw;
+
   line-height: normal;
+
   opacity: 1;
+
   text-align: left;
+
   z-index: 4;
+
   pointer-events: none;
 
-  /* Permette al testo di andare correttamente a capo */
   white-space: normal;
+
   overflow-wrap: anywhere;
+
   word-break: normal;
 }
 
-/* PULSANTE ESCI */
+/* ======================================================
+   PULSANTE ESCI
+   ====================================================== */
 
 .pulsante_esci {
   width: 3.64vw;
   height: 3.64vw;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 0.9375vw;
   right: 0.9375vw;
+
   overflow: hidden;
+
   z-index: 20;
+
   cursor: pointer;
+
   transition: transform 0.1s ease;
 }
 
@@ -520,112 +705,167 @@ body.popup_aperto {
 .sfondo_pulsante_esci {
   width: 3.64vw;
   height: 3.64vw;
+
   background: rgba(0, 0, 0, 0.5);
+
   opacity: 1;
+
   position: absolute;
+
   top: 0;
   left: 0;
+
   border-radius: 50%;
+
   pointer-events: none;
 }
 
 .icona_pulsante_esci {
   width: 1.82vw;
   height: 1.82vw;
+
   background: url("../assets/news/icona_pulsante_esci.svg");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 0.93vw;
   left: 0.93vw;
+
   overflow: hidden;
+
   pointer-events: none;
 }
 
-/* PULSANTE DESTRA */
+/* ======================================================
+   PULSANTE DESTRA
+   ====================================================== */
 
 .pulsante_scorri_destra {
   width: 3.64vw;
   height: 3.64vw;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 28.6458vw;
   right: 0.9375vw;
+
   overflow: hidden;
+
   z-index: 20;
+
   cursor: pointer;
 }
 
 .sfondo_pulsante_scorri_destra {
   width: 3.64vw;
   height: 3.64vw;
+
   background: rgba(0, 0, 0, 0.5);
+
   position: absolute;
+
   top: 0;
   left: 0;
+
   border-radius: 50%;
+
   pointer-events: none;
 }
 
 .icona_pulsante_scorri_destra {
   width: 1.82vw;
   height: 1.82vw;
+
   background: url("../assets/news/icona_pulsante_scorri_destra.svg");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 0.93vw;
   left: 0.93vw;
+
   overflow: hidden;
+
   pointer-events: none;
 }
 
-/* PULSANTE SINISTRA */
+/* ======================================================
+   PULSANTE SINISTRA
+   ====================================================== */
 
 .pulsante_scorri_sinistra {
   width: 3.64vw;
   height: 3.64vw;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 28.6458vw;
   left: 0.9375vw;
+
   overflow: hidden;
+
   z-index: 20;
+
   cursor: pointer;
 }
 
 .sfondo_pulsante_scorri_sinistra {
   width: 3.64vw;
   height: 3.64vw;
+
   background: rgba(0, 0, 0, 0.5);
+
   position: absolute;
+
   top: 0;
   left: 0;
+
   border-radius: 50%;
+
   pointer-events: none;
 }
 
 .icona_pulsante_scorri_sinistra {
   width: 1.82vw;
   height: 1.82vw;
+
   background: url("../assets/news/icona_pulsante_scorri_sinistra.svg");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
+
   position: absolute;
+
   top: 0.93vw;
   left: 0.93vw;
+
   overflow: hidden;
+
   pointer-events: none;
 }
