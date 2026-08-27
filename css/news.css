@@ -237,22 +237,21 @@ body.popup_aperto {
   height: auto;
 
   top: 20.78vw;
-
   left: 3.43vw;
+
+  right: 3.54167vw;
 }
 
 /* ====================================================== */
 /* NOTIZIA PICCOLA */
 /* ====================================================== */
 
-.notizia_1 {
-  width: 94.01vw;
+.notizia_piccola {
+  width: 92.96vw;
 
   height: 16.04vw;
 
   position: absolute;
-
-  left: 2.604vw;
 
   top: 0vw;
 
@@ -269,7 +268,7 @@ body.popup_aperto {
   transition: transform 0.12s ease;
 }
 
-.notizia_1.pressione {
+.notizia_piccola.pressione {
   transform: scale(0.97);
 }
 
@@ -277,16 +276,14 @@ body.popup_aperto {
 /* SFONDO NEWS PICCOLA */
 /* ====================================================== */
 
-.sfondo_notizia_1 {
-  width: 92.96vw;
+.sfondo_notizia_piccola {
+  width: 100%;
 
-  height: 16.04vw;
+  height: 100%;
 
-  background: rgba(255, 255, 255, 1);
+  background: rgba(217, 217, 217, 1);
 
   position: absolute;
-
-  left: 1.25vw;
 
   top: 0vw;
 
@@ -299,7 +296,7 @@ body.popup_aperto {
 /* IMMAGINE NEWS PICCOLA */
 /* ====================================================== */
 
-.immagine_notizia_1 {
+.immagine_notizia_piccola {
   width: 24.688vw;
 
   height: 16.042vw;
@@ -338,7 +335,7 @@ body.popup_aperto {
 /* DATA NEWS PICCOLA */
 /* ====================================================== */
 
-.data_notizia_1 {
+.data_notizia_piccola {
   width: 13.854vw;
 
   color: rgba(41, 41, 41, 1);
@@ -368,7 +365,7 @@ body.popup_aperto {
 /* TITOLO NEWS PICCOLA */
 /* ====================================================== */
 
-.titolo_notizia_1 {
+.titolo_notizia_piccola {
   width: 56.4vw;
 
   height: 2.39vw;
@@ -410,7 +407,7 @@ body.popup_aperto {
 /* TESTO NEWS PICCOLA */
 /* ====================================================== */
 
-.testo_notizia_1 {
+.testo_notizia_piccola {
   width: 66.14583vw;
 
   height: 9.21875vw;
@@ -452,7 +449,7 @@ body.popup_aperto {
 /* NOTIZIA FOCUS */
 /* ====================================================== */
 
-.notizia_focus {
+.notizia_grande {
   width: 100%;
 
   height: 100vh;
@@ -482,13 +479,13 @@ body.popup_aperto {
   transition: opacity 0.18s ease;
 }
 
-.notizia_focus.aperta {
+.notizia_grande.aperta {
   opacity: 1;
 
   pointer-events: auto;
 }
 
-.notizia_focus:not(.aperta) * {
+.notizia_grande:not(.aperta) * {
   pointer-events: none;
 }
 
@@ -496,25 +493,25 @@ body.popup_aperto {
 /* SCROLLBAR */
 /* ====================================================== */
 
-.notizia_focus {
+.notizia_grande {
   scrollbar-width: auto;
 }
 
-.notizia_focus::-webkit-scrollbar {
+.notizia_grande::-webkit-scrollbar {
   width: 0.55vw;
 }
 
-.notizia_focus::-webkit-scrollbar-track {
+.notizia_grande::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.15);
 }
 
-.notizia_focus::-webkit-scrollbar-thumb {
+.notizia_grande::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.55);
 
   border-radius: 1vw;
 }
 
-.notizia_focus::-webkit-scrollbar-thumb:hover {
+.notizia_grande::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.75);
 }
 
@@ -995,4 +992,89 @@ body.popup_aperto {
   overflow: hidden;
 
   pointer-events: none;
+}
+
+/* ====================================================== */
+/* NEWS PICCOLA SENZA IMMAGINE */
+/* ====================================================== */
+
+/*
+    Quando manca l'immagine:
+
+    - lo spazio dell'immagine viene eliminato
+    - i contenuti vengono spostati a sinistra
+    - le loro box aumentano della larghezza
+      precedentemente occupata dall'immagine
+    - manteniamo un margine sinistro di 2vw
+*/
+
+.notizia_piccola.senza_immagine .immagine_notizia_piccola {
+  display: none;
+}
+
+/* DATA */
+
+.notizia_piccola.senza_immagine .data_notizia_piccola {
+  left: 0.93vw;
+  top: 0.8vw;
+
+  width: 87.479vw;
+}
+
+/* TITOLO */
+
+.notizia_piccola.senza_immagine .titolo_notizia_piccola {
+  left: 0.93vw;
+  top: 2.292vw;
+
+  width: 80.088vw;
+}
+
+/* TESTO */
+
+.notizia_piccola.senza_immagine .testo_notizia_piccola {
+  left: 0.93vw;
+  top: 5.208vw;
+
+  width: 89.0625vw;
+}
+
+.pulsante_carica_altro {
+  width: 15.52vw;
+  height: 4.11vw;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 80.2vw;
+  left: 42.23vw;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.12s ease;
+}
+.pulsante_carica_altro:active {
+  transform: scale(0.97);
+}
+.testo_pulsante_carica_altro {
+  width: 15.52vw;
+  color: rgba(0, 0, 0, 1);
+  position: absolute;
+  font-family: DM Serif Text;
+  font-weight: Regular;
+  font-size: 1.66vw;
+  opacity: 1;
+  text-align: center;
+}
+.icona_pulsante_carica_altro {
+  position: absolute;
+
+  width: 1.82vw;
+  height: 1.82vw;
+
+  top: 2.29vw;
+  left: 7.29vw;
+
+  background: url("../assets/news/icona_carica_altro.svg");
 }

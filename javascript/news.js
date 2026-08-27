@@ -27,7 +27,9 @@ let indiceNewsAperta = 0;
 // CONFIGURAZIONE
 // ======================================================
 
-const MASSIMO_NEWS_VISIBILI = 3;
+const MASSIMO_NEWS_PER_CARICAMENTO = 3;
+
+let numeroNewsVisibili = 3;
 
 // ======================================================
 // DISTANZA NEWS
@@ -48,6 +50,8 @@ const MASSIMO_NEWS_VISIBILI = 3;
 // ======================================================
 
 const DISTANZA_NEWS = 18.95667;
+
+const pulsanteCaricaAltro = document.querySelector(".pulsante_carica_altro");
 
 // ======================================================
 // FORMATTAZIONE DATA
@@ -227,6 +231,7 @@ async function caricaNews() {
     console.log("News caricate:", elencoNews);
 
     creaNewsPiccole();
+    aggiornaPulsanteCaricaAltro();
 
     if (elencoNews.length > 0) {
       preparaFocus();
@@ -251,7 +256,7 @@ function creaNewsPiccole() {
   // PULIZIA
   // ==================================================
 
-  sezione2.querySelectorAll(".notizia_1").forEach((elemento) => {
+  sezione2.querySelectorAll(".notizia_piccola").forEach((elemento) => {
     elemento.remove();
   });
 
@@ -259,7 +264,7 @@ function creaNewsPiccole() {
   // MASSIMO 3 NEWS
   // ==================================================
 
-  const newsDaMostrare = elencoNews.slice(0, MASSIMO_NEWS_VISIBILI);
+  const newsDaMostrare = elencoNews.slice(0, numeroNewsVisibili);
 
   // ==================================================
   // CREAZIONE
@@ -268,7 +273,7 @@ function creaNewsPiccole() {
   newsDaMostrare.forEach((news, indice) => {
     const notiziaPiccola = document.createElement("div");
 
-    notiziaPiccola.className = "notizia_1";
+    notiziaPiccola.className = "notizia_piccola";
 
     notiziaPiccola.id = `notiziaPiccola_${indice}`;
 
@@ -278,7 +283,7 @@ function creaNewsPiccole() {
 
     const sfondo = document.createElement("div");
 
-    sfondo.className = "sfondo_notizia_1";
+    sfondo.className = "sfondo_notizia_piccola";
 
     // ==================================================
     // IMMAGINE
@@ -286,7 +291,7 @@ function creaNewsPiccole() {
 
     const immagine = document.createElement("div");
 
-    immagine.className = "immagine_notizia_1";
+    immagine.className = "immagine_notizia_piccola";
 
     /*
                 Se c'è un'immagine:
@@ -301,6 +306,8 @@ function creaNewsPiccole() {
       immagine.style.backgroundImage = `url("${news.immagine}")`;
     } else {
       immagine.style.backgroundImage = "none";
+
+      notiziaPiccola.classList.add("senza_immagine");
     }
 
     // ==================================================
@@ -309,7 +316,7 @@ function creaNewsPiccole() {
 
     const data = document.createElement("span");
 
-    data.className = "data_notizia_1";
+    data.className = "data_notizia_piccola";
 
     data.textContent = formattaData(news.data);
 
@@ -319,7 +326,7 @@ function creaNewsPiccole() {
 
     const titolo = document.createElement("span");
 
-    titolo.className = "titolo_notizia_1";
+    titolo.className = "titolo_notizia_piccola";
 
     // ==================================================
     // TESTO
@@ -327,7 +334,7 @@ function creaNewsPiccole() {
 
     const testo = document.createElement("span");
 
-    testo.className = "testo_notizia_1";
+    testo.className = "testo_notizia_piccola";
 
     const testoPulito = news.testo
       .replace(/<br\s*\/?>/gi, " ")
@@ -385,6 +392,26 @@ function creaNewsPiccole() {
 }
 
 // ======================================================
+// GESTIONE PULSANTE CARICA ALTRO
+// ======================================================
+
+function aggiornaPulsanteCaricaAltro() {
+  if (!pulsanteCaricaAltro) {
+    return;
+  }
+
+  // Il pulsante appare solo se:
+  // - ci sono più di 3 news totali
+  // - non sono ancora state mostrate tutte
+
+  if (elencoNews.length > 3 && numeroNewsVisibili < elencoNews.length) {
+    pulsanteCaricaAltro.style.display = "";
+  } else {
+    pulsanteCaricaAltro.style.display = "none";
+  }
+}
+
+// ======================================================
 // POSIZIONAMENTO NEWS
 // ======================================================
 
@@ -393,7 +420,7 @@ function posizionaNews() {
     return;
   }
 
-  const news = sezione2.querySelectorAll(".notizia_1");
+  const news = sezione2.querySelectorAll(".notizia_piccola");
 
   news.forEach((newsElement, indice) => {
     /*
@@ -770,7 +797,9 @@ function aggiornaNotiziaFocus(indice) {
   // ==================================================
 
   requestAnimationFrame(() => {
-    aggiornaAltezzaNotizia();
+    aggiornaAltezzaSezione2();
+
+    aggiornaPulsanteCaricaAltro();
   });
 }
 
@@ -822,7 +851,7 @@ function aggiornaAltezzaSezione2() {
     return;
   }
 
-  const news = sezione2.querySelectorAll(".notizia_1");
+  const news = sezione2.querySelectorAll(".notizia_piccola");
 
   if (news.length === 0) {
     sezione2.style.height = "0px";
@@ -853,16 +882,16 @@ window.addEventListener("load", () => {
   posizionaNews();
 
   requestAnimationFrame(() => {
-    document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+    document.querySelectorAll(".notizia_piccola").forEach((card, indice) => {
       const news = elencoNews[indice];
 
       if (!news) {
         return;
       }
 
-      const titolo = card.querySelector(".titolo_notizia_1");
+      const titolo = card.querySelector(".titolo_notizia_piccola");
 
-      const testo = card.querySelector(".testo_notizia_1");
+      const testo = card.querySelector(".testo_notizia_piccola");
 
       const testoPulito = news.testo
         .replace(/<br\s*\/?>/gi, " ")
@@ -892,16 +921,16 @@ window.addEventListener("resize", () => {
   resizeTimer = setTimeout(() => {
     posizionaNews();
 
-    document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+    document.querySelectorAll(".notizia_piccola").forEach((card, indice) => {
       const news = elencoNews[indice];
 
       if (!news) {
         return;
       }
 
-      const titolo = card.querySelector(".titolo_notizia_1");
+      const titolo = card.querySelector(".titolo_notizia_piccola");
 
-      const testo = card.querySelector(".testo_notizia_1");
+      const testo = card.querySelector(".testo_notizia_piccola");
 
       const testoPulito = news.testo
         .replace(/<br\s*\/?>/gi, " ")
@@ -940,16 +969,16 @@ if (sezione2) {
 if (document.fonts) {
   document.fonts.ready.then(() => {
     requestAnimationFrame(() => {
-      document.querySelectorAll(".notizia_1").forEach((card, indice) => {
+      document.querySelectorAll(".notizia_piccola").forEach((card, indice) => {
         const news = elencoNews[indice];
 
         if (!news) {
           return;
         }
 
-        const titolo = card.querySelector(".titolo_notizia_1");
+        const titolo = card.querySelector(".titolo_notizia_piccola");
 
-        const testo = card.querySelector(".testo_notizia_1");
+        const testo = card.querySelector(".testo_notizia_piccola");
 
         const testoPulito = news.testo
           .replace(/<br\s*\/?>/gi, " ")
@@ -965,6 +994,33 @@ if (document.fonts) {
 
       aggiornaAltezzaSezione2();
     });
+  });
+}
+
+// ======================================================
+// CLICK CARICA ALTRO
+// ======================================================
+
+if (pulsanteCaricaAltro) {
+  pulsanteCaricaAltro.addEventListener("click", () => {
+    // Aggiungiamo fino a 3 nuove news
+
+    numeroNewsVisibili += MASSIMO_NEWS_PER_CARICAMENTO;
+
+    // Non superiamo mai il numero
+    // totale delle news disponibili
+
+    if (numeroNewsVisibili > elencoNews.length) {
+      numeroNewsVisibili = elencoNews.length;
+    }
+
+    // Ricreiamo la lista
+
+    creaNewsPiccole();
+
+    // Aggiorniamo il pulsante
+
+    aggiornaPulsanteCaricaAltro();
   });
 }
 
