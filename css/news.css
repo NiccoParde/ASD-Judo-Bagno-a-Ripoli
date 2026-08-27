@@ -8,13 +8,13 @@
 
 html,
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-}
 
-body {
   font-size: 0.729vw;
-
   overflow-x: hidden;
 }
 
@@ -226,24 +226,23 @@ body.popup_aperto {
 }
 
 /* ====================================================== */
-/* SEZIONE 2 */
+/* SEZIONE 2 (CONTENITORE DINAMICO NOTIZIE) */
 /* ====================================================== */
 
 .sezione_2 {
-  position: absolute;
+  position: relative;
 
   width: 94.01vw;
 
   height: auto;
 
-  top: 20.78vw;
-  left: 3.43vw;
-
-  right: 3.54167vw;
+  margin-top: 20.78vw;
+  margin-left: 3.43vw;
+  margin-right: 3.54167vw;
 }
 
 /* ====================================================== */
-/* NOTIZIA PICCOLA */
+/* NOTIZIA PICCOLA (SPAZIATURA COSTANTE A 2VW) */
 /* ====================================================== */
 
 .notizia_piccola {
@@ -251,9 +250,9 @@ body.popup_aperto {
 
   height: 16.04vw;
 
-  position: absolute;
+  position: relative;
 
-  top: 0vw;
+  margin-bottom: 2vw;
 
   box-shadow: -1.042vw 1.042vw 0.208vw rgba(0, 0, 0, 0.25);
 
@@ -300,17 +299,6 @@ body.popup_aperto {
   width: 24.688vw;
 
   height: 16.042vw;
-
-  /*
-        NON mettiamo più un placeholder
-        permanente qui.
-
-        Se Firebase ha una immagine,
-        il JS la assegnerà.
-
-        Se non c'è,
-        rimarrà semplicemente vuoto.
-    */
 
   background-repeat: no-repeat;
 
@@ -739,26 +727,17 @@ body.popup_aperto {
   height: auto;
 }
 
-/* Nasconde completamente lo spazio
-   dell'immagine */
-
 .notizia.notizia_senza_immagine .immagine_notizia {
   display: none;
 }
-
-/* Data */
 
 .notizia.notizia_senza_immagine .data_notizia {
   top: 2.44vw;
 }
 
-/* Titolo */
-
 .notizia.notizia_senza_immagine .titolo_notizia {
   top: 5.2vw;
 }
-
-/* Testo */
 
 .notizia.notizia_senza_immagine .testo_notizia {
   top: 9.5vw;
@@ -998,21 +977,9 @@ body.popup_aperto {
 /* NEWS PICCOLA SENZA IMMAGINE */
 /* ====================================================== */
 
-/*
-    Quando manca l'immagine:
-
-    - lo spazio dell'immagine viene eliminato
-    - i contenuti vengono spostati a sinistra
-    - le loro box aumentano della larghezza
-      precedentemente occupata dall'immagine
-    - manteniamo un margine sinistro di 2vw
-*/
-
 .notizia_piccola.senza_immagine .immagine_notizia_piccola {
   display: none;
 }
-
-/* DATA */
 
 .notizia_piccola.senza_immagine .data_notizia_piccola {
   left: 0.93vw;
@@ -1021,16 +988,12 @@ body.popup_aperto {
   width: 87.479vw;
 }
 
-/* TITOLO */
-
 .notizia_piccola.senza_immagine .titolo_notizia_piccola {
   left: 0.93vw;
   top: 2.292vw;
 
   width: 80.088vw;
 }
-
-/* TESTO */
 
 .notizia_piccola.senza_immagine .testo_notizia_piccola {
   left: 0.93vw;
@@ -1039,34 +1002,52 @@ body.popup_aperto {
   width: 89.0625vw;
 }
 
+/* ====================================================== */
+/* PULSANTE CARICA ALTRO (POSIZIONATO SOTTO LE NEWS) */
+/* ====================================================== */
+
 .pulsante_carica_altro {
   width: 15.52vw;
   height: 4.11vw;
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
   opacity: 1;
-  position: absolute;
-  top: 80.2vw;
-  left: 42.23vw;
+
+  position: relative;
+  margin: 2vw auto 0 auto;
+
   overflow: hidden;
   cursor: pointer;
   z-index: 20;
+
   transition: transform 0.12s ease;
 }
+
 .pulsante_carica_altro:active {
   transform: scale(0.97);
 }
+
 .testo_pulsante_carica_altro {
   width: 15.52vw;
+
   color: rgba(0, 0, 0, 1);
+
   position: absolute;
-  font-family: DM Serif Text;
-  font-weight: Regular;
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-weight: normal;
+
   font-size: 1.66vw;
+
   opacity: 1;
+
   text-align: center;
 }
+
 .icona_pulsante_carica_altro {
   position: absolute;
 
@@ -1077,4 +1058,26 @@ body.popup_aperto {
   left: 7.29vw;
 
   background: url("../assets/news/icona_carica_altro.svg");
+}
+
+/* ====================================================== */
+/* MAIN E FOOTER DINAMICO */
+/* ====================================================== */
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+
+  margin-top: 4vw;
+
+  top: auto;
+  left: 0;
 }
