@@ -135,10 +135,21 @@
     </h2>
 
     <div class="pannello_notizie_sezione_3">
-        <h3 class="testo_riempitivo_sezione_3">
-            Non è ancora stata pubblicata nessuna notizia
-        </h3>
+        <div class="testo_notizie_assenti">
+          Non è ancora stata pubblicata nessuna notizia...
+        </div>
     </div>
+
+    <!-- ================================================== -->
+      <!-- POPUP FOCUS -->
+      <!-- ================================================== -->
+
+      <div class="notizia_grande" id="notiziaFocus">
+        <!--
+                Il contenuto viene creato
+                automaticamente da news.js.
+            -->
+      </div>
 
     <!-- Pulsante verso la pagina Aggiornamenti e News -->
     <a class="pulsante_news_sezione_3" href="news.html" aria-label="Leggi le ultime notizie">
@@ -186,6 +197,6 @@
 </footer>
 
     <!-- Script specifico della home -->
-    <script src="./javascript/home.js" defer></script>
+    <script type="module" src="./javascript/home.js"></script>
   </body>
 </html>
