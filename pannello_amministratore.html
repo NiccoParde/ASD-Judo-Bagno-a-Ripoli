@@ -14,35 +14,24 @@
     <!-- TITOLO -->
     <!-- ================================================== -->
 
-    <title>News - A.S.D. Judo Bagno a Ripoli</title>
-
-    <!-- ================================================== -->
-    <!-- FAVICON -->
-    <!-- ================================================== -->
-
-    <link rel="icon" type="image/png" href="./assets/global/logo.png" />
+    <title>Pannello amministratore</title>
 
     <!-- ================================================== -->
     <!-- FONT -->
     <!-- ================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+      rel="stylesheet"
+    />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Serif+Text:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css?family=Dela+Gothic+One&display=swap"
       rel="stylesheet"
     />
 
     <!-- ================================================== -->
-    <!-- CSS GLOBALE -->
-    <!-- ================================================== -->
-
-    <link href="./css/style.css" rel="stylesheet" />
-
-    <!-- ================================================== -->
-    <!-- CSS NEWS -->
+    <!-- CSS -->
     <!-- ================================================== -->
 
     <link href="./css/pannello_amministratore.css" rel="stylesheet" />
@@ -50,128 +39,262 @@
 
   <body>
     <!-- ================================================== -->
-    <!-- HEADER -->
+    <!-- ================================================== -->
+    <!-- -->
+    <!-- SCHERMATA DI ACCESSO -->
+    <!-- -->
+    <!-- ================================================== -->
     <!-- ================================================== -->
 
-    <header class="site-header">
-      <div class="site-header__background" aria-hidden="true"></div>
-
-      <nav class="site-nav" aria-label="Navigazione principale">
-        <a class="site-nav__link" href="index.html"> Home </a>
-
-        <a class="site-nav__link" href="unisciti_a_noi.html">
-          Unisciti a noi
-        </a>
-
-        <a class="site-nav__link" href="storia.html"> Storia </a>
-
-        <a class="site-nav__link" href="info_e_orari.html"> Info e orari </a>
-
-        <a class="site-nav__link" href="shoku_geiko.html"> Shoku Geiko </a>
-
-        <a class="site-nav__link site-nav__link--active" href="news.html">
-          News
-        </a>
-
-        <a class="site-nav__link" href="calendario_eventi.html">
-          Calendario eventi
-        </a>
-      </nav>
-    </header>
-
-    <!-- ================================================== -->
-    <!-- CONTENUTO -->
-    <!-- ================================================== -->
-
-    <main>
+    <div class="schermata_accesso" id="pannelloAccesso">
       <!-- ================================================== -->
-      <!-- PANNELLO AMMINISTRATORE -->
+      <!-- TITOLO -->
       <!-- ================================================== -->
 
-      <div class="pannello_amministratore" id="pannelloAmministratore">
-        <!-- ================================================== -->
-        <!-- TITOLO -->
-        <!-- ================================================== -->
+      <span class="testo_pannello_amministratore">
+        Pannello amministratore
+      </span>
 
-        <span class="testo_pannello_amministratore">
-          Pannello amministratore
-        </span>
+      <!-- ================================================== -->
+      <!-- ACCEDI -->
+      <!-- ================================================== -->
 
-        <!-- ================================================== -->
-        <!-- ACCEDI -->
-        <!-- ================================================== -->
+      <span class="testo_accedi"> Accedi </span>
 
-        <span class="testo_accedi"> Accedi </span>
+      <!-- ================================================== -->
+      <!-- NOME UTENTE -->
+      <!-- ================================================== -->
 
-        <!-- ================================================== -->
-        <!-- NOME UTENTE -->
-        <!-- ================================================== -->
+      <span class="testo_nome_utente"> Nome utente </span>
 
-        <span class="testo_nome_utente"> Nome utente </span>
-
-        <div class="casella_nome_utente">
-          <input
-            type="text"
-            class="input_nome_utente"
-            id="inputNomeUtente"
-            placeholder="Inserisci il nome utente"
-            autocomplete="username"
-            spellcheck="false"
-          />
-        </div>
-
-        <!-- ================================================== -->
-        <!-- PASSWORD -->
-        <!-- ================================================== -->
-
-        <span class="testo_password"> Password </span>
-
-        <div class="casella_password">
-          <input
-            type="password"
-            class="input_password"
-            id="inputPassword"
-            placeholder="Inserisci la password"
-            autocomplete="current-password"
-            spellcheck="false"
-          />
-        </div>
-
-        <!-- ================================================== -->
-        <!-- MOSTRA PASSWORD -->
-        <!-- ================================================== -->
-
-        <button
-          type="button"
-          class="pulsante_mostra_password"
-          id="pulsanteMostraPassword"
-          aria-label="Mostra password"
-          title="Mostra password"
-        >
-          <div class="icona_mostra_password">  </div>
-        </button>
-
-        <!-- ================================================== -->
-        <!-- ERRORE -->
-        <!-- ================================================== -->
-
-        <div class="errore_accesso" id="erroreAccesso"></div>
-
-        <!-- ================================================== -->
-        <!-- ENTRA -->
-        <!-- ================================================== -->
-
-        <button type="button" class="pulsante_entra" id="pulsanteEntra">
-          <span class="testo_pulsante_entra"> Entra </span>
-        </button>
+      <div class="casella_nome_utente">
+        <input
+          type="text"
+          class="input_nome_utente"
+          id="inputNomeUtente"
+          placeholder="Inserisci il nome utente"
+          autocomplete="username"
+          spellcheck="false"
+        />
       </div>
 
       <!-- ================================================== -->
-      <!-- JAVASCRIPT -->
+      <!-- PASSWORD -->
       <!-- ================================================== -->
 
-      <script src="./main.js" defer></script>
-    </main>
+      <span class="testo_password"> Password </span>
+
+      <div class="casella_password">
+        <input
+          type="password"
+          class="input_password"
+          id="inputPassword"
+          placeholder="Inserisci la password"
+          autocomplete="current-password"
+          spellcheck="false"
+        />
+      </div>
+
+      <!-- ================================================== -->
+      <!-- MOSTRA PASSWORD -->
+      <!-- ================================================== -->
+
+      <button
+        type="button"
+        class="pulsante_mostra_password"
+        id="pulsanteMostraPassword"
+        aria-label="Mostra password"
+        title="Mostra password"
+      >
+        <div class="icona_mostra_password"></div>
+      </button>
+
+      <!-- ================================================== -->
+      <!-- ERRORE -->
+      <!-- ================================================== -->
+
+      <div class="errore_accesso" id="erroreAccesso"></div>
+
+      <!-- ================================================== -->
+      <!-- ENTRA -->
+      <!-- ================================================== -->
+
+      <button type="button" class="pulsante_entra" id="pulsanteEntra">
+        <span class="testo_pulsante_entra"> Entra </span>
+      </button>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- ================================================== -->
+    <!-- -->
+    <!-- PANNELLO AMMINISTRATORE -->
+    <!-- -->
+    <!-- ================================================== -->
+    <!-- ================================================== -->
+
+    <div
+      class="pannello_amministratore"
+      id="pannelloAmministratore"
+      style="display: none"
+    >
+      <!-- ================================================== -->
+      <!-- TITOLO -->
+      <!-- ================================================== -->
+
+      <span class="titolo_pannello_amministratore">
+        Pannello amministratore
+      </span>
+
+      <div class="separatore_titolo"></div>
+
+      <!-- ================================================== -->
+      <!-- SELETTORE -->
+      <!-- ================================================== -->
+
+      <div class="selettore">
+        <!-- ================================================== -->
+        <!-- IMPOSTAZIONI -->
+        <!-- ================================================== -->
+
+        <div class="selettore_impostazioni">
+          <div class="icona_selettore_impostazioni"></div>
+
+          <span class="testo_selettore_impostazioni"> Impostazioni </span>
+        </div>
+
+        <div class="separatore_1"></div>
+
+        <!-- ================================================== -->
+        <!-- NEWS -->
+        <!-- ================================================== -->
+
+        <div class="selettore_news">
+          <div class="icona_selettore_news"></div>
+
+          <span class="testo_selettore_news"> News </span>
+        </div>
+
+        <div class="separatore_2"></div>
+
+        <!-- ================================================== -->
+        <!-- EVENTI -->
+        <!-- ================================================== -->
+
+        <div class="selettore_eventi">
+          <div class="icona_selettore_eventi"></div>
+
+          <span class="testo_selettore_eventi"> Eventi </span>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- SEZIONE BLOCCA PAGINA -->
+      <!-- ================================================== -->
+
+      <div class="sezione_blocca_pagina">
+        <span class="titolo_sezione_blocca_pagina"> Blocca pagina </span>
+
+        <!-- ================================================== -->
+        <!-- HOME -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_home">
+          <span class="testo_pulsante_home"> Home </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- UNISCITI A NOI -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_unisciti_a_noi">
+          <span class="testo_pulsante_unisciti_a_noi"> Unisciti a noi </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- STORIA -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_storia">
+          <span class="testo_pulsante_storia"> Storia </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- INFO E ORARI -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_info_e_orari">
+          <span class="testo_pulsante_info_e_orari"> Info e orari </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SHOKU GEIKO -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_shoku_geiko">
+          <span class="testo_pulsante_shoku_geiko"> Shoku geiko </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- NEWS -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_news">
+          <span class="testo_pulsante_news"> News </span>
+
+          <div class="pulsante_blocca">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- CALENDARIO EVENTI -->
+        <!-- ================================================== -->
+
+        <div class="pulsante_calendario_eventi">
+          <span class="testo_pulsante_calendario_eventi">
+            Calendario eventi
+          </span>
+
+          <div class="pulsante_blocca pulsante_blocca_calendario">
+            <div class="sfondo_pulsante_blocca"></div>
+
+            <span class="testo_pulsante_blocca"> Blocca </span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ================================================== -->
     <!-- JAVASCRIPT -->

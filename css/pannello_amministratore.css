@@ -1,5 +1,9 @@
 /* ====================================================== */
+/* ====================================================== */
+/* */
 /* RESET */
+/* */
+/* ====================================================== */
 /* ====================================================== */
 
 * {
@@ -9,23 +13,27 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-size: 14px;
-  overflow: hidden;
+  font-size: 0.729vw;
+  overflow-x: hidden;
 }
 
 /* ====================================================== */
-/* PANNELLO */
+/* ====================================================== */
+/* */
+/* SCHERMATA ACCESSO */
+/* */
+/* ====================================================== */
 /* ====================================================== */
 
-.pannello_amministratore {
+.schermata_accesso {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   position: absolute;
 
@@ -34,14 +42,14 @@ body {
 
   overflow: hidden;
 
-  z-index: 1;
+  z-index: 10;
 }
 
 /* ====================================================== */
-/* TITOLO */
+/* TITOLO ACCESSO */
 /* ====================================================== */
 
-.testo_pannello_amministratore {
+.schermata_accesso .testo_pannello_amministratore {
   width: 41.67vw;
 
   color: rgba(41, 41, 41, 1);
@@ -87,7 +95,7 @@ body {
 }
 
 /* ====================================================== */
-/* NOME UTENTE LABEL */
+/* LABEL NOME UTENTE */
 /* ====================================================== */
 
 .testo_nome_utente {
@@ -164,7 +172,7 @@ body {
 }
 
 /* ====================================================== */
-/* PASSWORD LABEL */
+/* LABEL PASSWORD */
 /* ====================================================== */
 
 .testo_password {
@@ -281,11 +289,19 @@ body {
 
   background: url("../assets/pannello_amministratore/icona_mostra_password.svg");
 
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  background-size: contain;
+
+  pointer-events: none;
+
   user-select: none;
 }
 
 /* ====================================================== */
-/* EFFETTO CLICK ICONA */
+/* CLICK ICONA */
 /* ====================================================== */
 
 .pulsante_mostra_password:active {
@@ -352,10 +368,15 @@ body {
 
   transition: transform 0.1s ease;
 }
-/* Micro-zoom all'hover (ingrandisce del 4%) */
+
+/* ====================================================== */
+/* HOVER ENTRA */
+/* ====================================================== */
+
 .pulsante_entra:hover {
   transform: scale(1.04);
 }
+
 /* ====================================================== */
 /* CLICK ENTRA */
 /* ====================================================== */
@@ -387,4 +408,664 @@ body {
   text-align: center;
 
   pointer-events: none;
+}
+
+/* ====================================================== */
+/* ====================================================== */
+/* */
+/* PANNELLO AMMINISTRATORE */
+/* */
+/* ====================================================== */
+/* ====================================================== */
+
+.pannello_amministratore {
+  width: 100%;
+  height: 100vh;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  z-index: 5;
+}
+
+/* ====================================================== */
+/* TITOLO PANNELLO */
+/* ====================================================== */
+
+.titolo_pannello_amministratore {
+  width: 41.6667vw;
+  height: 4.2708vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 6.25vw;
+  left: 2.3438vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 800;
+
+  font-style: normal;
+
+  font-size: 3.3333vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* SEPARATORE TITOLO */
+/* ====================================================== */
+
+.separatore_titolo {
+  width: 94.7917vw;
+  height: 0.2604vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 11.3021vw;
+  left: 2.3438vw;
+
+  overflow: hidden;
+}
+
+/* ====================================================== */
+/* SELETTORE */
+/* ====================================================== */
+
+.selettore {
+  width: 39.0104vw;
+  height: 3.6458vw;
+
+  position: absolute;
+
+  top: 13.1771vw;
+  left: 2.3438vw;
+
+  overflow: hidden;
+}
+
+/* ====================================================== */
+/* IMPOSTAZIONI */
+/* ====================================================== */
+
+.selettore_impostazioni {
+  width: 14.3229vw;
+  height: 3.6458vw;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+}
+
+.icona_selettore_impostazioni {
+  width: 2.0833vw;
+  height: 2.0833vw;
+
+  background: url("../assets/pannello_amministratore/icona_impostazioni.svg");
+
+  position: absolute;
+
+  top: 0.7813vw;
+  left: 0;
+}
+
+.testo_selettore_impostazioni {
+  width: 14.3229vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.5729vw;
+  left: 2.6042vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 2.0833vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* SEPARATORE 1 */
+/* ====================================================== */
+
+.separatore_1 {
+  width: 0.0521vw;
+  height: 3.6458vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 17.3958vw;
+
+  overflow: hidden;
+}
+
+/* ====================================================== */
+/* NEWS SELETTORE */
+/* ====================================================== */
+
+.selettore_news {
+  width: 6.5104vw;
+  height: 3.6458vw;
+
+  position: absolute;
+
+  top: 0;
+  left: 18.9583vw;
+}
+
+.icona_selettore_news {
+  width: 2.0833vw;
+  height: 2.0833vw;
+
+  background: url("../assets/pannello_amministratore/icona_notizie.svg");
+  position: absolute;
+
+  top: 0.7813vw;
+  left: 0;
+}
+
+.testo_selettore_news {
+  width: 6.5104vw;
+
+  color: rgba(166, 166, 166, 1);
+
+  position: absolute;
+
+  top: 0.5729vw;
+  left: 2.6042vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 2.0833vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* SEPARATORE 2 */
+/* ====================================================== */
+
+.separatore_2 {
+  width: 0.0521vw;
+  height: 3.6458vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 28.0208vw;
+
+  overflow: hidden;
+}
+
+/* ====================================================== */
+/* EVENTI */
+/* ====================================================== */
+
+.selettore_eventi {
+  width: 7.3438vw;
+  height: 3.6458vw;
+
+  position: absolute;
+
+  top: 0;
+  left: 29.1667vw;
+}
+
+.icona_selettore_eventi {
+  width: 2.0833vw;
+  height: 2.0833vw;
+
+  background: url("../assets/pannello_amministratore/icona_calendario.svg");
+
+  position: absolute;
+
+  top: 0.7813vw;
+  left: 0;
+}
+
+.testo_selettore_eventi {
+  width: 7.3438vw;
+
+  color: rgba(166, 166, 166, 1);
+
+  position: absolute;
+
+  top: 0.5729vw;
+  left: 2.6042vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 2.0833vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* SEZIONE BLOCCA PAGINA */
+/* ====================================================== */
+
+.sezione_blocca_pagina {
+  width: 87.6563vw;
+  height: 21.1458vw;
+
+  position: absolute;
+
+  top: 20.0521vw;
+  left: 2.3438vw;
+}
+
+/* ====================================================== */
+/* TITOLO BLOCCA PAGINA */
+/* ====================================================== */
+
+.titolo_sezione_blocca_pagina {
+  width: 25.5208vw;
+  height: 3.0208vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 0.2604vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 2.6042vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* PAGINA HOME */
+/* ====================================================== */
+
+.pulsante_home {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_109.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 5.4688vw;
+  left: 1.9271vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_home {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* UNISCITI A NOI */
+/* ====================================================== */
+
+.pulsante_unisciti_a_noi {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_110.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 5.4688vw;
+  left: 31.875vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_unisciti_a_noi {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* STORIA */
+/* ====================================================== */
+
+.pulsante_storia {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_111.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 5.4688vw;
+  left: 61.9792vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_storia {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* INFO E ORARI */
+/* ====================================================== */
+
+.pulsante_info_e_orari {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_112.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 11.4583vw;
+  left: 1.9271vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_info_e_orari {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* SHOKU GEIKO */
+/* ====================================================== */
+
+.pulsante_shoku_geiko {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_113.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 11.4583vw;
+  left: 31.875vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_shoku_geiko {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* NEWS */
+/* ====================================================== */
+
+.pulsante_news {
+  width: 26.0938vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_114.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 11.4583vw;
+  left: 61.9792vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_news {
+  width: 11.4063vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* CALENDARIO EVENTI */
+/* ====================================================== */
+
+.pulsante_calendario_eventi {
+  width: 27.7604vw;
+  height: 3.6979vw;
+
+  background: url("../images/v2135_115.png");
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+
+  top: 17.4479vw;
+  left: 0.2604vw;
+
+  overflow: hidden;
+}
+
+.testo_pulsante_calendario_eventi {
+  width: 14.7396vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0.7292vw;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: underline;
+}
+
+/* ====================================================== */
+/* PULSANTE BLOCCA */
+/* ====================================================== */
+
+.pulsante_blocca {
+  width: 11.5625vw;
+  height: 3.6979vw;
+
+  position: absolute;
+
+  top: 0;
+  left: 14.5313vw;
+
+  overflow: hidden;
+}
+
+.sfondo_pulsante_blocca {
+  width: 11.5625vw;
+  height: 3.6979vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  border-radius: 0.3125vw;
+
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+}
+
+.testo_pulsante_blocca {
+  width: 100%;
+  height: 100%;
+
+  color: rgba(255, 255, 255, 1);
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 500;
+
+  font-size: 1.6667vw;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====================================================== */
+/* BLOCCA CALENDARIO */
+/* ====================================================== */
+
+.pulsante_blocca_calendario {
+  left: 16.1979vw;
 }

@@ -17,7 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ELEMENTI
   // ==================================================
 
-  const pannello = document.getElementById("pannelloAmministratore");
+  const pannelloAccesso = document.getElementById("pannelloAccesso");
+
+  const pannelloAmministratore = document.getElementById(
+    "pannelloAmministratore",
+  );
 
   const inputNomeUtente = document.getElementById("inputNomeUtente");
 
@@ -36,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================================================
 
   if (
-    !pannello ||
+    !pannelloAccesso ||
+    !pannelloAmministratore ||
     !inputNomeUtente ||
     !inputPassword ||
     !pulsanteEntra ||
@@ -47,6 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return;
   }
+
+  // ==================================================
+  // STATO INIZIALE
+  // ==================================================
+
+  pannelloAccesso.style.display = "block";
+
+  pannelloAmministratore.style.display = "none";
 
   // ==================================================
   // MOSTRA PASSWORD
@@ -90,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Tentativo di accesso...");
 
     // ================================================
-    // NASCONDE EVENTUALE ERRORE PRECEDENTE
+    // NASCONDE EVENTUALE ERRORE
     // ================================================
 
     nascondiErrore();
@@ -102,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeUtente = inputNomeUtente.value.trim();
 
     const password = inputPassword.value;
+
+    console.log("Nome utente inserito:", nomeUtente);
 
     // ================================================
     // NOME UTENTE VUOTO
@@ -128,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================
-    // CREDENZIALI ERRATE
+    // CONTROLLO CREDENZIALI
     // ================================================
 
     if (nomeUtente !== UTENTE_TEST || password !== PASSWORD_TEST) {
@@ -148,10 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("ACCESSO RIUSCITO!");
 
     // ================================================
-    // PER ORA FACCIO SPARIRE TUTTO
+    // NASCONDE LOGIN
     // ================================================
 
-    pannello.style.display = "none";
+    pannelloAccesso.style.display = "none";
+
+    // ================================================
+    // MOSTRA PANNELLO AMMINISTRATORE
+    // ================================================
+
+    pannelloAmministratore.style.display = "block";
   }
 
   // ==================================================
