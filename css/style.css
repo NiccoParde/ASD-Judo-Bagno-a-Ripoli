@@ -189,7 +189,7 @@ main {
   width: calc(640 / 1920 * 100vw);
   height: calc(206 / 1920 * 100vw);
   position: absolute;
-  top: calc(170 / 500 * 100%);
+  top: 9.05vw;
   left: calc(668 / 1920 * 100vw);
   overflow: hidden;
 }
@@ -202,8 +202,8 @@ main {
   height: clamp(50px, calc(211 / 1920 * 100vw), 211px);
 
   /* posizione relativa al footer */
-  left: 31.8%;
-  top: 35%;
+  top: 8.80vw;
+  left: 31.82vw;
 
   margin: 0;
 
@@ -212,19 +212,23 @@ main {
 
 .email {
   width: 100%;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: calc(50 / 206 * 100%);
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px); /* dimensione del font basata sulla grandezza dello schermo */
+  font-size: clamp(
+    10px,
+    calc(20 / 1920 * 100vw),
+    20px
+  ); /* dimensione del font basata sulla grandezza dello schermo */
   text-align: left;
 }
 
 .indirizzo {
   width: 100%;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -236,7 +240,7 @@ main {
 
 .instagram {
   width: 100%;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: calc(109 / 206 * 100%);
   left: 0;
@@ -248,9 +252,9 @@ main {
 
 .form {
   width: 100%;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: calc(168 / 206 * 100%);
+  top: 8.95vw;
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
@@ -260,7 +264,7 @@ main {
 
 .testo_info_e_preventivi {
   width: calc(512 / 1920 * 100vw);
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: calc(123 / 500 * 100%);
   left: calc(611 / 1920 * 100vw);
@@ -272,7 +276,7 @@ main {
 
 .crediti {
   width: calc(169 / 1920 * 100vw);
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: calc(469 / 500 * 100%);
   left: calc(875 / 1920 * 100vw);
@@ -284,7 +288,7 @@ main {
 
 .titolo_sezione_finale {
   width: calc(512 / 1920 * 100vw);
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   top: calc(64 / 500 * 100%);
   left: calc(704 / 1920 * 100vw);
@@ -306,7 +310,7 @@ main {
 .sfondo_loghi_sezione_finale {
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -359,4 +363,50 @@ main {
   position: absolute;
   top: calc(3 / 60 * 100%);
   left: calc(144 / 374 * 100%);
+}
+.pulsante_pannello_amministratore {
+  width: 23.02vw;
+  height: 2.08vw;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 23.07vw;
+  right: 1.19vw;
+  overflow: hidden;
+}
+.testo_pulsante_pannello_amministratore {
+  width: 21.66vw;
+  height: 2.08vw;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  font-family: Dela Gothic One;
+  font-weight: Regular;
+  text-decoration: underline;
+  font-size: 1.04vw;
+  opacity: 1;
+  text-align: center;
+  /* Assicura che si comporti come un blocco/flex contenitore */
+  display: inline-flex;
+
+  /* Reset degli stili di default del tag <a> */
+  text-decoration: underline;
+  cursor: pointer;
+
+  /* Transizione fluida per l'effetto zoom */
+  transition: transform 0.2s ease-in-out;
+}
+/* Effetto al click (leggera compressione) */
+.pulsante_pannello_amministratore:active {
+  transform: scale(0.98);
+}
+.icona_pulsante_pannello_amministratore {
+  width: 1.82vw;
+  height: 1.82vw;
+
+  position: absolute;
+
+  right: 0vw;
+  background: url("../assets/global/icona_pulsante_pannello_amministratore.svg");
 }

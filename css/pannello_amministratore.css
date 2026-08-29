@@ -1,0 +1,390 @@
+/* ====================================================== */
+/* RESET */
+/* ====================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* ====================================================== */
+/* PANNELLO */
+/* ====================================================== */
+
+.pannello_amministratore {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+/* ====================================================== */
+/* TITOLO */
+/* ====================================================== */
+
+.testo_pannello_amministratore {
+  width: 41.67vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 7.45vw;
+  left: 29.17vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 800;
+
+  font-size: 3.33vw;
+
+  text-align: center;
+}
+
+/* ====================================================== */
+/* ACCEDI */
+/* ====================================================== */
+
+.testo_accedi {
+  width: 14.16vw;
+  height: 4.27vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 14.16vw;
+  left: 42.91vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 700;
+
+  text-decoration: underline;
+
+  font-size: 3.33vw;
+
+  text-align: center;
+}
+
+/* ====================================================== */
+/* NOME UTENTE LABEL */
+/* ====================================================== */
+
+.testo_nome_utente {
+  width: 25.52vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 20.73vw;
+  left: 36.3vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 500;
+
+  font-size: 1.67vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* CASELLA NOME UTENTE */
+/* ====================================================== */
+
+.casella_nome_utente {
+  width: 27.4vw;
+  height: 2.86vw;
+
+  position: absolute;
+
+  top: 23.28vw;
+  left: 36.3vw;
+
+  z-index: 5;
+}
+
+/* ====================================================== */
+/* INPUT NOME UTENTE */
+/* ====================================================== */
+
+.input_nome_utente {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 0.36vw;
+
+  border: none;
+  outline: none;
+
+  background: rgba(217, 217, 217, 1);
+
+  box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
+
+  font-family: Inter, sans-serif;
+
+  font-size: 1.25vw;
+
+  font-weight: 400;
+
+  color: rgba(41, 41, 41, 1);
+
+  border-radius: 0;
+}
+
+/* ====================================================== */
+/* PLACEHOLDER NOME */
+/* ====================================================== */
+
+.input_nome_utente::placeholder {
+  color: rgba(166, 166, 166, 1);
+
+  opacity: 1;
+}
+
+/* ====================================================== */
+/* PASSWORD LABEL */
+/* ====================================================== */
+
+.testo_password {
+  width: 25.52vw;
+
+  color: rgba(41, 41, 41, 1);
+
+  position: absolute;
+
+  top: 27.76vw;
+  left: 36.3vw;
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 500;
+
+  font-size: 1.67vw;
+
+  text-align: left;
+}
+
+/* ====================================================== */
+/* CASELLA PASSWORD */
+/* ====================================================== */
+
+.casella_password {
+  width: 27.39vw;
+  height: 2.86vw;
+
+  position: absolute;
+
+  top: 30.31vw;
+  left: 36.3vw;
+
+  z-index: 5;
+}
+
+/* ====================================================== */
+/* INPUT PASSWORD */
+/* ====================================================== */
+
+.input_password {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 0.36vw;
+
+  border: none;
+  outline: none;
+
+  background: rgba(217, 217, 217, 1);
+
+  box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
+
+  font-family: Inter, sans-serif;
+
+  font-size: 1.25vw;
+
+  font-weight: 400;
+
+  color: rgba(41, 41, 41, 1);
+
+  border-radius: 0;
+}
+
+/* ====================================================== */
+/* PLACEHOLDER PASSWORD */
+/* ====================================================== */
+
+.input_password::placeholder {
+  color: rgba(166, 166, 166, 1);
+
+  opacity: 1;
+}
+
+/* ====================================================== */
+/* PULSANTE MOSTRA PASSWORD */
+/* ====================================================== */
+
+.pulsante_mostra_password {
+  width: 2.0833vw;
+  height: 2.0833vw;
+
+  position: absolute;
+
+  top: 30.7vw;
+  left: 64.4vw;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  outline: none;
+
+  z-index: 20;
+}
+
+/* ====================================================== */
+/* ICONA MOSTRA PASSWORD */
+/* ====================================================== */
+
+.icona_mostra_password {
+  width: 2.0833vw;
+  height: 2.0833vw;
+
+  background: url("../assets/pannello_amministratore/icona_mostra_password.svg");
+
+  user-select: none;
+}
+
+/* ====================================================== */
+/* EFFETTO CLICK ICONA */
+/* ====================================================== */
+
+.pulsante_mostra_password:active {
+  transform: scale(0.92);
+}
+
+/* ====================================================== */
+/* ERRORE ACCESSO */
+/* ====================================================== */
+
+.errore_accesso {
+  width: 27.4vw;
+
+  min-height: 1.5vw;
+
+  position: absolute;
+
+  top: 33.55vw;
+  left: 36.3vw;
+
+  color: #ff5b5b;
+
+  font-family: Inter, sans-serif;
+
+  font-size: 1.05vw;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  text-align: left;
+
+  display: none;
+
+  z-index: 30;
+}
+
+/* ====================================================== */
+/* PULSANTE ENTRA */
+/* ====================================================== */
+
+.pulsante_entra {
+  width: 15.1vw;
+  height: 5.57vw;
+
+  position: absolute;
+
+  top: 36.51vw;
+  left: 42.44vw;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 0.31vw;
+
+  background: rgba(41, 41, 41, 1);
+
+  box-shadow: -0.208vw 0.208vw 0.2vw rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  z-index: 20;
+
+  transition: transform 0.1s ease;
+}
+/* Micro-zoom all'hover (ingrandisce del 4%) */
+.pulsante_entra:hover {
+  transform: scale(1.04);
+}
+/* ====================================================== */
+/* CLICK ENTRA */
+/* ====================================================== */
+
+.pulsante_entra:active {
+  transform: scale(0.97);
+}
+
+/* ====================================================== */
+/* TESTO ENTRA */
+/* ====================================================== */
+
+.testo_pulsante_entra {
+  width: 100%;
+
+  position: absolute;
+
+  top: 1.66vw;
+  left: 0;
+
+  color: rgba(255, 255, 255, 1);
+
+  font-family: Inter, sans-serif;
+
+  font-weight: 500;
+
+  font-size: 1.66vw;
+
+  text-align: center;
+
+  pointer-events: none;
+}
