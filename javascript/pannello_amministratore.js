@@ -7,13 +7,28 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-import { auth } from "./firebase-config.js";
+import {
+  doc,
+  getDocs,
+  collection,
+  query,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+import { auth, db } from "./firebase-config.js";
 
 // ======================================================
-// CONFIGURAZIONE
+// CONFIGURAZIONE CLOUDFLARE WORKER
 // ======================================================
 
-const URL_WORKER_LOGIN = "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
+const URL_WORKER_LOGIN =
+  "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
+
+// ======================================================
+// COLLECTION FIRESTORE
+// ======================================================
+
+const COLLECTION_BLOCCO_PAGINE = "blocco_pagine";
 
 // ======================================================
 // AVVIO
@@ -105,20 +120,162 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==================================================
+  // AGGIORNA ASPETTO PULSANTE
+  // ==================================================
+
+  function aggiornaAspettoPulsante(pulsante, bloccata) {
+    if (!pulsante) {
+      return;
+    }
+
+    const testo = pulsante.querySelector(".testo_pulsante_blocca");
+
+    if (bloccata) {
+      pulsante.classList.add("attivo");
+
+      if (testo) {
+        testo.textContent = "Sblocca";
+      }
+    } else {
+      pulsante.classList.remove("attivo");
+
+      if (testo) {
+        testo.textContent = "Blocca";
+      }
+    }
+  }
+
+  // ==================================================
+  // CARICA STATO PAGINE
+  // ==================================================
+
+  async function caricaStatoPagine() {
+    console.log("Caricamento stato pagine...");
+
+    try {
+      const riferimento = collection(db, COLLECTION_BLOCCO_PAGINE);
+
+      const risultati = await getDocs(query(riferimento));
+
+      risultati.forEach((documento) => {
+        const elementoPagina = document.querySelector(
+          `[data-pagina="${documento.id}"]`,
+        );
+
+        if (!elementoPagina) {
+          return;
+        }
+
+        const pulsante = elementoPagina.querySelector(".pulsante_blocca");
+
+        if (!pulsante) {
+          return;
+        }
+
+        const dati = documento.data();
+
+        const bloccata = dati.bloccata === true;
+
+        aggiornaAspettoPulsante(pulsante, bloccata);
+      });
+
+      console.log("Stato pagine caricato.");
+    } catch (error) {
+      console.error("Errore caricamento stato pagine:", error);
+    }
+  }
+
+  // ==================================================
+  // CAMBIA STATO PAGINA
+  // ==================================================
+
+  async function cambiaStatoPagina(elementoPagina, pulsante) {
+    if (!elementoPagina || !pulsante) {
+      return;
+    }
+
+    const pagina = elementoPagina.dataset.pagina;
+
+    if (!pagina) {
+      return;
+    }
+
+    const statoAttuale = pulsante.classList.contains("attivo");
+
+    const nuovoStato = !statoAttuale;
+
+    // ================================================
+    // BLOCCA DOPPIO CLICK
+    // ================================================
+
+    pulsante.style.pointerEvents = "none";
+
+    try {
+      console.log(`Modifica pagina: ${pagina}`);
+
+      // ==============================================
+      // RIFERIMENTO FIRESTORE
+      // ==============================================
+
+      const riferimento = doc(db, COLLECTION_BLOCCO_PAGINE, pagina);
+
+      // ==============================================
+      // SALVA STATO
+      // ==============================================
+
+      await setDoc(
+        riferimento,
+        {
+          bloccata: nuovoStato,
+        },
+        {
+          merge: true,
+        },
+      );
+
+      // ==============================================
+      // AGGIORNA GRAFICA
+      // ==============================================
+
+      aggiornaAspettoPulsante(pulsante, nuovoStato);
+
+      console.log(`Pagina ${pagina}: ${nuovoStato ? "BLOCCATA" : "SBLOCCATA"}`);
+    } catch (error) {
+      console.error("Errore modifica stato pagina:", error);
+
+      mostraErrore("Impossibile modificare lo stato della pagina.");
+    } finally {
+      pulsante.style.pointerEvents = "auto";
+    }
+  }
+
+  // ==================================================
+  // COLLEGA PULSANTI BLOCCA
+  // ==================================================
+
+  document.querySelectorAll("[data-pagina]").forEach((elementoPagina) => {
+    const pulsante = elementoPagina.querySelector(".pulsante_blocca");
+
+    if (!pulsante) {
+      return;
+    }
+
+    pulsante.addEventListener("click", () => {
+      cambiaStatoPagina(elementoPagina, pulsante);
+    });
+  });
+
+  // ==================================================
   // EFFETTUA ACCESSO
   // ==================================================
 
   async function effettuaAccesso() {
     console.log("Tentativo di accesso...");
 
-    // ================================================
-    // RESET ERRORE
-    // ================================================
-
     nascondiErrore();
 
     // ================================================
-    // RECUPERA DATI
+    // VALORI
     // ================================================
 
     const nomeUtente = inputNomeUtente.value.trim();
@@ -126,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = inputPassword.value;
 
     // ================================================
-    // CONTROLLA CAMPI
+    // CAMPI VUOTI
     // ================================================
 
     if (nomeUtente === "") {
@@ -146,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================
-    // BLOCCA TEMPORANEAMENTE IL PULSANTE
+    // DISABILITA PULSANTE
     // ================================================
 
     pulsanteEntra.disabled = true;
@@ -157,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // ==============================================
-      // CHIAMATA AL CLOUDFLARE WORKER
+      // CHIAMATA CLOUDFLARE
       // ==============================================
 
       const risposta = await fetch(URL_WORKER_LOGIN, {
@@ -175,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // ==============================================
-      // TENTA A LEGGERE JSON
+      // RISPOSTA JSON
       // ==============================================
 
       let dati;
@@ -201,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // ==============================================
-      // CUSTOM TOKEN RICEVUTO
+      // CUSTOM TOKEN
       // ==============================================
 
       console.log("Custom Token Firebase ricevuto.");
@@ -213,11 +370,6 @@ document.addEventListener("DOMContentLoaded", () => {
       await signInWithCustomToken(auth, dati.token);
 
       console.log("Autenticazione Firebase riuscita.");
-
-      // ==============================================
-      // IL CAMBIO DI PANNELLO VIENE GESTITO
-      // DA onAuthStateChanged() QUI SOTTO
-      // ==============================================
     } catch (error) {
       console.error("Errore durante l'accesso:", error);
 
@@ -230,9 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (error.code === "auth/custom-token-mismatch") {
         mostraErrore("Il token appartiene a un progetto Firebase diverso.");
       } else {
-        mostraErrore(
-          "Impossibile effettuare l'accesso. Controlla la connessione.",
-        );
+        mostraErrore("Impossibile effettuare l'accesso.");
       }
     } finally {
       // ==============================================
@@ -248,17 +398,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==================================================
-  // CONTROLLO STATO AUTENTICAZIONE
+  // STATO AUTENTICAZIONE
   // ==================================================
 
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     console.log(
       "Stato autenticazione:",
       user ? "AUTENTICATO" : "NON AUTENTICATO",
     );
 
     // ==============================================
-    // UTENTE AUTENTICATO
+    // AUTENTICATO
     // ==============================================
 
     if (user) {
@@ -268,11 +418,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       nascondiErrore();
 
+      // ============================================
+      // CARICA STATO BLOCCHI
+      // ============================================
+
+      await caricaStatoPagine();
+
       return;
     }
 
     // ==============================================
-    // UTENTE NON AUTENTICATO
+    // NON AUTENTICATO
     // ==============================================
 
     pannelloAccesso.style.display = "block";
@@ -315,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==================================================
-  // NASCONDE ERRORE QUANDO SCRIVI
+  // RIMUOVE ERRORE QUANDO SCRIVI
   // ==================================================
 
   inputNomeUtente.addEventListener("input", () => {

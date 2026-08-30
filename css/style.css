@@ -202,7 +202,7 @@ main {
   height: clamp(50px, calc(211 / 1920 * 100vw), 211px);
 
   /* posizione relativa al footer */
-  top: 8.80vw;
+  top: 8.8vw;
   left: 31.82vw;
 
   margin: 0;
@@ -409,4 +409,158 @@ main {
 
   right: 0vw;
   background: url("../assets/global/icona_pulsante_pannello_amministratore.svg");
+}
+/* ====================================================== */
+/* PAGINA IN MANUTENZIONE */
+/* ====================================================== */
+
+.pagina_manutenzione {
+  width: 100%;
+  height: 100vh;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  background: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  z-index: 999999;
+
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
+}
+
+/* ====================================================== */
+/* VISIBILE */
+/* ====================================================== */
+
+.pagina_manutenzione.visibile {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+/* ====================================================== */
+/* CONTENUTO */
+/* ====================================================== */
+
+.contenuto_manutenzione {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 2.6042vw;
+
+  text-align: center;
+}
+
+/* ====================================================== */
+/* TESTO */
+/* ====================================================== */
+
+.testo_manutenzione {
+  color: #2a2a2a;
+
+  font-family: "Dela Gothic One", Arial, sans-serif;
+
+  font-size: 3.3333vw;
+
+  line-height: 1.1;
+
+  text-align: center;
+}
+
+/* ====================================================== */
+/* LOADER */
+/* ====================================================== */
+
+.loader_manutenzione {
+  width: 3.125vw;
+
+  height: 3.125vw;
+
+  aspect-ratio: 1;
+
+  --c: no-repeat linear-gradient(#2a2a2a 0 0);
+
+  background: var(--c), var(--c), var(--c), var(--c);
+
+  background-size: 33.4% 33.4%;
+
+  animation: caricamento_manutenzione 1.5s infinite linear;
+}
+
+/* ====================================================== */
+/* ANIMAZIONE */
+/* ====================================================== */
+
+@keyframes caricamento_manutenzione {
+  0%,
+  5% {
+    background-position:
+      0 0,
+      50% 0,
+      0 50%,
+      50% 50%;
+  }
+
+  25% {
+    background-position:
+      0 0,
+      100% 0,
+      0 100%,
+      50% 50%;
+  }
+
+  50% {
+    background-position:
+      50% 0,
+      100% 0,
+      0 100%,
+      0 50%;
+  }
+
+  75% {
+    background-position:
+      50% 0,
+      100% 50%,
+      0 100%,
+      0 0;
+  }
+
+  95%,
+  100% {
+    background-position:
+      50% 0,
+      50% 50%,
+      0 50%,
+      0 0;
+  }
+}
+
+/* ====================================================== */
+/* SCROLL BLOCCATO */
+/* ====================================================== */
+
+body.pagina_bloccata {
+  overflow: hidden;
 }
