@@ -1,7 +1,3 @@
-// ======================================================
-// FIREBASE AUTHENTICATION
-// ======================================================
-
 import {
   signInWithCustomToken,
   onAuthStateChanged,
@@ -15,470 +11,935 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-import { auth, db } from "./firebase-config.js";
+import {
+  auth,
+  db,
+} from "./firebase-config.js";
 
-// ======================================================
-// CONFIGURAZIONE CLOUDFLARE WORKER
-// ======================================================
 
 const URL_WORKER_LOGIN =
   "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
 
-// ======================================================
-// COLLECTION FIRESTORE
-// ======================================================
 
-const COLLECTION_BLOCCO_PAGINE = "blocco_pagine";
+const COLLECTION_BLOCCO_PAGINE =
+  "blocco_pagine";
 
-// ======================================================
-// AVVIO
-// ======================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("pannello_amministratore.js caricato correttamente.");
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  // ==================================================
-  // ELEMENTI
-  // ==================================================
+    console.log(
+      "pannello_amministratore.js caricato correttamente."
+    );
 
-  const pannelloAccesso = document.getElementById("pannelloAccesso");
 
-  const pannelloAmministratore = document.getElementById(
-    "pannelloAmministratore",
-  );
-
-  const inputNomeUtente = document.getElementById("inputNomeUtente");
-
-  const inputPassword = document.getElementById("inputPassword");
-
-  const pulsanteEntra = document.getElementById("pulsanteEntra");
-
-  const pulsanteMostraPassword = document.getElementById(
-    "pulsanteMostraPassword",
-  );
-
-  const errore = document.getElementById("erroreAccesso");
-
-  // ==================================================
-  // CONTROLLO ELEMENTI
-  // ==================================================
-
-  if (
-    !pannelloAccesso ||
-    !pannelloAmministratore ||
-    !inputNomeUtente ||
-    !inputPassword ||
-    !pulsanteEntra ||
-    !pulsanteMostraPassword ||
-    !errore
-  ) {
-    console.error("Uno o più elementi HTML non sono stati trovati.");
-
-    return;
-  }
-
-  // ==================================================
-  // STATO INIZIALE
-  // ==================================================
-
-  pannelloAccesso.style.display = "none";
-
-  pannelloAmministratore.style.display = "none";
-
-  // ==================================================
-  // MOSTRA ERRORE
-  // ==================================================
-
-  function mostraErrore(messaggio) {
-    errore.textContent = messaggio;
-
-    errore.style.display = "block";
-  }
-
-  // ==================================================
-  // NASCONDE ERRORE
-  // ==================================================
-
-  function nascondiErrore() {
-    errore.textContent = "";
-
-    errore.style.display = "none";
-  }
-
-  // ==================================================
-  // MOSTRA PASSWORD
-  // ==================================================
-
-  pulsanteMostraPassword.addEventListener("click", () => {
-    console.log("Pulsante mostra password cliccato.");
-
-    inputPassword.type = "text";
-
-    pulsanteMostraPassword.setAttribute("aria-label", "Password mostrata");
-
-    pulsanteMostraPassword.setAttribute("title", "Password mostrata");
-  });
-
-  // ==================================================
-  // AGGIORNA ASPETTO PULSANTE
-  // ==================================================
-
-  function aggiornaAspettoPulsante(pulsante, bloccata) {
-    if (!pulsante) {
-      return;
-    }
-
-    const testo = pulsante.querySelector(".testo_pulsante_blocca");
-
-    if (bloccata) {
-      pulsante.classList.add("attivo");
-
-      if (testo) {
-        testo.textContent = "Sblocca";
-      }
-    } else {
-      pulsante.classList.remove("attivo");
-
-      if (testo) {
-        testo.textContent = "Blocca";
-      }
-    }
-  }
-
-  // ==================================================
-  // CARICA STATO PAGINE
-  // ==================================================
-
-  async function caricaStatoPagine() {
-    console.log("Caricamento stato pagine...");
-
-    try {
-      const riferimento = collection(db, COLLECTION_BLOCCO_PAGINE);
-
-      const risultati = await getDocs(query(riferimento));
-
-      risultati.forEach((documento) => {
-        const elementoPagina = document.querySelector(
-          `[data-pagina="${documento.id}"]`,
-        );
-
-        if (!elementoPagina) {
-          return;
-        }
-
-        const pulsante = elementoPagina.querySelector(".pulsante_blocca");
-
-        if (!pulsante) {
-          return;
-        }
-
-        const dati = documento.data();
-
-        const bloccata = dati.bloccata === true;
-
-        aggiornaAspettoPulsante(pulsante, bloccata);
-      });
-
-      console.log("Stato pagine caricato.");
-    } catch (error) {
-      console.error("Errore caricamento stato pagine:", error);
-    }
-  }
-
-  // ==================================================
-  // CAMBIA STATO PAGINA
-  // ==================================================
-
-  async function cambiaStatoPagina(elementoPagina, pulsante) {
-    if (!elementoPagina || !pulsante) {
-      return;
-    }
-
-    const pagina = elementoPagina.dataset.pagina;
-
-    if (!pagina) {
-      return;
-    }
-
-    const statoAttuale = pulsante.classList.contains("attivo");
-
-    const nuovoStato = !statoAttuale;
-
-    // ================================================
-    // BLOCCA DOPPIO CLICK
-    // ================================================
-
-    pulsante.style.pointerEvents = "none";
-
-    try {
-      console.log(`Modifica pagina: ${pagina}`);
-
-      // ==============================================
-      // RIFERIMENTO FIRESTORE
-      // ==============================================
-
-      const riferimento = doc(db, COLLECTION_BLOCCO_PAGINE, pagina);
-
-      // ==============================================
-      // SALVA STATO
-      // ==============================================
-
-      await setDoc(
-        riferimento,
-        {
-          bloccata: nuovoStato,
-        },
-        {
-          merge: true,
-        },
+    const pannelloAccesso =
+      document.getElementById(
+        "pannelloAccesso"
       );
 
-      // ==============================================
-      // AGGIORNA GRAFICA
-      // ==============================================
+    const pannelloAmministratore =
+      document.getElementById(
+        "pannelloAmministratore"
+      );
 
-      aggiornaAspettoPulsante(pulsante, nuovoStato);
+    const inputNomeUtente =
+      document.getElementById(
+        "inputNomeUtente"
+      );
 
-      console.log(`Pagina ${pagina}: ${nuovoStato ? "BLOCCATA" : "SBLOCCATA"}`);
-    } catch (error) {
-      console.error("Errore modifica stato pagina:", error);
+    const inputPassword =
+      document.getElementById(
+        "inputPassword"
+      );
 
-      mostraErrore("Impossibile modificare lo stato della pagina.");
-    } finally {
-      pulsante.style.pointerEvents = "auto";
-    }
-  }
+    const pulsanteEntra =
+      document.getElementById(
+        "pulsanteEntra"
+      );
 
-  // ==================================================
-  // COLLEGA PULSANTI BLOCCA
-  // ==================================================
+    const pulsanteMostraPassword =
+      document.getElementById(
+        "pulsanteMostraPassword"
+      );
 
-  document.querySelectorAll("[data-pagina]").forEach((elementoPagina) => {
-    const pulsante = elementoPagina.querySelector(".pulsante_blocca");
+    const errore =
+      document.getElementById(
+        "erroreAccesso"
+      );
 
-    if (!pulsante) {
+
+    const selettoreImpostazioni =
+      document.getElementById(
+        "selettoreImpostazioni"
+      );
+
+    const selettoreNews =
+      document.getElementById(
+        "selettoreNews"
+      );
+
+    const selettoreEventi =
+      document.getElementById(
+        "selettoreEventi"
+      );
+
+
+    const sezioneImpostazioni =
+      document.getElementById(
+        "sezioneImpostazioni"
+      );
+
+    const sezioneNews =
+      document.getElementById(
+        "sezioneNews"
+      );
+
+    const sezioneEventi =
+      document.getElementById(
+        "sezioneEventi"
+      );
+
+
+    if (
+      !pannelloAccesso ||
+      !pannelloAmministratore ||
+      !inputNomeUtente ||
+      !inputPassword ||
+      !pulsanteEntra ||
+      !pulsanteMostraPassword ||
+      !errore ||
+      !selettoreImpostazioni ||
+      !selettoreNews ||
+      !selettoreEventi ||
+      !sezioneImpostazioni ||
+      !sezioneNews ||
+      !sezioneEventi
+    ) {
+
+      console.error(
+        "Uno o più elementi HTML non sono stati trovati."
+      );
+
       return;
     }
 
-    pulsante.addEventListener("click", () => {
-      cambiaStatoPagina(elementoPagina, pulsante);
-    });
-  });
 
-  // ==================================================
-  // EFFETTUA ACCESSO
-  // ==================================================
+    pannelloAccesso.style.display =
+      "none";
 
-  async function effettuaAccesso() {
-    console.log("Tentativo di accesso...");
+    pannelloAmministratore.style.display =
+      "none";
 
-    nascondiErrore();
 
-    // ================================================
-    // VALORI
-    // ================================================
+    function mostraErrore(
+      messaggio
+    ) {
 
-    const nomeUtente = inputNomeUtente.value.trim();
+      errore.textContent =
+        messaggio;
 
-    const password = inputPassword.value;
-
-    // ================================================
-    // CAMPI VUOTI
-    // ================================================
-
-    if (nomeUtente === "") {
-      mostraErrore("Inserisci il nome utente.");
-
-      inputNomeUtente.focus();
-
-      return;
+      errore.style.display =
+        "block";
     }
 
-    if (password === "") {
-      mostraErrore("Inserisci la password.");
 
-      inputPassword.focus();
+    function nascondiErrore() {
 
-      return;
+      errore.textContent =
+        "";
+
+      errore.style.display =
+        "none";
     }
 
-    // ================================================
-    // DISABILITA PULSANTE
-    // ================================================
 
-    pulsanteEntra.disabled = true;
+    pulsanteMostraPassword.addEventListener(
+      "click",
+      () => {
 
-    pulsanteEntra.style.pointerEvents = "none";
+        inputPassword.type =
+          "text";
 
-    pulsanteEntra.style.opacity = "0.7";
+        pulsanteMostraPassword.setAttribute(
+          "aria-label",
+          "Password mostrata"
+        );
 
-    try {
-      // ==============================================
-      // CHIAMATA CLOUDFLARE
-      // ==============================================
+        pulsanteMostraPassword.setAttribute(
+          "title",
+          "Password mostrata"
+        );
+      }
+    );
 
-      const risposta = await fetch(URL_WORKER_LOGIN, {
-        method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+    function aggiornaSelettore(
+      pagina
+    ) {
 
-        body: JSON.stringify({
-          username: nomeUtente,
+      const testoImpostazioni =
+        document.querySelector(
+          ".testo_selettore_impostazioni"
+        );
 
-          password: password,
-        }),
-      });
+      const testoNews =
+        document.querySelector(
+          ".testo_selettore_news"
+        );
 
-      // ==============================================
-      // RISPOSTA JSON
-      // ==============================================
+      const testoEventi =
+        document.querySelector(
+          ".testo_selettore_eventi"
+        );
 
-      let dati;
 
-      try {
-        dati = await risposta.json();
-      } catch {
-        dati = {};
+      const iconaImpostazioni =
+        document.querySelector(
+          ".icona_selettore_impostazioni"
+        );
+
+      const iconaNews =
+        document.querySelector(
+          ".icona_selettore_news"
+        );
+
+      const iconaEventi =
+        document.querySelector(
+          ".icona_selettore_eventi"
+        );
+
+
+      if (
+        !testoImpostazioni ||
+        !testoNews ||
+        !testoEventi ||
+        !iconaImpostazioni ||
+        !iconaNews ||
+        !iconaEventi
+      ) {
+
+        return;
       }
 
-      // ==============================================
-      // LOGIN FALLITO
-      // ==============================================
 
-      if (!risposta.ok || !dati.ok || !dati.token) {
-        console.log("Login rifiutato.");
+      // ==================================================
+      // IMPOSTAZIONI
+      // ==================================================
 
-        mostraErrore(dati.errore || "Nome utente o password non corretti.");
+      if (
+        pagina === "impostazioni"
+      ) {
+
+        testoImpostazioni.style.color =
+          "#2a2a2a";
+
+        testoNews.style.color =
+          "#a6a6a6";
+
+        testoEventi.style.color =
+          "#868686";
+
+
+        iconaImpostazioni.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_impostazioni_attivo.svg")';
+
+        iconaNews.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_notizie_disattivo.svg")';
+
+        iconaEventi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_calendario_disattivo.svg")';
+
+
+        return;
+      }
+
+
+      // ==================================================
+      // NEWS
+      // ==================================================
+
+      if (
+        pagina === "news"
+      ) {
+
+        testoImpostazioni.style.color =
+          "#a6a6a6";
+
+        testoNews.style.color =
+          "#2a2a2a";
+
+        testoEventi.style.color =
+          "#868686";
+
+
+        iconaImpostazioni.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg")';
+
+        iconaNews.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_notizie_attivo.svg")';
+
+        iconaEventi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_calendario_disattivo.svg")';
+
+
+        return;
+      }
+
+
+      // ==================================================
+      // EVENTI
+      // ==================================================
+
+      if (
+        pagina === "eventi"
+      ) {
+
+        testoImpostazioni.style.color =
+          "#a6a6a6";
+
+        testoNews.style.color =
+          "#a6a6a6";
+
+        testoEventi.style.color =
+          "#868686";
+
+
+        iconaImpostazioni.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg")';
+
+        iconaNews.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_notizie_disattivo.svg")';
+
+        iconaEventi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_calendario_disattivo.svg")';
+      }
+    }
+
+
+    function mostraSezione(
+      sezione
+    ) {
+
+      sezioneImpostazioni.style.display =
+        "none";
+
+      sezioneNews.style.display =
+        "none";
+
+      sezioneEventi.style.display =
+        "none";
+
+
+      if (
+        sezione ===
+        sezioneImpostazioni
+      ) {
+
+        sezioneImpostazioni.style.display =
+          "block";
+
+        aggiornaSelettore(
+          "impostazioni"
+        );
+
+        return;
+      }
+
+
+      if (
+        sezione ===
+        sezioneNews
+      ) {
+
+        sezioneNews.style.display =
+          "block";
+
+        aggiornaSelettore(
+          "news"
+        );
+
+        return;
+      }
+
+
+      if (
+        sezione ===
+        sezioneEventi
+      ) {
+
+        sezioneEventi.style.display =
+          "block";
+
+        aggiornaSelettore(
+          "eventi"
+        );
+      }
+    }
+
+
+    selettoreImpostazioni.addEventListener(
+      "click",
+      () => {
+
+        mostraSezione(
+          sezioneImpostazioni
+        );
+      }
+    );
+
+
+    selettoreNews.addEventListener(
+      "click",
+      () => {
+
+        mostraSezione(
+          sezioneNews
+        );
+      }
+    );
+
+
+    selettoreEventi.addEventListener(
+      "click",
+      () => {
+
+        mostraSezione(
+          sezioneEventi
+        );
+      }
+    );
+
+
+    function aggiornaAspettoPulsante(
+      pulsante,
+      bloccata
+    ) {
+
+      if (!pulsante) {
+        return;
+      }
+
+
+      const testo =
+        pulsante.querySelector(
+          ".testo_pulsante_blocca"
+        );
+
+
+      if (bloccata) {
+
+        pulsante.classList.add(
+          "attivo"
+        );
+
+
+        if (testo) {
+
+          testo.textContent =
+            "Sblocca";
+        }
+
+      } else {
+
+        pulsante.classList.remove(
+          "attivo"
+        );
+
+
+        if (testo) {
+
+          testo.textContent =
+            "Blocca";
+        }
+      }
+    }
+
+
+    async function caricaStatoPagine() {
+
+      console.log(
+        "Caricamento stato pagine..."
+      );
+
+
+      try {
+
+        const riferimento =
+          collection(
+            db,
+            COLLECTION_BLOCCO_PAGINE
+          );
+
+
+        const risultati =
+          await getDocs(
+            query(
+              riferimento
+            )
+          );
+
+
+        risultati.forEach(
+          (documento) => {
+
+            const elementoPagina =
+              document.querySelector(
+                `[data-pagina="${documento.id}"]`
+              );
+
+
+            if (!elementoPagina) {
+              return;
+            }
+
+
+            const pulsante =
+              elementoPagina.querySelector(
+                ".pulsante_blocca"
+              );
+
+
+            if (!pulsante) {
+              return;
+            }
+
+
+            const dati =
+              documento.data();
+
+
+            aggiornaAspettoPulsante(
+              pulsante,
+              dati.bloccata === true
+            );
+          }
+        );
+
+
+        console.log(
+          "Stato pagine caricato."
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Errore caricamento stato pagine:",
+          error
+        );
+      }
+    }
+
+
+    async function cambiaStatoPagina(
+      elementoPagina,
+      pulsante
+    ) {
+
+      if (
+        !elementoPagina ||
+        !pulsante
+      ) {
+
+        return;
+      }
+
+
+      const pagina =
+        elementoPagina.dataset.pagina;
+
+
+      if (!pagina) {
+        return;
+      }
+
+
+      const statoAttuale =
+        pulsante.classList.contains(
+          "attivo"
+        );
+
+
+      const nuovoStato =
+        !statoAttuale;
+
+
+      pulsante.style.pointerEvents =
+        "none";
+
+
+      try {
+
+        const riferimento =
+          doc(
+            db,
+            COLLECTION_BLOCCO_PAGINE,
+            pagina
+          );
+
+
+        await setDoc(
+          riferimento,
+          {
+            bloccata:
+              nuovoStato,
+          },
+          {
+            merge:
+              true,
+          }
+        );
+
+
+        aggiornaAspettoPulsante(
+          pulsante,
+          nuovoStato
+        );
+
+
+        console.log(
+          `Pagina ${pagina}: ${
+            nuovoStato
+              ? "BLOCCATA"
+              : "SBLOCCATA"
+          }`
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Errore modifica stato pagina:",
+          error
+        );
+
+
+        mostraErrore(
+          "Impossibile modificare lo stato della pagina."
+        );
+
+      } finally {
+
+        pulsante.style.pointerEvents =
+          "auto";
+      }
+    }
+
+
+    document
+      .querySelectorAll(
+        "[data-pagina]"
+      )
+      .forEach(
+        (elementoPagina) => {
+
+          const pulsante =
+            elementoPagina.querySelector(
+              ".pulsante_blocca"
+            );
+
+
+          if (!pulsante) {
+            return;
+          }
+
+
+          pulsante.addEventListener(
+            "click",
+            () => {
+
+              cambiaStatoPagina(
+                elementoPagina,
+                pulsante
+              );
+            }
+          );
+        }
+      );
+
+
+    async function effettuaAccesso() {
+
+      console.log(
+        "Tentativo di accesso..."
+      );
+
+
+      nascondiErrore();
+
+
+      const nomeUtente =
+        inputNomeUtente.value.trim();
+
+
+      const password =
+        inputPassword.value;
+
+
+      if (
+        nomeUtente === ""
+      ) {
+
+        mostraErrore(
+          "Inserisci il nome utente."
+        );
+
+        inputNomeUtente.focus();
+
+        return;
+      }
+
+
+      if (
+        password === ""
+      ) {
+
+        mostraErrore(
+          "Inserisci la password."
+        );
 
         inputPassword.focus();
 
         return;
       }
 
-      // ==============================================
-      // CUSTOM TOKEN
-      // ==============================================
 
-      console.log("Custom Token Firebase ricevuto.");
+      pulsanteEntra.disabled =
+        true;
 
-      // ==============================================
-      // LOGIN FIREBASE
-      // ==============================================
+      pulsanteEntra.style.pointerEvents =
+        "none";
 
-      await signInWithCustomToken(auth, dati.token);
+      pulsanteEntra.style.opacity =
+        "0.7";
 
-      console.log("Autenticazione Firebase riuscita.");
-    } catch (error) {
-      console.error("Errore durante l'accesso:", error);
 
-      // ==============================================
-      // ERRORI FIREBASE
-      // ==============================================
+      try {
 
-      if (error.code === "auth/invalid-custom-token") {
-        mostraErrore("Il token di autenticazione non è valido.");
-      } else if (error.code === "auth/custom-token-mismatch") {
-        mostraErrore("Il token appartiene a un progetto Firebase diverso.");
-      } else {
-        mostraErrore("Impossibile effettuare l'accesso.");
+        const risposta =
+          await fetch(
+            URL_WORKER_LOGIN,
+            {
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body:
+                JSON.stringify({
+                  username:
+                    nomeUtente,
+
+                  password:
+                    password,
+                }),
+            }
+          );
+
+
+        let dati;
+
+
+        try {
+
+          dati =
+            await risposta.json();
+
+        } catch {
+
+          dati =
+            {};
+        }
+
+
+        if (
+          !risposta.ok ||
+          !dati.ok ||
+          !dati.token
+        ) {
+
+          mostraErrore(
+            dati.errore ||
+            "Nome utente o password non corretti."
+          );
+
+          inputPassword.focus();
+
+          return;
+        }
+
+
+        console.log(
+          "Custom Token Firebase ricevuto."
+        );
+
+
+        await signInWithCustomToken(
+          auth,
+          dati.token
+        );
+
+
+        console.log(
+          "Autenticazione Firebase riuscita."
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Errore durante l'accesso:",
+          error
+        );
+
+
+        if (
+          error.code ===
+          "auth/invalid-custom-token"
+        ) {
+
+          mostraErrore(
+            "Il token di autenticazione non è valido."
+          );
+
+        } else if (
+          error.code ===
+          "auth/custom-token-mismatch"
+        ) {
+
+          mostraErrore(
+            "Il token appartiene a un progetto Firebase diverso."
+          );
+
+        } else {
+
+          mostraErrore(
+            "Impossibile effettuare l'accesso."
+          );
+        }
+
+      } finally {
+
+        pulsanteEntra.disabled =
+          false;
+
+        pulsanteEntra.style.pointerEvents =
+          "auto";
+
+        pulsanteEntra.style.opacity =
+          "1";
       }
-    } finally {
-      // ==============================================
-      // RIATTIVA PULSANTE
-      // ==============================================
-
-      pulsanteEntra.disabled = false;
-
-      pulsanteEntra.style.pointerEvents = "auto";
-
-      pulsanteEntra.style.opacity = "1";
     }
-  }
 
-  // ==================================================
-  // STATO AUTENTICAZIONE
-  // ==================================================
 
-  onAuthStateChanged(auth, async (user) => {
-    console.log(
-      "Stato autenticazione:",
-      user ? "AUTENTICATO" : "NON AUTENTICATO",
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        console.log(
+          "Stato autenticazione:",
+          user
+            ? "AUTENTICATO"
+            : "NON AUTENTICATO"
+        );
+
+
+        if (user) {
+
+          pannelloAccesso.style.display =
+            "none";
+
+          pannelloAmministratore.style.display =
+            "block";
+
+
+          mostraSezione(
+            sezioneImpostazioni
+          );
+
+
+          await caricaStatoPagine();
+
+        } else {
+
+          pannelloAccesso.style.display =
+            "block";
+
+          pannelloAmministratore.style.display =
+            "none";
+        }
+      }
     );
 
-    // ==============================================
-    // AUTENTICATO
-    // ==============================================
 
-    if (user) {
-      pannelloAccesso.style.display = "none";
+    pulsanteEntra.addEventListener(
+      "click",
+      (event) => {
 
-      pannelloAmministratore.style.display = "block";
+        event.preventDefault();
 
-      nascondiErrore();
+        effettuaAccesso();
+      }
+    );
 
-      // ============================================
-      // CARICA STATO BLOCCHI
-      // ============================================
 
-      await caricaStatoPagine();
+    inputNomeUtente.addEventListener(
+      "keydown",
+      (event) => {
 
-      return;
-    }
+        if (
+          event.key ===
+          "Enter"
+        ) {
 
-    // ==============================================
-    // NON AUTENTICATO
-    // ==============================================
+          event.preventDefault();
 
-    pannelloAccesso.style.display = "block";
+          effettuaAccesso();
+        }
+      }
+    );
 
-    pannelloAmministratore.style.display = "none";
-  });
 
-  // ==================================================
-  // CLICK ENTRA
-  // ==================================================
+    inputPassword.addEventListener(
+      "keydown",
+      (event) => {
 
-  pulsanteEntra.addEventListener("click", (event) => {
-    event.preventDefault();
+        if (
+          event.key ===
+          "Enter"
+        ) {
 
-    effettuaAccesso();
-  });
+          event.preventDefault();
 
-  // ==================================================
-  // ENTER NOME UTENTE
-  // ==================================================
+          effettuaAccesso();
+        }
+      }
+    );
 
-  inputNomeUtente.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
 
-      effettuaAccesso();
-    }
-  });
+    inputNomeUtente.addEventListener(
+      "input",
+      () => {
 
-  // ==================================================
-  // ENTER PASSWORD
-  // ==================================================
+        nascondiErrore();
+      }
+    );
 
-  inputPassword.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
 
-      effettuaAccesso();
-    }
-  });
+    inputPassword.addEventListener(
+      "input",
+      () => {
 
-  // ==================================================
-  // RIMUOVE ERRORE QUANDO SCRIVI
-  // ==================================================
+        nascondiErrore();
+      }
+    );
 
-  inputNomeUtente.addEventListener("input", () => {
-    nascondiErrore();
-  });
 
-  inputPassword.addEventListener("input", () => {
-    nascondiErrore();
-  });
-});
+    mostraSezione(
+      sezioneImpostazioni
+    );
+
+  }
+);

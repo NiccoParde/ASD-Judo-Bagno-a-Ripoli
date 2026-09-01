@@ -1,11 +1,3 @@
-/* ====================================================== */
-/* ====================================================== */
-/* */
-/* RESET */
-/* */
-/* ====================================================== */
-/* ====================================================== */
-
 * {
   box-sizing: border-box;
 }
@@ -21,854 +13,495 @@ body {
 body {
   font-size: 0.729vw;
   overflow-x: hidden;
+  overflow-y: auto;
 }
-
-/* ====================================================== */
-/* ====================================================== */
-/* */
-/* SCHERMATA ACCESSO */
-/* */
-/* ====================================================== */
-/* ====================================================== */
 
 .schermata_accesso {
   width: 100%;
   height: 100vh;
-
   position: absolute;
-
   top: 0;
   left: 0;
-
   overflow: hidden;
-
   z-index: 10;
 }
 
-/* ====================================================== */
-/* TITOLO ACCESSO */
-/* ====================================================== */
-
 .schermata_accesso .testo_pannello_amministratore {
   width: 41.67vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 7.45vw;
   left: 29.17vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 800;
-
   font-size: 3.33vw;
-
   text-align: center;
 }
-
-/* ====================================================== */
-/* ACCEDI */
-/* ====================================================== */
 
 .testo_accedi {
   width: 14.16vw;
   height: 4.27vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 14.16vw;
   left: 42.91vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 700;
-
   text-decoration: underline;
-
   font-size: 3.33vw;
-
   text-align: center;
 }
 
-/* ====================================================== */
-/* LABEL NOME UTENTE */
-/* ====================================================== */
-
 .testo_nome_utente {
   width: 25.52vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 20.73vw;
   left: 36.3vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 500;
-
   font-size: 1.67vw;
-
   text-align: left;
 }
-
-/* ====================================================== */
-/* CASELLA NOME UTENTE */
-/* ====================================================== */
 
 .casella_nome_utente {
   width: 27.4vw;
   height: 2.86vw;
-
   position: absolute;
-
   top: 23.28vw;
   left: 36.3vw;
-
   z-index: 5;
 }
-
-/* ====================================================== */
-/* INPUT NOME UTENTE */
-/* ====================================================== */
 
 .input_nome_utente {
   width: 100%;
   height: 100%;
-
   padding: 0 0.36vw;
-
   border: none;
   outline: none;
-
   background: rgba(217, 217, 217, 1);
-
   box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
-
   font-family: Inter, sans-serif;
-
   font-size: 1.25vw;
-
   font-weight: 400;
-
   color: rgba(41, 41, 41, 1);
-
   border-radius: 0;
 }
 
 .input_nome_utente::placeholder {
   color: rgba(166, 166, 166, 1);
-
   opacity: 1;
 }
 
-/* ====================================================== */
-/* LABEL PASSWORD */
-/* ====================================================== */
-
 .testo_password {
   width: 25.52vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 27.76vw;
   left: 36.3vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 500;
-
   font-size: 1.67vw;
-
   text-align: left;
 }
-
-/* ====================================================== */
-/* CASELLA PASSWORD */
-/* ====================================================== */
 
 .casella_password {
   width: 27.39vw;
   height: 2.86vw;
-
   position: absolute;
-
   top: 30.31vw;
   left: 36.3vw;
-
   z-index: 5;
 }
-
-/* ====================================================== */
-/* INPUT PASSWORD */
-/* ====================================================== */
 
 .input_password {
   width: 100%;
   height: 100%;
-
   padding: 0 0.36vw;
-
   border: none;
   outline: none;
-
   background: rgba(217, 217, 217, 1);
-
   box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
-
   font-family: Inter, sans-serif;
-
   font-size: 1.25vw;
-
   font-weight: 400;
-
   color: rgba(41, 41, 41, 1);
-
   border-radius: 0;
 }
 
 .input_password::placeholder {
   color: rgba(166, 166, 166, 1);
-
   opacity: 1;
 }
-
-/* ====================================================== */
-/* PULSANTE MOSTRA PASSWORD */
-/* ====================================================== */
 
 .pulsante_mostra_password {
   width: 2.0833vw;
   height: 2.0833vw;
-
   position: absolute;
-
   top: 30.7vw;
   left: 64.4vw;
-
   padding: 0;
-
   border: none;
-
   background: transparent;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
   outline: none;
-
   z-index: 20;
 }
-
-/* ====================================================== */
-/* ICONA MOSTRA PASSWORD */
-/* ====================================================== */
 
 .icona_mostra_password {
   width: 2.0833vw;
   height: 2.0833vw;
-
   background: url("../assets/pannello_amministratore/icona_mostra_password.svg");
-
   background-repeat: no-repeat;
-
   background-position: center;
-
   background-size: contain;
-
   pointer-events: none;
-
   user-select: none;
 }
-
-/* ====================================================== */
-/* CLICK ICONA */
-/* ====================================================== */
 
 .pulsante_mostra_password:active {
   transform: scale(0.92);
 }
 
-/* ====================================================== */
-/* ERRORE ACCESSO */
-/* ====================================================== */
-
 .errore_accesso {
   width: 27.4vw;
-
   min-height: 1.5vw;
-
   position: absolute;
-
   top: 33.55vw;
   left: 36.3vw;
-
   color: #ff5b5b;
-
   font-family: Inter, sans-serif;
-
   font-size: 1.05vw;
-
   font-weight: 500;
-
   line-height: 1.2;
-
   text-align: left;
-
   display: none;
-
   z-index: 30;
 }
-
-/* ====================================================== */
-/* PULSANTE ENTRA */
-/* ====================================================== */
 
 .pulsante_entra {
   width: 15.1vw;
   height: 5.57vw;
-
   position: absolute;
-
   top: 36.51vw;
   left: 42.44vw;
-
   padding: 0;
-
   border: none;
-
   border-radius: 0.31vw;
-
   background: rgba(41, 41, 41, 1);
-
   box-shadow: -0.208vw 0.208vw 0.2vw rgba(0, 0, 0, 0.25);
-
   cursor: pointer;
-
   z-index: 20;
-
   transition: transform 0.1s ease;
 }
-
-/* ====================================================== */
-/* HOVER ENTRA */
-/* ====================================================== */
 
 .pulsante_entra:hover {
   transform: scale(1.04);
 }
 
-/* ====================================================== */
-/* CLICK ENTRA */
-/* ====================================================== */
-
 .pulsante_entra:active {
   transform: scale(0.97);
 }
 
-/* ====================================================== */
-/* TESTO ENTRA */
-/* ====================================================== */
-
 .testo_pulsante_entra {
   width: 100%;
-
   position: absolute;
-
   top: 1.66vw;
   left: 0;
-
   color: rgba(255, 255, 255, 1);
-
   font-family: Inter, sans-serif;
-
   font-weight: 500;
-
   font-size: 1.66vw;
-
   text-align: center;
-
   pointer-events: none;
 }
 
-/* ====================================================== */
-/* ====================================================== */
-/* */
-/* PANNELLO AMMINISTRATORE */
-/* */
-/* ====================================================== */
-/* ====================================================== */
-
 .pannello_amministratore {
   width: 100%;
-
-  height: 100vh;
-
+  min-height: 100vh;
   position: absolute;
-
   top: 0;
   left: 0;
-
-  overflow: hidden;
-
+  overflow: visible;
   z-index: 5;
 }
-
-/* ====================================================== */
-/* TITOLO PANNELLO */
-/* ====================================================== */
 
 .titolo_pannello_amministratore {
   width: 41.6667vw;
   height: 4.2708vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 6.25vw;
   left: 2.3438vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 800;
-
-  font-style: normal;
-
   font-size: 3.3333vw;
-
   text-align: left;
 }
-
-/* ====================================================== */
-/* SEPARATORE TITOLO */
-/* ====================================================== */
 
 .separatore_titolo {
   width: 94.7917vw;
   height: 0.2604vw;
-
   background: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 11.3021vw;
   left: 2.3438vw;
-
-  overflow: hidden;
 }
 
-/* ====================================================== */
-/* SELETTORE */
-/* ====================================================== */
-
-.selettore {
+.selettore_pannello {
   width: 39.0104vw;
   height: 3.6458vw;
-
+  background: url("../assets/pannello_amministratore/v2140_67.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   position: absolute;
-
   top: 13.1771vw;
-  left: 2.3438vw;
-
-  overflow: hidden;
+  left: 2.4479vw;
+  overflow: visible;
+  z-index: 30;
 }
 
-/* ====================================================== */
-/* IMPOSTAZIONI */
-/* ====================================================== */
+.pulsante_impostazioni,
+.pulsante_notizie,
+.pulsante_eventi {
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.1s ease;
+}
 
-.selettore_impostazioni {
-  width: 14.3229vw;
-  height: 3.6458vw;
+.pulsante_impostazioni:active,
+.pulsante_notizie:active,
+.pulsante_eventi:active {
+  transform: scale(0.97);
+}
 
+.pulsante_impostazioni {
+  width: 16.92vw;
+  height: 2.29vw;
   position: absolute;
-
+  left: 0vw;
   top: 0;
-  left: 0;
+}
+
+.testo_selettore_impostazioni {
+  width: 14.3229vw;
+  color: rgba(166, 166, 166, 1);
+  position: absolute;
+  top: 0.5729vw;
+  left: 2.6042vw;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 2.0833vw;
+  text-align: left;
 }
 
 .icona_selettore_impostazioni {
   width: 2.0833vw;
   height: 2.0833vw;
-
-  background: url("../assets/pannello_amministratore/icona_impostazioni.svg");
-
+  background: url("../assets/pannello_amministratore/icona_impostazioni_disattiva.svg");
   background-repeat: no-repeat;
-
   background-position: center;
-
   background-size: contain;
-
   position: absolute;
-
   top: 0.7813vw;
   left: 0;
 }
 
-.testo_selettore_impostazioni {
-  width: 14.3229vw;
-
-  color: rgba(41, 41, 41, 1);
-
-  position: absolute;
-
-  top: 0.5729vw;
-  left: 2.6042vw;
-
-  font-family: Inter, sans-serif;
-
-  font-weight: 700;
-
-  font-size: 2.0833vw;
-
-  text-align: left;
-}
-
-/* ====================================================== */
-/* SEPARATORE 1 */
-/* ====================================================== */
-
-.separatore_1 {
+.separatore_selettore_1 {
   width: 0.0521vw;
   height: 3.6458vw;
-
   background: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 0;
   left: 17.3958vw;
-
-  overflow: hidden;
 }
 
-/* ====================================================== */
-/* NEWS SELETTORE */
-/* ====================================================== */
-
-.selettore_news {
-  width: 6.5104vw;
-  height: 3.6458vw;
-
+.pulsante_notizie {
+  width: 16.92vw;
+  height: 2.29vw;
   position: absolute;
-
+  left: 18.43vw;
   top: 0;
-  left: 18.9583vw;
+}
+
+.testo_selettore_news {
+  width: 6.5104vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0.5729vw;
+  left: 2.6vw;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 2.0833vw;
+  text-align: left;
 }
 
 .icona_selettore_news {
   width: 2.0833vw;
   height: 2.0833vw;
-
-  background: url("../assets/pannello_amministratore/icona_notizie.svg");
-
+  background: url("../assets/pannello_amministratore/icona_notizie_disattiva.svg");
   background-repeat: no-repeat;
-
   background-position: center;
-
   background-size: contain;
-
   position: absolute;
-
   top: 0.7813vw;
   left: 0;
 }
 
-.testo_selettore_news {
-  width: 6.5104vw;
-
-  color: rgba(166, 166, 166, 1);
-
-  position: absolute;
-
-  top: 0.5729vw;
-  left: 2.6042vw;
-
-  font-family: Inter, sans-serif;
-
-  font-weight: 700;
-
-  font-size: 2.0833vw;
-
-  text-align: left;
-}
-
-/* ====================================================== */
-/* SEPARATORE 2 */
-/* ====================================================== */
-
-.separatore_2 {
+.separatore_selettore_2 {
   width: 0.0521vw;
   height: 3.6458vw;
-
   background: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 0;
   left: 28.0208vw;
-
-  overflow: hidden;
 }
 
-/* ====================================================== */
-/* EVENTI */
-/* ====================================================== */
-
-.selettore_eventi {
-  width: 7.3438vw;
-  height: 3.6458vw;
-
+.pulsante_eventi {
+  width: 16.92vw;
+  height: 2.29vw;
   position: absolute;
-
+  left: 29.06vw;
   top: 0;
-  left: 29.1667vw;
 }
 
 .icona_selettore_eventi {
   width: 2.0833vw;
   height: 2.0833vw;
-
-  background: url("../assets/pannello_amministratore/icona_calendario.svg");
-
+  background: url("../assets/pannello_amministratore/icona_calendario_disattiva.svg");
   background-repeat: no-repeat;
-
   background-position: center;
-
   background-size: contain;
-
   position: absolute;
-
   top: 0.7813vw;
   left: 0;
 }
 
 .testo_selettore_eventi {
   width: 7.3438vw;
-
-  color: rgba(166, 166, 166, 1);
-
+  color: rgba(134, 134, 134, 1);
   position: absolute;
-
   top: 0.5729vw;
-  left: 2.6042vw;
-
+  left: 2.6vw;
   font-family: Inter, sans-serif;
-
   font-weight: 700;
-
   font-size: 2.0833vw;
-
   text-align: left;
 }
 
-/* ====================================================== */
-/* SEZIONE BLOCCA PAGINA */
-/* ====================================================== */
+.contenuto_sezione_amministratore {
+  width: 100%;
+  position: absolute;
+  top: 20.0521vw;
+  left: 0;
+}
 
 .sezione_blocca_pagina {
   width: 87.6563vw;
   height: 21.1458vw;
-
   position: absolute;
-
-  top: 20.0521vw;
+  top: 0;
   left: 2.3438vw;
 }
-
-/* ====================================================== */
-/* TITOLO SEZIONE */
-/* ====================================================== */
 
 .titolo_sezione_blocca_pagina {
   width: 25.5208vw;
   height: 3.0208vw;
-
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 0;
   left: 0.2604vw;
-
   font-family: Inter, sans-serif;
-
   font-weight: 700;
-
   font-size: 2.6042vw;
-
   text-align: left;
 }
 
-/* ====================================================== */
-/* PAGINA HOME */
-/* ====================================================== */
-
-.pulsante_home {
-  width: 26.0938vw;
-  height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
-  position: absolute;
-
-  top: 5.4688vw;
-  left: 1.9271vw;
-
-  overflow: hidden;
-}
-
-/* ====================================================== */
-/* UNISCITI A NOI */
-/* ====================================================== */
-
-.pulsante_unisciti_a_noi {
-  width: 26.0938vw;
-  height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
-  position: absolute;
-
-  top: 5.4688vw;
-  left: 31.875vw;
-
-  overflow: hidden;
-}
-
-/* ====================================================== */
-/* STORIA */
-/* ====================================================== */
-
+.pulsante_home,
+.pulsante_unisciti_a_noi,
 .pulsante_storia {
   width: 26.0938vw;
   height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
   position: absolute;
-
-  top: 5.4688vw;
-  left: 61.9792vw;
-
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   overflow: hidden;
 }
 
-/* ====================================================== */
-/* INFO E ORARI */
-/* ====================================================== */
+.pulsante_home {
+  background-image: url("../assets/pannello_amministratore/v2135_109.png");
+  top: 5.4688vw;
+  left: 1.9271vw;
+}
+
+.pulsante_unisciti_a_noi {
+  background-image: url("../assets/pannello_amministratore/v2135_110.png");
+  top: 5.4688vw;
+  left: 31.875vw;
+}
+
+.pulsante_storia {
+  background-image: url("../assets/pannello_amministratore/v2135_111.png");
+  top: 5.4688vw;
+  left: 61.9792vw;
+}
 
 .pulsante_info_e_orari {
   width: 26.0938vw;
   height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
   position: absolute;
-
+  background: url("../assets/pannello_amministratore/v2135_112.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   top: 11.4583vw;
   left: 1.9271vw;
-
   overflow: hidden;
 }
-
-/* ====================================================== */
-/* SHOKU GEIKO */
-/* ====================================================== */
 
 .pulsante_shoku_geiko {
   width: 26.0938vw;
   height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
   position: absolute;
-
+  background: url("../assets/pannello_amministratore/v2135_113.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   top: 11.4583vw;
   left: 31.875vw;
-
   overflow: hidden;
 }
-
-/* ====================================================== */
-/* NEWS */
-/* ====================================================== */
 
 .pulsante_news {
   width: 26.0938vw;
   height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
   position: absolute;
-
+  background: url("../assets/pannello_amministratore/v2135_114.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   top: 11.4583vw;
   left: 61.9792vw;
-
   overflow: hidden;
 }
-
-/* ====================================================== */
-/* CALENDARIO EVENTI */
-/* ====================================================== */
 
 .pulsante_calendario_eventi {
   width: 27.7604vw;
   height: 3.6979vw;
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  background-size: cover;
-
   position: absolute;
-
+  background: url("../assets/pannello_amministratore/v2135_115.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   top: 17.4479vw;
   left: 0.2604vw;
-
   overflow: hidden;
 }
-
-/* ====================================================== */
-/* TESTI PAGINE */
-/* ====================================================== */
 
 .testo_pulsante_home,
 .testo_pulsante_unisciti_a_noi,
@@ -878,20 +511,13 @@ body {
 .testo_pulsante_news,
 .testo_pulsante_calendario_eventi {
   color: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 0.7292vw;
   left: 0;
-
   font-family: Inter, sans-serif;
-
   font-weight: 700;
-
   font-size: 1.6667vw;
-
   text-align: center;
-
   text-decoration: underline;
 }
 
@@ -908,94 +534,53 @@ body {
   width: 14.7396vw;
 }
 
-/* ====================================================== */
-/* PULSANTE BLOCCA */
-/* ====================================================== */
-
 .pulsante_blocca {
   width: 11.5625vw;
   height: 3.6979vw;
-
   position: absolute;
-
   top: 0;
   left: 14.5313vw;
-
   overflow: hidden;
-
   cursor: pointer;
-
   z-index: 10;
 }
 
 .sfondo_pulsante_blocca {
   width: 11.5625vw;
   height: 3.6979vw;
-
   background: rgba(41, 41, 41, 1);
-
   position: absolute;
-
   top: 0;
   left: 0;
-
   border-radius: 0.3125vw;
-
   box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
-
   transition:
     background 0.15s ease,
     border 0.15s ease,
     box-shadow 0.15s ease;
 }
 
-/* ====================================================== */
-/* TESTO PULSANTE BLOCCA */
-/* ====================================================== */
-
 .testo_pulsante_blocca {
   width: 100%;
   height: 100%;
-
   color: rgba(255, 255, 255, 1);
-
   position: absolute;
-
   top: 0;
   left: 0;
-
   font-family: Inter, sans-serif;
-
   font-weight: 500;
-
   font-size: 1.6667vw;
-
   text-align: center;
-
   text-decoration: none;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   transition: color 0.15s ease;
 }
 
-/* ====================================================== */
-/* ====================================================== */
-/* */
-/* STATO BLOCCATO */
-/* */
-/* ====================================================== */
-/* ====================================================== */
-
 .pulsante_blocca.attivo .sfondo_pulsante_blocca {
   background: #ffffff;
-
   border: 0.2083vw solid #2a2a2a;
-
   box-shadow: none;
 }
 
@@ -1003,26 +588,394 @@ body {
   color: #2a2a2a;
 }
 
-/* ====================================================== */
-/* HOVER BLOCCATO */
-/* ====================================================== */
-
-.pulsante_blocca.attivo:hover .sfondo_pulsante_blocca {
-  background: #ffffff;
-}
-
-/* ====================================================== */
-/* CLICK BLOCCA */
-/* ====================================================== */
-
 .pulsante_blocca:active {
   transform: scale(0.97);
 }
 
-/* ====================================================== */
-/* CALENDARIO */
-/* ====================================================== */
-
 .pulsante_blocca_calendario {
   left: 16.1979vw;
+}
+
+/* ====================================================== */
+/* NEWS */
+/* ====================================================== */
+
+#sezioneNews {
+  top: 0;
+  min-height: 162.6042vw;
+  overflow: visible;
+}
+
+.pannello_creazione_notizia {
+  width: 100%;
+  height: 67.7604vw;
+  background: url("../assets/pannello_amministratore/v2213_62.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 20.05vw;
+  left: 2.6042vw;
+  overflow: hidden;
+}
+
+
+.titolo_pannello_creazione_notizia {
+  width: 25.3125vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 2.6042vw;
+  text-align: left;
+}
+
+.testo_titolo_notizia {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 5.3125vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.titolo_notizia_admin {
+  width: 100%;
+  height: 3.3854vw;
+  position: absolute;
+  top: 8.3854vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.sfondo_casella_titolo_notizia {
+  width: 53.5938vw;
+  height: 3.3854vw;
+  background: rgba(217, 217, 217, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+}
+
+.testo_casella_titolo_notizia {
+  width: 25.4167vw;
+  color: rgba(166, 166, 166, 1);
+  position: absolute;
+  top: 0.625vw;
+  left: 0.4167vw;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 1.25vw;
+  text-align: left;
+}
+
+.etichetta_data {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 13.5938vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.contenitore_data {
+  width: 19.2708vw;
+  height: 2.7604vw;
+  background: url("../assets/pannello_amministratore/v2138_42.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 18.0729vw;
+  left: 5.4688vw;
+  overflow: hidden;
+}
+
+.testo_giorno,
+.testo_mese,
+.testo_anno {
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.6042vw;
+  text-align: center;
+}
+
+.testo_giorno {
+  width: 3.4375vw;
+  left: 0;
+}
+
+.separatore_data_1 {
+  width: 0.1042vw;
+  height: 2.7604vw;
+  background: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 4.7917vw;
+}
+
+.testo_mese {
+  width: 3.4375vw;
+  left: 6.3021vw;
+}
+
+.separatore_data_2 {
+  width: 0.1042vw;
+  height: 2.7604vw;
+  background: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 11.0938vw;
+}
+
+.testo_anno {
+  width: 6.6667vw;
+  left: 12.6042vw;
+}
+
+.etichetta_immagini {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 22.1875vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.pulsante_carica_immagini {
+  width: 11.25vw;
+  height: 3.6458vw;
+  background: url("../assets/pannello_amministratore/v2237_62.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 26.6146vw;
+  left: 9.4792vw;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sfondo_pulsante_immagini_1 {
+  width: 11.25vw;
+  height: 3.6458vw;
+  background: url("../assets/pannello_amministratore/v2135_304.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sfondo_pulsante_immagini_2 {
+  width: 11.25vw;
+  height: 3.6458vw;
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0.1562vw solid rgba(41, 41, 41, 1);
+  border-radius: 0.3125vw;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+}
+
+.icona_pulsante_immagini {
+  width: 2.08vw;
+  height: 2.08vw;
+  position: absolute;
+  top: 0.78vw;
+  left: 4.5vw;
+  background: url("../assets/pannello_amministratore/icona_carica_immagine_notizia.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.etichetta_testo {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 32.7604vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.contenitore_testo_notizia {
+  width: 100%;
+  height: 24.3229vw;
+  position: absolute;
+  top: 35.8333vw;
+  left: 0.1042vw;
+  overflow: hidden;
+}
+
+.sfondo_casella_testo_notizia {
+  width: 94.5833vw;
+  height: 24.3229vw;
+  background: rgba(217, 217, 217, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+}
+
+.testo_casella_testo_notizia {
+  width: 100%;
+  color: rgba(166, 166, 166, 1);
+  position: absolute;
+  top: 0.5208vw;
+  left: 2.0312vw;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 1.25vw;
+  text-align: left;
+}
+
+.pulsante_salva_bozza {
+  width: 22.8125vw;
+  height: 4.375vw;
+  position: absolute;
+  top: 63.3854vw;
+  left: 27.5vw;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sfondo_pulsante_salva_bozza {
+  width: 22.8125vw;
+  height: 4.375vw;
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0.2083vw solid rgba(41, 41, 41, 1);
+  border-radius: 0.3125vw;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+}
+
+.testo_pulsante_salva_bozza {
+  width: 14.4271vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 1.3021vw;
+  left: 4.1667vw;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 1.6667vw;
+  text-align: center;
+}
+
+.pulsante_pubblica {
+  width: 13.6979vw;
+  height: 4.375vw;
+  position: absolute;
+  top: 63.3854vw;
+  left: 53.5417vw;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sfondo_pulsante_pubblica {
+  width: 13.6979vw;
+  height: 4.375vw;
+  background: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0.3125vw;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+}
+
+.testo_pulsante_pubblica {
+  width: 8.6979vw;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 1.3021vw;
+  left: 2.5vw;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 1.6667vw;
+  text-align: center;
+}
+
+.pannello_notizie {
+  width: 100%;
+  height: 67.3438vw;
+  background: url("../assets/pannello_amministratore/v2140_46.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 92.44vw;
+  left: 2.6042vw;
+  overflow: hidden;
+}
+
+.titolo_pannello_notizie {
+  width: 21.6667vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.pulsante_carica_altro {
+  width: 15.5208vw;
+  height: 4.1146vw;
+  background: url("../assets/pannello_amministratore/v2136_41.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 63.2292vw;
+  left: 39.6354vw;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.testo_pulsante_carica_altro {
+  width: 15.5208vw;
+  color: rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 1.6667vw;
+  text-align: center;
+}
+
+.icona_pulsante_carica_altro {
+  width: 2.08vw;
+  height: 2.08vw;
+  background: url("../assets/pannello_amministratore/icona_carica_altro.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: 2.29vw;
+  left: 7vw;
 }
