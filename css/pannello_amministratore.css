@@ -885,6 +885,36 @@ body {
   opacity: 1;
 }
 
+
+/* ====================================================== */
+/* ERRORE PUBBLICAZIONE */
+/* ====================================================== */
+
+.errore_pubblicazione {
+  width: 65vw;
+  min-height: 1.8vw;
+  position: absolute;
+  top: 60.15vw;
+  left: 14.8vw;
+  color: #ff5b5b;
+  font-family: Inter, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  display: none;
+  z-index: 50;
+}
+
+.errore_pubblicazione.visibile {
+  display: block;
+}
+
+
+/* ====================================================== */
+/* PULSANTE SALVA BOZZA */
+/* ====================================================== */
+
 .pulsante_salva_bozza {
   width: 22.8125vw;
   height: 4.375vw;
@@ -918,6 +948,11 @@ body {
   font-size: 1.6667vw;
   text-align: center;
 }
+
+
+/* ====================================================== */
+/* PULSANTE PUBBLICA */
+/* ====================================================== */
 
 .pulsante_pubblica {
   width: 13.6979vw;

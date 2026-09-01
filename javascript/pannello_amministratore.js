@@ -101,6 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputAnno =
     document.getElementById("inputAnno");
 
+  const pulsantePubblica =
+    document.getElementById("pulsantePubblica");
+
+  const errorePubblicazione =
+    document.getElementById("errorePubblicazione");
+
 
   const pannelloCreazioneNotizia =
     document.querySelector(
@@ -136,9 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
     !inputGiorno ||
     !inputMese ||
     !inputAnno ||
+    !pulsantePubblica ||
+    !errorePubblicazione ||
     !pannelloCreazioneNotizia ||
     !pannelloNotizie
   ) {
+
     console.error(
       "Uno o più elementi HTML non sono stati trovati."
     );
@@ -156,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ====================================================== */
-  /* ERRORI */
+  /* ERRORI ACCESSO */
   /* ====================================================== */
 
   function mostraErrore(messaggio) {
@@ -171,6 +180,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
     errore.textContent = "";
     errore.style.display = "none";
+
+  }
+
+
+  /* ====================================================== */
+  /* ERRORI PUBBLICAZIONE */
+  /* ====================================================== */
+
+  function mostraErrorePubblicazione(messaggi) {
+
+    if (!errorePubblicazione) {
+      return;
+    }
+
+
+    if (!messaggi || messaggi.length === 0) {
+
+      errorePubblicazione.textContent = "";
+
+      errorePubblicazione.classList.remove(
+        "visibile"
+      );
+
+      return;
+
+    }
+
+
+    /*
+     * Ogni errore viene messo
+     * su una riga separata.
+     */
+
+    errorePubblicazione.innerHTML =
+      messaggi
+        .map(
+          (messaggio) =>
+            `<div>${escapeHTML(messaggio)}</div>`
+        )
+        .join("");
+
+
+    errorePubblicazione.classList.add(
+      "visibile"
+    );
+
+  }
+
+
+  function nascondiErrorePubblicazione() {
+
+    if (!errorePubblicazione) {
+      return;
+    }
+
+    errorePubblicazione.textContent = "";
+
+    errorePubblicazione.classList.remove(
+      "visibile"
+    );
+
+  }
+
+
+  /*
+   * Protegge il testo degli errori
+   * prima di inserirlo con innerHTML.
+   */
+
+  function escapeHTML(testo) {
+
+    return String(testo)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
   }
 
@@ -327,7 +413,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo(0, 0);
 
       return;
-
     }
 
 
@@ -342,7 +427,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo(0, 0);
 
       return;
-
     }
 
 
@@ -676,6 +760,8 @@ document.addEventListener("DOMContentLoaded", () => {
         2
       );
 
+      nascondiErrorePubblicazione();
+
     }
   );
 
@@ -689,6 +775,8 @@ document.addEventListener("DOMContentLoaded", () => {
         2
       );
 
+      nascondiErrorePubblicazione();
+
     }
   );
 
@@ -701,6 +789,8 @@ document.addEventListener("DOMContentLoaded", () => {
         inputAnno,
         4
       );
+
+      nascondiErrorePubblicazione();
 
     }
   );
@@ -729,24 +819,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ) || 0;
 
 
-    /*
-     * Prima riportiamo l'altezza
-     * al minimo.
-     *
-     * Questo è fondamentale:
-     * in questo modo ogni ricalcolo
-     * parte sempre dalla dimensione
-     * originale e non dalla precedente.
-     */
-
     elemento.style.height =
       `${altezzaMinima}px`;
 
-
-    /*
-     * Leggiamo l'altezza realmente
-     * necessaria al contenuto.
-     */
 
     const altezzaNecessaria =
       elemento.scrollHeight;
@@ -759,19 +834,9 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    /*
-     * Applichiamo la nuova altezza.
-     */
-
     elemento.style.height =
       `${altezzaEffettiva}px`;
 
-
-    /*
-     * Restituiamo solamente
-     * la parte che supera
-     * l'altezza originale.
-     */
 
     return Math.max(
       0,
@@ -783,7 +848,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ====================================================== */
-  /* AGGIORNA COMPLETAMENTE IL LAYOUT DELLA NEWS */
+  /* AGGIORNA LAYOUT NEWS */
   /* ====================================================== */
 
   function aggiornaLayoutNotizia() {
@@ -798,26 +863,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /*
-     * ==================================================
-     * 1. DIMENSIONE TITOLO
-     * ==================================================
-     */
-
     const spostamentoTitolo =
       adattaCampoTesto(
         inputTitoloNotizia
       );
 
-
-    /*
-     * ==================================================
-     * 2. DIMENSIONE TESTO
-     * ==================================================
-     *
-     * Il testo viene calcolato separatamente.
-     * Non sommiamo ancora gli spostamenti.
-     */
 
     const spostamentoTesto =
       adattaCampoTesto(
@@ -825,23 +875,14 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    /*
-     * ==================================================
-     * 3. SPOSTAMENTO TOTALE
-     * ==================================================
-     */
-
     const spostamentoTotale =
       spostamentoTitolo +
       spostamentoTesto;
 
 
-    /*
-     * ==================================================
-     * ELEMENTI CHE DEVONO SCENDERE
-     * QUANDO SI ESPANDE IL TITOLO
-     * ==================================================
-     */
+    /* ================================================== */
+    /* ELEMENTI SOTTO IL TITOLO */
+    /* ================================================== */
 
     const elementiSottoTitolo = [
 
@@ -913,12 +954,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /*
-         * TUTTI questi elementi
-         * ricevono esclusivamente
-         * lo spostamento del titolo.
-         */
-
         elemento.style.top =
           `calc(${top} + ${spostamentoTitolo}px)`;
 
@@ -926,30 +961,13 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /*
-     * ==================================================
-     * ELEMENTI CHE DEVONO SCENDERE
-     * QUANDO SI ESPANDE IL TESTO
-     * ==================================================
-     *
-     * Questi elementi si trovano
-     * sotto la casella del testo.
-     *
-     * Perciò devono subire:
-     *
-     *     titolo + testo
-     *
-     */
+    /* ================================================== */
+    /* ELEMENTI SOTTO IL TESTO */
+    /* ================================================== */
 
     const pulsanteSalvaBozza =
       document.querySelector(
         ".pulsante_salva_bozza"
-      );
-
-
-    const pulsantePubblica =
-      document.querySelector(
-        ".pulsante_pubblica"
       );
 
 
@@ -969,38 +987,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* ================================================== */
+    /* ERRORE PUBBLICAZIONE */
+    /* ================================================== */
+
     /*
-     * ==================================================
-     * ALTEZZA PANNELLO CREAZIONE
-     * ==================================================
+     * Anche il messaggio deve seguire
+     * l'espansione della casella di testo.
      */
+
+    if (errorePubblicazione) {
+
+      errorePubblicazione.style.top =
+        `calc(60.15vw + ${spostamentoTotale}px)`;
+
+    }
+
+
+    /* ================================================== */
+    /* ALTEZZA PANNELLO CREAZIONE */
+    /* ================================================== */
 
     pannelloCreazioneNotizia.style.height =
       `calc(67.7604vw + ${spostamentoTotale}px)`;
 
 
-    /*
-     * ==================================================
-     * PANNELLO NOTIZIE
-     * ==================================================
-     *
-     * Anche questo pannello deve scendere
-     * della somma dei due spostamenti.
-     */
+    /* ================================================== */
+    /* PANNELLO NOTIZIE */
+    /* ================================================== */
 
     pannelloNotizie.style.top =
       `calc(92.44vw + ${spostamentoTotale}px)`;
 
 
-    /*
-     * ==================================================
-     * ALTEZZA SEZIONE NEWS
-     * ==================================================
-     *
-     * Evita che il contenuto venga
-     * tagliato quando il pannello
-     * diventa più alto.
-     */
+    /* ================================================== */
+    /* ALTEZZA SEZIONE NEWS */
+    /* ================================================== */
 
     sezioneNews.style.minHeight =
       `calc(162.6042vw + ${spostamentoTotale}px)`;
@@ -1009,12 +1031,217 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ====================================================== */
-  /* INPUT TITOLO */
+  /* VALIDAZIONE DATA */
+  /* ====================================================== */
+
+  function dataValida() {
+
+    const giorno =
+      inputGiorno.value.trim();
+
+    const mese =
+      inputMese.value.trim();
+
+    const anno =
+      inputAnno.value.trim();
+
+
+    /*
+     * Tutti i campi devono essere presenti.
+     */
+
+    if (
+      giorno === "" ||
+      mese === "" ||
+      anno === ""
+    ) {
+      return false;
+    }
+
+
+    /*
+     * Controlliamo il numero di cifre.
+     */
+
+    if (
+      !/^\d{2}$/.test(giorno) ||
+      !/^\d{2}$/.test(mese) ||
+      !/^\d{4}$/.test(anno)
+    ) {
+      return false;
+    }
+
+
+    const giornoNumero =
+      Number(giorno);
+
+    const meseNumero =
+      Number(mese);
+
+    const annoNumero =
+      Number(anno);
+
+
+    /*
+     * Controlli di base.
+     */
+
+    if (
+      annoNumero < 1 ||
+      meseNumero < 1 ||
+      meseNumero > 12 ||
+      giornoNumero < 1 ||
+      giornoNumero > 31
+    ) {
+      return false;
+    }
+
+
+    /*
+     * Controllo reale del calendario.
+     *
+     * Questo rende non valide,
+     * per esempio:
+     *
+     * 31/02/2026
+     * 31/04/2026
+     * 29/02/2025
+     *
+     */
+
+    const data =
+      new Date(
+        annoNumero,
+        meseNumero - 1,
+        giornoNumero
+      );
+
+
+    return (
+      data.getFullYear() === annoNumero &&
+      data.getMonth() === meseNumero - 1 &&
+      data.getDate() === giornoNumero
+    );
+
+  }
+
+
+  /* ====================================================== */
+  /* VALIDAZIONE PUBBLICAZIONE */
+  /* ====================================================== */
+
+  function validaPubblicazione() {
+
+    const errori = [];
+
+
+    /*
+     * TITOLO
+     */
+
+    if (
+      inputTitoloNotizia.value.trim() === ""
+    ) {
+
+      errori.push(
+        "Inserisci il titolo della notizia."
+      );
+
+    }
+
+
+    /*
+     * TESTO
+     */
+
+    if (
+      inputTestoNotizia.value.trim() === ""
+    ) {
+
+      errori.push(
+        "Inserisci il testo della notizia."
+      );
+
+    }
+
+
+    /*
+     * DATA
+     */
+
+    if (!dataValida()) {
+
+      errori.push(
+        "Inserisci una data valida."
+      );
+
+    }
+
+
+    return errori;
+
+  }
+
+
+  /* ====================================================== */
+  /* PULSANTE PUBBLICA */
+  /* ====================================================== */
+
+  pulsantePubblica.addEventListener(
+    "click",
+    (event) => {
+
+      event.preventDefault();
+
+
+      const errori =
+        validaPubblicazione();
+
+
+      /*
+       * Se ci sono errori:
+       * li mostriamo e NON facciamo
+       * alcuna pubblicazione.
+       */
+
+      if (errori.length > 0) {
+
+        mostraErrorePubblicazione(
+          errori
+        );
+
+        aggiornaLayoutNotizia();
+
+        return;
+
+      }
+
+
+      /*
+       * Per ora non succede nulla:
+       * la pubblicazione vera e propria
+       * verrà aggiunta successivamente.
+       */
+
+      nascondiErrorePubblicazione();
+
+      console.log(
+        "Validazione pubblicazione superata."
+      );
+
+    }
+  );
+
+
+  /* ====================================================== */
+  /* CAMBIO INPUT: NASCONDE ERRORE */
   /* ====================================================== */
 
   inputTitoloNotizia.addEventListener(
     "input",
     () => {
+
+      nascondiErrorePubblicazione();
 
       aggiornaLayoutNotizia();
 
@@ -1022,13 +1249,11 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
-  /* INPUT TESTO */
-  /* ====================================================== */
-
   inputTestoNotizia.addEventListener(
     "input",
     () => {
+
+      nascondiErrorePubblicazione();
 
       aggiornaLayoutNotizia();
 
@@ -1039,15 +1264,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ====================================================== */
   /* RESIZE OBSERVER */
   /* ====================================================== */
-  /*
-   * Intercetta anche i cambiamenti di dimensione
-   * effettivi dei textarea.
-   *
-   * È utile in particolare dopo il caricamento
-   * del font, durante il ridimensionamento della
-   * finestra o quando il browser modifica
-   * il rendering del testo.
-   */
 
   if ("ResizeObserver" in window) {
 
@@ -1105,13 +1321,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
   );
-
-
-  /*
-   * NON blocchiamo ENTER nel titolo:
-   * essendo una textarea può andare
-   * a capo normalmente.
-   */
 
 
   /* ====================================================== */
@@ -1421,14 +1630,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sezioneImpostazioni
   );
 
-
-  /*
-   * Ricalcolo dopo il caricamento dei font.
-   * Questo evita che eventuali variazioni
-   * del font modifichino successivamente
-   * l'altezza dei textarea senza spostare
-   * gli elementi sotto.
-   */
 
   if (document.fonts) {
 
