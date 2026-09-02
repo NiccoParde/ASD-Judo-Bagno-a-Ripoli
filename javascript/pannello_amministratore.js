@@ -9,17 +9,55 @@ import {
   collection,
   query,
   setDoc,
+  addDoc,
+  Timestamp,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import { auth, db } from "./firebase-config.js";
 
 
+/* ====================================================== */
+/* CONFIGURAZIONE LOGIN */
+/* ====================================================== */
+
 const URL_WORKER_LOGIN =
   "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
+
+
+/* ====================================================== */
+/* CONFIGURAZIONE FIRESTORE */
+/* ====================================================== */
 
 const COLLECTION_BLOCCO_PAGINE =
   "blocco_pagine";
 
+const COLLECTION_NEWS =
+  "news";
+
+
+/* ====================================================== */
+/* CONFIGURAZIONE IMAGEKIT */
+/* ====================================================== */
+
+const IMAGEKIT_PUBLIC_KEY =
+  "public_XGdQD6vo7Mo9P0AsfeKrHkJoXh8=";
+
+const IMAGEKIT_AUTHENTICATION_ENDPOINT =
+  "https://imagekit-auth.judobagnoaripoli.workers.dev";
+
+const IMAGEKIT_UPLOAD_ENDPOINT =
+  "https://upload.imagekit.io/api/v1/files/upload";
+
+const IMAGEKIT_FOLDER_NEWS =
+  "/news";
+
+const IMAGEKIT_MAX_FILE_SIZE =
+  25 * 1024 * 1024;
+
+
+/* ====================================================== */
+/* AVVIO */
+/* ====================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -108,15 +146,67 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("errorePubblicazione");
 
 
+  const pulsanteCaricaImmagini =
+    document.querySelector(
+      ".pulsante_carica_immagini"
+    );
+
+
+  const pulsanteSalvaBozza =
+    document.querySelector(
+      ".pulsante_salva_bozza"
+    );
+
+
   const pannelloCreazioneNotizia =
     document.querySelector(
       ".pannello_creazione_notizia"
     );
 
+
   const pannelloNotizie =
     document.querySelector(
       ".pannello_notizie"
     );
+
+
+  /* ====================================================== */
+  /* STATO IMMAGINE */
+  /* ====================================================== */
+
+  /*
+   * IMPORTANTE:
+   *
+   * L'immagine NON viene più caricata immediatamente
+   * su ImageKit.
+   *
+   * Conserviamo solamente il File selezionato nel browser.
+   *
+   * L'upload su ImageKit avverrà esclusivamente quando
+   * l'utente pubblicherà la notizia oppure la salverà
+   * come bozza.
+   */
+
+  let fileImmagineNotizia = null;
+
+  let immagineNotizia = "";
+
+  let nomeImmagineNotizia = "";
+
+  let fileInputImmagine = null;
+
+  let caricamentoImmagineInCorso = false;
+
+
+  /* ====================================================== */
+  /* BOX IMMAGINE */
+  /* ====================================================== */
+
+  let boxImmagineNotizia = null;
+
+  let testoNomeImmagineNotizia = null;
+
+  let pulsanteRimuoviImmagine = null;
 
 
   /* ====================================================== */
@@ -160,8 +250,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* STATO INIZIALE */
   /* ====================================================== */
 
-  pannelloAccesso.style.display = "none";
-  pannelloAmministratore.style.display = "none";
+  pannelloAccesso.style.display =
+    "none";
+
+  pannelloAmministratore.style.display =
+    "none";
 
 
   /* ====================================================== */
@@ -170,17 +263,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function mostraErrore(messaggio) {
 
-    errore.textContent = messaggio;
-    errore.style.display = "block";
+    errore.textContent =
+      messaggio;
 
+    errore.style.display =
+      "block";
   }
 
 
   function nascondiErrore() {
 
-    errore.textContent = "";
-    errore.style.display = "none";
+    errore.textContent =
+      "";
 
+    errore.style.display =
+      "none";
+  }
+
+
+  /* ====================================================== */
+  /* ESCAPE HTML */
+  /* ====================================================== */
+
+  function escapeHTML(testo) {
+
+    return String(testo)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 
 
@@ -188,30 +300,30 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ERRORI PUBBLICAZIONE */
   /* ====================================================== */
 
-  function mostraErrorePubblicazione(messaggi) {
+  function mostraErrorePubblicazione(
+    messaggi
+  ) {
 
     if (!errorePubblicazione) {
       return;
     }
 
 
-    if (!messaggi || messaggi.length === 0) {
+    if (
+      !messaggi ||
+      messaggi.length === 0
+    ) {
 
-      errorePubblicazione.textContent = "";
+      errorePubblicazione.textContent =
+        "";
 
       errorePubblicazione.classList.remove(
         "visibile"
       );
 
       return;
-
     }
 
-
-    /*
-     * Ogni errore viene messo
-     * su una riga separata.
-     */
 
     errorePubblicazione.innerHTML =
       messaggi
@@ -222,12 +334,43 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("");
 
 
+    errorePubblicazione.style.color =
+      "#ff5b5b";
+
     errorePubblicazione.classList.add(
       "visibile"
     );
-
   }
 
+
+  /* ====================================================== */
+  /* MESSAGGIO SUCCESSO */
+  /* ====================================================== */
+
+  function mostraMessaggioPubblicazione(
+    messaggio
+  ) {
+
+    if (!errorePubblicazione) {
+      return;
+    }
+
+
+    errorePubblicazione.textContent =
+      messaggio;
+
+    errorePubblicazione.style.color =
+      "#2e8b57";
+
+    errorePubblicazione.classList.add(
+      "visibile"
+    );
+  }
+
+
+  /* ====================================================== */
+  /* NASCONDI MESSAGGIO */
+  /* ====================================================== */
 
   function nascondiErrorePubblicazione() {
 
@@ -235,29 +378,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    errorePubblicazione.textContent = "";
+
+    errorePubblicazione.textContent =
+      "";
+
+    errorePubblicazione.style.color =
+      "#ff5b5b";
 
     errorePubblicazione.classList.remove(
       "visibile"
     );
-
-  }
-
-
-  /*
-   * Protegge il testo degli errori
-   * prima di inserirlo con innerHTML.
-   */
-
-  function escapeHTML(testo) {
-
-    return String(testo)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
   }
 
 
@@ -269,18 +399,20 @@ document.addEventListener("DOMContentLoaded", () => {
     "click",
     () => {
 
-      inputPassword.type = "text";
+      inputPassword.type =
+        "text";
+
 
       pulsanteMostraPassword.setAttribute(
         "aria-label",
         "Password mostrata"
       );
 
+
       pulsanteMostraPassword.setAttribute(
         "title",
         "Password mostrata"
       );
-
     }
   );
 
@@ -289,7 +421,9 @@ document.addEventListener("DOMContentLoaded", () => {
   /* AGGIORNA SELETTORE */
   /* ====================================================== */
 
-  function aggiornaSelettore(pagina) {
+  function aggiornaSelettore(
+    pagina
+  ) {
 
     const testoImpostazioni =
       document.querySelector(
@@ -331,15 +465,25 @@ document.addEventListener("DOMContentLoaded", () => {
       !iconaNews ||
       !iconaEventi
     ) {
+
       return;
     }
 
 
-    if (pagina === "impostazioni") {
+    if (
+      pagina ===
+      "impostazioni"
+    ) {
 
-      testoImpostazioni.style.color = "#2a2a2a";
-      testoNews.style.color = "#a6a6a6";
-      testoEventi.style.color = "#868686";
+      testoImpostazioni.style.color =
+        "#2a2a2a";
+
+      testoNews.style.color =
+        "#a6a6a6";
+
+      testoEventi.style.color =
+        "#868686";
+
 
       iconaImpostazioni.style.backgroundImage =
         'url("../assets/pannello_amministratore/icona_impostazioni_attivo.svg")';
@@ -354,11 +498,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (pagina === "news") {
+    if (
+      pagina ===
+      "news"
+    ) {
 
-      testoImpostazioni.style.color = "#a6a6a6";
-      testoNews.style.color = "#2a2a2a";
-      testoEventi.style.color = "#868686";
+      testoImpostazioni.style.color =
+        "#a6a6a6";
+
+      testoNews.style.color =
+        "#2a2a2a";
+
+      testoEventi.style.color =
+        "#868686";
+
 
       iconaImpostazioni.style.backgroundImage =
         'url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg")';
@@ -373,11 +526,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (pagina === "eventi") {
+    if (
+      pagina ===
+      "eventi"
+    ) {
 
-      testoImpostazioni.style.color = "#a6a6a6";
-      testoNews.style.color = "#a6a6a6";
-      testoEventi.style.color = "#868686";
+      testoImpostazioni.style.color =
+        "#a6a6a6";
+
+      testoNews.style.color =
+        "#a6a6a6";
+
+      testoEventi.style.color =
+        "#868686";
+
 
       iconaImpostazioni.style.backgroundImage =
         'url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg")';
@@ -387,9 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       iconaEventi.style.backgroundImage =
         'url("../assets/pannello_amministratore/icona_calendario_disattivo.svg")';
-
     }
-
   }
 
 
@@ -397,56 +557,98 @@ document.addEventListener("DOMContentLoaded", () => {
   /* MOSTRA SEZIONE */
   /* ====================================================== */
 
-  function mostraSezione(sezione) {
+  function mostraSezione(
+    sezione
+  ) {
 
-    sezioneImpostazioni.style.display = "none";
-    sezioneNews.style.display = "none";
-    sezioneEventi.style.display = "none";
+    sezioneImpostazioni.style.display =
+      "none";
+
+    sezioneNews.style.display =
+      "none";
+
+    sezioneEventi.style.display =
+      "none";
 
 
-    if (sezione === sezioneImpostazioni) {
+    if (
+      sezione ===
+      sezioneImpostazioni
+    ) {
 
-      sezioneImpostazioni.style.display = "block";
+      sezioneImpostazioni.style.display =
+        "block";
 
-      aggiornaSelettore("impostazioni");
 
-      window.scrollTo(0, 0);
+      aggiornaSelettore(
+        "impostazioni"
+      );
+
+
+      window.scrollTo(
+        0,
+        0
+      );
 
       return;
     }
 
 
-    if (sezione === sezioneNews) {
+    if (
+      sezione ===
+      sezioneNews
+    ) {
 
-      sezioneNews.style.display = "block";
+      sezioneNews.style.display =
+        "block";
 
-      aggiornaSelettore("news");
+
+      aggiornaSelettore(
+        "news"
+      );
+
 
       aggiornaLayoutNotizia();
 
-      window.scrollTo(0, 0);
+
+      window.scrollTo(
+        0,
+        0
+      );
 
       return;
     }
 
 
-    if (sezione === sezioneEventi) {
+    if (
+      sezione ===
+      sezioneEventi
+    ) {
 
-      sezioneEventi.style.display = "block";
+      sezioneEventi.style.display =
+        "block";
 
-      aggiornaSelettore("eventi");
 
-      window.scrollTo(0, 0);
+      aggiornaSelettore(
+        "eventi"
+      );
 
+
+      window.scrollTo(
+        0,
+        0
+      );
     }
-
   }
 
 
   selettoreImpostazioni.addEventListener(
     "click",
     () => {
-      mostraSezione(sezioneImpostazioni);
+
+      mostraSezione(
+        sezioneImpostazioni
+      );
     }
   );
 
@@ -454,7 +656,10 @@ document.addEventListener("DOMContentLoaded", () => {
   selettoreNews.addEventListener(
     "click",
     () => {
-      mostraSezione(sezioneNews);
+
+      mostraSezione(
+        sezioneNews
+      );
     }
   );
 
@@ -462,7 +667,10 @@ document.addEventListener("DOMContentLoaded", () => {
   selettoreEventi.addEventListener(
     "click",
     () => {
-      mostraSezione(sezioneEventi);
+
+      mostraSezione(
+        sezioneEventi
+      );
     }
   );
 
@@ -489,22 +697,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (bloccata) {
 
-      pulsante.classList.add("attivo");
+      pulsante.classList.add(
+        "attivo"
+      );
+
 
       if (testo) {
-        testo.textContent = "Sblocca";
+
+        testo.textContent =
+          "Sblocca";
       }
 
     } else {
 
-      pulsante.classList.remove("attivo");
+      pulsante.classList.remove(
+        "attivo"
+      );
+
 
       if (testo) {
-        testo.textContent = "Blocca";
+
+        testo.textContent =
+          "Blocca";
       }
-
     }
-
   }
 
 
@@ -534,40 +750,41 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-      risultati.forEach((documento) => {
+      risultati.forEach(
+        (documento) => {
 
-        const elementoPagina =
-          document.querySelector(
-            `[data-pagina="${documento.id}"]`
+          const elementoPagina =
+            document.querySelector(
+              `[data-pagina="${documento.id}"]`
+            );
+
+
+          if (!elementoPagina) {
+            return;
+          }
+
+
+          const pulsante =
+            elementoPagina.querySelector(
+              ".pulsante_blocca"
+            );
+
+
+          if (!pulsante) {
+            return;
+          }
+
+
+          const dati =
+            documento.data();
+
+
+          aggiornaAspettoPulsante(
+            pulsante,
+            dati.bloccata === true
           );
-
-
-        if (!elementoPagina) {
-          return;
         }
-
-
-        const pulsante =
-          elementoPagina.querySelector(
-            ".pulsante_blocca"
-          );
-
-
-        if (!pulsante) {
-          return;
-        }
-
-
-        const dati =
-          documento.data();
-
-
-        aggiornaAspettoPulsante(
-          pulsante,
-          dati.bloccata === true
-        );
-
-      });
+      );
 
 
       console.log(
@@ -580,9 +797,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Errore caricamento stato pagine:",
         error
       );
-
     }
-
   }
 
 
@@ -595,7 +810,11 @@ document.addEventListener("DOMContentLoaded", () => {
     pulsante
   ) {
 
-    if (!elementoPagina || !pulsante) {
+    if (
+      !elementoPagina ||
+      !pulsante
+    ) {
+
       return;
     }
 
@@ -610,7 +829,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const statoAttuale =
-      pulsante.classList.contains("attivo");
+      pulsante.classList.contains(
+        "attivo"
+      );
 
 
     const nuovoStato =
@@ -634,10 +855,12 @@ document.addEventListener("DOMContentLoaded", () => {
       await setDoc(
         riferimento,
         {
-          bloccata: nuovoStato,
+          bloccata:
+            nuovoStato,
         },
         {
-          merge: true,
+          merge:
+            true,
         }
       );
 
@@ -672,54 +895,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
       pulsante.style.pointerEvents =
         "auto";
-
     }
-
   }
 
 
   document
-    .querySelectorAll("[data-pagina]")
-    .forEach((elementoPagina) => {
+    .querySelectorAll(
+      "[data-pagina]"
+    )
+    .forEach(
+      (elementoPagina) => {
 
-      const pulsante =
-        elementoPagina.querySelector(
-          ".pulsante_blocca"
-        );
-
-
-      if (!pulsante) {
-        return;
-      }
-
-
-      pulsante.addEventListener(
-        "click",
-        () => {
-
-          cambiaStatoPagina(
-            elementoPagina,
-            pulsante
+        const pulsante =
+          elementoPagina.querySelector(
+            ".pulsante_blocca"
           );
 
-        }
-      );
 
-    });
+        if (!pulsante) {
+          return;
+        }
+
+
+        pulsante.addEventListener(
+          "click",
+          () => {
+
+            cambiaStatoPagina(
+              elementoPagina,
+              pulsante
+            );
+          }
+        );
+      }
+    );
 
 
   /* ====================================================== */
   /* CAMPI NUMERICI */
   /* ====================================================== */
 
-  function mantieniSoloNumeri(elemento) {
+  function mantieniSoloNumeri(
+    elemento
+  ) {
 
     elemento.value =
       elemento.value.replace(
         /\D/g,
         ""
       );
-
   }
 
 
@@ -733,11 +957,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    mantieniSoloNumeri(elemento);
+    mantieniSoloNumeri(
+      elemento
+    );
 
 
     if (
-      elemento.value.length > massimo
+      elemento.value.length >
+      massimo
     ) {
 
       elemento.value =
@@ -745,9 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
           0,
           massimo
         );
-
     }
-
   }
 
 
@@ -760,8 +985,8 @@ document.addEventListener("DOMContentLoaded", () => {
         2
       );
 
-      nascondiErrorePubblicazione();
 
+      nascondiErrorePubblicazione();
     }
   );
 
@@ -775,8 +1000,8 @@ document.addEventListener("DOMContentLoaded", () => {
         2
       );
 
-      nascondiErrorePubblicazione();
 
+      nascondiErrorePubblicazione();
     }
   );
 
@@ -790,17 +1015,19 @@ document.addEventListener("DOMContentLoaded", () => {
         4
       );
 
-      nascondiErrorePubblicazione();
 
+      nascondiErrorePubblicazione();
     }
   );
 
 
   /* ====================================================== */
-  /* AUTO-ESPANSIONE DEI TEXTAREA */
+  /* AUTO-ESPANSIONE TEXTAREA */
   /* ====================================================== */
 
-  function adattaCampoTesto(elemento) {
+  function adattaCampoTesto(
+    elemento
+  ) {
 
     if (!elemento) {
       return 0;
@@ -843,7 +1070,329 @@ document.addEventListener("DOMContentLoaded", () => {
       altezzaEffettiva -
         altezzaMinima
     );
+  }
 
+
+  /* ====================================================== */
+  /* CREA BOX IMMAGINE */
+  /* ====================================================== */
+
+  function creaBoxImmagine() {
+
+    if (
+      boxImmagineNotizia
+    ) {
+
+      return;
+    }
+
+
+    boxImmagineNotizia =
+      document.createElement(
+        "div"
+      );
+
+
+    boxImmagineNotizia.className =
+      "box_immagine_notizia";
+
+
+    boxImmagineNotizia.style.width =
+      "40vw";
+
+    boxImmagineNotizia.style.height =
+      "3.6458vw";
+
+    boxImmagineNotizia.style.position =
+      "absolute";
+
+    boxImmagineNotizia.style.left =
+      "0";
+
+    boxImmagineNotizia.style.top =
+      "26.6146vw";
+
+    boxImmagineNotizia.style.background =
+      "#ffffff";
+
+    boxImmagineNotizia.style.border =
+      "0.1562vw solid rgba(41, 41, 41, 1)";
+
+    boxImmagineNotizia.style.borderRadius =
+      "0.3125vw";
+
+    boxImmagineNotizia.style.boxShadow =
+      "-0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25)";
+
+    boxImmagineNotizia.style.boxSizing =
+      "border-box";
+
+    boxImmagineNotizia.style.display =
+      "flex";
+
+    boxImmagineNotizia.style.alignItems =
+      "center";
+
+    boxImmagineNotizia.style.zIndex =
+      "15";
+
+
+    /* ================================================== */
+    /* NOME FILE */
+    /* ================================================== */
+
+    testoNomeImmagineNotizia =
+      document.createElement(
+        "span"
+      );
+
+
+    testoNomeImmagineNotizia.className =
+      "nome_immagine_notizia";
+
+
+    testoNomeImmagineNotizia.style.position =
+      "absolute";
+
+    testoNomeImmagineNotizia.style.left =
+      "1vw";
+
+    testoNomeImmagineNotizia.style.right =
+      "4vw";
+
+    testoNomeImmagineNotizia.style.top =
+      "50%";
+
+    testoNomeImmagineNotizia.style.transform =
+      "translateY(-50%)";
+
+    testoNomeImmagineNotizia.style.color =
+      "#292929";
+
+    testoNomeImmagineNotizia.style.fontFamily =
+      "Inter, sans-serif";
+
+    testoNomeImmagineNotizia.style.fontWeight =
+      "400";
+
+    testoNomeImmagineNotizia.style.fontSize =
+      "1.25vw";
+
+    testoNomeImmagineNotizia.style.whiteSpace =
+      "nowrap";
+
+    testoNomeImmagineNotizia.style.overflow =
+      "hidden";
+
+    testoNomeImmagineNotizia.style.textOverflow =
+      "ellipsis";
+
+
+    /* ================================================== */
+    /* PULSANTE X */
+    /* ================================================== */
+
+    pulsanteRimuoviImmagine =
+      document.createElement(
+        "button"
+      );
+
+
+    pulsanteRimuoviImmagine.type =
+      "button";
+
+    pulsanteRimuoviImmagine.className =
+      "pulsante_rimuovi_immagine";
+
+    pulsanteRimuoviImmagine.textContent =
+      "×";
+
+
+    pulsanteRimuoviImmagine.style.position =
+      "absolute";
+
+    pulsanteRimuoviImmagine.style.right =
+      "0.7vw";
+
+    pulsanteRimuoviImmagine.style.top =
+      "50%";
+
+    pulsanteRimuoviImmagine.style.transform =
+      "translateY(-50%)";
+
+    pulsanteRimuoviImmagine.style.width =
+      "2.4vw";
+
+    pulsanteRimuoviImmagine.style.height =
+      "2.4vw";
+
+    pulsanteRimuoviImmagine.style.padding =
+      "0";
+
+    pulsanteRimuoviImmagine.style.border =
+      "none";
+
+    pulsanteRimuoviImmagine.style.background =
+      "transparent";
+
+    pulsanteRimuoviImmagine.style.color =
+      "#292929";
+
+    pulsanteRimuoviImmagine.style.fontFamily =
+      "Arial, sans-serif";
+
+    pulsanteRimuoviImmagine.style.fontSize =
+      "2.2vw";
+
+    pulsanteRimuoviImmagine.style.fontWeight =
+      "400";
+
+    pulsanteRimuoviImmagine.style.lineHeight =
+      "2.2vw";
+
+    pulsanteRimuoviImmagine.style.textAlign =
+      "center";
+
+    pulsanteRimuoviImmagine.style.cursor =
+      "pointer";
+
+    pulsanteRimuoviImmagine.style.transition =
+      "transform 0.1s ease";
+
+
+    pulsanteRimuoviImmagine.addEventListener(
+      "mouseenter",
+      () => {
+
+        pulsanteRimuoviImmagine.style.transform =
+          "translateY(-50%) scale(1.15)";
+      }
+    );
+
+
+    pulsanteRimuoviImmagine.addEventListener(
+      "mouseleave",
+      () => {
+
+        pulsanteRimuoviImmagine.style.transform =
+          "translateY(-50%) scale(1)";
+      }
+    );
+
+
+    pulsanteRimuoviImmagine.addEventListener(
+      "click",
+      () => {
+
+        rimuoviImmagineNotizia();
+      }
+    );
+
+
+    boxImmagineNotizia.appendChild(
+      testoNomeImmagineNotizia
+    );
+
+
+    boxImmagineNotizia.appendChild(
+      pulsanteRimuoviImmagine
+    );
+
+
+    pannelloCreazioneNotizia.appendChild(
+      boxImmagineNotizia
+    );
+  }
+
+
+  /* ====================================================== */
+  /* MOSTRA BOX IMMAGINE */
+  /* ====================================================== */
+
+  function mostraBoxImmagine(
+    nomeFile
+  ) {
+
+    creaBoxImmagine();
+
+
+    if (
+      testoNomeImmagineNotizia
+    ) {
+
+      testoNomeImmagineNotizia.textContent =
+        nomeFile;
+    }
+
+
+    boxImmagineNotizia.style.display =
+      "flex";
+
+
+    aggiornaLayoutNotizia();
+  }
+
+
+  /* ====================================================== */
+  /* NASCONDI BOX IMMAGINE */
+  /* ====================================================== */
+
+  function nascondiBoxImmagine() {
+
+    if (
+      !boxImmagineNotizia
+    ) {
+
+      return;
+    }
+
+
+    boxImmagineNotizia.style.display =
+      "none";
+
+
+    aggiornaLayoutNotizia();
+  }
+
+
+  /* ====================================================== */
+  /* RIMUOVI IMMAGINE */
+  /* ====================================================== */
+
+  function rimuoviImmagineNotizia() {
+
+    /*
+     * Eliminiamo solamente il riferimento locale.
+     *
+     * Siccome il file non è ancora stato caricato su
+     * ImageKit, non rimane nessun file inutile online.
+     */
+
+    fileImmagineNotizia =
+      null;
+
+    immagineNotizia =
+      "";
+
+    nomeImmagineNotizia =
+      "";
+
+
+    if (
+      fileInputImmagine
+    ) {
+
+      fileInputImmagine.value =
+        "";
+    }
+
+
+    nascondiBoxImmagine();
+
+
+    mostraMessaggioPubblicazione(
+      "Immagine rimossa dalla notizia."
+    );
   }
 
 
@@ -859,6 +1408,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !pannelloCreazioneNotizia ||
       !pannelloNotizie
     ) {
+
       return;
     }
 
@@ -875,6 +1425,18 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
+    const boxImmagineVisibile =
+      boxImmagineNotizia &&
+      boxImmagineNotizia.style.display !==
+        "none";
+
+
+    const spostamentoImmagine =
+      boxImmagineVisibile
+        ? "4.35vw"
+        : "0px";
+
+
     const spostamentoTotale =
       spostamentoTitolo +
       spostamentoTesto;
@@ -885,7 +1447,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ================================================== */
 
     const elementiSottoTitolo = [
-
       {
         elemento:
           document.querySelector(
@@ -912,16 +1473,57 @@ document.addEventListener("DOMContentLoaded", () => {
         top:
           "22.1875vw",
       },
+    ];
 
-      {
-        elemento:
-          document.querySelector(
-            ".pulsante_carica_immagini"
-          ),
-        top:
-          "26.6146vw",
-      },
 
+    elementiSottoTitolo.forEach(
+      ({
+        elemento,
+        top,
+      }) => {
+
+        if (!elemento) {
+          return;
+        }
+
+
+        elemento.style.top =
+          `calc(${top} + ${spostamentoTitolo}px)`;
+      }
+    );
+
+
+    /* ================================================== */
+    /* BOX IMMAGINE */
+    /* ================================================== */
+
+    if (
+      boxImmagineNotizia
+    ) {
+
+      boxImmagineNotizia.style.top =
+        `calc(26.6146vw + ${spostamentoTitolo}px)`;
+    }
+
+
+    /* ================================================== */
+    /* PULSANTE CARICA IMMAGINE */
+    /* ================================================== */
+
+    if (
+      pulsanteCaricaImmagini
+    ) {
+
+      pulsanteCaricaImmagini.style.top =
+        `calc(26.6146vw + ${spostamentoTitolo}px + ${spostamentoImmagine})`;
+    }
+
+
+    /* ================================================== */
+    /* ELEMENTI SOTTO LE IMMAGINI */
+    /* ================================================== */
+
+    const elementiSottoImmagini = [
       {
         elemento:
           document.querySelector(
@@ -939,11 +1541,10 @@ document.addEventListener("DOMContentLoaded", () => {
         top:
           "35.8333vw",
       },
-
     ];
 
 
-    elementiSottoTitolo.forEach(
+    elementiSottoImmagini.forEach(
       ({
         elemento,
         top,
@@ -955,35 +1556,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         elemento.style.top =
-          `calc(${top} + ${spostamentoTitolo}px)`;
-
+          `calc(${top} + ${spostamentoTitolo}px + ${spostamentoImmagine})`;
       }
     );
 
 
     /* ================================================== */
-    /* ELEMENTI SOTTO IL TESTO */
+    /* SPOSTAMENTO FINALE */
     /* ================================================== */
 
-    const pulsanteSalvaBozza =
-      document.querySelector(
-        ".pulsante_salva_bozza"
-      );
+    const spostamentoFinale =
+      `calc(${spostamentoTotale}px + ${spostamentoImmagine})`;
 
 
-    if (pulsanteSalvaBozza) {
+    /* ================================================== */
+    /* SALVA BOZZA */
+    /* ================================================== */
+
+    if (
+      pulsanteSalvaBozza
+    ) {
 
       pulsanteSalvaBozza.style.top =
-        `calc(63.3854vw + ${spostamentoTotale}px)`;
-
+        `calc(63.3854vw + ${spostamentoFinale})`;
     }
 
 
-    if (pulsantePubblica) {
+    /* ================================================== */
+    /* PUBBLICA */
+    /* ================================================== */
+
+    if (
+      pulsantePubblica
+    ) {
 
       pulsantePubblica.style.top =
-        `calc(63.3854vw + ${spostamentoTotale}px)`;
-
+        `calc(63.3854vw + ${spostamentoFinale})`;
     }
 
 
@@ -991,16 +1599,12 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ERRORE PUBBLICAZIONE */
     /* ================================================== */
 
-    /*
-     * Anche il messaggio deve seguire
-     * l'espansione della casella di testo.
-     */
-
-    if (errorePubblicazione) {
+    if (
+      errorePubblicazione
+    ) {
 
       errorePubblicazione.style.top =
-        `calc(60.15vw + ${spostamentoTotale}px)`;
-
+        `calc(60.15vw + ${spostamentoFinale})`;
     }
 
 
@@ -1009,7 +1613,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ================================================== */
 
     pannelloCreazioneNotizia.style.height =
-      `calc(67.7604vw + ${spostamentoTotale}px)`;
+      `calc(67.7604vw + ${spostamentoFinale})`;
 
 
     /* ================================================== */
@@ -1017,7 +1621,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ================================================== */
 
     pannelloNotizie.style.top =
-      `calc(92.44vw + ${spostamentoTotale}px)`;
+      `calc(92.44vw + ${spostamentoFinale})`;
 
 
     /* ================================================== */
@@ -1025,8 +1629,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ================================================== */
 
     sezioneNews.style.minHeight =
-      `calc(162.6042vw + ${spostamentoTotale}px)`;
-
+      `calc(162.6042vw + ${spostamentoFinale})`;
   }
 
 
@@ -1046,28 +1649,22 @@ document.addEventListener("DOMContentLoaded", () => {
       inputAnno.value.trim();
 
 
-    /*
-     * Tutti i campi devono essere presenti.
-     */
-
     if (
       giorno === "" ||
       mese === "" ||
       anno === ""
     ) {
+
       return false;
     }
 
-
-    /*
-     * Controlliamo il numero di cifre.
-     */
 
     if (
       !/^\d{2}$/.test(giorno) ||
       !/^\d{2}$/.test(mese) ||
       !/^\d{4}$/.test(anno)
     ) {
+
       return false;
     }
 
@@ -1082,10 +1679,6 @@ document.addEventListener("DOMContentLoaded", () => {
       Number(anno);
 
 
-    /*
-     * Controlli di base.
-     */
-
     if (
       annoNumero < 1 ||
       meseNumero < 1 ||
@@ -1093,21 +1686,10 @@ document.addEventListener("DOMContentLoaded", () => {
       giornoNumero < 1 ||
       giornoNumero > 31
     ) {
+
       return false;
     }
 
-
-    /*
-     * Controllo reale del calendario.
-     *
-     * Questo rende non valide,
-     * per esempio:
-     *
-     * 31/02/2026
-     * 31/04/2026
-     * 29/02/2025
-     *
-     */
 
     const data =
       new Date(
@@ -1118,11 +1700,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     return (
-      data.getFullYear() === annoNumero &&
-      data.getMonth() === meseNumero - 1 &&
-      data.getDate() === giornoNumero
+      data.getFullYear() ===
+        annoNumero &&
+      data.getMonth() ===
+        meseNumero - 1 &&
+      data.getDate() ===
+        giornoNumero
     );
-
   }
 
 
@@ -1135,10 +1719,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const errori = [];
 
 
-    /*
-     * TITOLO
-     */
-
     if (
       inputTitoloNotizia.value.trim() === ""
     ) {
@@ -1146,13 +1726,8 @@ document.addEventListener("DOMContentLoaded", () => {
       errori.push(
         "Inserisci il titolo della notizia."
       );
-
     }
 
-
-    /*
-     * TESTO
-     */
 
     if (
       inputTestoNotizia.value.trim() === ""
@@ -1161,25 +1736,683 @@ document.addEventListener("DOMContentLoaded", () => {
       errori.push(
         "Inserisci il testo della notizia."
       );
-
     }
 
 
-    /*
-     * DATA
-     */
-
-    if (!dataValida()) {
+    if (
+      !dataValida()
+    ) {
 
       errori.push(
         "Inserisci una data valida."
       );
-
     }
 
 
     return errori;
+  }
 
+
+  /* ====================================================== */
+  /* IMAGEKIT: AUTENTICAZIONE */
+  /* ====================================================== */
+
+  async function ottieniAutenticazioneImageKit() {
+
+    const risposta =
+      await fetch(
+        IMAGEKIT_AUTHENTICATION_ENDPOINT,
+        {
+          method:
+            "GET",
+
+          cache:
+            "no-store",
+        }
+      );
+
+
+    if (!risposta.ok) {
+
+      throw new Error(
+        "Impossibile ottenere l'autenticazione ImageKit."
+      );
+    }
+
+
+    const dati =
+      await risposta.json();
+
+
+    if (
+      !dati.token ||
+      !dati.signature ||
+      !dati.expire
+    ) {
+
+      throw new Error(
+        "Risposta di autenticazione ImageKit non valida."
+      );
+    }
+
+
+    return dati;
+  }
+
+
+  /* ====================================================== */
+  /* IMAGEKIT: UPLOAD */
+  /* ====================================================== */
+
+  async function caricaImmagineSuImageKit(
+    file
+  ) {
+
+    if (!file) {
+      return "";
+    }
+
+
+    if (
+      !file.type.startsWith(
+        "image/"
+      )
+    ) {
+
+      throw new Error(
+        "Il file selezionato non è un'immagine."
+      );
+    }
+
+
+    if (
+      file.size >
+      IMAGEKIT_MAX_FILE_SIZE
+    ) {
+
+      throw new Error(
+        "L'immagine supera il limite di 25 MB."
+      );
+    }
+
+
+    const autenticazione =
+      await ottieniAutenticazioneImageKit();
+
+
+    const formData =
+      new FormData();
+
+
+    formData.append(
+      "file",
+      file
+    );
+
+
+    formData.append(
+      "fileName",
+      file.name ||
+        `notizia-${Date.now()}.jpg`
+    );
+
+
+    formData.append(
+      "publicKey",
+      autenticazione.publicKey ||
+        IMAGEKIT_PUBLIC_KEY
+    );
+
+
+    formData.append(
+      "signature",
+      autenticazione.signature
+    );
+
+
+    formData.append(
+      "expire",
+      String(
+        autenticazione.expire
+      )
+    );
+
+
+    formData.append(
+      "token",
+      autenticazione.token
+    );
+
+
+    formData.append(
+      "useUniqueFileName",
+      "true"
+    );
+
+
+    formData.append(
+      "folder",
+      IMAGEKIT_FOLDER_NEWS
+    );
+
+
+    const risposta =
+      await fetch(
+        IMAGEKIT_UPLOAD_ENDPOINT,
+        {
+          method:
+            "POST",
+
+          body:
+            formData,
+        }
+      );
+
+
+    let dati = {};
+
+
+    try {
+
+      dati =
+        await risposta.json();
+
+    } catch {
+
+      dati = {};
+    }
+
+
+    if (
+      !risposta.ok ||
+      !dati.url
+    ) {
+
+      console.error(
+        "Risposta ImageKit:",
+        dati
+      );
+
+
+      throw new Error(
+        dati.message ||
+        dati.error ||
+        "Impossibile caricare l'immagine su ImageKit."
+      );
+    }
+
+
+    return dati.url;
+  }
+
+
+  /* ====================================================== */
+  /* STATO PULSANTE IMMAGINI */
+  /* ====================================================== */
+
+  function aggiornaStatoPulsanteImmagini() {
+
+    if (
+      !pulsanteCaricaImmagini
+    ) {
+
+      return;
+    }
+
+
+    pulsanteCaricaImmagini.style.pointerEvents =
+      caricamentoImmagineInCorso
+        ? "none"
+        : "auto";
+
+
+    pulsanteCaricaImmagini.style.opacity =
+      caricamentoImmagineInCorso
+        ? "0.65"
+        : "1";
+  }
+
+
+  /* ====================================================== */
+  /* SELEZIONE IMMAGINE */
+  /* ====================================================== */
+
+  if (
+    pulsanteCaricaImmagini
+  ) {
+
+    fileInputImmagine =
+      document.createElement(
+        "input"
+      );
+
+
+    fileInputImmagine.type =
+      "file";
+
+
+    fileInputImmagine.accept =
+      "image/*";
+
+
+    fileInputImmagine.style.display =
+      "none";
+
+
+    document.body.appendChild(
+      fileInputImmagine
+    );
+
+
+    pulsanteCaricaImmagini.addEventListener(
+      "click",
+      () => {
+
+        if (
+          caricamentoImmagineInCorso
+        ) {
+
+          return;
+        }
+
+
+        fileInputImmagine.value =
+          "";
+
+
+        fileInputImmagine.click();
+      }
+    );
+
+
+    fileInputImmagine.addEventListener(
+      "change",
+      async () => {
+
+        const file =
+          fileInputImmagine.files?.[0];
+
+
+        if (!file) {
+          return;
+        }
+
+
+        nascondiErrorePubblicazione();
+
+
+        /*
+         * Controlli effettuati SUBITO,
+         * senza effettuare alcun upload.
+         */
+
+        if (
+          !file.type.startsWith(
+            "image/"
+          )
+        ) {
+
+          mostraErrorePubblicazione([
+            "Il file selezionato non è un'immagine."
+          ]);
+
+          fileInputImmagine.value =
+            "";
+
+          return;
+        }
+
+
+        if (
+          file.size >
+          IMAGEKIT_MAX_FILE_SIZE
+        ) {
+
+          mostraErrorePubblicazione([
+            "L'immagine supera il limite di 25 MB."
+          ]);
+
+          fileInputImmagine.value =
+            "";
+
+          return;
+        }
+
+
+        /*
+         * Salviamo il File solamente in memoria.
+         *
+         * NON viene ancora mandato a ImageKit.
+         */
+
+        fileImmagineNotizia =
+          file;
+
+
+        immagineNotizia =
+          "";
+
+        nomeImmagineNotizia =
+          file.name;
+
+
+        console.log(
+          "Immagine selezionata, upload rimandato al salvataggio:",
+          file.name
+        );
+
+
+        mostraBoxImmagine(
+          nomeImmagineNotizia
+        );
+
+
+        mostraMessaggioPubblicazione(
+          "Immagine selezionata correttamente."
+        );
+      }
+    );
+  }
+
+
+  /* ====================================================== */
+  /* PULISCI CAMPI NOTIZIA */
+  /* ====================================================== */
+
+  function pulisciCampiNotizia() {
+
+    inputTitoloNotizia.value =
+      "";
+
+    inputTestoNotizia.value =
+      "";
+
+    inputGiorno.value =
+      "";
+
+    inputMese.value =
+      "";
+
+    inputAnno.value =
+      "";
+
+
+    /*
+     * Azzeriamo anche il File locale.
+     */
+
+    fileImmagineNotizia =
+      null;
+
+    immagineNotizia =
+      "";
+
+    nomeImmagineNotizia =
+      "";
+
+
+    if (
+      fileInputImmagine
+    ) {
+
+      fileInputImmagine.value =
+        "";
+    }
+
+
+    nascondiBoxImmagine();
+
+
+    aggiornaLayoutNotizia();
+  }
+
+
+  /* ====================================================== */
+  /* SALVA NOTIZIA IN FIRESTORE */
+  /* ====================================================== */
+
+  async function salvaNotizia(
+    pubblicata
+  ) {
+
+    const errori =
+      validaPubblicazione();
+
+
+    if (
+      errori.length > 0
+    ) {
+
+      mostraErrorePubblicazione(
+        errori
+      );
+
+
+      aggiornaLayoutNotizia();
+
+
+      return false;
+    }
+
+
+    if (
+      caricamentoImmagineInCorso
+    ) {
+
+      mostraErrorePubblicazione([
+        "Attendi il completamento del caricamento dell'immagine."
+      ]);
+
+
+      aggiornaLayoutNotizia();
+
+
+      return false;
+    }
+
+
+    const giorno =
+      Number(
+        inputGiorno.value.trim()
+      );
+
+    const mese =
+      Number(
+        inputMese.value.trim()
+      );
+
+    const anno =
+      Number(
+        inputAnno.value.trim()
+      );
+
+
+    const dataNotizia =
+      new Date(
+        anno,
+        mese - 1,
+        giorno
+      );
+
+
+    const pulsante =
+      pubblicata
+        ? pulsantePubblica
+        : pulsanteSalvaBozza;
+
+
+    if (
+      pulsante
+    ) {
+
+      pulsante.style.pointerEvents =
+        "none";
+
+      pulsante.style.opacity =
+        "0.65";
+    }
+
+
+    try {
+
+      /*
+       * ====================================================
+       * UPLOAD IMAGEKIT
+       * ====================================================
+       *
+       * L'immagine viene caricata SOLO ADESSO.
+       *
+       * Quindi:
+       *
+       * - se l'utente sostituisce un'immagine prima di
+       *   salvare, quella vecchia NON è mai stata caricata;
+       *
+       * - se l'utente rimuove l'immagine, non viene caricato
+       *   nulla;
+       *
+       * - se non seleziona immagini, non viene effettuato
+       *   nessun upload.
+       */
+
+      immagineNotizia =
+        "";
+
+
+      if (
+        fileImmagineNotizia
+      ) {
+
+        caricamentoImmagineInCorso =
+          true;
+
+
+        aggiornaStatoPulsanteImmagini();
+
+
+        mostraMessaggioPubblicazione(
+          "Caricamento immagine..."
+        );
+
+
+        immagineNotizia =
+          await caricaImmagineSuImageKit(
+            fileImmagineNotizia
+          );
+
+
+        console.log(
+          "Immagine caricata su ImageKit:",
+          immagineNotizia
+        );
+      }
+
+
+      /* ================================================== */
+      /* DATI NOTIZIA */
+      /* ================================================== */
+
+      const datiNotizia = {
+
+        titolo:
+          inputTitoloNotizia.value.trim(),
+
+
+        testo:
+          inputTestoNotizia.value.trim(),
+
+
+        data:
+          Timestamp.fromDate(
+            dataNotizia
+          ),
+
+
+        immagine:
+          immagineNotizia || "",
+
+
+        pubblicata:
+          pubblicata === true,
+      };
+
+
+      /* ================================================== */
+      /* FIRESTORE */
+      /* ================================================== */
+
+      const riferimento =
+        await addDoc(
+          collection(
+            db,
+            COLLECTION_NEWS
+          ),
+          datiNotizia
+        );
+
+
+      console.log(
+        `Notizia ${
+          pubblicata
+            ? "pubblicata"
+            : "salvata come bozza"
+        }:`,
+        riferimento.id
+      );
+
+
+      mostraMessaggioPubblicazione(
+        pubblicata
+          ? "Notizia pubblicata correttamente."
+          : "Notizia salvata come bozza correttamente."
+      );
+
+
+      pulisciCampiNotizia();
+
+
+      return true;
+
+
+    } catch (error) {
+
+      console.error(
+        "Errore salvataggio notizia:",
+        error
+      );
+
+
+      mostraErrorePubblicazione([
+        error.message ||
+          "Impossibile salvare la notizia."
+      ]);
+
+
+      aggiornaLayoutNotizia();
+
+
+      return false;
+
+
+    } finally {
+
+      caricamentoImmagineInCorso =
+        false;
+
+
+      aggiornaStatoPulsanteImmagini();
+
+
+      if (
+        pulsante
+      ) {
+
+        pulsante.style.pointerEvents =
+          "auto";
+
+        pulsante.style.opacity =
+          "1";
+      }
+    }
   }
 
 
@@ -1189,52 +2422,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   pulsantePubblica.addEventListener(
     "click",
-    (event) => {
+    async (event) => {
 
       event.preventDefault();
 
 
-      const errori =
-        validaPubblicazione();
-
-
-      /*
-       * Se ci sono errori:
-       * li mostriamo e NON facciamo
-       * alcuna pubblicazione.
-       */
-
-      if (errori.length > 0) {
-
-        mostraErrorePubblicazione(
-          errori
-        );
-
-        aggiornaLayoutNotizia();
-
-        return;
-
-      }
-
-
-      /*
-       * Per ora non succede nulla:
-       * la pubblicazione vera e propria
-       * verrà aggiunta successivamente.
-       */
-
-      nascondiErrorePubblicazione();
-
-      console.log(
-        "Validazione pubblicazione superata."
+      await salvaNotizia(
+        true
       );
-
     }
   );
 
 
   /* ====================================================== */
-  /* CAMBIO INPUT: NASCONDE ERRORE */
+  /* PULSANTE SALVA COME BOZZA */
+  /* ====================================================== */
+
+  if (
+    pulsanteSalvaBozza
+  ) {
+
+    pulsanteSalvaBozza.addEventListener(
+      "click",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        await salvaNotizia(
+          false
+        );
+      }
+    );
+  }
+
+
+  /* ====================================================== */
+  /* CAMBIO INPUT */
   /* ====================================================== */
 
   inputTitoloNotizia.addEventListener(
@@ -1244,7 +2468,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nascondiErrorePubblicazione();
 
       aggiornaLayoutNotizia();
-
     }
   );
 
@@ -1256,7 +2479,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nascondiErrorePubblicazione();
 
       aggiornaLayoutNotizia();
-
     }
   );
 
@@ -1265,14 +2487,17 @@ document.addEventListener("DOMContentLoaded", () => {
   /* RESIZE OBSERVER */
   /* ====================================================== */
 
-  if ("ResizeObserver" in window) {
+  if (
+    "ResizeObserver" in window
+  ) {
 
     const osservatoreTextarea =
-      new ResizeObserver(() => {
+      new ResizeObserver(
+        () => {
 
-        aggiornaLayoutNotizia();
-
-      });
+          aggiornaLayoutNotizia();
+        }
+      );
 
 
     osservatoreTextarea.observe(
@@ -1283,7 +2508,6 @@ document.addEventListener("DOMContentLoaded", () => {
     osservatoreTextarea.observe(
       inputTestoNotizia
     );
-
   }
 
 
@@ -1295,14 +2519,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "keydown",
     (event) => {
 
-      if (event.key === "Enter") {
+      if (
+        event.key ===
+        "Enter"
+      ) {
 
         event.preventDefault();
 
+
         inputMese.focus();
-
       }
-
     }
   );
 
@@ -1311,14 +2537,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "keydown",
     (event) => {
 
-      if (event.key === "Enter") {
+      if (
+        event.key ===
+        "Enter"
+      ) {
 
         event.preventDefault();
 
+
         inputAnno.focus();
-
       }
-
     }
   );
 
@@ -1345,37 +2573,45 @@ document.addEventListener("DOMContentLoaded", () => {
       inputPassword.value;
 
 
-    if (nomeUtente === "") {
+    if (
+      nomeUtente === ""
+    ) {
 
       mostraErrore(
         "Inserisci il nome utente."
       );
 
+
       inputNomeUtente.focus();
 
-      return;
 
+      return;
     }
 
 
-    if (password === "") {
+    if (
+      password === ""
+    ) {
 
       mostraErrore(
         "Inserisci la password."
       );
 
+
       inputPassword.focus();
 
-      return;
 
+      return;
     }
 
 
     pulsanteEntra.disabled =
       true;
 
+
     pulsanteEntra.style.pointerEvents =
       "none";
+
 
     pulsanteEntra.style.opacity =
       "0.7";
@@ -1387,20 +2623,22 @@ document.addEventListener("DOMContentLoaded", () => {
         await fetch(
           URL_WORKER_LOGIN,
           {
-            method: "POST",
+            method:
+              "POST",
 
             headers: {
               "Content-Type":
                 "application/json",
             },
 
-            body: JSON.stringify({
-              username:
-                nomeUtente,
+            body:
+              JSON.stringify({
+                username:
+                  nomeUtente,
 
-              password:
-                password,
-            }),
+                password:
+                  password,
+              }),
           }
         );
 
@@ -1416,7 +2654,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch {
 
         dati = {};
-
       }
 
 
@@ -1431,10 +2668,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "Nome utente o password non corretti."
         );
 
+
         inputPassword.focus();
 
-        return;
 
+        return;
       }
 
 
@@ -1471,6 +2709,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Il token di autenticazione non è valido."
         );
 
+
       } else if (
         error.code ===
         "auth/custom-token-mismatch"
@@ -1480,12 +2719,12 @@ document.addEventListener("DOMContentLoaded", () => {
           "Il token appartiene a un progetto Firebase diverso."
         );
 
+
       } else {
 
         mostraErrore(
           "Impossibile effettuare l'accesso."
         );
-
       }
 
 
@@ -1494,14 +2733,14 @@ document.addEventListener("DOMContentLoaded", () => {
       pulsanteEntra.disabled =
         false;
 
+
       pulsanteEntra.style.pointerEvents =
         "auto";
 
+
       pulsanteEntra.style.opacity =
         "1";
-
     }
-
   }
 
 
@@ -1526,6 +2765,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pannelloAccesso.style.display =
           "none";
 
+
         pannelloAmministratore.style.display =
           "block";
 
@@ -1543,11 +2783,10 @@ document.addEventListener("DOMContentLoaded", () => {
         pannelloAccesso.style.display =
           "block";
 
+
         pannelloAmministratore.style.display =
           "none";
-
       }
-
     }
   );
 
@@ -1562,8 +2801,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       event.preventDefault();
 
+
       effettuaAccesso();
-
     }
   );
 
@@ -1572,14 +2811,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "keydown",
     (event) => {
 
-      if (event.key === "Enter") {
+      if (
+        event.key ===
+        "Enter"
+      ) {
 
         event.preventDefault();
 
+
         effettuaAccesso();
-
       }
-
     }
   );
 
@@ -1588,14 +2829,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "keydown",
     (event) => {
 
-      if (event.key === "Enter") {
+      if (
+        event.key ===
+        "Enter"
+      ) {
 
         event.preventDefault();
 
+
         effettuaAccesso();
-
       }
-
     }
   );
 
@@ -1605,7 +2848,6 @@ document.addEventListener("DOMContentLoaded", () => {
     () => {
 
       nascondiErrore();
-
     }
   );
 
@@ -1615,7 +2857,6 @@ document.addEventListener("DOMContentLoaded", () => {
     () => {
 
       nascondiErrore();
-
     }
   );
 
@@ -1626,19 +2867,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   aggiornaLayoutNotizia();
 
+
   mostraSezione(
     sezioneImpostazioni
   );
 
 
-  if (document.fonts) {
+  if (
+    document.fonts
+  ) {
 
-    document.fonts.ready.then(() => {
+    document.fonts.ready.then(
+      () => {
 
-      aggiornaLayoutNotizia();
-
-    });
-
+        aggiornaLayoutNotizia();
+      }
+    );
   }
 
 });
