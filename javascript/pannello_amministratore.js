@@ -16,28 +16,11 @@ import {
 import { auth, db } from "./firebase-config.js";
 
 
-/* ====================================================== */
-/* CONFIGURAZIONE LOGIN */
-/* ====================================================== */
-
 const URL_WORKER_LOGIN =
   "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
 
-
-/* ====================================================== */
-/* CONFIGURAZIONE FIRESTORE */
-/* ====================================================== */
-
-const COLLECTION_BLOCCO_PAGINE =
-  "blocco_pagine";
-
-const COLLECTION_NEWS =
-  "news";
-
-
-/* ====================================================== */
-/* CONFIGURAZIONE IMAGEKIT */
-/* ====================================================== */
+const COLLECTION_BLOCCO_PAGINE = "blocco_pagine";
+const COLLECTION_NEWS = "news";
 
 const IMAGEKIT_PUBLIC_KEY =
   "public_XGdQD6vo7Mo9P0AsfeKrHkJoXh8=";
@@ -55,10 +38,6 @@ const IMAGEKIT_MAX_FILE_SIZE =
   25 * 1024 * 1024;
 
 
-/* ====================================================== */
-/* AVVIO */
-/* ====================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
 
   console.log(
@@ -66,9 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
-  /* ELEMENTI PRINCIPALI */
-  /* ====================================================== */
+  /* ================================================== */
+  /* ELEMENTI ACCESSO */
+  /* ================================================== */
 
   const pannelloAccesso =
     document.getElementById("pannelloAccesso");
@@ -92,9 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("erroreAccesso");
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* SELETTORE */
-  /* ====================================================== */
+  /* ================================================== */
 
   const selettoreImpostazioni =
     document.getElementById("selettoreImpostazioni");
@@ -106,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("selettoreEventi");
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* SEZIONI */
-  /* ====================================================== */
+  /* ================================================== */
 
   const sezioneImpostazioni =
     document.getElementById("sezioneImpostazioni");
@@ -120,9 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("sezioneEventi");
 
 
-  /* ====================================================== */
-  /* NEWS */
-  /* ====================================================== */
+  /* ================================================== */
+  /* CAMPI NOTIZIA */
+  /* ================================================== */
 
   const inputTitoloNotizia =
     document.getElementById("inputTitoloNotizia");
@@ -146,11 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("errorePubblicazione");
 
 
+  /* ================================================== */
+  /* PULSANTI */
+  /* ================================================== */
+
   const pulsanteCaricaImmagini =
     document.querySelector(
       ".pulsante_carica_immagini"
     );
-
 
   const pulsanteSalvaBozza =
     document.querySelector(
@@ -158,11 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+  /* ================================================== */
+  /* PANNELLI */
+  /* ================================================== */
+
   const pannelloCreazioneNotizia =
     document.querySelector(
       ".pannello_creazione_notizia"
     );
-
 
   const pannelloNotizie =
     document.querySelector(
@@ -170,26 +155,26 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  /* ====================================================== */
-  /* STATO IMMAGINE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* LOADER */
+  /* ================================================== */
 
-  /*
-   * IMPORTANTE:
-   *
-   * L'immagine NON viene più caricata immediatamente
-   * su ImageKit.
-   *
-   * Conserviamo solamente il File selezionato nel browser.
-   *
-   * L'upload su ImageKit avverrà esclusivamente quando
-   * l'utente pubblicherà la notizia oppure la salverà
-   * come bozza.
-   */
+  const caricamentoCreazioneNotizia =
+    document.getElementById(
+      "caricamentoCreazioneNotizia"
+    );
+
+  const testoCaricamentoCreazioneNotizia =
+    document.getElementById(
+      "testoCaricamentoCreazioneNotizia"
+    );
+
+
+  /* ================================================== */
+  /* STATO IMMAGINE */
+  /* ================================================== */
 
   let fileImmagineNotizia = null;
-
-  let immagineNotizia = "";
 
   let nomeImmagineNotizia = "";
 
@@ -198,9 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let caricamentoImmagineInCorso = false;
 
 
-  /* ====================================================== */
-  /* BOX IMMAGINE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* ELEMENTI BOX IMMAGINE */
+  /* ================================================== */
 
   let boxImmagineNotizia = null;
 
@@ -209,9 +194,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let pulsanteRimuoviImmagine = null;
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* CONTROLLO ELEMENTI */
-  /* ====================================================== */
+  /* ================================================== */
 
   if (
     !pannelloAccesso ||
@@ -235,7 +220,9 @@ document.addEventListener("DOMContentLoaded", () => {
     !pulsantePubblica ||
     !errorePubblicazione ||
     !pannelloCreazioneNotizia ||
-    !pannelloNotizie
+    !pannelloNotizie ||
+    !caricamentoCreazioneNotizia ||
+    !testoCaricamentoCreazioneNotizia
   ) {
 
     console.error(
@@ -246,44 +233,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* STATO INIZIALE */
-  /* ====================================================== */
+  /* ================================================== */
 
-  pannelloAccesso.style.display =
-    "none";
+  pannelloAccesso.style.display = "none";
 
-  pannelloAmministratore.style.display =
-    "none";
+  pannelloAmministratore.style.display = "none";
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* ERRORI ACCESSO */
-  /* ====================================================== */
+  /* ================================================== */
 
   function mostraErrore(messaggio) {
 
-    errore.textContent =
-      messaggio;
+    errore.textContent = messaggio;
 
-    errore.style.display =
-      "block";
+    errore.style.display = "block";
   }
 
 
   function nascondiErrore() {
 
-    errore.textContent =
-      "";
+    errore.textContent = "";
 
-    errore.style.display =
-      "none";
+    errore.style.display = "none";
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* ESCAPE HTML */
-  /* ====================================================== */
+  /* ================================================== */
 
   function escapeHTML(testo) {
 
@@ -296,17 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* ERRORI PUBBLICAZIONE */
-  /* ====================================================== */
+  /* ================================================== */
 
-  function mostraErrorePubblicazione(
-    messaggi
-  ) {
+  function mostraErrorePubblicazione(messaggi) {
 
-    if (!errorePubblicazione) {
-      return;
-    }
+    if (!errorePubblicazione) return;
 
 
     if (
@@ -314,8 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
       messaggi.length === 0
     ) {
 
-      errorePubblicazione.textContent =
-        "";
+      errorePubblicazione.textContent = "";
 
       errorePubblicazione.classList.remove(
         "visibile"
@@ -337,30 +313,27 @@ document.addEventListener("DOMContentLoaded", () => {
     errorePubblicazione.style.color =
       "#ff5b5b";
 
+
     errorePubblicazione.classList.add(
       "visibile"
     );
   }
 
-
-  /* ====================================================== */
-  /* MESSAGGIO SUCCESSO */
-  /* ====================================================== */
 
   function mostraMessaggioPubblicazione(
     messaggio
   ) {
 
-    if (!errorePubblicazione) {
-      return;
-    }
+    if (!errorePubblicazione) return;
 
 
     errorePubblicazione.textContent =
       messaggio;
 
+
     errorePubblicazione.style.color =
       "#2e8b57";
+
 
     errorePubblicazione.classList.add(
       "visibile"
@@ -368,19 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* NASCONDI MESSAGGIO */
-  /* ====================================================== */
-
   function nascondiErrorePubblicazione() {
 
-    if (!errorePubblicazione) {
-      return;
-    }
+    if (!errorePubblicazione) return;
 
 
-    errorePubblicazione.textContent =
-      "";
+    errorePubblicazione.textContent = "";
 
     errorePubblicazione.style.color =
       "#ff5b5b";
@@ -391,23 +357,103 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
+  /* LOADER CREAZIONE NOTIZIA */
+  /* ================================================== */
+
+  function mostraCaricamentoCreazione(
+    messaggio = "Creazione notizia in corso..."
+  ) {
+
+    caricamentoCreazioneNotizia.classList.add(
+      "visibile"
+    );
+
+    caricamentoCreazioneNotizia.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    testoCaricamentoCreazioneNotizia.textContent =
+      messaggio;
+
+
+    /*
+     * Durante il caricamento spostiamo i pulsanti
+     * verso il basso per lasciare spazio al loader.
+     */
+
+    if (pulsanteSalvaBozza) {
+
+      pulsanteSalvaBozza.style.top =
+        "70.8vw";
+    }
+
+
+    if (pulsantePubblica) {
+
+      pulsantePubblica.style.top =
+        "70.8vw";
+    }
+
+
+    if (errorePubblicazione) {
+
+      errorePubblicazione.style.top =
+        "67.55vw";
+    }
+
+
+    pannelloCreazioneNotizia.style.height =
+      "75.2vw";
+
+
+    pannelloNotizie.style.top =
+      "99.88vw";
+
+
+    sezioneNews.style.minHeight =
+      "170.05vw";
+  }
+
+
+  function nascondiCaricamentoCreazione() {
+
+    caricamentoCreazioneNotizia.classList.remove(
+      "visibile"
+    );
+
+    caricamentoCreazioneNotizia.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+
+    /*
+     * Ripristiniamo le posizioni normali.
+     * Se il testo è più alto del normale,
+     * aggiornaLayoutNotizia() ricalcolerà
+     * automaticamente le posizioni corrette.
+     */
+
+    aggiornaLayoutNotizia();
+  }
+
+
+  /* ================================================== */
   /* MOSTRA PASSWORD */
-  /* ====================================================== */
+  /* ================================================== */
 
   pulsanteMostraPassword.addEventListener(
     "click",
     () => {
 
-      inputPassword.type =
-        "text";
-
+      inputPassword.type = "text";
 
       pulsanteMostraPassword.setAttribute(
         "aria-label",
         "Password mostrata"
       );
-
 
       pulsanteMostraPassword.setAttribute(
         "title",
@@ -417,13 +463,11 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
-  /* AGGIORNA SELETTORE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* SELETTORE */
+  /* ================================================== */
 
-  function aggiornaSelettore(
-    pagina
-  ) {
+  function aggiornaSelettore(pagina) {
 
     const testoImpostazioni =
       document.querySelector(
@@ -465,15 +509,11 @@ document.addEventListener("DOMContentLoaded", () => {
       !iconaNews ||
       !iconaEventi
     ) {
-
       return;
     }
 
 
-    if (
-      pagina ===
-      "impostazioni"
-    ) {
+    if (pagina === "impostazioni") {
 
       testoImpostazioni.style.color =
         "#2a2a2a";
@@ -498,10 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (
-      pagina ===
-      "news"
-    ) {
+    if (pagina === "news") {
 
       testoImpostazioni.style.color =
         "#a6a6a6";
@@ -526,10 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (
-      pagina ===
-      "eventi"
-    ) {
+    if (pagina === "eventi") {
 
       testoImpostazioni.style.color =
         "#a6a6a6";
@@ -553,13 +587,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* MOSTRA SEZIONE */
-  /* ====================================================== */
+  /* ================================================== */
 
-  function mostraSezione(
-    sezione
-  ) {
+  function mostraSezione(sezione) {
 
     sezioneImpostazioni.style.display =
       "none";
@@ -579,16 +611,11 @@ document.addEventListener("DOMContentLoaded", () => {
       sezioneImpostazioni.style.display =
         "block";
 
-
       aggiornaSelettore(
         "impostazioni"
       );
 
-
-      window.scrollTo(
-        0,
-        0
-      );
+      window.scrollTo(0, 0);
 
       return;
     }
@@ -602,19 +629,13 @@ document.addEventListener("DOMContentLoaded", () => {
       sezioneNews.style.display =
         "block";
 
-
       aggiornaSelettore(
         "news"
       );
 
-
       aggiornaLayoutNotizia();
 
-
-      window.scrollTo(
-        0,
-        0
-      );
+      window.scrollTo(0, 0);
 
       return;
     }
@@ -628,65 +649,52 @@ document.addEventListener("DOMContentLoaded", () => {
       sezioneEventi.style.display =
         "block";
 
-
       aggiornaSelettore(
         "eventi"
       );
 
-
-      window.scrollTo(
-        0,
-        0
-      );
+      window.scrollTo(0, 0);
     }
   }
 
 
   selettoreImpostazioni.addEventListener(
     "click",
-    () => {
-
+    () =>
       mostraSezione(
         sezioneImpostazioni
-      );
-    }
+      )
   );
 
 
   selettoreNews.addEventListener(
     "click",
-    () => {
-
+    () =>
       mostraSezione(
         sezioneNews
-      );
-    }
+      )
   );
 
 
   selettoreEventi.addEventListener(
     "click",
-    () => {
-
+    () =>
       mostraSezione(
         sezioneEventi
-      );
-    }
+      )
   );
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* ASPETTO PULSANTI BLOCCO */
-  /* ====================================================== */
+  /* ================================================== */
 
   function aggiornaAspettoPulsante(
     pulsante,
     bloccata
   ) {
 
-    if (!pulsante) {
-      return;
-    }
+    if (!pulsante) return;
 
 
     const testo =
@@ -701,7 +709,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "attivo"
       );
 
-
       if (testo) {
 
         testo.textContent =
@@ -714,7 +721,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "attivo"
       );
 
-
       if (testo) {
 
         testo.textContent =
@@ -724,9 +730,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* CARICA STATO PAGINE */
-  /* ====================================================== */
+  /* ================================================== */
 
   async function caricaStatoPagine() {
 
@@ -759,9 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-          if (!elementoPagina) {
-            return;
-          }
+          if (!elementoPagina) return;
 
 
           const pulsante =
@@ -770,9 +774,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-          if (!pulsante) {
-            return;
-          }
+          if (!pulsante) return;
 
 
           const dati =
@@ -801,9 +803,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* CAMBIA STATO PAGINA */
-  /* ====================================================== */
+  /* ================================================== */
 
   async function cambiaStatoPagina(
     elementoPagina,
@@ -814,7 +816,6 @@ document.addEventListener("DOMContentLoaded", () => {
       !elementoPagina ||
       !pulsante
     ) {
-
       return;
     }
 
@@ -823,9 +824,7 @@ document.addEventListener("DOMContentLoaded", () => {
       elementoPagina.dataset.pagina;
 
 
-    if (!pagina) {
-      return;
-    }
+    if (!pagina) return;
 
 
     const statoAttuale =
@@ -855,12 +854,10 @@ document.addEventListener("DOMContentLoaded", () => {
       await setDoc(
         riferimento,
         {
-          bloccata:
-            nuovoStato,
+          bloccata: nuovoStato,
         },
         {
-          merge:
-            true,
+          merge: true,
         }
       );
 
@@ -912,9 +909,7 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-        if (!pulsante) {
-          return;
-        }
+        if (!pulsante) return;
 
 
         pulsante.addEventListener(
@@ -931,9 +926,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-  /* ====================================================== */
-  /* CAMPI NUMERICI */
-  /* ====================================================== */
+  /* ================================================== */
+  /* DATA */
+  /* ================================================== */
 
   function mantieniSoloNumeri(
     elemento
@@ -952,9 +947,7 @@ document.addEventListener("DOMContentLoaded", () => {
     massimo
   ) {
 
-    if (!elemento) {
-      return;
-    }
+    if (!elemento) return;
 
 
     mantieniSoloNumeri(
@@ -985,7 +978,6 @@ document.addEventListener("DOMContentLoaded", () => {
         2
       );
 
-
       nascondiErrorePubblicazione();
     }
   );
@@ -999,7 +991,6 @@ document.addEventListener("DOMContentLoaded", () => {
         inputMese,
         2
       );
-
 
       nascondiErrorePubblicazione();
     }
@@ -1015,23 +1006,20 @@ document.addEventListener("DOMContentLoaded", () => {
         4
       );
 
-
       nascondiErrorePubblicazione();
     }
   );
 
 
-  /* ====================================================== */
-  /* AUTO-ESPANSIONE TEXTAREA */
-  /* ====================================================== */
+  /* ================================================== */
+  /* ADATTAMENTO CAMPI */
+  /* ================================================== */
 
   function adattaCampoTesto(
     elemento
   ) {
 
-    if (!elemento) {
-      return 0;
-    }
+    if (!elemento) return 0;
 
 
     const stile =
@@ -1073,16 +1061,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* CREA BOX IMMAGINE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* BOX IMMAGINE */
+  /* ================================================== */
 
   function creaBoxImmagine() {
 
-    if (
-      boxImmagineNotizia
-    ) {
-
+    if (boxImmagineNotizia) {
       return;
     }
 
@@ -1137,10 +1122,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "15";
 
 
-    /* ================================================== */
-    /* NOME FILE */
-    /* ================================================== */
-
     testoNomeImmagineNotizia =
       document.createElement(
         "span"
@@ -1188,10 +1169,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "ellipsis";
 
 
-    /* ================================================== */
-    /* PULSANTE X */
-    /* ================================================== */
-
     pulsanteRimuoviImmagine =
       document.createElement(
         "button"
@@ -1206,7 +1183,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pulsanteRimuoviImmagine.textContent =
       "×";
-
 
     pulsanteRimuoviImmagine.style.position =
       "absolute";
@@ -1293,21 +1269,15 @@ document.addEventListener("DOMContentLoaded", () => {
       testoNomeImmagineNotizia
     );
 
-
     boxImmagineNotizia.appendChild(
       pulsanteRimuoviImmagine
     );
-
 
     pannelloCreazioneNotizia.appendChild(
       boxImmagineNotizia
     );
   }
 
-
-  /* ====================================================== */
-  /* MOSTRA BOX IMMAGINE */
-  /* ====================================================== */
 
   function mostraBoxImmagine(
     nomeFile
@@ -1333,16 +1303,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* NASCONDI BOX IMMAGINE */
-  /* ====================================================== */
-
   function nascondiBoxImmagine() {
 
-    if (
-      !boxImmagineNotizia
-    ) {
-
+    if (!boxImmagineNotizia) {
       return;
     }
 
@@ -1355,32 +1318,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* RIMUOVI IMMAGINE */
-  /* ====================================================== */
+  /* ================================================== */
 
   function rimuoviImmagineNotizia() {
 
-    /*
-     * Eliminiamo solamente il riferimento locale.
-     *
-     * Siccome il file non è ancora stato caricato su
-     * ImageKit, non rimane nessun file inutile online.
-     */
-
     fileImmagineNotizia =
       null;
-
-    immagineNotizia =
-      "";
 
     nomeImmagineNotizia =
       "";
 
 
-    if (
-      fileInputImmagine
-    ) {
+    if (fileInputImmagine) {
 
       fileInputImmagine.value =
         "";
@@ -1396,9 +1347,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* AGGIORNA LAYOUT NEWS */
-  /* ====================================================== */
+  /* ================================================== */
+  /* LAYOUT NOTIZIA */
+  /* ================================================== */
 
   function aggiornaLayoutNotizia() {
 
@@ -1442,16 +1393,14 @@ document.addEventListener("DOMContentLoaded", () => {
       spostamentoTesto;
 
 
-    /* ================================================== */
-    /* ELEMENTI SOTTO IL TITOLO */
-    /* ================================================== */
-
     const elementiSottoTitolo = [
+
       {
         elemento:
           document.querySelector(
             ".etichetta_data"
           ),
+
         top:
           "13.5938vw",
       },
@@ -1461,6 +1410,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector(
             ".contenitore_data"
           ),
+
         top:
           "18.0729vw",
       },
@@ -1470,9 +1420,11 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector(
             ".etichetta_immagini"
           ),
+
         top:
           "22.1875vw",
       },
+
     ];
 
 
@@ -1482,9 +1434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         top,
       }) => {
 
-        if (!elemento) {
-          return;
-        }
+        if (!elemento) return;
 
 
         elemento.style.top =
@@ -1493,42 +1443,28 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* ================================================== */
-    /* BOX IMMAGINE */
-    /* ================================================== */
-
-    if (
-      boxImmagineNotizia
-    ) {
+    if (boxImmagineNotizia) {
 
       boxImmagineNotizia.style.top =
         `calc(26.6146vw + ${spostamentoTitolo}px)`;
     }
 
 
-    /* ================================================== */
-    /* PULSANTE CARICA IMMAGINE */
-    /* ================================================== */
-
-    if (
-      pulsanteCaricaImmagini
-    ) {
+    if (pulsanteCaricaImmagini) {
 
       pulsanteCaricaImmagini.style.top =
         `calc(26.6146vw + ${spostamentoTitolo}px + ${spostamentoImmagine})`;
     }
 
 
-    /* ================================================== */
-    /* ELEMENTI SOTTO LE IMMAGINI */
-    /* ================================================== */
-
     const elementiSottoImmagini = [
+
       {
         elemento:
           document.querySelector(
             ".etichetta_testo"
           ),
+
         top:
           "32.7604vw",
       },
@@ -1538,9 +1474,11 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector(
             ".contenitore_testo_notizia"
           ),
+
         top:
           "35.8333vw",
       },
+
     ];
 
 
@@ -1550,9 +1488,7 @@ document.addEventListener("DOMContentLoaded", () => {
         top,
       }) => {
 
-        if (!elemento) {
-          return;
-        }
+        if (!elemento) return;
 
 
         elemento.style.top =
@@ -1561,81 +1497,61 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* ================================================== */
-    /* SPOSTAMENTO FINALE */
-    /* ================================================== */
-
     const spostamentoFinale =
       `calc(${spostamentoTotale}px + ${spostamentoImmagine})`;
 
 
-    /* ================================================== */
-    /* SALVA BOZZA */
-    /* ================================================== */
+    /*
+     * Se il loader è visibile, non
+     * sovrascriviamo le sue posizioni.
+     */
 
-    if (
-      pulsanteSalvaBozza
-    ) {
+    const loaderVisibile =
+      caricamentoCreazioneNotizia.classList.contains(
+        "visibile"
+      );
 
-      pulsanteSalvaBozza.style.top =
-        `calc(63.3854vw + ${spostamentoFinale})`;
+
+    if (!loaderVisibile) {
+
+      if (pulsanteSalvaBozza) {
+
+        pulsanteSalvaBozza.style.top =
+          `calc(63.3854vw + ${spostamentoFinale})`;
+      }
+
+
+      if (pulsantePubblica) {
+
+        pulsantePubblica.style.top =
+          `calc(63.3854vw + ${spostamentoFinale})`;
+      }
+
+
+      if (errorePubblicazione) {
+
+        errorePubblicazione.style.top =
+          `calc(60.15vw + ${spostamentoFinale})`;
+      }
+
+
+      pannelloCreazioneNotizia.style.height =
+        `calc(67.7604vw + ${spostamentoFinale})`;
+
+
+      pannelloNotizie.style.top =
+        `calc(92.44vw + ${spostamentoFinale})`;
+
+
+      sezioneNews.style.minHeight =
+        `calc(162.6042vw + ${spostamentoFinale})`;
     }
-
-
-    /* ================================================== */
-    /* PUBBLICA */
-    /* ================================================== */
-
-    if (
-      pulsantePubblica
-    ) {
-
-      pulsantePubblica.style.top =
-        `calc(63.3854vw + ${spostamentoFinale})`;
-    }
-
-
-    /* ================================================== */
-    /* ERRORE PUBBLICAZIONE */
-    /* ================================================== */
-
-    if (
-      errorePubblicazione
-    ) {
-
-      errorePubblicazione.style.top =
-        `calc(60.15vw + ${spostamentoFinale})`;
-    }
-
-
-    /* ================================================== */
-    /* ALTEZZA PANNELLO CREAZIONE */
-    /* ================================================== */
-
-    pannelloCreazioneNotizia.style.height =
-      `calc(67.7604vw + ${spostamentoFinale})`;
-
-
-    /* ================================================== */
-    /* PANNELLO NOTIZIE */
-    /* ================================================== */
-
-    pannelloNotizie.style.top =
-      `calc(92.44vw + ${spostamentoFinale})`;
-
-
-    /* ================================================== */
-    /* ALTEZZA SEZIONE NEWS */
-    /* ================================================== */
-
-    sezioneNews.style.minHeight =
-      `calc(162.6042vw + ${spostamentoFinale})`;
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* VALIDAZIONE DATA */
-  /* ====================================================== */
+  /* ================================================== */
 
   function dataValida() {
 
@@ -1710,9 +1626,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* VALIDAZIONE PUBBLICAZIONE */
-  /* ====================================================== */
+  /* ================================================== */
 
   function validaPubblicazione() {
 
@@ -1739,9 +1655,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    if (
-      !dataValida()
-    ) {
+    if (!dataValida()) {
 
       errori.push(
         "Inserisci una data valida."
@@ -1753,9 +1667,47 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* IMAGEKIT: AUTENTICAZIONE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* VALIDAZIONE FILE */
+  /* ================================================== */
+
+  function validaFileImmagine(file) {
+
+    if (!file) {
+
+      throw new Error(
+        "Nessuna immagine selezionata."
+      );
+    }
+
+
+    if (
+      !file.type.startsWith(
+        "image/"
+      )
+    ) {
+
+      throw new Error(
+        "Il file selezionato non è un'immagine."
+      );
+    }
+
+
+    if (
+      file.size >
+      IMAGEKIT_MAX_FILE_SIZE
+    ) {
+
+      throw new Error(
+        "L'immagine supera il limite di 25 MB."
+      );
+    }
+  }
+
+
+  /* ================================================== */
+  /* AUTENTICAZIONE IMAGEKIT */
+  /* ================================================== */
 
   async function ottieniAutenticazioneImageKit() {
 
@@ -1763,11 +1715,8 @@ document.addEventListener("DOMContentLoaded", () => {
       await fetch(
         IMAGEKIT_AUTHENTICATION_ENDPOINT,
         {
-          method:
-            "GET",
-
-          cache:
-            "no-store",
+          method: "GET",
+          cache: "no-store",
         }
       );
 
@@ -1800,40 +1749,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* IMAGEKIT: UPLOAD */
-  /* ====================================================== */
+  /* ================================================== */
+  /* UPLOAD IMAGEKIT */
+  /* ================================================== */
 
   async function caricaImmagineSuImageKit(
     file
   ) {
 
-    if (!file) {
-      return "";
-    }
+    if (!file) return "";
 
 
-    if (
-      !file.type.startsWith(
-        "image/"
-      )
-    ) {
-
-      throw new Error(
-        "Il file selezionato non è un'immagine."
-      );
-    }
-
-
-    if (
-      file.size >
-      IMAGEKIT_MAX_FILE_SIZE
-    ) {
-
-      throw new Error(
-        "L'immagine supera il limite di 25 MB."
-      );
-    }
+    validaFileImmagine(
+      file
+    );
 
 
     const autenticazione =
@@ -1900,11 +1829,8 @@ document.addEventListener("DOMContentLoaded", () => {
       await fetch(
         IMAGEKIT_UPLOAD_ENDPOINT,
         {
-          method:
-            "POST",
-
-          body:
-            formData,
+          method: "POST",
+          body: formData,
         }
       );
 
@@ -1946,16 +1872,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* STATO PULSANTE IMMAGINI */
-  /* ====================================================== */
+  /* ================================================== */
 
   function aggiornaStatoPulsanteImmagini() {
 
-    if (
-      !pulsanteCaricaImmagini
-    ) {
-
+    if (!pulsanteCaricaImmagini) {
       return;
     }
 
@@ -1973,13 +1896,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* SELEZIONE IMMAGINE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* FILE INPUT IMMAGINE */
+  /* ================================================== */
 
-  if (
-    pulsanteCaricaImmagini
-  ) {
+  if (pulsanteCaricaImmagini) {
 
     fileInputImmagine =
       document.createElement(
@@ -1990,10 +1911,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fileInputImmagine.type =
       "file";
 
-
     fileInputImmagine.accept =
       "image/*";
-
 
     fileInputImmagine.style.display =
       "none";
@@ -2016,6 +1935,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        if (
+          caricamentoCreazioneNotizia.classList.contains(
+            "visibile"
+          )
+        ) {
+
+          return;
+        }
+
+
         fileInputImmagine.value =
           "";
 
@@ -2027,97 +1956,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fileInputImmagine.addEventListener(
       "change",
-      async () => {
+      () => {
 
         const file =
           fileInputImmagine.files?.[0];
 
 
-        if (!file) {
-          return;
-        }
+        if (!file) return;
 
 
         nascondiErrorePubblicazione();
 
 
-        /*
-         * Controlli effettuati SUBITO,
-         * senza effettuare alcun upload.
-         */
+        try {
 
-        if (
-          !file.type.startsWith(
-            "image/"
-          )
-        ) {
+          /*
+           * IMPORTANTISSIMO:
+           * qui NON viene effettuato alcun
+           * upload su ImageKit.
+           */
 
-          mostraErrorePubblicazione([
-            "Il file selezionato non è un'immagine."
-          ]);
+          validaFileImmagine(
+            file
+          );
 
-          fileInputImmagine.value =
+
+          fileImmagineNotizia =
+            file;
+
+
+          nomeImmagineNotizia =
+            file.name;
+
+
+          console.log(
+            "Immagine selezionata localmente:",
+            file.name
+          );
+
+
+          mostraBoxImmagine(
+            nomeImmagineNotizia
+          );
+
+
+          mostraMessaggioPubblicazione(
+            "Immagine selezionata. Verrà caricata quando salvi la notizia."
+          );
+
+        } catch (error) {
+
+          fileImmagineNotizia =
+            null;
+
+          nomeImmagineNotizia =
             "";
 
-          return;
-        }
 
+          console.error(
+            "Errore selezione immagine:",
+            error
+          );
 
-        if (
-          file.size >
-          IMAGEKIT_MAX_FILE_SIZE
-        ) {
 
           mostraErrorePubblicazione([
-            "L'immagine supera il limite di 25 MB."
+            error.message ||
+              "Impossibile utilizzare l'immagine selezionata.",
           ]);
 
-          fileInputImmagine.value =
-            "";
 
-          return;
+          nascondiBoxImmagine();
+
+
+          aggiornaLayoutNotizia();
         }
-
-
-        /*
-         * Salviamo il File solamente in memoria.
-         *
-         * NON viene ancora mandato a ImageKit.
-         */
-
-        fileImmagineNotizia =
-          file;
-
-
-        immagineNotizia =
-          "";
-
-        nomeImmagineNotizia =
-          file.name;
-
-
-        console.log(
-          "Immagine selezionata, upload rimandato al salvataggio:",
-          file.name
-        );
-
-
-        mostraBoxImmagine(
-          nomeImmagineNotizia
-        );
-
-
-        mostraMessaggioPubblicazione(
-          "Immagine selezionata correttamente."
-        );
       }
     );
   }
 
 
-  /* ====================================================== */
-  /* PULISCI CAMPI NOTIZIA */
-  /* ====================================================== */
+  /* ================================================== */
+  /* PULIZIA FORM */
+  /* ================================================== */
 
   function pulisciCampiNotizia() {
 
@@ -2137,23 +2057,14 @@ document.addEventListener("DOMContentLoaded", () => {
       "";
 
 
-    /*
-     * Azzeriamo anche il File locale.
-     */
-
     fileImmagineNotizia =
       null;
-
-    immagineNotizia =
-      "";
 
     nomeImmagineNotizia =
       "";
 
 
-    if (
-      fileInputImmagine
-    ) {
+    if (fileInputImmagine) {
 
       fileInputImmagine.value =
         "";
@@ -2167,9 +2078,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* SALVA NOTIZIA IN FIRESTORE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* SALVA NOTIZIA */
+  /* ================================================== */
 
   async function salvaNotizia(
     pubblicata
@@ -2179,17 +2090,13 @@ document.addEventListener("DOMContentLoaded", () => {
       validaPubblicazione();
 
 
-    if (
-      errori.length > 0
-    ) {
+    if (errori.length > 0) {
 
       mostraErrorePubblicazione(
         errori
       );
 
-
       aggiornaLayoutNotizia();
-
 
       return false;
     }
@@ -2200,12 +2107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
 
       mostraErrorePubblicazione([
-        "Attendi il completamento del caricamento dell'immagine."
+        "Attendi il completamento del caricamento dell'immagine.",
       ]);
 
-
       aggiornaLayoutNotizia();
-
 
       return false;
     }
@@ -2216,10 +2121,12 @@ document.addEventListener("DOMContentLoaded", () => {
         inputGiorno.value.trim()
       );
 
+
     const mese =
       Number(
         inputMese.value.trim()
       );
+
 
     const anno =
       Number(
@@ -2241,9 +2148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : pulsanteSalvaBozza;
 
 
-    if (
-      pulsante
-    ) {
+    if (pulsante) {
 
       pulsante.style.pointerEvents =
         "none";
@@ -2253,34 +2158,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    if (pulsanteCaricaImmagini) {
+
+      pulsanteCaricaImmagini.style.pointerEvents =
+        "none";
+
+      pulsanteCaricaImmagini.style.opacity =
+        "0.65";
+    }
+
+
     try {
 
       /*
-       * ====================================================
-       * UPLOAD IMAGEKIT
-       * ====================================================
-       *
-       * L'immagine viene caricata SOLO ADESSO.
-       *
-       * Quindi:
-       *
-       * - se l'utente sostituisce un'immagine prima di
-       *   salvare, quella vecchia NON è mai stata caricata;
-       *
-       * - se l'utente rimuove l'immagine, non viene caricato
-       *   nulla;
-       *
-       * - se non seleziona immagini, non viene effettuato
-       *   nessun upload.
+       * ==================================================
+       * INIZIO CREAZIONE
+       * ==================================================
        */
 
-      immagineNotizia =
+      mostraCaricamentoCreazione(
+        fileImmagineNotizia
+          ? "Caricamento immagine e creazione notizia..."
+          : "Creazione notizia in corso..."
+      );
+
+
+      let urlImmagine =
         "";
 
 
-      if (
-        fileImmagineNotizia
-      ) {
+      /*
+       * ==================================================
+       * UPLOAD IMAGEKIT
+       * ==================================================
+       */
+
+      if (fileImmagineNotizia) {
 
         caricamentoImmagineInCorso =
           true;
@@ -2289,56 +2202,63 @@ document.addEventListener("DOMContentLoaded", () => {
         aggiornaStatoPulsanteImmagini();
 
 
-        mostraMessaggioPubblicazione(
-          "Caricamento immagine..."
-        );
-
-
-        immagineNotizia =
+        urlImmagine =
           await caricaImmagineSuImageKit(
             fileImmagineNotizia
           );
 
 
+        caricamentoImmagineInCorso =
+          false;
+
+
+        aggiornaStatoPulsanteImmagini();
+
+
+        /*
+         * Ora l'immagine è realmente
+         * presente su ImageKit.
+         */
+
         console.log(
           "Immagine caricata su ImageKit:",
-          immagineNotizia
+          urlImmagine
         );
       }
 
 
-      /* ================================================== */
-      /* DATI NOTIZIA */
-      /* ================================================== */
+      /*
+       * ==================================================
+       * DATI NOTIZIA
+       * ==================================================
+       */
 
       const datiNotizia = {
 
         titolo:
           inputTitoloNotizia.value.trim(),
 
-
         testo:
           inputTestoNotizia.value.trim(),
-
 
         data:
           Timestamp.fromDate(
             dataNotizia
           ),
 
-
         immagine:
-          immagineNotizia || "",
-
+          urlImmagine,
 
         pubblicata:
           pubblicata === true,
       };
 
 
-      /* ================================================== */
-      /* FIRESTORE */
-      /* ================================================== */
+      /*
+       * ==================================================
+       * SALVATAGGIO FIRESTORE
+       * ==================================================
+       */
 
       const riferimento =
         await addDoc(
@@ -2360,6 +2280,15 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
+      /*
+       * ==================================================
+       * FINE CREAZIONE
+       * ==================================================
+       */
+
+      nascondiCaricamentoCreazione();
+
+
       mostraMessaggioPubblicazione(
         pubblicata
           ? "Notizia pubblicata correttamente."
@@ -2372,28 +2301,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return true;
 
-
     } catch (error) {
 
       console.error(
-        "Errore salvataggio notizia:",
+        "Errore creazione notizia:",
         error
       );
 
-
-      mostraErrorePubblicazione([
-        error.message ||
-          "Impossibile salvare la notizia."
-      ]);
-
-
-      aggiornaLayoutNotizia();
-
-
-      return false;
-
-
-    } finally {
 
       caricamentoImmagineInCorso =
         false;
@@ -2402,9 +2316,25 @@ document.addEventListener("DOMContentLoaded", () => {
       aggiornaStatoPulsanteImmagini();
 
 
-      if (
-        pulsante
-      ) {
+      nascondiCaricamentoCreazione();
+
+
+      mostraErrorePubblicazione([
+
+        error.message ||
+          "Impossibile creare la notizia.",
+
+      ]);
+
+
+      aggiornaLayoutNotizia();
+
+
+      return false;
+
+    } finally {
+
+      if (pulsante) {
 
         pulsante.style.pointerEvents =
           "auto";
@@ -2412,13 +2342,23 @@ document.addEventListener("DOMContentLoaded", () => {
         pulsante.style.opacity =
           "1";
       }
+
+
+      if (pulsanteCaricaImmagini) {
+
+        pulsanteCaricaImmagini.style.pointerEvents =
+          "auto";
+
+        pulsanteCaricaImmagini.style.opacity =
+          "1";
+      }
     }
   }
 
 
-  /* ====================================================== */
-  /* PULSANTE PUBBLICA */
-  /* ====================================================== */
+  /* ================================================== */
+  /* PUBBLICA */
+  /* ================================================== */
 
   pulsantePubblica.addEventListener(
     "click",
@@ -2434,13 +2374,11 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
-  /* PULSANTE SALVA COME BOZZA */
-  /* ====================================================== */
+  /* ================================================== */
+  /* SALVA BOZZA */
+  /* ================================================== */
 
-  if (
-    pulsanteSalvaBozza
-  ) {
+  if (pulsanteSalvaBozza) {
 
     pulsanteSalvaBozza.addEventListener(
       "click",
@@ -2457,9 +2395,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* CAMBIO INPUT */
-  /* ====================================================== */
+  /* ================================================== */
+  /* INPUT TITOLO */
+  /* ================================================== */
 
   inputTitoloNotizia.addEventListener(
     "input",
@@ -2472,6 +2410,10 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
+  /* ================================================== */
+  /* INPUT TESTO */
+  /* ================================================== */
+
   inputTestoNotizia.addEventListener(
     "input",
     () => {
@@ -2483,9 +2425,9 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* RESIZE OBSERVER */
-  /* ====================================================== */
+  /* ================================================== */
 
   if (
     "ResizeObserver" in window
@@ -2511,9 +2453,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
-  /* DATA: ENTER */
-  /* ====================================================== */
+  /* ================================================== */
+  /* ENTER DATA */
+  /* ================================================== */
 
   inputGiorno.addEventListener(
     "keydown",
@@ -2525,7 +2467,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ) {
 
         event.preventDefault();
-
 
         inputMese.focus();
       }
@@ -2544,16 +2485,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
 
-
         inputAnno.focus();
       }
     }
   );
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* ACCESSO */
-  /* ====================================================== */
+  /* ================================================== */
 
   async function effettuaAccesso() {
 
@@ -2581,9 +2521,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Inserisci il nome utente."
       );
 
-
       inputNomeUtente.focus();
-
 
       return;
     }
@@ -2597,9 +2535,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Inserisci la password."
       );
 
-
       inputPassword.focus();
-
 
       return;
     }
@@ -2623,8 +2559,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await fetch(
           URL_WORKER_LOGIN,
           {
-            method:
-              "POST",
+            method: "POST",
 
             headers: {
               "Content-Type":
@@ -2671,7 +2606,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         inputPassword.focus();
 
-
         return;
       }
 
@@ -2691,7 +2625,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Autenticazione Firebase riuscita."
       );
 
-
     } catch (error) {
 
       console.error(
@@ -2709,7 +2642,6 @@ document.addEventListener("DOMContentLoaded", () => {
           "Il token di autenticazione non è valido."
         );
 
-
       } else if (
         error.code ===
         "auth/custom-token-mismatch"
@@ -2719,14 +2651,12 @@ document.addEventListener("DOMContentLoaded", () => {
           "Il token appartiene a un progetto Firebase diverso."
         );
 
-
       } else {
 
         mostraErrore(
           "Impossibile effettuare l'accesso."
         );
       }
-
 
     } finally {
 
@@ -2744,9 +2674,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* STATO AUTENTICAZIONE */
-  /* ====================================================== */
+  /* ================================================== */
 
   onAuthStateChanged(
     auth,
@@ -2777,7 +2707,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await caricaStatoPagine();
 
-
       } else {
 
         pannelloAccesso.style.display =
@@ -2791,9 +2720,9 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
+  /* ================================================== */
   /* PULSANTE ENTRA */
-  /* ====================================================== */
+  /* ================================================== */
 
   pulsanteEntra.addEventListener(
     "click",
@@ -2801,12 +2730,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       event.preventDefault();
 
-
       effettuaAccesso();
     }
   );
 
 
+  /* ================================================== */
+  /* ENTER ACCESSO */
+  /* ================================================== */
+
   inputNomeUtente.addEventListener(
     "keydown",
     (event) => {
@@ -2817,7 +2749,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ) {
 
         event.preventDefault();
-
 
         effettuaAccesso();
       }
@@ -2836,12 +2767,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
 
-
         effettuaAccesso();
       }
     }
   );
 
+
+  /* ================================================== */
+  /* NASCONDI ERRORE ACCESSO */
+  /* ================================================== */
 
   inputNomeUtente.addEventListener(
     "input",
@@ -2861,21 +2795,18 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* ====================================================== */
-  /* INIZIALIZZAZIONE */
-  /* ====================================================== */
+  /* ================================================== */
+  /* LAYOUT INIZIALE */
+  /* ================================================== */
 
   aggiornaLayoutNotizia();
-
 
   mostraSezione(
     sezioneImpostazioni
   );
 
 
-  if (
-    document.fonts
-  ) {
+  if (document.fonts) {
 
     document.fonts.ready.then(
       () => {

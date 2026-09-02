@@ -887,6 +887,94 @@ body {
 
 
 /* ====================================================== */
+/* CARICAMENTO CREAZIONE NOTIZIA */
+/* ====================================================== */
+
+.caricamento_creazione_notizia {
+  width: 100%;
+  height: 7vw;
+  position: absolute;
+  top: 60.35vw;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.caricamento_creazione_notizia.visibile {
+  display: flex;
+}
+
+.testo_caricamento_creazione_notizia {
+  width: 100%;
+  height: 1.6vw;
+  margin-bottom: 0.45vw;
+  color: #2a2a2a;
+  font-family: Inter, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.loader_creazione_notizia {
+  height: 60px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#2a2a2a 0 0);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 33.4% 33.4%;
+  animation: l7 1.5s infinite linear;
+}
+
+@keyframes l7 {
+  0%,
+  5% {
+    background-position:
+      0 0,
+      50% 0,
+      0 50%,
+      50% 50%;
+  }
+
+  25% {
+    background-position:
+      0 0,
+      100% 0,
+      0 100%,
+      50% 50%;
+  }
+
+  50% {
+    background-position:
+      50% 0,
+      100% 0,
+      0 100%,
+      0 50%;
+  }
+
+  75% {
+    background-position:
+      50% 0,
+      100% 50%,
+      0 100%,
+      0 0;
+  }
+
+  95%,
+  100% {
+    background-position:
+      50% 0,
+      50% 50%,
+      0 50%,
+      0 0;
+  }
+}
+
+
+/* ====================================================== */
 /* ERRORE PUBBLICAZIONE */
 /* ====================================================== */
 
@@ -923,6 +1011,9 @@ body {
   left: 27.5vw;
   overflow: hidden;
   cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
 }
 
 .sfondo_pulsante_salva_bozza {
@@ -962,6 +1053,9 @@ body {
   left: 53.5417vw;
   overflow: hidden;
   cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
 }
 
 .sfondo_pulsante_pubblica {
@@ -986,6 +1080,11 @@ body {
   font-size: 1.6667vw;
   text-align: center;
 }
+
+
+/* ====================================================== */
+/* PANNELLO NOTIZIE */
+/* ====================================================== */
 
 .pannello_notizie {
   width: 100%;
