@@ -1096,7 +1096,7 @@ body.popup_aperto {
 
   z-index: 20;
 
-  transition: transform 0.12s ease;
+  transition: transform 0.12s ease, top 0.2s ease;
 }
 
 .pulsante_carica_altro:active {

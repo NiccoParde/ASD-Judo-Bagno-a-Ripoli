@@ -1,614 +1,419 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="it">
+  <head>
+    <!-- ================================================== -->
+    <!-- IMPOSTAZIONI BASE -->
+    <!-- ================================================== -->
 
-<head>
+    <meta charset="UTF-8" />
 
-  <!-- ================================================== -->
-  <!-- IMPOSTAZIONI BASE -->
-  <!-- ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" />
+    <!-- ================================================== -->
+    <!-- TITOLO -->
+    <!-- ================================================== -->
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    <title>Pannello amministratore - A.S.D. Judo Bagno a Ripoli</title>
 
-  <!-- ================================================== -->
-  <!-- TITOLO -->
-  <!-- ================================================== -->
+    <link rel="icon" type="image/png" href="./assets/global/logo.png" />
 
-  <title>Pannello amministratore - A.S.D. Judo Bagno a Ripoli</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+      rel="stylesheet"
+    />
 
-  <link
-    rel="icon"
-    type="image/png"
-    href="./assets/global/logo.png"
-  />
+    <link
+      href="https://fonts.googleapis.com/css?family=Dela+Gothic+One&display=swap"
+      rel="stylesheet"
+    />
 
-  <link
-    href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-    rel="stylesheet"
-  />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap"
+      rel="stylesheet"
+    />
 
-  <link
-    href="https://fonts.googleapis.com/css?family=Dela+Gothic+One&display=swap"
-    rel="stylesheet"
-  />
+    <link href="./css/pannello_amministratore.css" rel="stylesheet" />
 
-  <link
-    href="https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap"
-    rel="stylesheet"
-  />
+    <link href="./css/style.css" rel="stylesheet" />
+  </head>
 
-  <link
-    href="./css/pannello_amministratore.css"
-    rel="stylesheet"
-  />
+  <body>
+    <!-- ================================================== -->
+    <!-- SCHERMATA ACCESSO -->
+    <!-- ================================================== -->
 
-  <link
-    href="./css/style.css"
-    rel="stylesheet"
-  />
-
-</head>
-
-<body>
-
-  <!-- ================================================== -->
-  <!-- SCHERMATA ACCESSO -->
-  <!-- ================================================== -->
-
-  <div
-    class="schermata_accesso"
-    id="pannelloAccesso"
-  >
-
-    <span class="testo_pannello_amministratore">
-      Pannello amministratore
-    </span>
-
-    <span class="testo_accedi">
-      Accedi
-    </span>
-
-    <span class="testo_nome_utente">
-      Nome utente
-    </span>
-
-    <div class="casella_nome_utente">
-
-      <input
-        type="text"
-        class="input_nome_utente"
-        id="inputNomeUtente"
-        placeholder="Inserisci il nome utente"
-        autocomplete="username"
-        spellcheck="false"
-      />
-
-    </div>
-
-    <span class="testo_password">
-      Password
-    </span>
-
-    <div class="casella_password">
-
-      <input
-        type="password"
-        class="input_password"
-        id="inputPassword"
-        placeholder="Inserisci la password"
-        autocomplete="current-password"
-        spellcheck="false"
-      />
-
-    </div>
-
-    <button
-      type="button"
-      class="pulsante_mostra_password"
-      id="pulsanteMostraPassword"
-      aria-label="Mostra password"
-      title="Mostra password"
-    >
-
-      <div class="icona_mostra_password"></div>
-
-    </button>
-
-    <div
-      class="errore_accesso"
-      id="erroreAccesso"
-    ></div>
-
-    <button
-      type="button"
-      class="pulsante_entra"
-      id="pulsanteEntra"
-    >
-
-      <span class="testo_pulsante_entra">
-        Entra
+    <div class="schermata_accesso" id="pannelloAccesso">
+      <span class="testo_pannello_amministratore">
+        Pannello amministratore
       </span>
 
-    </button>
+      <span class="testo_accedi"> Accedi </span>
 
-  </div>
+      <span class="testo_nome_utente"> Nome utente </span>
 
-
-  <!-- ================================================== -->
-  <!-- PANNELLO AMMINISTRATORE -->
-  <!-- ================================================== -->
-
-  <div
-    class="pannello_amministratore"
-    id="pannelloAmministratore"
-    style="display: none"
-  >
-
-    <span class="titolo_pannello_amministratore">
-      Pannello amministratore
-    </span>
-
-    <div class="separatore_titolo"></div>
-
-
-    <!-- ================================================== -->
-    <!-- SELETTORE -->
-    <!-- ================================================== -->
-
-    <div class="selettore_pannello">
-
-      <div
-        class="pulsante_impostazioni"
-        id="selettoreImpostazioni"
-      >
-
-        <span class="testo_selettore_impostazioni">
-          Impostazioni
-        </span>
-
-        <div class="icona_selettore_impostazioni"></div>
-
+      <div class="casella_nome_utente">
+        <input
+          type="text"
+          class="input_nome_utente"
+          id="inputNomeUtente"
+          placeholder="Inserisci il nome utente"
+          autocomplete="username"
+          spellcheck="false"
+        />
       </div>
 
-      <div class="separatore_selettore_1"></div>
+      <span class="testo_password"> Password </span>
 
-      <div
-        class="pulsante_notizie"
-        id="selettoreNews"
-      >
-
-        <span class="testo_selettore_news">
-          News
-        </span>
-
-        <div class="icona_selettore_news"></div>
-
+      <div class="casella_password">
+        <input
+          type="password"
+          class="input_password"
+          id="inputPassword"
+          placeholder="Inserisci la password"
+          autocomplete="current-password"
+          spellcheck="false"
+        />
       </div>
 
-      <div class="separatore_selettore_2"></div>
-
-      <div
-        class="pulsante_eventi"
-        id="selettoreEventi"
+      <button
+        type="button"
+        class="pulsante_mostra_password"
+        id="pulsanteMostraPassword"
+        aria-label="Mostra password"
+        title="Mostra password"
       >
+        <div class="icona_mostra_password"></div>
+      </button>
 
-        <div class="icona_selettore_eventi"></div>
+      <div class="errore_accesso" id="erroreAccesso"></div>
 
-        <span class="testo_selettore_eventi">
-          Eventi
-        </span>
-
-      </div>
-
+      <button type="button" class="pulsante_entra" id="pulsanteEntra">
+        <span class="testo_pulsante_entra"> Entra </span>
+      </button>
     </div>
 
-
     <!-- ================================================== -->
-    <!-- IMPOSTAZIONI -->
+    <!-- PANNELLO AMMINISTRATORE -->
     <!-- ================================================== -->
 
     <div
-      class="contenuto_sezione_amministratore"
-      id="sezioneImpostazioni"
-    >
-
-      <div class="sezione_blocca_pagina">
-
-        <span class="titolo_sezione_blocca_pagina">
-          Blocca pagina
-        </span>
-
-
-        <div
-          class="pulsante_home"
-          data-pagina="home"
-        >
-
-          <span class="testo_pulsante_home">
-            Home
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_unisciti_a_noi"
-          data-pagina="unisciti_a_noi"
-        >
-
-          <span class="testo_pulsante_unisciti_a_noi">
-            Unisciti a noi
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_storia"
-          data-pagina="storia"
-        >
-
-          <span class="testo_pulsante_storia">
-            Storia
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_info_e_orari"
-          data-pagina="info_e_orari"
-        >
-
-          <span class="testo_pulsante_info_e_orari">
-            Info e orari
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_shoku_geiko"
-          data-pagina="shoku_geiko"
-        >
-
-          <span class="testo_pulsante_shoku_geiko">
-            Shoku geiko
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_news"
-          data-pagina="news"
-        >
-
-          <span class="testo_pulsante_news">
-            News
-          </span>
-
-          <div class="pulsante_blocca">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="pulsante_calendario_eventi"
-          data-pagina="calendario_eventi"
-        >
-
-          <span class="testo_pulsante_calendario_eventi">
-            Calendario eventi
-          </span>
-
-          <div class="pulsante_blocca pulsante_blocca_calendario">
-
-            <div class="sfondo_pulsante_blocca"></div>
-
-            <span class="testo_pulsante_blocca">
-              Blocca
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================================================== -->
-    <!-- NEWS -->
-    <!-- ================================================== -->
-
-    <div
-      class="contenuto_sezione_amministratore"
-      id="sezioneNews"
+      class="pannello_amministratore"
+      id="pannelloAmministratore"
       style="display: none"
     >
+      <span class="titolo_pannello_amministratore">
+        Pannello amministratore
+      </span>
 
-      <div class="pannello_creazione_notizia">
+      <div class="separatore_titolo"></div>
 
-        <span class="titolo_pannello_creazione_notizia">
-          Nuova notizia
-        </span>
+      <!-- ================================================== -->
+      <!-- SELETTORE -->
+      <!-- ================================================== -->
 
-        <span class="testo_titolo_notizia">
-          Titolo
-        </span>
+      <div class="selettore_pannello">
+        <div class="pulsante_impostazioni" id="selettoreImpostazioni">
+          <span class="testo_selettore_impostazioni"> Impostazioni </span>
 
-        <div class="titolo_notizia_admin">
-
-          <textarea
-            class="input_titolo_notizia"
-            id="inputTitoloNotizia"
-            placeholder="Inserisci il titolo"
-            autocomplete="off"
-            spellcheck="true"
-            rows="1"
-          ></textarea>
-
+          <div class="icona_selettore_impostazioni"></div>
         </div>
 
+        <div class="separatore_selettore_1"></div>
 
-        <span class="etichetta_data">
-          Data
-        </span>
+        <div class="pulsante_notizie" id="selettoreNews">
+          <span class="testo_selettore_news"> News </span>
 
-        <div class="contenitore_data">
-
-          <input
-            type="text"
-            class="input_giorno"
-            id="inputGiorno"
-            placeholder="GG"
-            inputmode="numeric"
-            maxlength="2"
-            autocomplete="off"
-          />
-
-          <div class="separatore_data_1"></div>
-
-          <input
-            type="text"
-            class="input_mese"
-            id="inputMese"
-            placeholder="MM"
-            inputmode="numeric"
-            maxlength="2"
-            autocomplete="off"
-          />
-
-          <div class="separatore_data_2"></div>
-
-          <input
-            type="text"
-            class="input_anno"
-            id="inputAnno"
-            placeholder="AAAA"
-            inputmode="numeric"
-            maxlength="4"
-            autocomplete="off"
-          />
-
+          <div class="icona_selettore_news"></div>
         </div>
 
+        <div class="separatore_selettore_2"></div>
 
-        <span class="etichetta_immagini">
-          Immagini
-        </span>
+        <div class="pulsante_eventi" id="selettoreEventi">
+          <div class="icona_selettore_eventi"></div>
 
-        <div class="pulsante_carica_immagini">
+          <span class="testo_selettore_eventi"> Eventi </span>
+        </div>
+      </div>
 
-          <div class="sfondo_pulsante_immagini_1">
+      <!-- ================================================== -->
+      <!-- IMPOSTAZIONI -->
+      <!-- ================================================== -->
 
-            <div class="sfondo_pulsante_immagini_2"></div>
+      <div class="contenuto_sezione_amministratore" id="sezioneImpostazioni">
+        <div class="sezione_blocca_pagina">
+          <span class="titolo_sezione_blocca_pagina"> Blocca pagina </span>
 
+          <div class="pulsante_home" data-pagina="home">
+            <span class="testo_pulsante_home"> Home </span>
+
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
+
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
           </div>
 
-          <div class="icona_pulsante_immagini"></div>
+          <div class="pulsante_unisciti_a_noi" data-pagina="unisciti_a_noi">
+            <span class="testo_pulsante_unisciti_a_noi"> Unisciti a noi </span>
 
-        </div>
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
 
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
 
-        <span class="etichetta_testo">
-          Testo
-        </span>
+          <div class="pulsante_storia" data-pagina="storia">
+            <span class="testo_pulsante_storia"> Storia </span>
 
-        <div class="contenitore_testo_notizia">
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
 
-          <textarea
-            class="input_testo_notizia"
-            id="inputTestoNotizia"
-            placeholder="Inserisci il testo"
-            autocomplete="off"
-            spellcheck="true"
-          ></textarea>
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
 
-        </div>
+          <div class="pulsante_info_e_orari" data-pagina="info_e_orari">
+            <span class="testo_pulsante_info_e_orari"> Info e orari </span>
 
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
 
-        <!-- ================================================== -->
-        <!-- AREA CARICAMENTO CREAZIONE NOTIZIA -->
-        <!-- ================================================== -->
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
 
-        <div
-          class="caricamento_creazione_notizia"
-          id="caricamentoCreazioneNotizia"
-          aria-live="polite"
-          aria-hidden="true"
-        >
+          <div class="pulsante_shoku_geiko" data-pagina="shoku_geiko">
+            <span class="testo_pulsante_shoku_geiko"> Shoku geiko </span>
+
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
+
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
+
+          <div class="pulsante_news" data-pagina="news">
+            <span class="testo_pulsante_news"> News </span>
+
+            <div class="pulsante_blocca">
+              <div class="sfondo_pulsante_blocca"></div>
+
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
 
           <div
-            class="testo_caricamento_creazione_notizia"
-            id="testoCaricamentoCreazioneNotizia"
+            class="pulsante_calendario_eventi"
+            data-pagina="calendario_eventi"
           >
-            Creazione notizia in corso...
+            <span class="testo_pulsante_calendario_eventi">
+              Calendario eventi
+            </span>
+
+            <div class="pulsante_blocca pulsante_blocca_calendario">
+              <div class="sfondo_pulsante_blocca"></div>
+
+              <span class="testo_pulsante_blocca"> Blocca </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================== -->
+      <!-- NEWS -->
+      <!-- ================================================== -->
+
+      <div
+        class="contenuto_sezione_amministratore"
+        id="sezioneNews"
+        style="display: none"
+      >
+        <!-- ================================================== -->
+        <!-- CREAZIONE NOTIZIA -->
+        <!-- ================================================== -->
+
+        <div class="pannello_creazione_notizia">
+          <span class="titolo_pannello_creazione_notizia"> Nuova notizia </span>
+
+          <span class="testo_titolo_notizia"> Titolo </span>
+
+          <div class="titolo_notizia_admin">
+            <textarea
+              class="input_titolo_notizia"
+              id="inputTitoloNotizia"
+              placeholder="Inserisci il titolo"
+              autocomplete="off"
+              spellcheck="true"
+              rows="1"
+            ></textarea>
           </div>
 
-          <div class="loader_creazione_notizia"></div>
+          <span class="etichetta_data"> Data </span>
 
+          <div class="contenitore_data">
+            <input
+              type="text"
+              class="input_giorno"
+              id="inputGiorno"
+              placeholder="GG"
+              inputmode="numeric"
+              maxlength="2"
+              autocomplete="off"
+            />
+
+            <div class="separatore_data_1"></div>
+
+            <input
+              type="text"
+              class="input_mese"
+              id="inputMese"
+              placeholder="MM"
+              inputmode="numeric"
+              maxlength="2"
+              autocomplete="off"
+            />
+
+            <div class="separatore_data_2"></div>
+
+            <input
+              type="text"
+              class="input_anno"
+              id="inputAnno"
+              placeholder="AAAA"
+              inputmode="numeric"
+              maxlength="4"
+              autocomplete="off"
+            />
+          </div>
+
+          <span class="etichetta_immagini"> Immagini </span>
+
+          <div class="pulsante_carica_immagini">
+            <div class="sfondo_pulsante_immagini_1">
+              <div class="sfondo_pulsante_immagini_2"></div>
+            </div>
+
+            <div class="icona_pulsante_immagini"></div>
+          </div>
+
+          <span class="etichetta_testo"> Testo </span>
+
+          <div class="contenitore_testo_notizia">
+            <textarea
+              class="input_testo_notizia"
+              id="inputTestoNotizia"
+              placeholder="Inserisci il testo"
+              autocomplete="off"
+              spellcheck="true"
+            ></textarea>
+          </div>
+
+          <!-- ================================================== -->
+          <!-- CARICAMENTO CREAZIONE NOTIZIA -->
+          <!-- ================================================== -->
+
+          <div
+            class="caricamento_creazione_notizia"
+            id="caricamentoCreazioneNotizia"
+            aria-live="polite"
+            aria-hidden="true"
+          >
+            <div
+              class="testo_caricamento_creazione_notizia"
+              id="testoCaricamentoCreazioneNotizia"
+            >
+              Caricamento in corso...
+            </div>
+
+            <div class="loader_creazione_notizia"></div>
+          </div>
+
+          <!-- ================================================== -->
+          <!-- ERRORE PUBBLICAZIONE -->
+          <!-- ================================================== -->
+
+          <div
+            class="errore_pubblicazione"
+            id="errorePubblicazione"
+            aria-live="polite"
+          ></div>
+
+          <!-- ================================================== -->
+          <!-- SALVA BOZZA -->
+          <!-- ================================================== -->
+
+          <div class="pulsante_salva_bozza">
+            <div class="sfondo_pulsante_salva_bozza"></div>
+
+            <span class="testo_pulsante_salva_bozza"> Salva come bozza </span>
+          </div>
+
+          <!-- ================================================== -->
+          <!-- PUBBLICA -->
+          <!-- ================================================== -->
+
+          <div class="pulsante_pubblica" id="pulsantePubblica">
+            <div class="sfondo_pulsante_pubblica"></div>
+
+            <span class="testo_pulsante_pubblica"> Pubblica </span>
+          </div>
         </div>
 
-
         <!-- ================================================== -->
-        <!-- ERRORE PUBBLICAZIONE -->
-        <!-- ================================================== -->
-
-        <div
-          class="errore_pubblicazione"
-          id="errorePubblicazione"
-          aria-live="polite"
-        ></div>
-
-
-        <!-- ================================================== -->
-        <!-- PULSANTE SALVA BOZZA -->
+        <!-- PANNELLO NOTIZIE -->
         <!-- ================================================== -->
 
-        <div class="pulsante_salva_bozza">
+        <div class="pannello_notizie">
+          <span class="titolo_pannello_notizie"> Pannello notizie </span>
 
-          <div class="sfondo_pulsante_salva_bozza"></div>
+          <!-- ================================================== -->
+          <!-- LISTA NEWS -->
+          <!-- ================================================== -->
 
-          <span class="testo_pulsante_salva_bozza">
-            Salva come bozza
-          </span>
+          <div class="lista_notizie_admin">
+            <div class="testo_notizie_assenti_admin">
+              Non ci sono notizie pubblicate.
+            </div>
+          </div>
 
+          <!-- ================================================== -->
+          <!-- CARICA ALTRO -->
+          <!-- ================================================== -->
+
+          <div class="pulsante_carica_altro">
+            <span class="testo_pulsante_carica_altro"> Carica altro </span>
+
+            <div class="icona_pulsante_carica_altro"></div>
+          </div>
         </div>
-
-
-        <!-- ================================================== -->
-        <!-- PULSANTE PUBBLICA -->
-        <!-- ================================================== -->
-
-        <div
-          class="pulsante_pubblica"
-          id="pulsantePubblica"
-        >
-
-          <div class="sfondo_pulsante_pubblica"></div>
-
-          <span class="testo_pulsante_pubblica">
-            Pubblica
-          </span>
-
-        </div>
-
       </div>
 
-
       <!-- ================================================== -->
-      <!-- PANNELLO NOTIZIE -->
+      <!-- EVENTI -->
       <!-- ================================================== -->
 
-      <div class="pannello_notizie">
-
-        <span class="titolo_pannello_notizie">
-          Pannello notizie
-        </span>
-
-        <div class="pulsante_carica_altro">
-
-          <span class="testo_pulsante_carica_altro">
-            Carica altro
-          </span>
-
-          <div class="icona_pulsante_carica_altro"></div>
-
-        </div>
-
-      </div>
-
+      <div
+        class="contenuto_sezione_amministratore"
+        id="sezioneEventi"
+        style="display: none"
+      ></div>
     </div>
 
+    <!-- ================================================== -->
+    <!-- FOCUS NEWS -->
+    <!-- ================================================== -->
+
+    <div class="notizia_grande_admin" id="notiziaFocusAdmin"></div>
 
     <!-- ================================================== -->
-    <!-- EVENTI -->
+    <!-- JAVASCRIPT -->
     <!-- ================================================== -->
 
-    <div
-      class="contenuto_sezione_amministratore"
-      id="sezioneEventi"
-      style="display: none"
-    ></div>
-
-  </div>
-
-
-  <!-- ================================================== -->
-  <!-- JAVASCRIPT -->
-  <!-- ================================================== -->
-
-  <script
-    type="module"
-    src="./javascript/pannello_amministratore.js"
-  ></script>
-
-</body>
-
+    <script
+      type="module"
+      src="./javascript/pannello_amministratore.js"
+    ></script>
+  </body>
 </html>
