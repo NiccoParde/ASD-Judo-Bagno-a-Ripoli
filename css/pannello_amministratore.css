@@ -1754,3 +1754,163 @@ body.popup_aperto_admin {
 .pulsante_elimina_notizia.animazione_pulsante_admin {
   transform: scale(0.95);
 }
+/* ====================================================== */
+/* POPUP CONFERMA ELIMINAZIONE */
+/* ====================================================== */
+
+.popup_conferma_eliminazione_admin {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.18s ease,
+    visibility 0s linear 0.18s;
+}
+
+.popup_conferma_eliminazione_admin.aperto {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.18s ease,
+    visibility 0s linear 0s;
+}
+
+.popup_conferma_eliminazione_admin:not(.aperto) * {
+  pointer-events: none;
+}
+.offuscamento_conferma_eliminazione_admin {
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1;
+
+  pointer-events: auto;
+}
+.contenuto_popup_conferma_eliminazione_admin {
+  width: 35vw;
+  min-height: 15vw;
+
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: #ffffff;
+
+  z-index: 2;
+
+  box-shadow: -0.52vw 0.52vw 0.2vw rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2.5vw;
+
+  border-radius: 0.3125vw;
+}
+.testo_conferma_eliminazione_admin {
+  width: 100%;
+
+  color: #2a2a2a;
+
+  font-family: Inter, sans-serif;
+
+  font-size: 2.0833vw;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  margin-bottom: 2.5vw;
+}
+.contenitore_pulsanti_conferma_eliminazione_admin {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 1.5vw;
+}
+.pulsante_conferma_eliminazione_admin {
+  width: 10vw;
+  height: 3.5vw;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 0.3125vw;
+
+  background: #2a2a2a;
+
+  color: #ffffff;
+
+  font-family: Inter, sans-serif;
+
+  font-size: 1.4583vw;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    opacity 0.15s ease;
+}
+
+.pulsante_conferma_eliminazione_admin:active {
+  transform: scale(0.95);
+}
+.pulsante_annulla_eliminazione_admin {
+  width: 10vw;
+  height: 3.5vw;
+
+  padding: 0;
+
+  border: 0.2083vw solid #2a2a2a;
+
+  border-radius: 0.3125vw;
+
+  background: #ffffff;
+
+  color: #2a2a2a;
+
+  font-family: Inter, sans-serif;
+
+  font-size: 1.4583vw;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    opacity 0.15s ease;
+}
+
+.pulsante_annulla_eliminazione_admin:active {
+  transform: scale(0.95);
+}

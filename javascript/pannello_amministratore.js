@@ -11,6 +11,7 @@ import {
   orderBy,
   setDoc,
   addDoc,
+  deleteDoc,
   Timestamp,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -117,6 +118,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pannelloNotizie = document.querySelector(".pannello_notizie");
 
+  const popupConfermaEliminazione = document.querySelector(
+    ".popup_conferma_eliminazione_admin",
+  );
+  const offuscamentoConfermaEliminazione = document.querySelector(
+    ".offuscamento_conferma_eliminazione_admin",
+  );
+  const testoConfermaEliminazione = document.querySelector(
+    ".testo_conferma_eliminazione_admin",
+  );
+  const pulsanteConfermaEliminazione = document.querySelector(
+    ".pulsante_conferma_eliminazione_admin",
+  );
+  const pulsanteAnnullaEliminazione = document.querySelector(
+    ".pulsante_annulla_eliminazione_admin",
+  );
   const caricamentoCreazioneNotizia = document.getElementById(
     "caricamentoCreazioneNotizia",
   );
@@ -162,6 +178,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let numeroNewsVisibiliAdmin = MASSIMO_NEWS_PER_CARICAMENTO;
 
   let indiceNewsApertaAdmin = 0;
+
+  let notiziaDaEliminareAdmin = null;
 
   let distanzaPulsanteCaricaAltroAdminVW = null;
 
@@ -1791,13 +1809,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // PULSANTE ELIMINA
       // ==================================================
 
-      pulsanteElimina.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+      pulsanteElimina.addEventListener("click", (evento) => {
+        evento.preventDefault();
+        evento.stopPropagation();
 
-        console.log("Elimina notizia:", news.id);
-
-        // Azione elimina da implementare.
+        // Apre il popup senza aprire la notizia
+        apriPopupConfermaEliminazioneAdmin(news);
       });
 
       // ==================================================
@@ -2181,11 +2198,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====================================================
 
   document.addEventListener("keydown", (event) => {
+    // ==================================================
+    // ESC
+    // ==================================================
+
     if (event.key === "Escape") {
+      if (popupConfermaEliminazione?.classList.contains("aperto")) {
+        chiudiPopupConfermaEliminazioneAdmin();
+
+        return;
+      }
+
       if (notiziaFocusAdmin.classList.contains("aperta")) {
         chiudiNotiziaAdmin();
+
+        return;
       }
     }
+
+    // ==================================================
+    // FRECCE FOCUS NEWS
+    // ==================================================
 
     if (!notiziaFocusAdmin.classList.contains("aperta")) {
       return;
@@ -2243,6 +2276,102 @@ document.addEventListener("DOMContentLoaded", () => {
 
         aggiornaAltezzaNotiziaAdmin();
       });
+    });
+  }
+
+  function apriPopupConfermaEliminazioneAdmin(news) {
+    if (!popupConfermaEliminazione) {
+      return;
+    }
+
+    notiziaDaEliminareAdmin = news;
+
+    popupConfermaEliminazione.classList.add("aperto");
+
+    document.body.classList.add("popup_aperto_admin");
+  }
+
+  function chiudiPopupConfermaEliminazioneAdmin() {
+    if (!popupConfermaEliminazione) {
+      return;
+    }
+
+    popupConfermaEliminazione.classList.remove("aperto");
+
+    document.body.classList.remove("popup_aperto_admin");
+
+    notiziaDaEliminareAdmin = null;
+  }
+
+  async function eliminaNotiziaAdmin() {
+    if (!notiziaDaEliminareAdmin || !notiziaDaEliminareAdmin.id) {
+      return;
+    }
+
+    const news = notiziaDaEliminareAdmin;
+
+    if (pulsanteConfermaEliminazione) {
+      pulsanteConfermaEliminazione.disabled = true;
+      pulsanteConfermaEliminazione.style.pointerEvents = "none";
+      pulsanteConfermaEliminazione.style.opacity = "0.65";
+    }
+
+    if (pulsanteAnnullaEliminazione) {
+      pulsanteAnnullaEliminazione.disabled = true;
+      pulsanteAnnullaEliminazione.style.pointerEvents = "none";
+    }
+
+    try {
+      // Elimina la notizia da Firestore
+      await deleteDoc(doc(db, COLLECTION_NEWS, news.id));
+
+      // Elimina la notizia anche dall'array locale
+      const indice = elencoNewsAdmin.findIndex(
+        (elemento) => elemento.id === news.id,
+      );
+
+      if (indice !== -1) {
+        elencoNewsAdmin.splice(indice, 1);
+      }
+
+      // Aggiorna la lista mostrata
+      creaNewsPiccoleAdmin();
+
+      // Chiudi il popup
+      chiudiPopupConfermaEliminazioneAdmin();
+    } catch (errore) {
+      console.error("Errore durante l'eliminazione della notizia:", errore);
+
+      alert("Si è verificato un errore durante l'eliminazione della notizia.");
+
+      if (pulsanteConfermaEliminazione) {
+        pulsanteConfermaEliminazione.disabled = false;
+        pulsanteConfermaEliminazione.style.pointerEvents = "auto";
+        pulsanteConfermaEliminazione.style.opacity = "1";
+      }
+
+      if (pulsanteAnnullaEliminazione) {
+        pulsanteAnnullaEliminazione.disabled = false;
+        pulsanteAnnullaEliminazione.style.pointerEvents = "auto";
+      }
+    }
+  }
+
+  if (pulsanteConfermaEliminazione) {
+    pulsanteConfermaEliminazione.addEventListener("click", (evento) => {
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      eliminaNotiziaAdmin();
+    });
+  }
+
+  if (pulsanteAnnullaEliminazione) {
+    pulsanteAnnullaEliminazione.addEventListener("click", (evento) => {
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      chiudiPopupConfermaEliminazioneAdmin();
     });
   }
 
