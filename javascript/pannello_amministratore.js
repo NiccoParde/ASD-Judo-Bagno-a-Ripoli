@@ -146,17 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====================================================
 
   let fileImmagineNotizia = null;
-
   let nomeImmagineNotizia = "";
-
   let fileInputImmagine = null;
-
   let caricamentoImmagineInCorso = false;
-
   let boxImmagineNotizia = null;
-
   let testoNomeImmagineNotizia = null;
-
   let pulsanteRimuoviImmagine = null;
 
   // ====================================================
@@ -169,8 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let indiceNewsApertaAdmin = 0;
 
-  // Memorizza la distanza originale tra
-  // l'ultima news e il pulsante "Carica altro".
   let distanzaPulsanteCaricaAltroAdminVW = null;
 
   // ====================================================
@@ -209,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   pannelloAccesso.style.display = "none";
-
   pannelloAmministratore.style.display = "none";
 
   // ====================================================
@@ -218,13 +209,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function mostraErrore(messaggio) {
     errore.textContent = messaggio;
-
     errore.style.display = "block";
   }
 
   function nascondiErrore() {
     errore.textContent = "";
-
     errore.style.display = "none";
   }
 
@@ -252,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!messaggi || messaggi.length === 0) {
       errorePubblicazione.textContent = "";
-
       errorePubblicazione.classList.remove("visibile");
 
       return;
@@ -337,9 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (pagina === "impostazioni") {
       testoImpostazioni.style.color = "#2a2a2a";
-
       testoNews.style.color = "#a6a6a6";
-
       testoEventi.style.color = "#868686";
 
       iconaImpostazioni.style.backgroundImage =
@@ -356,9 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (pagina === "news") {
       testoImpostazioni.style.color = "#a6a6a6";
-
       testoNews.style.color = "#2a2a2a";
-
       testoEventi.style.color = "#868686";
 
       iconaImpostazioni.style.backgroundImage =
@@ -375,9 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (pagina === "eventi") {
       testoImpostazioni.style.color = "#a6a6a6";
-
       testoNews.style.color = "#a6a6a6";
-
       testoEventi.style.color = "#868686";
 
       iconaImpostazioni.style.backgroundImage =
@@ -397,9 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function mostraSezione(sezione) {
     sezioneImpostazioni.style.display = "none";
-
     sezioneNews.style.display = "none";
-
     sezioneEventi.style.display = "none";
 
     if (sezione === sezioneImpostazioni) {
@@ -583,19 +563,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inputGiorno.addEventListener("input", () => {
     limitaData(inputGiorno, 2);
-
     nascondiErrorePubblicazione();
   });
 
   inputMese.addEventListener("input", () => {
     limitaData(inputMese, 2);
-
     nascondiErrorePubblicazione();
   });
 
   inputAnno.addEventListener("input", () => {
     limitaData(inputAnno, 4);
-
     nascondiErrorePubblicazione();
   });
 
@@ -739,7 +716,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function rimuoviImmagineNotizia() {
     fileImmagineNotizia = null;
-
     nomeImmagineNotizia = "";
 
     if (fileInputImmagine) {
@@ -772,12 +748,10 @@ document.addEventListener("DOMContentLoaded", () => {
         elemento: document.querySelector(".etichetta_data"),
         top: "13.5938vw",
       },
-
       {
         elemento: document.querySelector(".contenitore_data"),
         top: "18.0729vw",
       },
-
       {
         elemento: document.querySelector(".etichetta_immagini"),
         top: "22.1875vw",
@@ -805,7 +779,6 @@ document.addEventListener("DOMContentLoaded", () => {
         elemento: document.querySelector(".etichetta_testo"),
         top: "32.7604vw",
       },
-
       {
         elemento: document.querySelector(".contenitore_testo_notizia"),
         top: "35.8333vw",
@@ -862,10 +835,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const numeroNotizie = notizie.length;
 
-    // ----------------------------------------------------
-    // NESSUNA NEWS
-    // ----------------------------------------------------
-
     if (numeroNotizie === 0) {
       if (pulsanteCaricaAltro) {
         pulsanteCaricaAltro.style.display = "none";
@@ -876,20 +845,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ----------------------------------------------------
-    // CALCOLO POSIZIONE REALE DELL'ULTIMA CARD
-    // ----------------------------------------------------
-
     const ultimaNotizia = notizie[notizie.length - 1];
 
     const fondoUltimaNotizia =
       listaNotizieAdmin.offsetTop +
       ultimaNotizia.offsetTop +
       ultimaNotizia.offsetHeight;
-
-    // ----------------------------------------------------
-    // DISTANZA ORIGINALE DAL PULSANTE
-    // ----------------------------------------------------
 
     if (pulsanteCaricaAltro && distanzaPulsanteCaricaAltroAdminVW === null) {
       const posizioneOriginalePulsante = pulsanteCaricaAltro.offsetTop;
@@ -900,21 +861,10 @@ document.addEventListener("DOMContentLoaded", () => {
       distanzaPulsanteCaricaAltroAdminVW =
         (distanzaOriginalePx / window.innerWidth) * 100;
 
-      /*
-       * Sicurezza:
-       * se per qualsiasi motivo la distanza
-       * risultasse negativa, utilizziamo
-       * una distanza minima di 2vw.
-       */
-
       if (distanzaPulsanteCaricaAltroAdminVW < 0) {
         distanzaPulsanteCaricaAltroAdminVW = 2;
       }
     }
-
-    // ----------------------------------------------------
-    // POSIZIONE PULSANTE
-    // ----------------------------------------------------
 
     if (pulsanteCaricaAltro) {
       const distanzaPulsantePx =
@@ -924,10 +874,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       pulsanteCaricaAltro.style.top = `${posizionePulsantePx}px`;
     }
-
-    // ----------------------------------------------------
-    // ALTEZZA PANNELLO
-    // ----------------------------------------------------
 
     const altezzaPulsante = pulsanteCaricaAltro
       ? pulsanteCaricaAltro.offsetHeight
@@ -947,10 +893,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const altezzaPannello = Math.max(altezzaNecessaria, altezzaMinimaPannello);
 
     pannelloNotizie.style.height = `${altezzaPannello}px`;
-
-    // ----------------------------------------------------
-    // ALTEZZA SEZIONE NEWS
-    // ----------------------------------------------------
 
     const topPannello = pannelloNotizie.offsetTop;
 
@@ -1042,7 +984,6 @@ document.addEventListener("DOMContentLoaded", () => {
   async function ottieniAutenticazioneImageKit() {
     const risposta = await fetch(IMAGEKIT_AUTHENTICATION_ENDPOINT, {
       method: "GET",
-
       cache: "no-store",
     });
 
@@ -1101,7 +1042,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const risposta = await fetch(IMAGEKIT_UPLOAD_ENDPOINT, {
       method: "POST",
-
       body: formData,
     });
 
@@ -1190,16 +1130,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      /*
-       * IMPORTANTE:
-       *
-       * NON viene effettuato alcun
-       * upload qui.
-       *
-       * Il file rimane solamente
-       * nella memoria del browser.
-       */
-
       fileImmagineNotizia = file;
 
       nomeImmagineNotizia = file.name;
@@ -1268,17 +1198,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function pulisciCampiNotizia() {
     inputTitoloNotizia.value = "";
-
     inputTestoNotizia.value = "";
-
     inputGiorno.value = "";
-
     inputMese.value = "";
-
     inputAnno.value = "";
 
     fileImmagineNotizia = null;
-
     nomeImmagineNotizia = "";
 
     if (fileInputImmagine) {
@@ -1327,12 +1252,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       let immagineNotizia = "";
-
-      /*
-       * L'upload ImageKit viene fatto
-       * SOLO adesso, dopo aver premuto
-       * Pubblica oppure Salva come bozza.
-       */
 
       if (fileImmagineNotizia) {
         immagineNotizia = await caricaImmagineSuImageKit(fileImmagineNotizia);
@@ -1481,9 +1400,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return data.toLocaleDateString("it-IT", {
       day: "2-digit",
-
       month: "2-digit",
-
       year: "numeric",
     });
   }
@@ -1528,9 +1445,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let sinistra = 0;
-
     let destra = testoCompleto.length;
-
     let migliore = "";
 
     while (sinistra <= destra) {
@@ -1598,22 +1513,15 @@ document.addEventListener("DOMContentLoaded", () => {
       snapshot.forEach((documento) => {
         const dati = documento.data();
 
-        if (dati.pubblicata !== true) {
-          return;
-        }
-
         const immagine = dati.image ?? dati.immagine ?? "";
 
         elencoNewsAdmin.push({
           id: documento.id,
-
           titolo: dati.titolo || "",
-
           testo: dati.testo || "",
-
           data: dati.data || null,
-
           immagine: typeof immagine === "string" ? immagine.trim() : "",
+          pubblicata: dati.pubblicata === true,
         });
       });
 
@@ -1709,7 +1617,214 @@ document.addEventListener("DOMContentLoaded", () => {
 
       notiziaPiccola.appendChild(testo);
 
-      notiziaPiccola.addEventListener("click", () => {
+      // ==================================================
+      // PULSANTI GESTIONE NOTIZIA
+      // ==================================================
+
+      const pulsanteModifica = document.createElement("button");
+      pulsanteModifica.type = "button";
+      pulsanteModifica.className = "pulsante_modifica_notizia";
+      pulsanteModifica.setAttribute("aria-label", "Modifica notizia");
+
+      const pulsanteNascondi = document.createElement("button");
+      pulsanteNascondi.type = "button";
+      pulsanteNascondi.className = "pulsante_nascondi_notizia";
+      pulsanteNascondi.setAttribute("aria-label", "Nascondi notizia");
+
+      if (news.pubblicata === true) {
+        pulsanteNascondi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_nascondi_notizia.svg")';
+
+        pulsanteNascondi.setAttribute("aria-label", "Nascondi notizia");
+
+        pulsanteNascondi.setAttribute("title", "Nascondi notizia");
+      } else {
+        pulsanteNascondi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_mostra_notizia.svg")';
+
+        pulsanteNascondi.setAttribute("aria-label", "Mostra notizia");
+
+        pulsanteNascondi.setAttribute("title", "Mostra notizia");
+      }
+
+      const pulsanteElimina = document.createElement("button");
+      pulsanteElimina.type = "button";
+      pulsanteElimina.className = "pulsante_elimina_notizia";
+      pulsanteElimina.setAttribute("aria-label", "Elimina notizia");
+
+      notiziaPiccola.appendChild(pulsanteModifica);
+      notiziaPiccola.appendChild(pulsanteNascondi);
+      notiziaPiccola.appendChild(pulsanteElimina);
+
+      // ==================================================
+      // ANIMAZIONE INDIPENDENTE DEI PULSANTI
+      // ==================================================
+
+      const pulsantiGestione = [
+        pulsanteModifica,
+        pulsanteNascondi,
+        pulsanteElimina,
+      ];
+
+      pulsantiGestione.forEach((pulsante) => {
+        pulsante.addEventListener("pointerdown", (event) => {
+          event.stopPropagation();
+
+          // Dice alla mini-notizia che l'interazione
+          // proviene da un pulsante e non dalla notizia.
+          notiziaPiccola.classList.add("interazione_pulsante_admin");
+
+          // L'animazione viene applicata esclusivamente
+          // al pulsante premuto.
+          pulsante.classList.add("animazione_pulsante_admin");
+        });
+
+        const terminaAnimazionePulsante = (event) => {
+          event.stopPropagation();
+
+          pulsante.classList.remove("animazione_pulsante_admin");
+          notiziaPiccola.classList.remove("interazione_pulsante_admin");
+        };
+
+        pulsante.addEventListener("pointerup", terminaAnimazionePulsante);
+        pulsante.addEventListener("pointercancel", terminaAnimazionePulsante);
+        pulsante.addEventListener("pointerleave", (event) => {
+          if (event.buttons === 0) {
+            terminaAnimazionePulsante(event);
+          }
+        });
+
+        pulsante.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      });
+
+      // ==================================================
+      // PULSANTE MODIFICA
+      // ==================================================
+
+      pulsanteModifica.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("Modifica notizia:", news.id);
+
+        // Azione modifica da implementare.
+      });
+
+      // ==================================================
+      // PULSANTE NASCONDI / MOSTRA
+      // ==================================================
+
+      pulsanteNascondi.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (pulsanteNascondi.dataset.operazioneInCorso === "true") {
+          return;
+        }
+
+        pulsanteNascondi.dataset.operazioneInCorso = "true";
+        pulsanteNascondi.style.pointerEvents = "none";
+        pulsanteNascondi.style.opacity = "0.65";
+
+        try {
+          // Stato attuale della notizia.
+          const statoAttuale = news.pubblicata === true;
+
+          // Invertiamo lo stato.
+          const nuovoStato = !statoAttuale;
+
+          const riferimento = doc(db, COLLECTION_NEWS, news.id);
+
+          await setDoc(
+            riferimento,
+            {
+              pubblicata: nuovoStato,
+            },
+            {
+              merge: true,
+            },
+          );
+
+          // Aggiorniamo anche l'oggetto locale.
+          news.pubblicata = nuovoStato;
+
+          // ==================================================
+          // CAMBIO ICONA
+          // ==================================================
+
+          if (nuovoStato) {
+            // Notizia nuovamente pubblicata:
+            // torna all'icona NASCONDI.
+            pulsanteNascondi.style.backgroundImage =
+              'url("../assets/pannello_amministratore/icona_nascondi_notizia.svg")';
+
+            pulsanteNascondi.setAttribute("aria-label", "Nascondi notizia");
+
+            pulsanteNascondi.setAttribute("title", "Nascondi notizia");
+          } else {
+            // Notizia nascosta:
+            // mostra l'icona MOSTRA.
+            pulsanteNascondi.style.backgroundImage =
+              'url("../assets/pannello_amministratore/icona_mostra_notizia.svg")';
+
+            pulsanteNascondi.setAttribute("aria-label", "Mostra notizia");
+
+            pulsanteNascondi.setAttribute("title", "Mostra notizia");
+          }
+
+          console.log(
+            `Notizia ${news.id}: ${nuovoStato ? "PUBBLICATA" : "NASCOSTA"}`,
+          );
+        } catch (error) {
+          console.error("Errore modifica stato pubblicazione notizia:", error);
+        } finally {
+          pulsanteNascondi.dataset.operazioneInCorso = "false";
+          pulsanteNascondi.style.pointerEvents = "auto";
+          pulsanteNascondi.style.opacity = "1";
+        }
+      });
+
+      // ==================================================
+      // PULSANTE ELIMINA
+      // ==================================================
+
+      pulsanteElimina.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("Elimina notizia:", news.id);
+
+        // Azione elimina da implementare.
+      });
+
+      // ==================================================
+      // APERTURA NOTIZIA
+      // ==================================================
+
+      notiziaPiccola.addEventListener("click", (event) => {
+        // ==================================================
+        // IMPORTANTE:
+        // Se il click arriva da uno dei tre pulsanti
+        // di gestione, NON aprire la notizia.
+        //
+        // In questo modo la notizia rimane cliccabile
+        // indipendentemente dai tre pulsanti.
+        // ==================================================
+
+        const elementoCliccato = event.target;
+
+        if (
+          elementoCliccato instanceof Element &&
+          elementoCliccato.closest(
+            ".pulsante_modifica_notizia, .pulsante_nascondi_notizia, .pulsante_elimina_notizia",
+          )
+        ) {
+          return;
+        }
+
         indiceNewsApertaAdmin = indice;
 
         apriNotiziaAdmin(indice);
@@ -2169,14 +2284,11 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const risposta = await fetch(URL_WORKER_LOGIN, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           username: nomeUtente,
-
           password: password,
         }),
       });

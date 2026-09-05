@@ -1193,7 +1193,7 @@ body.popup_aperto_admin {
   transition: transform 0.12s ease;
 }
 
-.notizia_piccola_admin:active {
+.notizia_piccola_admin:active:not(.interazione_pulsante_admin) {
   transform: scale(0.97);
 }
 
@@ -1711,4 +1711,46 @@ body.popup_aperto_admin {
   background: #ffff00;
   color: inherit;
   padding: 0;
+}
+/* ====================================================== */
+/* PULSANTI GESTIONE NOTIZIA */
+/* ====================================================== */
+
+.pulsante_modifica_notizia,
+.pulsante_nascondi_notizia,
+.pulsante_elimina_notizia {
+  width: 2.3438vw;
+  height: 2.3438vw;
+  position: absolute;
+  top: 0.9896vw;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.1s ease;
+}
+
+.pulsante_elimina_notizia {
+  right: 0.9375vw;
+  background-image: url("../assets/pannello_amministratore/icona_elimina_notizia.svg");
+}
+
+.pulsante_nascondi_notizia {
+  right: 5.4167vw;
+  background-image: url("../assets/pannello_amministratore/icona_nascondi_notizia.svg");
+}
+
+.pulsante_modifica_notizia {
+  right: 9.8958vw;
+  background-image: url("../assets/pannello_amministratore/icona_modifica_notizia.svg");
+}
+
+.pulsante_modifica_notizia.animazione_pulsante_admin,
+.pulsante_nascondi_notizia.animazione_pulsante_admin,
+.pulsante_elimina_notizia.animazione_pulsante_admin {
+  transform: scale(0.95);
 }
