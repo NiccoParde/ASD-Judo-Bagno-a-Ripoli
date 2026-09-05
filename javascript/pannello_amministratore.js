@@ -157,6 +157,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const notiziaFocusAdmin = document.getElementById("notiziaFocusAdmin");
 
+  const contenitorePulsantiModificaNotiziaAdmin = document.querySelector(
+    ".contenitore_pulsanti_modifica_notizia_admin",
+  );
+
+  const pulsanteSalvaModificaNotiziaAdmin = document.querySelector(
+    ".pulsante_salva_modifica_notizia_admin",
+  );
+
+  const pulsanteAnnullaModificaNotiziaAdmin = document.querySelector(
+    ".pulsante_annulla_modifica_notizia_admin",
+  );
+
   // ====================================================
   // VARIABILI IMMAGINE
   // ====================================================
@@ -182,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let notiziaDaEliminareAdmin = null;
 
   let distanzaPulsanteCaricaAltroAdminVW = null;
+
+  let notiziaInModificaAdmin = null;
 
   // ====================================================
   // CONTROLLO ELEMENTI
@@ -1728,7 +1742,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Modifica notizia:", news.id);
 
-        // Azione modifica da implementare.
+        apriModificaNotiziaAdmin(news);
       });
 
       // ==================================================
@@ -2162,6 +2176,348 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function escapeHtmlAdmin(testo) {
+    return String(testo)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function apriModificaNotiziaAdmin(news) {
+    if (!news || !notiziaFocusAdmin) {
+      return;
+    }
+
+    notiziaInModificaAdmin = news;
+
+    /* ---------------------------------------------- */
+    /* APRE IL FOCUS */
+    /* ---------------------------------------------- */
+
+    notiziaFocusAdmin.classList.add("aperta");
+
+    document.body.classList.add("popup_aperto_admin");
+
+    /* ---------------------------------------------- */
+    /* PRENDIAMO I DATI ORIGINALI */
+    /* ---------------------------------------------- */
+
+    const titolo = news.titolo || "";
+    const testo = news.testo || "";
+
+    let data = null;
+
+    if (news.data?.toDate) {
+      data = news.data.toDate();
+    } else if (news.data instanceof Date) {
+      data = news.data;
+    } else if (news.data) {
+      data = new Date(news.data);
+    }
+
+    /* ---------------------------------------------- */
+    /* GIORNO / MESE / ANNO */
+    /* ---------------------------------------------- */
+
+    let giorno = "";
+    let mese = "";
+    let anno = "";
+
+    if (data && !isNaN(data.getTime())) {
+      giorno = String(data.getDate()).padStart(2, "0");
+      mese = String(data.getMonth() + 1).padStart(2, "0");
+      anno = String(data.getFullYear());
+    }
+
+    /* ---------------------------------------------- */
+    /* CREA IL CONTENUTO */
+    /* ---------------------------------------------- */
+
+    notiziaFocusAdmin.innerHTML = `
+    
+    <div class="offuscamento_background_admin"></div>
+
+    <div class="contenuto_notizia_grande_admin">
+
+      <div class="titolo_notizia_grande_admin campo_modifica_notizia_admin">
+        <input
+          type="text"
+          class="input_titolo_modifica_notizia_admin"
+          value="${escapeHtmlAdmin(titolo)}"
+        >
+      </div>
+
+      <div class="testo_notizia_grande_admin campo_modifica_notizia_admin">
+        <textarea
+          class="textarea_testo_modifica_notizia_admin"
+        >${escapeHtmlAdmin(testo)}</textarea>
+      </div>
+
+      <div class="data_notizia_grande_admin">
+
+        <div class="contenitore_data_modifica_notizia_admin">
+
+          <input
+            type="text"
+            inputmode="numeric"
+            maxlength="2"
+            class="input_data_modifica_notizia_admin giorno"
+            value="${giorno}"
+            placeholder="GG"
+          >
+
+          <input
+            type="text"
+            inputmode="numeric"
+            maxlength="2"
+            class="input_data_modifica_notizia_admin mese"
+            value="${mese}"
+            placeholder="MM"
+          >
+
+          <input
+            type="text"
+            inputmode="numeric"
+            maxlength="4"
+            class="input_data_modifica_notizia_admin anno"
+            value="${anno}"
+            placeholder="AAAA"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+    /* ---------------------------------------------- */
+    /* APRE I PULSANTI SALVA / ANNULLA */
+    /* ---------------------------------------------- */
+
+    if (contenitorePulsantiModificaNotiziaAdmin) {
+      contenitorePulsantiModificaNotiziaAdmin.classList.add("aperto");
+    }
+  }
+
+  async function salvaModificaNotiziaAdmin() {
+    if (!notiziaInModificaAdmin || !notiziaInModificaAdmin.id) {
+      return;
+    }
+
+    const inputTitolo = notiziaFocusAdmin.querySelector(
+      ".input_titolo_modifica_notizia_admin",
+    );
+
+    const inputTesto = notiziaFocusAdmin.querySelector(
+      ".textarea_testo_modifica_notizia_admin",
+    );
+
+    const inputGiorno = notiziaFocusAdmin.querySelector(
+      ".input_data_modifica_notizia_admin.giorno",
+    );
+
+    const inputMese = notiziaFocusAdmin.querySelector(
+      ".input_data_modifica_notizia_admin.mese",
+    );
+
+    const inputAnno = notiziaFocusAdmin.querySelector(
+      ".input_data_modifica_notizia_admin.anno",
+    );
+
+    if (
+      !inputTitolo ||
+      !inputTesto ||
+      !inputGiorno ||
+      !inputMese ||
+      !inputAnno
+    ) {
+      return;
+    }
+
+    const titolo = inputTitolo.value.trim();
+    const testo = inputTesto.value.trim();
+
+    const giorno = Number(inputGiorno.value);
+    const mese = Number(inputMese.value);
+    const anno = Number(inputAnno.value);
+
+    /* ---------------------------------------------- */
+    /* CONTROLLO CAMPI */
+    /* ---------------------------------------------- */
+
+    if (!titolo) {
+      alert("Inserisci un titolo.");
+      inputTitolo.focus();
+      return;
+    }
+
+    if (!testo) {
+      alert("Inserisci il testo della notizia.");
+      inputTesto.focus();
+      return;
+    }
+
+    /* ---------------------------------------------- */
+    /* CONTROLLO DATA */
+    /* ---------------------------------------------- */
+
+    if (
+      !Number.isInteger(giorno) ||
+      !Number.isInteger(mese) ||
+      !Number.isInteger(anno)
+    ) {
+      alert("La data inserita non è valida.");
+      return;
+    }
+
+    if (giorno < 1 || giorno > 31) {
+      alert("Il giorno deve essere compreso tra 1 e 31.");
+      inputGiorno.focus();
+      return;
+    }
+
+    if (mese < 1 || mese > 12) {
+      alert("Il mese deve essere compreso tra 1 e 12.");
+      inputMese.focus();
+      return;
+    }
+
+    if (anno < 1900 || anno > 2100) {
+      alert("L'anno inserito non è valido.");
+      inputAnno.focus();
+      return;
+    }
+
+    /* ---------------------------------------------- */
+    /* CONTROLLO REALE DELLA DATA */
+    /* ---------------------------------------------- */
+
+    const nuovaData = new Date(anno, mese - 1, giorno);
+
+    if (
+      nuovaData.getFullYear() !== anno ||
+      nuovaData.getMonth() !== mese - 1 ||
+      nuovaData.getDate() !== giorno
+    ) {
+      alert("La data inserita non è valida.");
+      return;
+    }
+
+    /* ---------------------------------------------- */
+    /* DISABILITA SALVA DURANTE IL SALVATAGGIO */
+    /* ---------------------------------------------- */
+
+    if (pulsanteSalvaModificaNotiziaAdmin) {
+      pulsanteSalvaModificaNotiziaAdmin.disabled = true;
+      pulsanteSalvaModificaNotiziaAdmin.style.pointerEvents = "none";
+      pulsanteSalvaModificaNotiziaAdmin.style.opacity = "0.65";
+    }
+
+    if (pulsanteAnnullaModificaNotiziaAdmin) {
+      pulsanteAnnullaModificaNotiziaAdmin.disabled = true;
+      pulsanteAnnullaModificaNotiziaAdmin.style.pointerEvents = "none";
+    }
+
+    try {
+      await setDoc(
+        doc(db, COLLECTION_NEWS, notiziaInModificaAdmin.id),
+        {
+          titolo: titolo,
+          testo: testo,
+          data: Timestamp.fromDate(nuovaData),
+        },
+        {
+          merge: true,
+        },
+      );
+
+      /* -------------------------------------------- */
+      /* AGGIORNA LA COPIA LOCALE */
+      /* -------------------------------------------- */
+
+      const indice = elencoNewsAdmin.findIndex(
+        (elemento) => elemento.id === notiziaInModificaAdmin.id,
+      );
+
+      if (indice !== -1) {
+        elencoNewsAdmin[indice].titolo = titolo;
+        elencoNewsAdmin[indice].testo = testo;
+        elencoNewsAdmin[indice].data = Timestamp.fromDate(nuovaData);
+
+        notiziaInModificaAdmin = elencoNewsAdmin[indice];
+      }
+
+      /* -------------------------------------------- */
+      /* CHIUDE LA MODIFICA */
+      /* -------------------------------------------- */
+
+      chiudiModificaNotiziaAdmin();
+
+      creaNewsPiccoleAdmin();
+    } catch (errore) {
+      console.error("Errore durante il salvataggio della notizia:", errore);
+
+      alert("Si è verificato un errore durante il salvataggio della notizia.");
+
+      if (pulsanteSalvaModificaNotiziaAdmin) {
+        pulsanteSalvaModificaNotiziaAdmin.disabled = false;
+        pulsanteSalvaModificaNotiziaAdmin.style.pointerEvents = "auto";
+        pulsanteSalvaModificaNotiziaAdmin.style.opacity = "1";
+      }
+
+      if (pulsanteAnnullaModificaNotiziaAdmin) {
+        pulsanteAnnullaModificaNotiziaAdmin.disabled = false;
+        pulsanteAnnullaModificaNotiziaAdmin.style.pointerEvents = "auto";
+      }
+    }
+  }
+
+  function chiudiModificaNotiziaAdmin() {
+    notiziaInModificaAdmin = null;
+
+    if (notiziaFocusAdmin) {
+      notiziaFocusAdmin.classList.remove("aperta");
+      notiziaFocusAdmin.innerHTML = "";
+    }
+
+    document.body.classList.remove("popup_aperto_admin");
+
+    if (contenitorePulsantiModificaNotiziaAdmin) {
+      contenitorePulsantiModificaNotiziaAdmin.classList.remove("aperto");
+    }
+
+    if (pulsanteSalvaModificaNotiziaAdmin) {
+      pulsanteSalvaModificaNotiziaAdmin.disabled = false;
+      pulsanteSalvaModificaNotiziaAdmin.style.pointerEvents = "auto";
+      pulsanteSalvaModificaNotiziaAdmin.style.opacity = "1";
+    }
+
+    if (pulsanteAnnullaModificaNotiziaAdmin) {
+      pulsanteAnnullaModificaNotiziaAdmin.disabled = false;
+      pulsanteAnnullaModificaNotiziaAdmin.style.pointerEvents = "auto";
+    }
+  }
+
+  if (pulsanteSalvaModificaNotiziaAdmin) {
+    pulsanteSalvaModificaNotiziaAdmin.addEventListener("click", (evento) => {
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      salvaModificaNotiziaAdmin();
+    });
+  }
+
+  if (pulsanteAnnullaModificaNotiziaAdmin) {
+    pulsanteAnnullaModificaNotiziaAdmin.addEventListener("click", (evento) => {
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      chiudiModificaNotiziaAdmin();
+    });
+  }
   // ====================================================
   // ALTEZZA FOCUS
   // ====================================================
@@ -2198,6 +2554,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====================================================
 
   document.addEventListener("keydown", (event) => {
+    if (notiziaInModificaAdmin) {
+      if (event.key === "Escape") {
+        chiudiModificaNotiziaAdmin();
+      }
+
+      return;
+    }
     // ==================================================
     // ESC
     // ==================================================

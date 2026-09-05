@@ -1914,3 +1914,355 @@ body.popup_aperto_admin {
 .pulsante_annulla_eliminazione_admin:active {
   transform: scale(0.95);
 }
+/* ================================================== */
+/* MODIFICA NOTIZIA */
+/* ================================================== */
+
+.contenitore_pulsanti_modifica_notizia_admin {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 2vw;
+  z-index: 3000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vw;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.18s ease;
+}
+
+.contenitore_pulsanti_modifica_notizia_admin.aperto {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ================================================== */
+/* PULSANTE SALVA */
+/* ================================================== */
+
+.pulsante_salva_modifica_notizia_admin {
+  width: 10vw;
+  height: 3.5vw;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 0.3125vw;
+
+  background: #2a2a2a;
+  color: #ffffff;
+
+  font-family: Inter, sans-serif;
+  font-size: 1.4583vw;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    opacity 0.15s ease;
+}
+
+.pulsante_salva_modifica_notizia_admin:active {
+  transform: scale(0.95);
+}
+
+/* ================================================== */
+/* PULSANTE ANNULLA */
+/* ================================================== */
+
+.pulsante_annulla_modifica_notizia_admin {
+  width: 10vw;
+  height: 3.5vw;
+
+  padding: 0;
+
+  border: 0.2083vw solid #2a2a2a;
+  border-radius: 0.3125vw;
+
+  background: #ffffff;
+  color: #2a2a2a;
+
+  font-family: Inter, sans-serif;
+  font-size: 1.4583vw;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    opacity 0.15s ease;
+}
+
+.pulsante_annulla_modifica_notizia_admin:active {
+  transform: scale(0.95);
+}
+
+/* ================================================== */
+/* MODIFICA NOTIZIA - CONTENITORE */
+/* ================================================== */
+
+.contenuto_notizia_grande_admin {
+
+  width: 92.96vw;
+  min-height: 70vw;
+
+  position: relative;
+
+  top: 6.25vw;
+  left: 3.48vw;
+
+  margin-bottom: 12.5vw;
+
+  padding: 3vw;
+
+  background: #ffffff;
+
+  box-shadow:
+    -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+
+  z-index: 2;
+
+  overflow: visible;
+}
+
+
+/* ================================================== */
+/* TITOLO MODIFICABILE */
+/* ================================================== */
+
+.titolo_notizia_grande_admin {
+
+  width: 100%;
+
+  min-height: 5vw;
+
+  position: relative;
+
+  color: rgba(41, 41, 41, 1);
+
+  font-family: "Dela Gothic One", Arial, sans-serif;
+
+  font-weight: normal;
+
+  font-size: 2.5vw;
+
+  line-height: normal;
+
+  text-align: left;
+
+  margin-bottom: 2vw;
+
+}
+
+
+/* ================================================== */
+/* TESTO MODIFICABILE */
+/* ================================================== */
+
+.testo_notizia_grande_admin {
+
+  width: 100%;
+
+  min-height: 20vw;
+
+  position: relative;
+
+  color: rgba(41, 41, 41, 1);
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-weight: normal;
+
+  font-size: 1.87vw;
+
+  line-height: 1.4;
+
+  text-align: left;
+
+  margin-bottom: 2vw;
+
+}
+
+
+/* ================================================== */
+/* DATA MODIFICABILE */
+/* ================================================== */
+
+.data_notizia_grande_admin {
+
+  width: 100%;
+
+  position: relative;
+
+  color: rgba(41, 41, 41, 1);
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-weight: normal;
+
+  font-size: 1.875vw;
+
+  text-align: left;
+
+  margin-top: 2vw;
+
+}
+
+
+/* ================================================== */
+/* CAMPI MODIFICABILI */
+/* ================================================== */
+
+.campo_modifica_notizia_admin {
+
+  cursor: text;
+}
+
+
+/* ================================================== */
+/* INPUT TITOLO */
+/* ================================================== */
+
+.input_titolo_modifica_notizia_admin {
+
+  width: 100%;
+
+  min-height: 5vw;
+
+  padding: 0.8vw 1vw;
+
+  margin: 0;
+
+  border: 0.1042vw solid #d9d9d9;
+
+  outline: none;
+
+  background: #f5f5f5;
+
+  color: rgba(41, 41, 41, 1);
+
+  font-family: "Dela Gothic One", Arial, sans-serif;
+
+  font-size: 2.5vw;
+
+  font-weight: normal;
+
+  line-height: 1.2;
+
+  text-align: left;
+
+  resize: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border 0.15s ease,
+    background 0.15s ease;
+
+}
+
+
+.input_titolo_modifica_notizia_admin:focus {
+
+  border: 0.1042vw solid #2a2a2a;
+
+  background: #ffffff;
+
+}
+
+
+/* ================================================== */
+/* TEXTAREA TESTO */
+/* ================================================== */
+
+.textarea_testo_modifica_notizia_admin {
+
+  width: 100%;
+
+  min-height: 25vw;
+
+  height: 25vw;
+
+  padding: 1vw;
+
+  margin: 0;
+
+  border: 0.1042vw solid #d9d9d9;
+
+  outline: none;
+
+  background: #f5f5f5;
+
+  color: rgba(41, 41, 41, 1);
+
+  font-family: "DM Serif Text", Georgia, serif;
+
+  font-size: 1.87vw;
+
+  font-weight: normal;
+
+  line-height: 1.4;
+
+  text-align: left;
+
+  resize: vertical;
+
+  box-sizing: border-box;
+
+  transition:
+    border 0.15s ease,
+    background 0.15s ease;
+
+}
+
+
+.textarea_testo_modifica_notizia_admin:focus {
+
+  border: 0.1042vw solid #2a2a2a;
+
+  background: #ffffff;
+
+}
+
+/* ================================================== */
+/* DATA MODIFICABILE */
+/* ================================================== */
+
+.contenitore_data_modifica_notizia_admin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
+}
+
+.input_data_modifica_notizia_admin {
+  width: 3.5vw;
+  height: 2.5vw;
+
+  border: 0.1042vw solid #2a2a2a;
+  border-radius: 0.2083vw;
+
+  background: #ffffff;
+  color: #2a2a2a;
+
+  font-family: Inter, sans-serif;
+  font-size: 1.0417vw;
+
+  text-align: center;
+
+  outline: none;
+}
+
+.input_data_modifica_notizia_admin.anno {
+  width: 4.5vw;
+}
+
+.input_data_modifica_notizia_admin:focus {
+  outline: 0.1042vw solid #2a2a2a;
+}
