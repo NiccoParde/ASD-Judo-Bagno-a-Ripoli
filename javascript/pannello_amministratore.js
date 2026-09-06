@@ -5,12 +5,12 @@ import {
 
 import {
   doc,
+  getDoc,
   getDocs,
   collection,
   query,
   orderBy,
   setDoc,
-  addDoc,
   deleteDoc,
   Timestamp,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -23,6 +23,9 @@ import { auth, db } from "./firebase-config.js";
 
 const URL_WORKER_LOGIN =
   "https://imagekit-auth.judobagnoaripoli.workers.dev/login";
+
+const URL_WORKER_DELETE =
+  "https://imagekit-auth.judobagnoaripoli.workers.dev/imagekit/delete";
 
 const COLLECTION_BLOCCO_PAGINE = "blocco_pagine";
 const COLLECTION_NEWS = "news";
@@ -1032,11 +1035,72 @@ document.addEventListener("DOMContentLoaded", () => {
     return dati;
   }
 
+  function formattaNumeroIdNotizia(numero) {
+    return String(numero).padStart(2, "0");
+  }
+
+  function creaIdDocumentoNotizia(giorno, mese, anno, dataOra = new Date()) {
+    const gg = formattaNumeroIdNotizia(giorno);
+    const mm = formattaNumeroIdNotizia(mese);
+    const aaaa = String(anno).padStart(4, "0");
+    const hh = formattaNumeroIdNotizia(dataOra.getHours());
+    const min = formattaNumeroIdNotizia(dataOra.getMinutes());
+    const sec = formattaNumeroIdNotizia(dataOra.getSeconds());
+
+    return `${gg}-${mm}-${aaaa}-${hh}:${min}:${sec}`;
+  }
+
+  function creaNomeCartellaNotiziaImageKit(
+    giorno,
+    mese,
+    anno,
+    dataOra = new Date(),
+  ) {
+    const gg = formattaNumeroIdNotizia(giorno);
+    const mm = formattaNumeroIdNotizia(mese);
+    const aaaa = String(anno).padStart(4, "0");
+    const hh = formattaNumeroIdNotizia(dataOra.getHours());
+    const min = formattaNumeroIdNotizia(dataOra.getMinutes());
+    const sec = formattaNumeroIdNotizia(dataOra.getSeconds());
+
+    return `${gg}-${mm}-${aaaa}_${hh}-${min}-${sec}`;
+  }
+
+  function attendi(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  async function creaIdDocumentoNotiziaUnivoco(giorno, mese, anno) {
+    for (let tentativo = 0; tentativo < 5; tentativo++) {
+      const oraAttuale = new Date();
+      const idDocumentoNotizia = creaIdDocumentoNotizia(
+        giorno,
+        mese,
+        anno,
+        oraAttuale,
+      );
+      const riferimento = doc(db, COLLECTION_NEWS, idDocumentoNotizia);
+      const snapshot = await getDoc(riferimento);
+
+      if (!snapshot.exists()) {
+        return { idDocumentoNotizia, dataCreazione: oraAttuale };
+      }
+
+      await attendi(1000);
+    }
+
+    throw new Error(
+      "Impossibile generare un nome univoco per la notizia. Riprova tra qualche secondo.",
+    );
+  }
+
   // ====================================================
   // UPLOAD IMAGEKIT
   // ====================================================
 
-  async function caricaImmagineSuImageKit(file) {
+  async function caricaImmagineSuImageKit(file, nomeSottocartella = "") {
     if (!file) {
       return "";
     }
@@ -1055,7 +1119,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     formData.append("file", file);
 
-    formData.append("fileName", file.name || `notizia-${Date.now()}.jpg`);
+    const estensione =
+      file.name && file.name.includes(".")
+        ? ""
+        : file.type
+          ? `.${file.type.split("/")[1] || "jpg"}`
+          : ".jpg";
+
+    formData.append(
+      "fileName",
+      file.name || `notizia-${Date.now()}${estensione}`,
+    );
 
     formData.append(
       "publicKey",
@@ -1070,7 +1144,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     formData.append("useUniqueFileName", "true");
 
-    formData.append("folder", IMAGEKIT_FOLDER_NEWS);
+    const cartellaBase = IMAGEKIT_FOLDER_NEWS.replace(/\/+$/, "");
+    let sottocartella = nomeSottocartella;
+
+    if (!sottocartella) {
+      const adesso = new Date();
+      sottocartella = creaNomeCartellaNotiziaImageKit(
+        adesso.getDate(),
+        adesso.getMonth() + 1,
+        adesso.getFullYear(),
+        adesso,
+      );
+    }
+
+    const cartellaDestinazione = `${cartellaBase}/${sottocartella.replace(/^\/+/, "").replace(/\/+$/, "")}`;
+
+    formData.append("folder", cartellaDestinazione);
 
     const risposta = await fetch(IMAGEKIT_UPLOAD_ENDPOINT, {
       method: "POST",
@@ -1096,6 +1185,85 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return dati.url;
+  }
+
+  // ====================================================
+  // CANCELLAZIONE CARTELLA IMMAGINI IMAGEKIT
+  // ====================================================
+
+  function estraiPercorsoCartellaImageKitDaNotizia(news) {
+    if (!news) {
+      return "";
+    }
+
+    // 1. Se c'è un'immagine ImageKit, estraiamo la cartella direttamente dall'URL
+    // es. https://ik.imagekit.io/.../news/06-09-2026_16-42-38/foto.jpg -> /news/06-09-2026_16-42-38
+    if (typeof news.immagine === "string" && news.immagine.trim()) {
+      const urlImmagine = news.immagine.trim();
+      const match = urlImmagine.match(/\/news\/([^\/]+)\//);
+      if (match && match[1]) {
+        return `/news/${match[1]}`;
+      }
+    }
+
+    // 2. Se l'ID notizia rispetta il formato GG-MM-AAAA-HH:MM:SS, ricaviamo il nome cartella corrispondente
+    if (typeof news.id === "string" && news.id.includes(":")) {
+      const parti = news.id.split("-");
+      if (parti.length >= 4) {
+        const data = parti.slice(0, 3).join("-");
+        const orario = parti.slice(3).join("-").replace(/:/g, "-");
+        return `/news/${data}_${orario}`;
+      }
+    }
+
+    return "";
+  }
+
+  async function eliminaCartellaNotiziaImageKit(folderPath) {
+    if (!folderPath) {
+      return { ok: true };
+    }
+
+    if (!auth.currentUser) {
+      throw new Error("Utente non autenticato. Effettua nuovamente l'accesso.");
+    }
+
+    const idToken = await auth.currentUser.getIdToken();
+
+    const risposta = await fetch(URL_WORKER_DELETE, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${idToken}`,
+      },
+      body: JSON.stringify({
+        folderPath: folderPath,
+      }),
+    });
+
+    let dati = {};
+
+    try {
+      dati = await risposta.json();
+    } catch {
+      dati = {};
+    }
+
+    if (!risposta.ok || !dati.ok) {
+      console.error(
+        "Errore cancellazione cartella ImageKit:",
+        risposta.status,
+        dati,
+      );
+
+      throw new Error(
+        dati.errore ||
+          dati.message ||
+          "Impossibile eliminare la cartella delle immagini su ImageKit.",
+      );
+    }
+
+    return dati;
   }
 
   // ====================================================
@@ -1276,18 +1444,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const anno = Number(inputAnno.value.trim());
 
-    const dataNotizia = new Date(anno, mese - 1, giorno);
-
     mostraLoader(
       pubblicata ? "Pubblicazione in corso..." : "Salvataggio in corso...",
     );
 
     try {
+      const { idDocumentoNotizia, dataCreazione } =
+        await creaIdDocumentoNotiziaUnivoco(giorno, mese, anno);
+
       let immagineNotizia = "";
 
       if (fileImmagineNotizia) {
-        immagineNotizia = await caricaImmagineSuImageKit(fileImmagineNotizia);
+        const nomeSottocartella = creaNomeCartellaNotiziaImageKit(
+          giorno,
+          mese,
+          anno,
+          dataCreazione,
+        );
+
+        immagineNotizia = await caricaImmagineSuImageKit(
+          fileImmagineNotizia,
+          nomeSottocartella,
+        );
       }
+
+      const dataNotizia = new Date(
+        anno,
+        mese - 1,
+        giorno,
+        dataCreazione.getHours(),
+        dataCreazione.getMinutes(),
+        dataCreazione.getSeconds(),
+      );
 
       const datiNotizia = {
         titolo: inputTitoloNotizia.value.trim(),
@@ -1301,8 +1489,10 @@ document.addEventListener("DOMContentLoaded", () => {
         pubblicata: pubblicata === true,
       };
 
-      const riferimento = await addDoc(
-        collection(db, COLLECTION_NEWS),
+      const riferimento = doc(db, COLLECTION_NEWS, idDocumentoNotizia);
+
+      await setDoc(
+        riferimento,
         datiNotizia,
       );
 
@@ -2649,6 +2839,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     notiziaDaEliminareAdmin = news;
 
+    if (pulsanteConfermaEliminazione) {
+      pulsanteConfermaEliminazione.disabled = false;
+      pulsanteConfermaEliminazione.style.pointerEvents = "auto";
+      pulsanteConfermaEliminazione.style.opacity = "1";
+    }
+
+    if (pulsanteAnnullaEliminazione) {
+      pulsanteAnnullaEliminazione.disabled = false;
+      pulsanteAnnullaEliminazione.style.pointerEvents = "auto";
+    }
+
     popupConfermaEliminazione.classList.add("aperto");
 
     document.body.classList.add("popup_aperto_admin");
@@ -2664,6 +2865,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("popup_aperto_admin");
 
     notiziaDaEliminareAdmin = null;
+
+    if (pulsanteConfermaEliminazione) {
+      pulsanteConfermaEliminazione.disabled = false;
+      pulsanteConfermaEliminazione.style.pointerEvents = "auto";
+      pulsanteConfermaEliminazione.style.opacity = "1";
+    }
+
+    if (pulsanteAnnullaEliminazione) {
+      pulsanteAnnullaEliminazione.disabled = false;
+      pulsanteAnnullaEliminazione.style.pointerEvents = "auto";
+    }
   }
 
   async function eliminaNotiziaAdmin() {
@@ -2685,8 +2897,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Elimina la notizia da Firestore
+      // 1. Elimina prima la cartella da ImageKit (se presente)
+      const folderPath = estraiPercorsoCartellaImageKitDaNotizia(news);
+
+      if (folderPath) {
+        console.log("Eliminazione cartella ImageKit in corso:", folderPath);
+        await eliminaCartellaNotiziaImageKit(folderPath);
+        console.log("Cartella ImageKit eliminata con successo:", folderPath);
+      }
+
+      // 2. Elimina la notizia da Firestore
       await deleteDoc(doc(db, COLLECTION_NEWS, news.id));
+      console.log("Notizia eliminata da Firestore:", news.id);
 
       // Elimina la notizia anche dall'array locale
       const indice = elencoNewsAdmin.findIndex(
@@ -2705,8 +2927,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (errore) {
       console.error("Errore durante l'eliminazione della notizia:", errore);
 
-      alert("Si è verificato un errore durante l'eliminazione della notizia.");
-
+      alert(
+        errore.message ||
+          "Si è verificato un errore durante l'eliminazione della notizia.",
+      );
+    } finally {
       if (pulsanteConfermaEliminazione) {
         pulsanteConfermaEliminazione.disabled = false;
         pulsanteConfermaEliminazione.style.pointerEvents = "auto";
@@ -2733,6 +2958,19 @@ document.addEventListener("DOMContentLoaded", () => {
     pulsanteAnnullaEliminazione.addEventListener("click", (evento) => {
       evento.preventDefault();
       evento.stopPropagation();
+
+      chiudiPopupConfermaEliminazioneAdmin();
+    });
+  }
+
+  if (offuscamentoConfermaEliminazione) {
+    offuscamentoConfermaEliminazione.addEventListener("click", (evento) => {
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      if (pulsanteConfermaEliminazione && pulsanteConfermaEliminazione.disabled) {
+        return;
+      }
 
       chiudiPopupConfermaEliminazioneAdmin();
     });

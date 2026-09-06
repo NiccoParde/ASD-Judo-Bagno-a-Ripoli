@@ -106,6 +106,11 @@ function percorsoImmagineNews(immagine) {
     return `.${valore}`;
   }
 
+  // Se contiene un URL assoluto (ImageKit, web)
+  if (valore.startsWith("http://") || valore.startsWith("https://")) {
+    return valore;
+  }
+
   // Se contiene solo il nome del file
   // esempio: foto1.jpg
   return `./assets/news/${valore}`;
