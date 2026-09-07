@@ -717,7 +717,7 @@ body.popup_aperto_admin {
 }
 
 .contenitore_data {
-  width: 22vw;
+  width: 19.28vw;
   height: 2.7604vw;
   position: absolute;
   top: 18.0729vw;
@@ -741,10 +741,11 @@ body.popup_aperto_admin {
   font-size: 2.3vw;
   line-height: 2.7604vw;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .input_giorno {
-  width: 4.8vw;
+  width: 3.46vw;
   left: 0;
 }
 
@@ -754,12 +755,12 @@ body.popup_aperto_admin {
   background: rgba(41, 41, 41, 1);
   position: absolute;
   top: 0;
-  left: 5.2vw;
+  left: 4.81vw;
 }
 
 .input_mese {
-  width: 4.8vw;
-  left: 5.6vw;
+  width: 3.46vw;
+  left: 6.3vw;
 }
 
 .separatore_data_2 {
@@ -768,19 +769,17 @@ body.popup_aperto_admin {
   background: rgba(41, 41, 41, 1);
   position: absolute;
   top: 0;
-  left: 10.8vw;
+  left: 11.11vw;
 }
 
 .input_anno {
-  width: 7.8vw;
-  left: 11.2vw;
+  width: 6.67vw;
+  left: 12.61vw;
 }
 
 .input_giorno::placeholder,
 .input_mese::placeholder,
 .input_anno::placeholder {
-  position: absolute;
-  top: 0.2vw;
   color: rgba(166, 166, 166, 1);
   opacity: 1;
   text-align: center;
@@ -1007,6 +1006,10 @@ body.popup_aperto_admin {
 
 .errore_pubblicazione.visibile {
   display: block;
+}
+
+.errore_pubblicazione.visibile.successo {
+  color: #27ae60 !important;
 }
 
 /* ====================================================== */
@@ -1257,69 +1260,81 @@ body.popup_aperto_admin {
 }
 
 /* ====================================================== */
-/* DATA CARD */
+/* CORPO E TESTI NOTIZIA PICCOLA ADMIN */
 /* ====================================================== */
+
+.notizia_piccola_corpo_admin {
+  position: absolute;
+  top: 0;
+  left: 26.2vw;
+  right: 14vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.notizia_piccola_admin.senza_immagine .notizia_piccola_corpo_admin {
+  left: 2vw;
+  right: 14vw;
+}
+
+.notizia_piccola_header_riga {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  margin-bottom: 0.35vw;
+}
 
 .data_notizia_piccola_admin {
-  width: 13.854vw;
   color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 0.8vw;
-  left: 25.625vw;
   font-family: "DM Serif Text", Georgia, serif;
   font-weight: normal;
   font-size: 0.938vw;
   text-align: left;
-  z-index: 3;
-  pointer-events: none;
+  white-space: nowrap;
 }
 
-/* ====================================================== */
-/* TITOLO CARD */
-/* ====================================================== */
+.badge_stato_notizia_admin {
+  position: static;
+  display: inline-block;
+  width: fit-content;
+}
 
 .titolo_notizia_piccola_admin {
-  width: 56.4vw;
-  height: 2.39vw;
+  width: 100%;
   color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 2.292vw;
-  left: 25.625vw;
-  font-family: "Dela Gothic One", Arial, sans-serif;
-  font-weight: normal;
-  font-size: 1.25vw;
-  line-height: normal;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 1.35vw;
+  line-height: 1.3;
   text-align: left;
-  z-index: 4;
-  pointer-events: none;
+  margin-bottom: 0.35vw;
   white-space: normal;
   overflow: hidden;
-  overflow-wrap: anywhere;
-  word-break: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-/* ====================================================== */
-/* TESTO CARD */
-/* ====================================================== */
-
 .testo_notizia_piccola_admin {
-  width: 66.14583vw;
-  height: 9.21875vw;
+  width: 100%;
   color: rgba(41, 41, 41, 1);
-  position: absolute;
-  top: 5.208vw;
-  left: 25.625vw;
   font-family: "DM Serif Text", Georgia, serif;
   font-weight: normal;
   font-size: 0.938vw;
-  line-height: normal;
+  line-height: 1.45;
   text-align: left;
-  z-index: 4;
-  pointer-events: none;
   white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: normal;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* ====================================================== */
@@ -1328,21 +1343,6 @@ body.popup_aperto_admin {
 
 .notizia_piccola_admin.senza_immagine .immagine_notizia_piccola_admin {
   display: none;
-}
-
-.notizia_piccola_admin.senza_immagine .data_notizia_piccola_admin {
-  left: 0.93vw;
-  width: 87.479vw;
-}
-
-.notizia_piccola_admin.senza_immagine .titolo_notizia_piccola_admin {
-  left: 0.93vw;
-  width: 80.088vw;
-}
-
-.notizia_piccola_admin.senza_immagine .testo_notizia_piccola_admin {
-  left: 0.93vw;
-  width: 89.0625vw;
 }
 
 /* ====================================================== */
@@ -2298,3 +2298,500 @@ body.popup_aperto_admin {
 .input_data_modifica_notizia_admin:focus {
   outline: 0.1042vw solid #2a2a2a;
 }
+
+/* ====================================================== */
+/* SEZIONE EVENTI */
+/* ====================================================== */
+
+#sezioneEventi {
+  top: 0;
+  min-height: 162.6042vw;
+  overflow: visible;
+  position: relative;
+}
+
+/* PANNELLO CREAZIONE EVENTO */
+.pannello_creazione_evento {
+  height: 68.5vw;
+}
+
+.etichetta_durata_evento {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 22vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.contenitore_orario_evento {
+  position: absolute;
+  top: 26.2vw;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 2.5vw;
+}
+
+/* TOGGLE TUTTO IL GIORNO */
+.toggle_tutto_il_giorno {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.8vw;
+}
+
+.checkbox_tutto_il_giorno {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.slider_tutto_il_giorno {
+  position: relative;
+  display: inline-block;
+  width: 3.6vw;
+  height: 2vw;
+  background-color: #d9d9d9;
+  border-radius: 2vw;
+  box-shadow: inset 0.1vw 0.1vw 0.2vw rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.slider_tutto_il_giorno::after {
+  content: "";
+  position: absolute;
+  width: 1.6vw;
+  height: 1.6vw;
+  left: 0.2vw;
+  top: 0.2vw;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0.1vw 0.2vw rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.checkbox_tutto_il_giorno:checked + .slider_tutto_il_giorno {
+  background-color: #2a2a2a;
+}
+
+.checkbox_tutto_il_giorno:checked + .slider_tutto_il_giorno::after {
+  transform: translateX(1.6vw);
+}
+
+.testo_tutto_il_giorno {
+  font-family: Inter, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 500;
+  color: #2a2a2a;
+}
+
+/* RIGA ORARI */
+.riga_orari_evento {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.riga_orari_evento.disabilitato {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.blocco_orario {
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+}
+
+.label_orario {
+  font-family: Inter, sans-serif;
+  font-size: 1.15vw;
+  font-weight: 500;
+  color: #2a2a2a;
+}
+
+.input_orario_evento {
+  width: 8.5vw;
+  height: 2.7604vw;
+  padding: 0.3vw 0.6vw;
+  border: none;
+  outline: none;
+  background: rgba(217, 217, 217, 1);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  color: rgba(41, 41, 41, 1);
+  font-family: Inter, sans-serif;
+  font-size: 1.2vw;
+  font-weight: 500;
+  border-radius: 0.15vw;
+  text-align: center;
+}
+
+.input_orario_evento:focus {
+  outline: 0.1042vw solid #2a2a2a;
+}
+
+/* TIPOLOGIA / TAG EVENTO */
+.etichetta_tag_evento {
+  width: 30.2604vw;
+  color: rgba(41, 41, 41, 1);
+  position: absolute;
+  top: 31vw;
+  left: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 2.0833vw;
+  text-align: left;
+}
+
+.contenitore_tag_evento {
+  position: absolute;
+  top: 34.8vw;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  z-index: 5;
+  flex-wrap: wrap;
+}
+
+.btn_tag_evento {
+  background: #e0e0e0;
+  color: #2a2a2a;
+  border: 0.1042vw solid #cccccc;
+  border-radius: 0.25vw;
+  font-family: Inter, sans-serif;
+  font-size: 0.95vw;
+  font-weight: 600;
+  padding: 0.45vw 1vw;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4vw;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn_tag_evento:hover {
+  background: #d0d0d0;
+}
+
+.btn_tag_evento.attivo {
+  background: #2a2a2a;
+  color: #ffffff;
+  border-color: #2a2a2a;
+  box-shadow: -0.15vw 0.15vw 0.25vw rgba(0, 0, 0, 0.25);
+}
+
+.icona_matita_tag {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.input_tag_personalizzato {
+  background: #ffffff;
+  border: 0.1042vw solid #2a2a2a;
+  border-radius: 0.25vw;
+  padding: 0.4vw 0.75vw;
+  font-family: Inter, sans-serif;
+  font-size: 0.95vw;
+  font-weight: 600;
+  color: #2a2a2a;
+  outline: none;
+  width: 12vw;
+  box-shadow: -0.15vw 0.15vw 0.2vw rgba(0, 0, 0, 0.15);
+}
+
+.input_tag_personalizzato:focus {
+  outline: 0.1042vw solid #2a2a2a;
+}
+
+/* DESCRIZIONE EVENTO */
+.etichetta_descrizione_evento {
+  top: 40.5vw !important;
+}
+
+.contenitore_descrizione_evento {
+  top: 44.5vw !important;
+  height: 16vw !important;
+}
+
+.contenitore_descrizione_evento .input_testo_notizia {
+  height: 16vw !important;
+}
+
+/* RIGA PULSANTI AZIONE EVENTO */
+.riga_pulsanti_azione_evento {
+  position: absolute;
+  top: 62.5vw;
+  left: 0;
+  width: 92.96vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8vw;
+  z-index: 10;
+}
+
+.riga_pulsanti_azione_evento .pulsante_annulla_modifica_evento {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  min-width: 15vw;
+  padding: 0 2vw;
+  height: 4.375vw;
+  background: #ffffff;
+  border: 0.2083vw solid #878787;
+  border-radius: 0.3125vw;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  color: #2a2a2a;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 1.5vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.riga_pulsanti_azione_evento .pulsante_annulla_modifica_evento:hover {
+  background-color: #f0f0f0;
+}
+
+.riga_pulsanti_azione_evento .pulsante_annulla_modifica_evento:active {
+  transform: scale(0.97);
+}
+
+.riga_pulsanti_azione_evento .pulsante_salva_bozza {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  min-width: 18vw;
+  height: 4.375vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.riga_pulsanti_azione_evento .pulsante_salva_bozza .sfondo_pulsante_salva_bozza {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.riga_pulsanti_azione_evento .pulsante_salva_bozza .testo_pulsante_salva_bozza {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  padding: 0 2.2vw;
+  white-space: nowrap;
+  line-height: 4.375vw;
+}
+
+.riga_pulsanti_azione_evento .pulsante_pubblica {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  min-width: 15vw;
+  height: 4.375vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.riga_pulsanti_azione_evento .pulsante_pubblica .sfondo_pulsante_pubblica {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.riga_pulsanti_azione_evento .pulsante_pubblica .testo_pulsante_pubblica {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  padding: 0 2.2vw;
+  white-space: nowrap;
+  line-height: 4.375vw;
+}
+
+/* ====================================================== */
+/* PANNELLO LISTA EVENTI */
+/* ====================================================== */
+
+.pannello_eventi_admin {
+  top: 92.44vw;
+  min-height: 67.3438vw;
+}
+
+.lista_eventi_admin {
+  position: absolute;
+  top: 4.2vw;
+  left: 0;
+  width: 92.96vw;
+  min-height: 54vw;
+  overflow: visible;
+}
+
+.testo_eventi_assenti_admin {
+  display: block;
+}
+
+/* CARD EVENTO ADMIN */
+.evento_card_admin {
+  width: 92.96vw;
+  min-height: 14vw;
+  position: relative;
+  margin-bottom: 1.5vw;
+  background: #d9d9d9;
+  border: 0.1042vw solid #c4c4c4;
+  box-shadow: -0.6vw 0.6vw 0.3vw rgba(0, 0, 0, 0.15);
+  display: flex;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.evento_card_admin:hover {
+  transform: translateY(-0.15vw);
+  box-shadow: -0.8vw 0.8vw 0.4vw rgba(0, 0, 0, 0.2);
+}
+
+/* BLOCCO DATA A SINISTRA */
+.evento_card_data_box {
+  width: 18vw;
+  min-height: 14vw;
+  background-color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vw;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.evento_card_giorno {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 4.5vw;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.evento_card_mese_anno {
+  font-family: Inter, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 600;
+  color: #d9d9d9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.4vw;
+}
+
+.evento_card_badge_orario {
+  margin-top: 0.7vw;
+  font-family: Inter, sans-serif;
+  font-size: 0.95vw;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.25vw 0.7vw;
+  border-radius: 0.25vw;
+}
+
+/* BLOCCO DETTAGLI EVENTO A DESTRA */
+.evento_card_corpo {
+  flex-grow: 1;
+  padding: 1.4vw 14vw 1.4vw 2vw;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.evento_card_header_riga {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  flex-wrap: wrap;
+}
+
+.evento_card_titolo {
+  font-family: Inter, sans-serif;
+  font-size: 1.65vw;
+  font-weight: 700;
+  color: #2a2a2a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.evento_card_badge_stato {
+  font-family: Inter, sans-serif;
+  font-size: 0.85vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2vw 0.6vw;
+  border-radius: 0.2vw;
+  letter-spacing: 0.05em;
+}
+
+.evento_card_badge_stato--pubblicato {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+.evento_card_badge_stato--bozza {
+  background: #d9d9d9;
+  color: #555555;
+}
+
+.evento_card_badge_tag {
+  display: inline-block;
+  width: fit-content;
+  font-family: Inter, sans-serif;
+  font-size: 0.8vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: #2a2a2a;
+  padding: 0.2vw 0.6vw;
+  border-radius: 0.2vw;
+}
+
+.evento_card_descrizione {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 1.15vw;
+  line-height: 1.5;
+  color: #444444;
+  margin-top: 0.7vw;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* PULSANTI AZIONE NELLA CARD EVENTO */
+.evento_card_admin .pulsante_modifica_notizia,
+.evento_card_admin .pulsante_nascondi_notizia,
+.evento_card_admin .pulsante_elimina_notizia {
+  top: 1.2vw;
+}
+

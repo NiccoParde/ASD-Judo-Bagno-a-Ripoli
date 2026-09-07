@@ -338,11 +338,14 @@ Collezioni attualmente note:
 ```text
 news
 blocco_pagine
+eventi
 ```
 
 `blocco_pagine` viene usata da `pagina_blocco.js`.
 
 `news` contiene le notizie del sito.
+
+`eventi` contiene gli eventi del calendario gestiti dal pannello amministratore.
 
 ### Sicurezza
 

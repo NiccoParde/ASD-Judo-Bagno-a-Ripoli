@@ -29,6 +29,7 @@ const URL_WORKER_DELETE =
 
 const COLLECTION_BLOCCO_PAGINE = "blocco_pagine";
 const COLLECTION_NEWS = "news";
+const COLLECTION_EVENTI = "eventi";
 
 const IMAGEKIT_PUBLIC_KEY = "public_XGdQD6vo7Mo9P0AsfeKrHkJoXh8=";
 
@@ -392,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pagina === "eventi") {
       testoImpostazioni.style.color = "#a6a6a6";
       testoNews.style.color = "#a6a6a6";
-      testoEventi.style.color = "#868686";
+      testoEventi.style.color = "#2a2a2a";
 
       iconaImpostazioni.style.backgroundImage =
         'url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg")';
@@ -401,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'url("../assets/pannello_amministratore/icona_notizie_disattivo.svg")';
 
       iconaEventi.style.backgroundImage =
-        'url("../assets/pannello_amministratore/icona_calendario_disattivo.svg")';
+        'url("../assets/pannello_amministratore/icona_calendario_attivo.svg")';
     }
   }
 
@@ -442,6 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
       sezioneEventi.style.display = "block";
 
       aggiornaSelettore("eventi");
+
+      caricaEventiAdmin();
+
+      aggiornaLayoutEventiAdmin();
 
       window.scrollTo(0, 0);
     }
@@ -1853,29 +1858,42 @@ document.addEventListener("DOMContentLoaded", () => {
         immagine.style.backgroundImage = "none";
       }
 
+      const corpo = document.createElement("div");
+      corpo.className = "notizia_piccola_corpo_admin";
+
+      const rigaHeader = document.createElement("div");
+      rigaHeader.className = "notizia_piccola_header_riga";
+
       const data = document.createElement("span");
-
       data.className = "data_notizia_piccola_admin";
-
       data.textContent = formattaDataNews(news.data);
 
-      const titolo = document.createElement("span");
+      const badgeStato = document.createElement("span");
+      badgeStato.className = `evento_card_badge_stato ${
+        news.pubblicata === true
+          ? "evento_card_badge_stato--pubblicato"
+          : "evento_card_badge_stato--bozza"
+      } badge_stato_notizia_admin`;
+      badgeStato.textContent = news.pubblicata === true ? "Pubblicata" : "Bozza";
 
+      rigaHeader.appendChild(data);
+      rigaHeader.appendChild(badgeStato);
+
+      const titolo = document.createElement("span");
       titolo.className = "titolo_notizia_piccola_admin";
+      titolo.textContent = news.titolo;
 
       const testo = document.createElement("span");
-
       testo.className = "testo_notizia_piccola_admin";
+      testo.textContent = news.testo;
+
+      corpo.appendChild(rigaHeader);
+      corpo.appendChild(titolo);
+      corpo.appendChild(testo);
 
       notiziaPiccola.appendChild(sfondo);
-
       notiziaPiccola.appendChild(immagine);
-
-      notiziaPiccola.appendChild(data);
-
-      notiziaPiccola.appendChild(titolo);
-
-      notiziaPiccola.appendChild(testo);
+      notiziaPiccola.appendChild(corpo);
 
       // ==================================================
       // PULSANTI GESTIONE NOTIZIA
@@ -2024,6 +2042,10 @@ document.addEventListener("DOMContentLoaded", () => {
             pulsanteNascondi.setAttribute("aria-label", "Nascondi notizia");
 
             pulsanteNascondi.setAttribute("title", "Nascondi notizia");
+
+            badgeStato.className =
+              "evento_card_badge_stato evento_card_badge_stato--pubblicato badge_stato_notizia_admin";
+            badgeStato.textContent = "Pubblicata";
           } else {
             // Notizia nascosta:
             // mostra l'icona MOSTRA.
@@ -2033,6 +2055,10 @@ document.addEventListener("DOMContentLoaded", () => {
             pulsanteNascondi.setAttribute("aria-label", "Mostra notizia");
 
             pulsanteNascondi.setAttribute("title", "Mostra notizia");
+
+            badgeStato.className =
+              "evento_card_badge_stato evento_card_badge_stato--bozza badge_stato_notizia_admin";
+            badgeStato.textContent = "Bozza";
           }
 
           console.log(
@@ -2973,6 +2999,8 @@ document.addEventListener("DOMContentLoaded", () => {
       creaNewsPiccoleAdmin();
 
       aggiornaAltezzaNotiziaAdmin();
+
+      aggiornaLayoutEventiAdmin();
     }, 50);
   });
 
@@ -2988,6 +3016,8 @@ document.addEventListener("DOMContentLoaded", () => {
         creaNewsPiccoleAdmin();
 
         aggiornaAltezzaNotiziaAdmin();
+
+        aggiornaLayoutEventiAdmin();
       });
     });
   }
@@ -3025,6 +3055,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("popup_aperto_admin");
 
     notiziaDaEliminareAdmin = null;
+    eventoDaEliminareAdmin = null;
+
+    if (testoConfermaEliminazione) {
+      testoConfermaEliminazione.textContent = "Eliminare la notizia?";
+    }
 
     if (pulsanteConfermaEliminazione) {
       pulsanteConfermaEliminazione.disabled = false;
@@ -3110,7 +3145,11 @@ document.addEventListener("DOMContentLoaded", () => {
       evento.preventDefault();
       evento.stopPropagation();
 
-      eliminaNotiziaAdmin();
+      if (eventoDaEliminareAdmin) {
+        eliminaEventoAdmin();
+      } else {
+        eliminaNotiziaAdmin();
+      }
     });
   }
 
@@ -3283,6 +3322,855 @@ document.addEventListener("DOMContentLoaded", () => {
   inputPassword.addEventListener("input", () => {
     nascondiErrore();
   });
+
+  // ====================================================
+  // GESTIONE EVENTI ADMIN
+  // ====================================================
+
+  const inputTitoloEvento = document.getElementById("inputTitoloEvento");
+  const inputGiornoEvento = document.getElementById("inputGiornoEvento");
+  const inputMeseEvento = document.getElementById("inputMeseEvento");
+  const inputAnnoEvento = document.getElementById("inputAnnoEvento");
+  const checkboxTuttoIlGiorno = document.getElementById("checkboxTuttoIlGiorno");
+  const rigaOrariEvento = document.getElementById("rigaOrariEvento");
+  const inputOraInizioEvento = document.getElementById("inputOraInizioEvento");
+  const inputOraFineEvento = document.getElementById("inputOraFineEvento");
+  const inputDescrizioneEvento = document.getElementById("inputDescrizioneEvento");
+  const caricamentoCreazioneEvento = document.getElementById(
+    "caricamentoCreazioneEvento",
+  );
+  const testoCaricamentoCreazioneEvento = document.getElementById(
+    "testoCaricamentoCreazioneEvento",
+  );
+  const errorePubblicazioneEvento = document.getElementById(
+    "errorePubblicazioneEvento",
+  );
+  const pulsanteSalvaBozzaEvento = document.getElementById(
+    "pulsanteSalvaBozzaEvento",
+  );
+  const pulsantePubblicaEvento = document.getElementById(
+    "pulsantePubblicaEvento",
+  );
+  const testoPulsantePubblicaEvento = document.getElementById(
+    "testoPulsantePubblicaEvento",
+  );
+  const btnAnnullaModificaEvento = document.getElementById(
+    "btnAnnullaModificaEvento",
+  );
+  const contenitoreTagEvento = document.getElementById(
+    "contenitoreTagEvento",
+  );
+  const inputTagPersonalizzato = document.getElementById(
+    "inputTagPersonalizzato",
+  );
+  const titoloPannelloCreazioneEvento = document.getElementById(
+    "titoloPannelloCreazioneEvento",
+  );
+  const listaEventiAdmin = document.getElementById("listaEventiAdmin");
+  const testoEventiAssentiAdmin = document.querySelector(
+    ".testo_eventi_assenti_admin",
+  );
+  const pulsanteCaricaAltroEventi = document.getElementById(
+    "pulsanteCaricaAltroEventi",
+  );
+  const pannelloEventiAdmin = document.getElementById("pannelloEventiAdmin");
+
+  let elencoEventiAdmin = [];
+  let eventoInModificaAdmin = null;
+  let eventoDaEliminareAdmin = null;
+  let numeroEventiVisibiliAdmin = 6;
+
+  const NOMI_MESI_BREVI = [
+    "Gen",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mag",
+    "Giu",
+    "Lug",
+    "Ago",
+    "Set",
+    "Ott",
+    "Nov",
+    "Dic",
+  ];
+
+  // Gestione toggle "Tutto il giorno"
+  if (checkboxTuttoIlGiorno && rigaOrariEvento) {
+    checkboxTuttoIlGiorno.addEventListener("change", () => {
+      if (checkboxTuttoIlGiorno.checked) {
+        rigaOrariEvento.classList.add("disabilitato");
+      } else {
+        rigaOrariEvento.classList.remove("disabilitato");
+      }
+    });
+  }
+
+  // Sanitizzazione input data e reset errori evento
+  if (inputGiornoEvento) {
+    inputGiornoEvento.addEventListener("input", () => {
+      limitaData(inputGiornoEvento, 2);
+      nascondiErroreEvento();
+    });
+  }
+
+  if (inputMeseEvento) {
+    inputMeseEvento.addEventListener("input", () => {
+      limitaData(inputMeseEvento, 2);
+      nascondiErroreEvento();
+    });
+  }
+
+  if (inputAnnoEvento) {
+    inputAnnoEvento.addEventListener("input", () => {
+      limitaData(inputAnnoEvento, 4);
+      nascondiErroreEvento();
+    });
+  }
+
+  if (inputTitoloEvento) {
+    inputTitoloEvento.addEventListener("input", () => {
+      nascondiErroreEvento();
+    });
+  }
+
+  if (inputDescrizioneEvento) {
+    inputDescrizioneEvento.addEventListener("input", () => {
+      nascondiErroreEvento();
+    });
+  }
+
+  // Loader eventi
+  function mostraLoaderEvento(testo = "Salvataggio in corso...") {
+    if (!caricamentoCreazioneEvento) return;
+    if (testoCaricamentoCreazioneEvento) {
+      testoCaricamentoCreazioneEvento.textContent = testo;
+    }
+    caricamentoCreazioneEvento.classList.add("visibile");
+    caricamentoCreazioneEvento.setAttribute("aria-hidden", "false");
+    if (pulsanteSalvaBozzaEvento) {
+      pulsanteSalvaBozzaEvento.style.pointerEvents = "none";
+      pulsanteSalvaBozzaEvento.style.opacity = "0.65";
+    }
+    if (pulsantePubblicaEvento) {
+      pulsantePubblicaEvento.style.pointerEvents = "none";
+      pulsantePubblicaEvento.style.opacity = "0.65";
+    }
+  }
+
+  function nascondiLoaderEvento() {
+    if (!caricamentoCreazioneEvento) return;
+    caricamentoCreazioneEvento.classList.remove("visibile");
+    caricamentoCreazioneEvento.setAttribute("aria-hidden", "true");
+    if (pulsanteSalvaBozzaEvento) {
+      pulsanteSalvaBozzaEvento.style.pointerEvents = "auto";
+      pulsanteSalvaBozzaEvento.style.opacity = "1";
+    }
+    if (pulsantePubblicaEvento) {
+      pulsantePubblicaEvento.style.pointerEvents = "auto";
+      pulsantePubblicaEvento.style.opacity = "1";
+    }
+  }
+
+  // Messaggi di stato / errore eventi
+  function mostraErroreEvento(messaggi) {
+    if (!errorePubblicazioneEvento) return;
+    errorePubblicazioneEvento.style.color = "#ff5b5b";
+    errorePubblicazioneEvento.className = "errore_pubblicazione visibile";
+    errorePubblicazioneEvento.innerHTML = Array.isArray(messaggi)
+      ? messaggi.join("<br>")
+      : messaggi;
+  }
+
+  function mostraMessaggioEvento(testo) {
+    if (!errorePubblicazioneEvento) return;
+    errorePubblicazioneEvento.style.color = "#27ae60";
+    errorePubblicazioneEvento.className = "errore_pubblicazione visibile successo";
+    errorePubblicazioneEvento.innerHTML = testo;
+  }
+
+  function nascondiErroreEvento() {
+    if (!errorePubblicazioneEvento) return;
+    errorePubblicazioneEvento.style.color = "#ff5b5b";
+    errorePubblicazioneEvento.className = "errore_pubblicazione";
+    errorePubblicazioneEvento.innerHTML = "";
+  }
+
+  // Pulizia campi form evento
+  function pulisciCampiEvento() {
+    if (inputTitoloEvento) inputTitoloEvento.value = "";
+    if (inputGiornoEvento) inputGiornoEvento.value = "";
+    if (inputMeseEvento) inputMeseEvento.value = "";
+    if (inputAnnoEvento) inputAnnoEvento.value = "";
+    if (inputDescrizioneEvento) inputDescrizioneEvento.value = "";
+    if (checkboxTuttoIlGiorno) {
+      checkboxTuttoIlGiorno.checked = false;
+    }
+    if (rigaOrariEvento) {
+      rigaOrariEvento.classList.remove("disabilitato");
+    }
+    if (inputOraInizioEvento) inputOraInizioEvento.value = "10:00";
+    if (inputOraFineEvento) inputOraFineEvento.value = "12:30";
+
+    eventoInModificaAdmin = null;
+    impostaTagSelezionatoEvento("Gara");
+    if (inputTagPersonalizzato) {
+      inputTagPersonalizzato.value = "";
+      inputTagPersonalizzato.style.display = "none";
+    }
+    if (titoloPannelloCreazioneEvento) {
+      titoloPannelloCreazioneEvento.textContent = "Nuovo evento";
+    }
+    if (testoPulsantePubblicaEvento) {
+      testoPulsantePubblicaEvento.textContent = "Salva";
+    }
+    if (btnAnnullaModificaEvento) {
+      btnAnnullaModificaEvento.style.display = "none";
+    }
+  }
+
+  // Gestione selezione tag evento
+  function ottieniTagSelezionatoEvento() {
+    if (!contenitoreTagEvento) return "Gara";
+    const btnAttivo = contenitoreTagEvento.querySelector(".btn_tag_evento.attivo");
+    if (!btnAttivo) return "Gara";
+    if (btnAttivo.dataset.tag === "personalizzato") {
+      const val = inputTagPersonalizzato ? inputTagPersonalizzato.value.trim() : "";
+      return val || "Personalizzato";
+    }
+    return btnAttivo.dataset.tag || "Gara";
+  }
+
+  function impostaTagSelezionatoEvento(tagDaImpostare) {
+    if (!contenitoreTagEvento) return;
+    const tagPulito = (tagDaImpostare || "Gara").trim();
+    const bottoni = contenitoreTagEvento.querySelectorAll(".btn_tag_evento");
+    let trovato = false;
+
+    bottoni.forEach((btn) => {
+      btn.classList.remove("attivo");
+      if (btn.dataset.tag && btn.dataset.tag.toLowerCase() === tagPulito.toLowerCase()) {
+        btn.classList.add("attivo");
+        trovato = true;
+      }
+    });
+
+    if (!trovato) {
+      const btnPers = contenitoreTagEvento.querySelector(".btn_tag_personalizzato");
+      if (btnPers) btnPers.classList.add("attivo");
+      if (inputTagPersonalizzato) {
+        inputTagPersonalizzato.style.display = "inline-block";
+        inputTagPersonalizzato.value = tagPulito.toLowerCase() === "personalizzato" ? "" : tagPulito;
+      }
+    } else {
+      if (inputTagPersonalizzato) {
+        inputTagPersonalizzato.style.display = "none";
+      }
+    }
+  }
+
+  if (contenitoreTagEvento) {
+    const bottoniTag = contenitoreTagEvento.querySelectorAll(".btn_tag_evento");
+    bottoniTag.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        bottoniTag.forEach((b) => b.classList.remove("attivo"));
+        btn.classList.add("attivo");
+
+        if (btn.dataset.tag === "personalizzato") {
+          if (inputTagPersonalizzato) {
+            inputTagPersonalizzato.style.display = "inline-block";
+            inputTagPersonalizzato.focus();
+          }
+        } else {
+          if (inputTagPersonalizzato) {
+            inputTagPersonalizzato.style.display = "none";
+          }
+        }
+      });
+    });
+  }
+
+  // Generatore ID evento univoco con timestamp identico a news
+  async function creaIdDocumentoEventoUnivoco(giorno, mese, anno) {
+    for (let tentativo = 0; tentativo < 5; tentativo++) {
+      const oraAttuale = new Date();
+      const gg = formattaNumeroIdNotizia(giorno);
+      const mm = formattaNumeroIdNotizia(mese);
+      const aaaa = String(anno).padStart(4, "0");
+      const hh = formattaNumeroIdNotizia(oraAttuale.getHours());
+      const min = formattaNumeroIdNotizia(oraAttuale.getMinutes());
+      const sec = formattaNumeroIdNotizia(oraAttuale.getSeconds());
+      const idDocumentoEvento = `${gg}-${mm}-${aaaa}-${hh}:${min}:${sec}`;
+
+      const riferimento = doc(db, COLLECTION_EVENTI, idDocumentoEvento);
+      const snapshot = await getDoc(riferimento);
+
+      if (!snapshot.exists()) {
+        return { idDocumentoEvento, dataCreazione: oraAttuale };
+      }
+
+      await attendi(1000);
+    }
+
+    throw new Error(
+      "Impossibile generare un identificativo univoco per l'evento. Riprova tra poco.",
+    );
+  }
+
+  // Validazione data evento
+  function validaDataEvento(giorno, mese, anno) {
+    if (
+      !Number.isInteger(giorno) ||
+      !Number.isInteger(mese) ||
+      !Number.isInteger(anno)
+    ) {
+      return false;
+    }
+    if (anno < 2000 || anno > 2100) return false;
+    if (mese < 1 || mese > 12) return false;
+    const ultimoGiornoMese = new Date(anno, mese, 0).getDate();
+    return giorno >= 1 && giorno <= ultimoGiornoMese;
+  }
+
+  // Salvataggio evento (pubblicato o bozza)
+  async function salvaEventoAdmin(pubblicato) {
+    nascondiErroreEvento();
+
+    const titolo = inputTitoloEvento ? inputTitoloEvento.value.trim() : "";
+    const descrizione = inputDescrizioneEvento
+      ? inputDescrizioneEvento.value.trim()
+      : "";
+    const giorno = Number(
+      inputGiornoEvento ? inputGiornoEvento.value.trim() : "",
+    );
+    const mese = Number(inputMeseEvento ? inputMeseEvento.value.trim() : "");
+    const anno = Number(inputAnnoEvento ? inputAnnoEvento.value.trim() : "");
+    const tuttoIlGiorno = checkboxTuttoIlGiorno
+      ? checkboxTuttoIlGiorno.checked
+      : false;
+    const oraInizio = inputOraInizioEvento
+      ? inputOraInizioEvento.value.trim()
+      : "";
+    const oraFine = inputOraFineEvento ? inputOraFineEvento.value.trim() : "";
+
+    const errori = [];
+    if (!titolo) {
+      errori.push("Inserisci il titolo dell'evento.");
+    }
+    if (!validaDataEvento(giorno, mese, anno)) {
+      errori.push("Inserisci una data valida (GG, MM, AAAA).");
+    }
+    if (!tuttoIlGiorno) {
+      if (!oraInizio || !oraFine) {
+        errori.push(
+          "Specifica sia l'orario di inizio che di fine, oppure attiva 'Tutto il giorno'.",
+        );
+      }
+    }
+
+    if (errori.length > 0) {
+      mostraErroreEvento(errori);
+      return false;
+    }
+
+    mostraLoaderEvento(
+      eventoInModificaAdmin
+        ? "Aggiornamento evento in corso..."
+        : pubblicato
+          ? "Pubblicazione evento in corso..."
+          : "Salvataggio bozza in corso...",
+    );
+
+    try {
+      const dataEvento = new Date(anno, mese - 1, giorno, 12, 0, 0);
+      const mm = String(mese).padStart(2, "0");
+      const gg = String(giorno).padStart(2, "0");
+      const aaaa = String(anno).padStart(4, "0");
+      const dataStringa = `${aaaa}-${mm}-${gg}`;
+
+      const datiEvento = {
+        titolo,
+        descrizione,
+        tag: ottieniTagSelezionatoEvento(),
+        data: Timestamp.fromDate(dataEvento),
+        dataStringa,
+        giorno,
+        mese,
+        anno,
+        tuttoIlGiorno,
+        oraInizio: tuttoIlGiorno ? "" : oraInizio,
+        oraFine: tuttoIlGiorno ? "" : oraFine,
+        pubblicata: pubblicato === true,
+        dataModifica: Timestamp.now(),
+      };
+
+      if (eventoInModificaAdmin && eventoInModificaAdmin.id) {
+        const riferimento = doc(db, COLLECTION_EVENTI, eventoInModificaAdmin.id);
+        await setDoc(riferimento, datiEvento, { merge: true });
+        console.log("Evento aggiornato con successo:", eventoInModificaAdmin.id);
+      } else {
+        const { idDocumentoEvento, dataCreazione } =
+          await creaIdDocumentoEventoUnivoco(giorno, mese, anno);
+
+        datiEvento.dataCreazione = Timestamp.fromDate(dataCreazione);
+
+        const riferimento = doc(db, COLLECTION_EVENTI, idDocumentoEvento);
+        await setDoc(riferimento, datiEvento);
+        console.log("Nuovo evento salvato su Firestore:", idDocumentoEvento);
+      }
+
+      nascondiLoaderEvento();
+      mostraMessaggioEvento(
+        eventoInModificaAdmin
+          ? "Evento aggiornato correttamente!"
+          : pubblicato
+            ? "Evento pubblicato correttamente!"
+            : "Evento salvato come bozza!",
+      );
+
+      pulisciCampiEvento();
+      await caricaEventiAdmin();
+      return true;
+    } catch (error) {
+      console.error("Errore durante il salvataggio dell'evento:", error);
+      nascondiLoaderEvento();
+      mostraErroreEvento([
+        error.message || "Impossibile salvare l'evento. Riprova.",
+      ]);
+      return false;
+    }
+  }
+
+  // Caricamento eventi da Firestore
+  async function caricaEventiAdmin() {
+    if (!listaEventiAdmin) return;
+
+    try {
+      const riferimento = collection(db, COLLECTION_EVENTI);
+      const snapshot = await getDocs(riferimento);
+
+      const eventi = [];
+      snapshot.forEach((documento) => {
+        const dati = documento.data();
+        eventi.push({
+          id: documento.id,
+          ...dati,
+        });
+      });
+
+      // Ordina per data evento decrescente (più recenti/futuri in cima)
+      eventi.sort((a, b) => {
+        const tA = a.data
+          ? a.data.toDate
+            ? a.data.toDate().getTime()
+            : new Date(a.data).getTime()
+          : 0;
+        const tB = b.data
+          ? b.data.toDate
+            ? b.data.toDate().getTime()
+            : new Date(b.data).getTime()
+          : 0;
+        return tB - tA;
+      });
+
+      elencoEventiAdmin = eventi;
+      creaCardEventiAdmin();
+    } catch (error) {
+      console.error("Errore nel caricamento degli eventi:", error);
+    }
+  }
+
+  // Renderizzazione card eventi
+  function creaCardEventiAdmin() {
+    if (!listaEventiAdmin) return;
+
+    listaEventiAdmin
+      .querySelectorAll(".evento_card_admin")
+      .forEach((el) => el.remove());
+
+    if (elencoEventiAdmin.length === 0) {
+      if (testoEventiAssentiAdmin)
+        testoEventiAssentiAdmin.style.display = "block";
+      if (pulsanteCaricaAltroEventi)
+        pulsanteCaricaAltroEventi.style.display = "none";
+      return;
+    }
+
+    if (testoEventiAssentiAdmin) testoEventiAssentiAdmin.style.display = "none";
+
+    const eventiDaMostrare = elencoEventiAdmin.slice(
+      0,
+      numeroEventiVisibiliAdmin,
+    );
+
+    eventiDaMostrare.forEach((evento) => {
+      const card = document.createElement("div");
+      card.className = "evento_card_admin";
+
+      // 1. Blocco Data a sinistra
+      const dataBox = document.createElement("div");
+      dataBox.className = "evento_card_data_box";
+
+      const giornoNum =
+        evento.giorno ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getDate()
+          : "--");
+      const meseNum =
+        evento.mese ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getMonth() + 1
+          : 1);
+      const annoNum =
+        evento.anno ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getFullYear()
+          : "----");
+
+      const spanGiorno = document.createElement("span");
+      spanGiorno.className = "evento_card_giorno";
+      spanGiorno.textContent = giornoNum;
+
+      const spanMeseAnno = document.createElement("span");
+      spanMeseAnno.className = "evento_card_mese_anno";
+      spanMeseAnno.textContent = `${NOMI_MESI_BREVI[meseNum - 1] || ""} ${annoNum}`;
+
+      const badgeOrario = document.createElement("span");
+      badgeOrario.className = "evento_card_badge_orario";
+      if (evento.tuttoIlGiorno) {
+        badgeOrario.textContent = "Tutto il giorno";
+      } else if (evento.oraInizio && evento.oraFine) {
+        badgeOrario.textContent = `${evento.oraInizio} - ${evento.oraFine}`;
+      } else if (evento.oraInizio) {
+        badgeOrario.textContent = `Dalle ${evento.oraInizio}`;
+      } else {
+        badgeOrario.textContent = "Orario non spec.";
+      }
+
+      dataBox.appendChild(spanGiorno);
+      dataBox.appendChild(spanMeseAnno);
+      dataBox.appendChild(badgeOrario);
+
+      // 2. Blocco Contenuto a destra
+      const corpo = document.createElement("div");
+      corpo.className = "evento_card_corpo";
+
+      const rigaHeader = document.createElement("div");
+      rigaHeader.className = "evento_card_header_riga";
+
+      const titolo = document.createElement("h3");
+      titolo.className = "evento_card_titolo";
+      titolo.textContent = evento.titolo || "Senza titolo";
+
+      const badgeStato = document.createElement("span");
+      badgeStato.className = `evento_card_badge_stato ${
+        evento.pubblicata
+          ? "evento_card_badge_stato--pubblicato"
+          : "evento_card_badge_stato--bozza"
+      }`;
+      badgeStato.textContent = evento.pubblicata ? "Pubblicato" : "Bozza";
+
+      rigaHeader.appendChild(titolo);
+      rigaHeader.appendChild(badgeStato);
+
+      if (evento.tag) {
+        const badgeTag = document.createElement("span");
+        badgeTag.className = "evento_card_badge_tag";
+        badgeTag.textContent = evento.tag;
+        rigaHeader.appendChild(badgeTag);
+      }
+
+      const descrizione = document.createElement("div");
+      descrizione.className = "evento_card_descrizione";
+      descrizione.textContent = evento.descrizione || "Nessuna descrizione.";
+
+      corpo.appendChild(rigaHeader);
+      corpo.appendChild(descrizione);
+
+      // 3. Pulsanti Azione (in alto a destra)
+      const pulsanteModifica = document.createElement("button");
+      pulsanteModifica.type = "button";
+      pulsanteModifica.className = "pulsante_modifica_notizia";
+      pulsanteModifica.setAttribute("aria-label", "Modifica evento");
+      pulsanteModifica.setAttribute("title", "Modifica evento");
+
+      const pulsanteNascondi = document.createElement("button");
+      pulsanteNascondi.type = "button";
+      pulsanteNascondi.className = "pulsante_nascondi_notizia";
+
+      if (evento.pubblicata === true) {
+        pulsanteNascondi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_nascondi_notizia.svg")';
+        pulsanteNascondi.setAttribute("aria-label", "Nascondi evento");
+        pulsanteNascondi.setAttribute("title", "Nascondi evento");
+      } else {
+        pulsanteNascondi.style.backgroundImage =
+          'url("../assets/pannello_amministratore/icona_mostra_notizia.svg")';
+        pulsanteNascondi.setAttribute("aria-label", "Pubblica evento");
+        pulsanteNascondi.setAttribute("title", "Pubblica evento");
+      }
+
+      const pulsanteElimina = document.createElement("button");
+      pulsanteElimina.type = "button";
+      pulsanteElimina.className = "pulsante_elimina_notizia";
+      pulsanteElimina.setAttribute("aria-label", "Elimina evento");
+      pulsanteElimina.setAttribute("title", "Elimina evento");
+
+      pulsanteModifica.addEventListener("click", (e) => {
+        e.stopPropagation();
+        avviaModificaEvento(evento);
+      });
+
+      pulsanteNascondi.addEventListener("click", (e) => {
+        e.stopPropagation();
+        togglePubblicazioneEvento(evento);
+      });
+
+      pulsanteElimina.addEventListener("click", (e) => {
+        e.stopPropagation();
+        apriPopupConfermaEliminazioneEvento(evento);
+      });
+
+      card.appendChild(dataBox);
+      card.appendChild(corpo);
+      card.appendChild(pulsanteModifica);
+      card.appendChild(pulsanteNascondi);
+      card.appendChild(pulsanteElimina);
+
+      listaEventiAdmin.appendChild(card);
+    });
+
+    if (pulsanteCaricaAltroEventi) {
+      if (elencoEventiAdmin.length > numeroEventiVisibiliAdmin) {
+        pulsanteCaricaAltroEventi.style.display = "flex";
+      } else {
+        pulsanteCaricaAltroEventi.style.display = "none";
+      }
+    }
+
+    aggiornaLayoutEventiAdmin();
+  }
+
+  // Adattamento responsive altezza pannello e sezione eventi
+  function aggiornaLayoutEventiAdmin() {
+    if (!pannelloEventiAdmin || !listaEventiAdmin || !sezioneEventi) {
+      return;
+    }
+
+    const cards = listaEventiAdmin.querySelectorAll(".evento_card_admin");
+    if (cards.length === 0) {
+      if (pulsanteCaricaAltroEventi) {
+        pulsanteCaricaAltroEventi.style.display = "none";
+      }
+      pannelloEventiAdmin.style.height = "67.3438vw";
+      sezioneEventi.style.minHeight = "162.6042vw";
+      return;
+    }
+
+    const ultimaCard = cards[cards.length - 1];
+    const fondoUltimaCard =
+      listaEventiAdmin.offsetTop +
+      ultimaCard.offsetTop +
+      ultimaCard.offsetHeight;
+
+    if (
+      pulsanteCaricaAltroEventi &&
+      pulsanteCaricaAltroEventi.style.display !== "none"
+    ) {
+      const distanzaPx = (2.5 * window.innerWidth) / 100;
+      pulsanteCaricaAltroEventi.style.top = `${fondoUltimaCard + distanzaPx}px`;
+    }
+
+    const altezzaPulsante =
+      pulsanteCaricaAltroEventi &&
+      pulsanteCaricaAltroEventi.style.display !== "none"
+        ? pulsanteCaricaAltroEventi.offsetHeight ||
+          (6.1146 * window.innerWidth) / 100
+        : 0;
+
+    const spazioFinale = (3 * window.innerWidth) / 100;
+    const posizioneBase =
+      pulsanteCaricaAltroEventi &&
+      pulsanteCaricaAltroEventi.style.display !== "none"
+        ? (pulsanteCaricaAltroEventi.offsetTop || fondoUltimaCard) +
+          altezzaPulsante
+        : fondoUltimaCard;
+
+    const altezzaMinimaPannello = (67.3438 * window.innerWidth) / 100;
+    const altezzaPannello = Math.max(
+      posizioneBase + spazioFinale,
+      altezzaMinimaPannello,
+    );
+    pannelloEventiAdmin.style.height = `${altezzaPannello}px`;
+
+    const topPannello = pannelloEventiAdmin.offsetTop;
+    const altezzaSezione =
+      topPannello + altezzaPannello + (4 * window.innerWidth) / 100;
+    const minHeightSezione = (162.6042 * window.innerWidth) / 100;
+    sezioneEventi.style.minHeight = `${Math.max(altezzaSezione, minHeightSezione)}px`;
+  }
+
+  // Modifica evento
+  function avviaModificaEvento(evento) {
+    if (!evento) return;
+    eventoInModificaAdmin = evento;
+
+    if (inputTitoloEvento) inputTitoloEvento.value = evento.titolo || "";
+    if (inputGiornoEvento) inputGiornoEvento.value = evento.giorno || "";
+    if (inputMeseEvento) inputMeseEvento.value = evento.mese || "";
+    if (inputAnnoEvento) inputAnnoEvento.value = evento.anno || "";
+    if (inputDescrizioneEvento)
+      inputDescrizioneEvento.value = evento.descrizione || "";
+
+    if (checkboxTuttoIlGiorno) {
+      checkboxTuttoIlGiorno.checked = evento.tuttoIlGiorno === true;
+      if (rigaOrariEvento) {
+        if (evento.tuttoIlGiorno) {
+          rigaOrariEvento.classList.add("disabilitato");
+        } else {
+          rigaOrariEvento.classList.remove("disabilitato");
+        }
+      }
+    }
+
+    if (inputOraInizioEvento)
+      inputOraInizioEvento.value = evento.oraInizio || "10:00";
+    if (inputOraFineEvento)
+      inputOraFineEvento.value = evento.oraFine || "12:30";
+
+    impostaTagSelezionatoEvento(evento.tag || "Gara");
+
+    if (titoloPannelloCreazioneEvento) {
+      titoloPannelloCreazioneEvento.textContent = "Modifica evento";
+    }
+    if (testoPulsantePubblicaEvento) {
+      testoPulsantePubblicaEvento.textContent = "Salva modifiche";
+    }
+    if (btnAnnullaModificaEvento) {
+      btnAnnullaModificaEvento.style.display = "block";
+    }
+
+    nascondiErroreEvento();
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
+
+  function annullaModificaEvento() {
+    pulisciCampiEvento();
+    nascondiErroreEvento();
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
+
+  // Toggle pubblicazione / bozza
+  async function togglePubblicazioneEvento(evento) {
+    if (!evento || !evento.id) return;
+    const nuovoStato = !evento.pubblicata;
+
+    try {
+      const riferimento = doc(db, COLLECTION_EVENTI, evento.id);
+      await setDoc(riferimento, { pubblicata: nuovoStato }, { merge: true });
+      evento.pubblicata = nuovoStato;
+      creaCardEventiAdmin();
+    } catch (error) {
+      console.error("Errore nel cambio stato pubblicazione evento:", error);
+      alert("Impossibile aggiornare lo stato dell'evento. Riprova.");
+    }
+  }
+
+  // Eliminazione evento
+  function apriPopupConfermaEliminazioneEvento(evento) {
+    if (!popupConfermaEliminazione) return;
+
+    eventoDaEliminareAdmin = evento;
+    notiziaDaEliminareAdmin = null;
+
+    if (testoConfermaEliminazione) {
+      testoConfermaEliminazione.textContent = "Eliminare l'evento?";
+    }
+
+    if (pulsanteConfermaEliminazione) {
+      pulsanteConfermaEliminazione.disabled = false;
+      pulsanteConfermaEliminazione.style.pointerEvents = "auto";
+      pulsanteConfermaEliminazione.style.opacity = "1";
+    }
+
+    if (pulsanteAnnullaEliminazione) {
+      pulsanteAnnullaEliminazione.disabled = false;
+      pulsanteAnnullaEliminazione.style.pointerEvents = "auto";
+    }
+
+    popupConfermaEliminazione.classList.add("aperto");
+    document.body.classList.add("popup_aperto_admin");
+  }
+
+  async function eliminaEventoAdmin() {
+    if (!eventoDaEliminareAdmin || !eventoDaEliminareAdmin.id) return;
+
+    const evento = eventoDaEliminareAdmin;
+
+    if (pulsanteConfermaEliminazione) {
+      pulsanteConfermaEliminazione.disabled = true;
+      pulsanteConfermaEliminazione.style.pointerEvents = "none";
+      pulsanteConfermaEliminazione.style.opacity = "0.65";
+    }
+
+    if (pulsanteAnnullaEliminazione) {
+      pulsanteAnnullaEliminazione.disabled = true;
+      pulsanteAnnullaEliminazione.style.pointerEvents = "none";
+    }
+
+    try {
+      await deleteDoc(doc(db, COLLECTION_EVENTI, evento.id));
+      console.log("Evento eliminato da Firestore:", evento.id);
+
+      const indice = elencoEventiAdmin.findIndex((el) => el.id === evento.id);
+      if (indice !== -1) {
+        elencoEventiAdmin.splice(indice, 1);
+      }
+
+      creaCardEventiAdmin();
+      chiudiPopupConfermaEliminazioneAdmin();
+    } catch (error) {
+      console.error("Errore durante l'eliminazione dell'evento:", error);
+      alert("Errore durante l'eliminazione dell'evento: " + error.message);
+
+      if (pulsanteConfermaEliminazione) {
+        pulsanteConfermaEliminazione.disabled = false;
+        pulsanteConfermaEliminazione.style.pointerEvents = "auto";
+        pulsanteConfermaEliminazione.style.opacity = "1";
+      }
+
+      if (pulsanteAnnullaEliminazione) {
+        pulsanteAnnullaEliminazione.disabled = false;
+        pulsanteAnnullaEliminazione.style.pointerEvents = "auto";
+      }
+    }
+  }
+
+  // Listener pulsanti creazione/bozza evento
+  if (pulsanteSalvaBozzaEvento) {
+    pulsanteSalvaBozzaEvento.addEventListener("click", () => {
+      salvaEventoAdmin(false);
+    });
+  }
+
+  if (pulsantePubblicaEvento) {
+    pulsantePubblicaEvento.addEventListener("click", () => {
+      salvaEventoAdmin(true);
+    });
+  }
+
+  if (btnAnnullaModificaEvento) {
+    btnAnnullaModificaEvento.addEventListener("click", () => {
+      annullaModificaEvento();
+    });
+  }
+
+  if (pulsanteCaricaAltroEventi) {
+    pulsanteCaricaAltroEventi.addEventListener("click", () => {
+      numeroEventiVisibiliAdmin += 6;
+      creaCardEventiAdmin();
+    });
+  }
 
   // ====================================================
   // AVVIO LAYOUT

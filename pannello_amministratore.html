@@ -426,7 +426,252 @@
         class="contenuto_sezione_amministratore"
         id="sezioneEventi"
         style="display: none"
-      ></div>
+      >
+        <!-- ================================================== -->
+        <!-- CREAZIONE EVENTO -->
+        <!-- ================================================== -->
+
+        <div class="pannello_creazione_notizia pannello_creazione_evento">
+          <span class="titolo_pannello_creazione_notizia" id="titoloPannelloCreazioneEvento">
+            Nuovo evento
+          </span>
+
+          <!-- TITOLO EVENTO -->
+          <span class="testo_titolo_notizia"> Titolo </span>
+
+          <div class="titolo_notizia_admin">
+            <textarea
+              class="input_titolo_notizia"
+              id="inputTitoloEvento"
+              placeholder="Inserisci il titolo dell'evento"
+              autocomplete="off"
+              spellcheck="true"
+              rows="1"
+            ></textarea>
+          </div>
+
+          <!-- DATA EVENTO -->
+          <span class="etichetta_data"> Data </span>
+
+          <div class="contenitore_data">
+            <input
+              type="text"
+              class="input_giorno"
+              id="inputGiornoEvento"
+              placeholder="GG"
+              inputmode="numeric"
+              maxlength="2"
+              autocomplete="off"
+            />
+
+            <div class="separatore_data_1"></div>
+
+            <input
+              type="text"
+              class="input_mese"
+              id="inputMeseEvento"
+              placeholder="MM"
+              inputmode="numeric"
+              maxlength="2"
+              autocomplete="off"
+            />
+
+            <div class="separatore_data_2"></div>
+
+            <input
+              type="text"
+              class="input_anno"
+              id="inputAnnoEvento"
+              placeholder="AAAA"
+              inputmode="numeric"
+              maxlength="4"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- DURATA ED ORARIO -->
+          <span class="etichetta_durata_evento"> Durata e orario </span>
+
+          <div class="contenitore_orario_evento">
+            <label class="toggle_tutto_il_giorno" for="checkboxTuttoIlGiorno">
+              <input
+                type="checkbox"
+                id="checkboxTuttoIlGiorno"
+                class="checkbox_tutto_il_giorno"
+              />
+              <span class="slider_tutto_il_giorno"></span>
+              <span class="testo_tutto_il_giorno"> Tutto il giorno </span>
+            </label>
+
+            <div class="riga_orari_evento" id="rigaOrariEvento">
+              <div class="blocco_orario">
+                <span class="label_orario">Dalle:</span>
+                <input
+                  type="time"
+                  class="input_orario_evento"
+                  id="inputOraInizioEvento"
+                  value="10:00"
+                />
+              </div>
+
+              <div class="blocco_orario">
+                <span class="label_orario">Alle:</span>
+                <input
+                  type="time"
+                  class="input_orario_evento"
+                  id="inputOraFineEvento"
+                  value="12:30"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- TIPOLOGIA / TAG EVENTO -->
+          <span class="etichetta_tag_evento">Tipologia evento</span>
+
+          <div class="contenitore_tag_evento" id="contenitoreTagEvento">
+            <button
+              type="button"
+              class="btn_tag_evento attivo"
+              data-tag="Gara"
+            >
+              Gara
+            </button>
+            <button
+              type="button"
+              class="btn_tag_evento"
+              data-tag="Dimostrazione"
+            >
+              Dimostrazione
+            </button>
+            <button
+              type="button"
+              class="btn_tag_evento"
+              data-tag="Evento sociale"
+            >
+              Evento sociale
+            </button>
+            <button
+              type="button"
+              class="btn_tag_evento btn_tag_personalizzato"
+              id="btnTagPersonalizzato"
+              data-tag="personalizzato"
+            >
+              <svg
+                class="icona_matita_tag"
+                viewBox="0 0 24 24"
+                width="13"
+                height="13"
+                fill="currentColor"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span>Personalizzato</span>
+            </button>
+
+            <input
+              type="text"
+              id="inputTagPersonalizzato"
+              class="input_tag_personalizzato"
+              placeholder="Scrivi tag..."
+              maxlength="25"
+              autocomplete="off"
+              style="display: none"
+            />
+          </div>
+
+          <!-- DESCRIZIONE EVENTO -->
+          <span class="etichetta_testo etichetta_descrizione_evento">
+            Descrizione
+          </span>
+
+          <div class="contenitore_testo_notizia contenitore_descrizione_evento">
+            <textarea
+              class="input_testo_notizia"
+              id="inputDescrizioneEvento"
+              placeholder="Inserisci la descrizione dell'evento"
+              autocomplete="off"
+              spellcheck="true"
+            ></textarea>
+          </div>
+
+          <!-- LOADER CREAZIONE EVENTO -->
+          <div
+            class="caricamento_creazione_notizia"
+            id="caricamentoCreazioneEvento"
+            aria-live="polite"
+            aria-hidden="true"
+          >
+            <div
+              class="testo_caricamento_creazione_notizia"
+              id="testoCaricamentoCreazioneEvento"
+            >
+              Caricamento in corso...
+            </div>
+
+            <div class="loader_creazione_notizia"></div>
+          </div>
+
+          <!-- ERRORE PUBBLICAZIONE EVENTO -->
+          <div
+            class="errore_pubblicazione"
+            id="errorePubblicazioneEvento"
+            aria-live="polite"
+          ></div>
+
+          <!-- PULSANTI AZIONE EVENTO -->
+          <div class="riga_pulsanti_azione_evento">
+            <button
+              type="button"
+              class="pulsante_annulla_modifica_evento"
+              id="btnAnnullaModificaEvento"
+              style="display: none"
+            >
+              Annulla modifica
+            </button>
+
+            <div class="pulsante_salva_bozza" id="pulsanteSalvaBozzaEvento">
+              <div class="sfondo_pulsante_salva_bozza"></div>
+
+              <span class="testo_pulsante_salva_bozza"> Salva come bozza </span>
+            </div>
+
+            <div class="pulsante_pubblica" id="pulsantePubblicaEvento">
+              <div class="sfondo_pulsante_pubblica"></div>
+
+              <span class="testo_pulsante_pubblica" id="testoPulsantePubblicaEvento">
+                Salva
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- PANNELLO LISTA EVENTI -->
+        <!-- ================================================== -->
+
+        <div class="pannello_notizie pannello_eventi_admin" id="pannelloEventiAdmin">
+          <span class="titolo_pannello_notizie"> Pannello eventi </span>
+
+          <div class="lista_eventi_admin" id="listaEventiAdmin">
+            <div class="testo_notizie_assenti_admin testo_eventi_assenti_admin">
+              Non ci sono eventi creati.
+            </div>
+          </div>
+
+          <div
+            class="pulsante_carica_altro pulsante_carica_altro_eventi"
+            id="pulsanteCaricaAltroEventi"
+            style="display: none"
+          >
+            <span class="testo_pulsante_carica_altro"> Carica altro </span>
+
+            <div class="icona_pulsante_carica_altro"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ================================================== -->

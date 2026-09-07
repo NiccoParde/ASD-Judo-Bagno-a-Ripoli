@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Regole per il blocco delle pagine (lettura pubblica, scrittura solo per admin autenticati)
+    match /blocco_pagine/{paginaId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Regole per le news (lettura pubblica, scrittura solo per admin autenticati)
+    match /news/{newsId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Regole per gli eventi (lettura pubblica, scrittura solo per admin autenticati)
+    match /eventi/{eventoId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

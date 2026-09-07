@@ -275,3 +275,233 @@
 .email_proposte:hover {
   opacity: 0.8;
 }
+
+/* ====================================================== */
+/* CELLE CON EVENTO INTERATTIVE */
+/* ====================================================== */
+
+.calendario_cella--con-evento {
+  cursor: pointer;
+  position: relative;
+}
+
+.calendario_cella--con-evento:hover .decorazione_cerchio {
+  transform: scale(1.08);
+  box-shadow: 0 0.2vw 0.8vw rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calendario_cella--oggi.calendario_cella--con-evento::after {
+  content: "";
+  position: absolute;
+  bottom: calc(18 / 1920 * 100vw);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(10 / 1920 * 100vw);
+  height: calc(10 / 1920 * 100vw);
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+/* ====================================================== */
+/* POPUP ANTEPRIMA EVENTO */
+/* ====================================================== */
+
+body.anteprima_evento_aperta {
+  overflow: hidden !important;
+}
+
+.offuscamento_anteprima_evento {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.offuscamento_anteprima_evento.attivo {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex !important;
+}
+
+.popup_anteprima_evento {
+  position: relative;
+  width: 60vw;
+  max-width: 1100px;
+  min-width: 320px;
+  max-height: 85vh;
+  background: #ffffff;
+  border-radius: 1vw;
+  box-shadow: -1vw 1vw 3vw rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(1.5vw) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.offuscamento_anteprima_evento.attivo .popup_anteprima_evento {
+  transform: translateY(0) scale(1);
+}
+
+.pulsante_chiudi_anteprima_evento {
+  position: absolute;
+  top: 1.2vw;
+  right: 1.2vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  background: #2a2a2a;
+  color: #ffffff;
+  border: none;
+  font-size: 2vw;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.25);
+  transition: transform 0.12s ease, background-color 0.15s ease;
+}
+
+.pulsante_chiudi_anteprima_evento:hover {
+  background: #000000;
+  transform: scale(1.08);
+}
+
+.pulsante_chiudi_anteprima_evento:active {
+  transform: scale(0.92);
+}
+
+.contenuto_anteprima_eventi {
+  padding: 2.5vw;
+  overflow-y: auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8vw;
+  box-sizing: border-box;
+}
+
+.contenuto_anteprima_eventi::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.contenuto_anteprima_eventi::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 0.25vw;
+}
+
+.evento_anteprima_card {
+  display: flex;
+  background: #d9d9d9;
+  border: 0.1042vw solid #c4c4c4;
+  border-radius: 0.6vw;
+  overflow: hidden;
+  box-shadow: -0.4vw 0.4vw 0.8vw rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+  min-height: 14vw;
+}
+
+.evento_anteprima_data_box {
+  width: 17vw;
+  background-color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5vw 1vw;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.evento_anteprima_giorno {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 4.5vw;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.evento_anteprima_mese_anno {
+  font-family: Inter, sans-serif;
+  font-size: 1.15vw;
+  font-weight: 600;
+  color: #d9d9d9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.4vw;
+}
+
+.evento_anteprima_badge_orario {
+  margin-top: 0.8vw;
+  font-family: Inter, sans-serif;
+  font-size: 0.95vw;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.3vw 0.8vw;
+  border-radius: 0.3vw;
+}
+
+.evento_anteprima_corpo {
+  flex-grow: 1;
+  padding: 1.8vw 2.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.evento_anteprima_badge_tipo {
+  display: inline-block;
+  width: fit-content;
+  font-family: Inter, sans-serif;
+  font-size: 0.8vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: #2a2a2a;
+  padding: 0.25vw 0.65vw;
+  border-radius: 0.25vw;
+  margin-bottom: 0.6vw;
+}
+
+.evento_anteprima_titolo {
+  font-family: Inter, sans-serif;
+  font-size: 1.75vw;
+  font-weight: 700;
+  color: #2a2a2a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.evento_anteprima_separatore {
+  width: 100%;
+  height: 0.1vw;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0.8vw 0;
+}
+
+.evento_anteprima_descrizione {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 1.2vw;
+  line-height: 1.6;
+  color: #333333;
+  white-space: pre-wrap;
+}
+

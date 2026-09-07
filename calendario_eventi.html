@@ -239,7 +239,37 @@
       </div>
     </footer>
 
+    <!-- ================================================== -->
+    <!-- ANTEPRIMA EVENTO POPUP -->
+    <!-- ================================================== -->
+    <div
+      class="offuscamento_anteprima_evento"
+      id="offuscamentoAnteprimaEvento"
+      style="display: none"
+      aria-hidden="true"
+    >
+      <div
+        class="popup_anteprima_evento"
+        id="popupAnteprimaEvento"
+        role="dialog"
+        aria-modal="true"
+      >
+        <button
+          type="button"
+          class="pulsante_chiudi_anteprima_evento"
+          id="btnChiudiAnteprimaEvento"
+          aria-label="Chiudi anteprima"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="contenuto_anteprima_eventi" id="contenutoAnteprimaEventi">
+          <!-- Card eventi generate dinamicamente da JS -->
+        </div>
+      </div>
+    </div>
+
     <!-- Script specifico della pagina -->
-    <script src="./javascript/calendario_eventi.js" defer></script>
+    <script type="module" src="./javascript/calendario_eventi.js"></script>
   </body>
 </html>
