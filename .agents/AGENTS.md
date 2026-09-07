@@ -139,6 +139,9 @@ Il design originale del sito è stato realizzato in **Figma**.
 
 Il file Figma è la principale reference visiva del progetto.
 
+URL: `https://www.figma.com/design/SAY9r81MTW9AkVFk1o2Uxx/Sito-Judo-Design`
+File Key: `SAY9r81MTW9AkVFk1o2Uxx`
+
 La reference principale è basata su una risoluzione:
 
 **1920 × 1080 px**

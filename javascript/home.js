@@ -231,7 +231,28 @@ async function caricaNewsHome() {
 
       // Solo news pubblicate
       if (dati.pubblicata === true) {
-        const immagine = dati.image ?? dati.immagine ?? "";
+        let immagini = [];
+
+        if (Array.isArray(dati.immagini) && dati.immagini.length > 0) {
+          immagini = dati.immagini
+            .map((img) => (typeof img === "string" ? img.trim() : ""))
+            .filter(Boolean);
+        } else if (Array.isArray(dati.images) && dati.images.length > 0) {
+          immagini = dati.images
+            .map((img) => (typeof img === "string" ? img.trim() : ""))
+            .filter(Boolean);
+        } else if (
+          typeof (dati.image ?? dati.immagine) === "string" &&
+          (dati.image ?? dati.immagine).trim()
+        ) {
+          immagini = [(dati.image ?? dati.immagine).trim()];
+        }
+
+        const immaginiFormattate = immagini
+          .map(percorsoImmagineNews)
+          .filter(Boolean);
+
+        const primaImmagine = immaginiFormattate[0] || "";
 
         elencoNews.push({
           id: documento.id,
@@ -242,7 +263,9 @@ async function caricaNewsHome() {
 
           data: dati.data || null,
 
-          immagine: typeof immagine === "string" ? immagine.trim() : "",
+          immagine: primaImmagine,
+
+          immagini: immaginiFormattate,
         });
       }
     });
@@ -697,6 +720,112 @@ function chiudiNotizia() {
 }
 
 // ======================================================
+// SELETTORE IMMAGINI FOCUS
+// ======================================================
+
+function aggiornaSelettoreImmaginiFocus(contenitoreImmagine, listaImmagini) {
+  if (!contenitoreImmagine) {
+    return;
+  }
+
+  let selettore = contenitoreImmagine.querySelector(
+    ".selettore_immagini_notizia",
+  );
+
+  if (!Array.isArray(listaImmagini) || listaImmagini.length <= 1) {
+    if (selettore) {
+      selettore.style.display = "none";
+      selettore.innerHTML = "";
+    }
+    if (Array.isArray(listaImmagini) && listaImmagini.length === 1) {
+      contenitoreImmagine.style.backgroundImage = `url("${listaImmagini[0]}")`;
+    }
+    return;
+  }
+
+  if (!selettore) {
+    selettore = document.createElement("div");
+    selettore.className = "selettore_immagini_notizia";
+    contenitoreImmagine.appendChild(selettore);
+  }
+
+  selettore.style.display = "flex";
+  selettore.innerHTML = "";
+
+  let indiceAttuale = 0;
+
+  function mostraImmagine(nuovoIndice) {
+    indiceAttuale = nuovoIndice;
+    contenitoreImmagine.style.backgroundImage = `url("${listaImmagini[indiceAttuale]}")`;
+
+    const pallini = selettore.querySelectorAll(".pallino_selettore");
+    pallini.forEach((pallino, i) => {
+      if (i === indiceAttuale) {
+        pallino.classList.add("attivo");
+        pallino.setAttribute("aria-current", "true");
+      } else {
+        pallino.classList.remove("attivo");
+        pallino.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  // Freccia Sinistra (loop continuo a ritroso)
+  const frecciaSinistra = document.createElement("button");
+  frecciaSinistra.type = "button";
+  frecciaSinistra.className = "freccia_selettore_immagini freccia_sinistra";
+  frecciaSinistra.setAttribute("aria-label", "Immagine precedente");
+  frecciaSinistra.innerHTML = `<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`;
+  frecciaSinistra.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const nuovoIndice =
+      (indiceAttuale - 1 + listaImmagini.length) % listaImmagini.length;
+    mostraImmagine(nuovoIndice);
+  });
+
+  // Contenitore Pallini
+  const contenitorePallini = document.createElement("div");
+  contenitorePallini.className = "contenitore_pallini_selettore";
+
+  listaImmagini.forEach((_, i) => {
+    const pallino = document.createElement("button");
+    pallino.type = "button";
+    pallino.className = "pallino_selettore";
+    if (i === 0) {
+      pallino.classList.add("attivo");
+      pallino.setAttribute("aria-current", "true");
+    }
+    pallino.setAttribute("aria-label", `Vai all'immagine ${i + 1}`);
+    pallino.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      mostraImmagine(i);
+    });
+    contenitorePallini.appendChild(pallino);
+  });
+
+  // Freccia Destra (loop continuo in avanti)
+  const frecciaDestra = document.createElement("button");
+  frecciaDestra.type = "button";
+  frecciaDestra.className = "freccia_selettore_immagini freccia_destra";
+  frecciaDestra.setAttribute("aria-label", "Immagine successiva");
+  frecciaDestra.innerHTML = `<svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
+  frecciaDestra.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const nuovoIndice = (indiceAttuale + 1) % listaImmagini.length;
+    mostraImmagine(nuovoIndice);
+  });
+
+  selettore.appendChild(frecciaSinistra);
+  selettore.appendChild(contenitorePallini);
+  selettore.appendChild(frecciaDestra);
+
+  mostraImmagine(0);
+}
+
+// ======================================================
 // AGGIORNA POPUP
 // ======================================================
 
@@ -749,18 +878,29 @@ function aggiornaNotiziaFocus(indice) {
   }
 
   // ==================================================
-  // IMMAGINE
+  // IMMAGINI E SELETTORE
   // ==================================================
 
-  const srcImmagine = percorsoImmagineNews(news.immagine);
+  const listaImmagini =
+    Array.isArray(news.immagini) && news.immagini.length > 0
+      ? news.immagini
+      : news.immagine && news.immagine.trim()
+        ? [news.immagine.trim()]
+        : [];
 
-  const senzaImmagine = !srcImmagine;
+  const senzaImmagine = listaImmagini.length === 0;
 
   if (immagine) {
     if (senzaImmagine) {
       immagine.style.backgroundImage = "none";
+      const vecchioSelettore = immagine.querySelector(
+        ".selettore_immagini_notizia",
+      );
+      if (vecchioSelettore) {
+        vecchioSelettore.style.display = "none";
+      }
     } else {
-      immagine.style.backgroundImage = `url("${srcImmagine}")`;
+      aggiornaSelettoreImmaginiFocus(immagine, listaImmagini);
     }
   }
 

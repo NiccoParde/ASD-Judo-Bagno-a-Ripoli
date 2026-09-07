@@ -176,13 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // VARIABILI IMMAGINE
   // ====================================================
 
-  let fileImmagineNotizia = null;
-  let nomeImmagineNotizia = "";
+  let filesImmaginiNotizia = [];
   let fileInputImmagine = null;
   let caricamentoImmagineInCorso = false;
-  let boxImmagineNotizia = null;
-  let testoNomeImmagineNotizia = null;
-  let pulsanteRimuoviImmagine = null;
+  let contenitoreImmaginiNotizia = null;
 
   // ====================================================
   // VARIABILI NEWS
@@ -611,6 +608,20 @@ document.addEventListener("DOMContentLoaded", () => {
     nascondiErrorePubblicazione();
   });
 
+  const contenitoreDataInput = document.querySelector(".contenitore_data");
+  if (contenitoreDataInput) {
+    [inputGiorno, inputMese, inputAnno].forEach((el) => {
+      if (el) {
+        el.addEventListener("focus", () => {
+          contenitoreDataInput.scrollLeft = 0;
+        });
+        el.addEventListener("input", () => {
+          contenitoreDataInput.scrollLeft = 0;
+        });
+      }
+    });
+  }
+
   // ====================================================
   // ADATTAMENTO CAMPI
   // ====================================================
@@ -629,135 +640,115 @@ document.addEventListener("DOMContentLoaded", () => {
     const altezzaNecessaria = elemento.scrollHeight;
 
     const altezzaEffettiva = Math.max(altezzaNecessaria, altezzaMinima);
-
-    elemento.style.height = `${altezzaEffettiva}px`;
+      elemento.style.height = `${altezzaEffettiva}px`;
 
     return Math.max(0, altezzaEffettiva - altezzaMinima);
   }
 
   // ====================================================
-  // BOX IMMAGINE
+  // BOX IMMAGINI
   // ====================================================
 
-  function creaBoxImmagine() {
-    if (boxImmagineNotizia) {
+  function creaContenitoreImmagini() {
+    if (contenitoreImmaginiNotizia) {
       return;
     }
 
-    boxImmagineNotizia = document.createElement("div");
+    contenitoreImmaginiNotizia = document.createElement("div");
+    contenitoreImmaginiNotizia.className = "contenitore_immagini_notizia";
+    contenitoreImmaginiNotizia.style.display = "none";
 
-    boxImmagineNotizia.className = "box_immagine_notizia";
+    pannelloCreazioneNotizia.appendChild(contenitoreImmaginiNotizia);
+  }
 
-    testoNomeImmagineNotizia = document.createElement("span");
+  function aggiornaBoxImmagini() {
+    creaContenitoreImmagini();
 
-    testoNomeImmagineNotizia.className = "nome_immagine_notizia";
+    contenitoreImmaginiNotizia.innerHTML = "";
 
-    testoNomeImmagineNotizia.style.position = "absolute";
+    if (filesImmaginiNotizia.length === 0) {
+      contenitoreImmaginiNotizia.style.display = "none";
+      aggiornaLayoutNotizia();
+      return;
+    }
 
-    testoNomeImmagineNotizia.style.left = "1vw";
+    contenitoreImmaginiNotizia.style.display = "flex";
 
-    testoNomeImmagineNotizia.style.right = "4vw";
+    filesImmaginiNotizia.forEach((file, index) => {
+      const box = document.createElement("div");
+      box.className = "box_immagine_notizia";
 
-    testoNomeImmagineNotizia.style.top = "50%";
+      const anteprima = document.createElement("img");
+      anteprima.className = "anteprima_immagine_notizia";
+      anteprima.alt = file.name || "Anteprima immagine";
+      try {
+        anteprima.src = URL.createObjectURL(file);
+      } catch {
+        anteprima.style.display = "none";
+      }
 
-    testoNomeImmagineNotizia.style.transform = "translateY(-50%)";
+      const testoNome = document.createElement("span");
+      testoNome.className = "nome_immagine_notizia";
+      testoNome.style.position = "absolute";
+      testoNome.style.left = "3.8vw";
+      testoNome.style.right = "4vw";
+      testoNome.style.top = "50%";
+      testoNome.style.transform = "translateY(-50%)";
+      testoNome.style.color = "#292929";
+      testoNome.style.fontFamily = "Inter, sans-serif";
+      testoNome.style.fontWeight = "400";
+      testoNome.style.fontSize = "1.25vw";
+      testoNome.style.whiteSpace = "nowrap";
+      testoNome.style.overflow = "hidden";
+      testoNome.style.textOverflow = "ellipsis";
+      testoNome.textContent = file.name || `Immagine ${index + 1}`;
+      testoNome.title = file.name || `Immagine ${index + 1}`;
 
-    testoNomeImmagineNotizia.style.color = "#292929";
+      const pulsanteRimuovi = document.createElement("button");
+      pulsanteRimuovi.type = "button";
+      pulsanteRimuovi.className = "pulsante_rimuovi_immagine";
+      pulsanteRimuovi.textContent = "×";
+      pulsanteRimuovi.style.position = "absolute";
+      pulsanteRimuovi.style.right = "0.7vw";
+      pulsanteRimuovi.style.top = "50%";
+      pulsanteRimuovi.style.transform = "translateY(-50%)";
+      pulsanteRimuovi.style.width = "2.4vw";
+      pulsanteRimuovi.style.height = "2.4vw";
+      pulsanteRimuovi.style.padding = "0";
+      pulsanteRimuovi.style.border = "none";
+      pulsanteRimuovi.style.background = "transparent";
+      pulsanteRimuovi.style.color = "#292929";
+      pulsanteRimuovi.style.fontFamily = "Arial, sans-serif";
+      pulsanteRimuovi.style.fontSize = "2.2vw";
+      pulsanteRimuovi.style.lineHeight = "2.2vw";
+      pulsanteRimuovi.style.textAlign = "center";
+      pulsanteRimuovi.style.cursor = "pointer";
+      pulsanteRimuovi.setAttribute("aria-label", `Rimuovi ${file.name}`);
 
-    testoNomeImmagineNotizia.style.fontFamily = "Inter, sans-serif";
+      pulsanteRimuovi.addEventListener("click", () => {
+        rimuoviImmagineNotizia(index);
+      });
 
-    testoNomeImmagineNotizia.style.fontWeight = "400";
+      box.appendChild(anteprima);
+      box.appendChild(testoNome);
+      box.appendChild(pulsanteRimuovi);
 
-    testoNomeImmagineNotizia.style.fontSize = "1.25vw";
-
-    testoNomeImmagineNotizia.style.whiteSpace = "nowrap";
-
-    testoNomeImmagineNotizia.style.overflow = "hidden";
-
-    testoNomeImmagineNotizia.style.textOverflow = "ellipsis";
-
-    pulsanteRimuoviImmagine = document.createElement("button");
-
-    pulsanteRimuoviImmagine.type = "button";
-
-    pulsanteRimuoviImmagine.className = "pulsante_rimuovi_immagine";
-
-    pulsanteRimuoviImmagine.textContent = "×";
-
-    pulsanteRimuoviImmagine.style.position = "absolute";
-
-    pulsanteRimuoviImmagine.style.right = "0.7vw";
-
-    pulsanteRimuoviImmagine.style.top = "50%";
-
-    pulsanteRimuoviImmagine.style.transform = "translateY(-50%)";
-
-    pulsanteRimuoviImmagine.style.width = "2.4vw";
-
-    pulsanteRimuoviImmagine.style.height = "2.4vw";
-
-    pulsanteRimuoviImmagine.style.padding = "0";
-
-    pulsanteRimuoviImmagine.style.border = "none";
-
-    pulsanteRimuoviImmagine.style.background = "transparent";
-
-    pulsanteRimuoviImmagine.style.color = "#292929";
-
-    pulsanteRimuoviImmagine.style.fontFamily = "Arial, sans-serif";
-
-    pulsanteRimuoviImmagine.style.fontSize = "2.2vw";
-
-    pulsanteRimuoviImmagine.style.fontWeight = "400";
-
-    pulsanteRimuoviImmagine.style.lineHeight = "2.2vw";
-
-    pulsanteRimuoviImmagine.style.textAlign = "center";
-
-    pulsanteRimuoviImmagine.style.cursor = "pointer";
-
-    pulsanteRimuoviImmagine.addEventListener("click", () => {
-      rimuoviImmagineNotizia();
+      contenitoreImmaginiNotizia.appendChild(box);
     });
 
-    boxImmagineNotizia.appendChild(testoNomeImmagineNotizia);
-
-    boxImmagineNotizia.appendChild(pulsanteRimuoviImmagine);
-
-    pannelloCreazioneNotizia.appendChild(boxImmagineNotizia);
-  }
-
-  function mostraBoxImmagine(nomeFile) {
-    creaBoxImmagine();
-
-    if (testoNomeImmagineNotizia) {
-      testoNomeImmagineNotizia.textContent = nomeFile;
-    }
-
-    boxImmagineNotizia.style.display = "flex";
-
     aggiornaLayoutNotizia();
   }
 
-  function nascondiBoxImmagine() {
-    if (!boxImmagineNotizia) {
-      return;
+  function rimuoviImmagineNotizia(indice) {
+    if (indice >= 0 && indice < filesImmaginiNotizia.length) {
+      filesImmaginiNotizia.splice(indice, 1);
     }
 
-    boxImmagineNotizia.style.display = "none";
-
-    aggiornaLayoutNotizia();
-  }
-
-  function rimuoviImmagineNotizia() {
-    fileImmagineNotizia = null;
-    nomeImmagineNotizia = "";
-
-    if (fileInputImmagine) {
+    if (fileInputImmagine && filesImmaginiNotizia.length === 0) {
       fileInputImmagine.value = "";
     }
 
-    nascondiBoxImmagine();
+    aggiornaBoxImmagini();
 
     mostraMessaggioPubblicazione("Immagine rimossa dalla notizia.");
   }
@@ -771,10 +762,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const spostamentoTesto = adattaCampoTesto(inputTestoNotizia);
 
-    const boxImmagineVisibile =
-      boxImmagineNotizia && boxImmagineNotizia.style.display !== "none";
+    const altezzaImmaginiVW = filesImmaginiNotizia.length * 4.35;
 
-    const spostamentoImmagine = boxImmagineVisibile ? "4.35vw" : "0px";
+    const spostamentoImmagine =
+      filesImmaginiNotizia.length > 0 ? `${altezzaImmaginiVW}vw` : "0px";
 
     const spostamentoTotale = spostamentoTitolo + spostamentoTesto;
 
@@ -801,8 +792,8 @@ document.addEventListener("DOMContentLoaded", () => {
       elemento.style.top = `calc(${top} + ${spostamentoTitolo}px)`;
     });
 
-    if (boxImmagineNotizia) {
-      boxImmagineNotizia.style.top = `calc(26.6146vw + ${spostamentoTitolo}px)`;
+    if (contenitoreImmaginiNotizia) {
+      contenitoreImmaginiNotizia.style.top = `calc(26.6146vw + ${spostamentoTitolo}px)`;
     }
 
     if (pulsanteCaricaImmagini) {
@@ -962,8 +953,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (
-      !/^\d{2}$/.test(giorno) ||
-      !/^\d{2}$/.test(mese) ||
+      !/^\d{1,2}$/.test(giorno) ||
+      !/^\d{1,2}$/.test(mese) ||
       !/^\d{4}$/.test(anno)
     ) {
       return false;
@@ -1198,8 +1189,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 1. Se c'è un'immagine ImageKit, estraiamo la cartella direttamente dall'URL
     // es. https://ik.imagekit.io/.../news/06-09-2026_16-42-38/foto.jpg -> /news/06-09-2026_16-42-38
-    if (typeof news.immagine === "string" && news.immagine.trim()) {
-      const urlImmagine = news.immagine.trim();
+    const primaImmagine =
+      (Array.isArray(news.immagini) && news.immagini[0]) || news.immagine;
+
+    if (typeof primaImmagine === "string" && primaImmagine.trim()) {
+      const urlImmagine = primaImmagine.trim();
       const match = urlImmagine.match(/\/news\/([^\/]+)\//);
       if (match && match[1]) {
         return `/news/${match[1]}`;
@@ -1291,6 +1285,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fileInputImmagine.accept = "image/*";
 
+    fileInputImmagine.multiple = true;
+
     fileInputImmagine.style.display = "none";
 
     document.body.appendChild(fileInputImmagine);
@@ -1306,37 +1302,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     fileInputImmagine.addEventListener("change", () => {
-      const file = fileInputImmagine.files?.[0];
+      const filesSelezionati = Array.from(fileInputImmagine.files || []);
 
-      if (!file) {
+      if (filesSelezionati.length === 0) {
         return;
       }
 
       nascondiErrorePubblicazione();
 
-      if (!file.type.startsWith("image/")) {
-        mostraErrorePubblicazione(["Il file selezionato non è un'immagine."]);
+      const errori = [];
+      let conteggioAggiunti = 0;
 
-        fileInputImmagine.value = "";
+      filesSelezionati.forEach((file) => {
+        if (!file.type.startsWith("image/")) {
+          errori.push(`"${file.name}" non è un'immagine.`);
+          return;
+        }
 
-        return;
+        if (file.size > IMAGEKIT_MAX_FILE_SIZE) {
+          errori.push(`"${file.name}" supera il limite di 25 MB.`);
+          return;
+        }
+
+        const giaPresente = filesImmaginiNotizia.some(
+          (f) => f.name === file.name && f.size === file.size,
+        );
+
+        if (!giaPresente) {
+          filesImmaginiNotizia.push(file);
+          conteggioAggiunti++;
+        }
+      });
+
+      if (errori.length > 0) {
+        mostraErrorePubblicazione(errori);
       }
 
-      if (file.size > IMAGEKIT_MAX_FILE_SIZE) {
-        mostraErrorePubblicazione(["L'immagine supera il limite di 25 MB."]);
+      if (conteggioAggiunti > 0) {
+        aggiornaBoxImmagini();
 
-        fileInputImmagine.value = "";
-
-        return;
+        mostraMessaggioPubblicazione(
+          conteggioAggiunti === 1
+            ? "1 immagine aggiunta correttamente."
+            : `${conteggioAggiunti} immagini aggiunte correttamente.`,
+        );
       }
 
-      fileImmagineNotizia = file;
-
-      nomeImmagineNotizia = file.name;
-
-      mostraBoxImmagine(nomeImmagineNotizia);
-
-      mostraMessaggioPubblicazione("Immagine caricata correttamente.");
+      fileInputImmagine.value = "";
     });
   }
 
@@ -1403,16 +1415,13 @@ document.addEventListener("DOMContentLoaded", () => {
     inputMese.value = "";
     inputAnno.value = "";
 
-    fileImmagineNotizia = null;
-    nomeImmagineNotizia = "";
+    filesImmaginiNotizia = [];
 
     if (fileInputImmagine) {
       fileInputImmagine.value = "";
     }
 
-    nascondiBoxImmagine();
-
-    aggiornaLayoutNotizia();
+    aggiornaBoxImmagini();
   }
 
   // ====================================================
@@ -1452,9 +1461,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const { idDocumentoNotizia, dataCreazione } =
         await creaIdDocumentoNotiziaUnivoco(giorno, mese, anno);
 
-      let immagineNotizia = "";
+      const immaginiNotizia = [];
 
-      if (fileImmagineNotizia) {
+      if (filesImmaginiNotizia.length > 0) {
         const nomeSottocartella = creaNomeCartellaNotiziaImageKit(
           giorno,
           mese,
@@ -1462,10 +1471,19 @@ document.addEventListener("DOMContentLoaded", () => {
           dataCreazione,
         );
 
-        immagineNotizia = await caricaImmagineSuImageKit(
-          fileImmagineNotizia,
-          nomeSottocartella,
-        );
+        for (let i = 0; i < filesImmaginiNotizia.length; i++) {
+          const file = filesImmaginiNotizia[i];
+
+          mostraLoader(
+            `Caricamento immagine ${i + 1} di ${filesImmaginiNotizia.length}...`,
+          );
+
+          const url = await caricaImmagineSuImageKit(file, nomeSottocartella);
+
+          if (url) {
+            immaginiNotizia.push(url);
+          }
+        }
       }
 
       const dataNotizia = new Date(
@@ -1484,7 +1502,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         data: Timestamp.fromDate(dataNotizia),
 
-        immagine: immagineNotizia,
+        immagine: immaginiNotizia[0] || "",
+
+        immagini: immaginiNotizia,
 
         pubblicata: pubblicata === true,
       };
@@ -1735,14 +1755,32 @@ document.addEventListener("DOMContentLoaded", () => {
       snapshot.forEach((documento) => {
         const dati = documento.data();
 
-        const immagine = dati.image ?? dati.immagine ?? "";
+        let immagini = [];
+
+        if (Array.isArray(dati.immagini) && dati.immagini.length > 0) {
+          immagini = dati.immagini
+            .map((img) => (typeof img === "string" ? img.trim() : ""))
+            .filter(Boolean);
+        } else if (Array.isArray(dati.images) && dati.images.length > 0) {
+          immagini = dati.images
+            .map((img) => (typeof img === "string" ? img.trim() : ""))
+            .filter(Boolean);
+        } else if (
+          typeof (dati.image ?? dati.immagine) === "string" &&
+          (dati.image ?? dati.immagine).trim()
+        ) {
+          immagini = [(dati.image ?? dati.immagine).trim()];
+        }
+
+        const primaImmagine = immagini[0] || "";
 
         elencoNewsAdmin.push({
           id: documento.id,
           titolo: dati.titolo || "",
           testo: dati.testo || "",
           data: dati.data || null,
-          immagine: typeof immagine === "string" ? immagine.trim() : "",
+          immagine: primaImmagine,
+          immagini: immagini,
           pubblicata: dati.pubblicata === true,
         });
       });
@@ -2293,6 +2331,115 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================================================
+  // SELETTORE IMMAGINI FOCUS
+  // ====================================================
+
+  function aggiornaSelettoreImmaginiFocusAdmin(
+    contenitoreImmagine,
+    listaImmagini,
+  ) {
+    if (!contenitoreImmagine) {
+      return;
+    }
+
+    let selettore = contenitoreImmagine.querySelector(
+      ".selettore_immagini_notizia",
+    );
+
+    if (!Array.isArray(listaImmagini) || listaImmagini.length <= 1) {
+      if (selettore) {
+        selettore.style.display = "none";
+        selettore.innerHTML = "";
+      }
+      if (Array.isArray(listaImmagini) && listaImmagini.length === 1) {
+        contenitoreImmagine.style.backgroundImage = `url("${listaImmagini[0]}")`;
+      }
+      return;
+    }
+
+    if (!selettore) {
+      selettore = document.createElement("div");
+      selettore.className = "selettore_immagini_notizia";
+      contenitoreImmagine.appendChild(selettore);
+    }
+
+    selettore.style.display = "flex";
+    selettore.innerHTML = "";
+
+    let indiceAttuale = 0;
+
+    function mostraImmagine(nuovoIndice) {
+      indiceAttuale = nuovoIndice;
+      contenitoreImmagine.style.backgroundImage = `url("${listaImmagini[indiceAttuale]}")`;
+
+      const pallini = selettore.querySelectorAll(".pallino_selettore");
+      pallini.forEach((pallino, i) => {
+        if (i === indiceAttuale) {
+          pallino.classList.add("attivo");
+          pallino.setAttribute("aria-current", "true");
+        } else {
+          pallino.classList.remove("attivo");
+          pallino.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    // Freccia Sinistra (loop continuo a ritroso)
+    const frecciaSinistra = document.createElement("button");
+    frecciaSinistra.type = "button";
+    frecciaSinistra.className = "freccia_selettore_immagini freccia_sinistra";
+    frecciaSinistra.setAttribute("aria-label", "Immagine precedente");
+    frecciaSinistra.innerHTML = `<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`;
+    frecciaSinistra.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const nuovoIndice =
+        (indiceAttuale - 1 + listaImmagini.length) % listaImmagini.length;
+      mostraImmagine(nuovoIndice);
+    });
+
+    // Contenitore Pallini
+    const contenitorePallini = document.createElement("div");
+    contenitorePallini.className = "contenitore_pallini_selettore";
+
+    listaImmagini.forEach((_, i) => {
+      const pallino = document.createElement("button");
+      pallino.type = "button";
+      pallino.className = "pallino_selettore";
+      if (i === 0) {
+        pallino.classList.add("attivo");
+        pallino.setAttribute("aria-current", "true");
+      }
+      pallino.setAttribute("aria-label", `Vai all'immagine ${i + 1}`);
+      pallino.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        mostraImmagine(i);
+      });
+      contenitorePallini.appendChild(pallino);
+    });
+
+    // Freccia Destra (loop continuo in avanti)
+    const frecciaDestra = document.createElement("button");
+    frecciaDestra.type = "button";
+    frecciaDestra.className = "freccia_selettore_immagini freccia_destra";
+    frecciaDestra.setAttribute("aria-label", "Immagine successiva");
+    frecciaDestra.innerHTML = `<svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
+    frecciaDestra.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const nuovoIndice = (indiceAttuale + 1) % listaImmagini.length;
+      mostraImmagine(nuovoIndice);
+    });
+
+    selettore.appendChild(frecciaSinistra);
+    selettore.appendChild(contenitorePallini);
+    selettore.appendChild(frecciaDestra);
+
+    mostraImmagine(0);
+  }
+
+  // ====================================================
   // AGGIORNA FOCUS
   // ====================================================
 
@@ -2335,7 +2482,14 @@ document.addEventListener("DOMContentLoaded", () => {
       testo.innerHTML = news.testo || "";
     }
 
-    const senzaImmagine = !news.immagine || news.immagine.trim() === "";
+    const listaImmagini =
+      Array.isArray(news.immagini) && news.immagini.length > 0
+        ? news.immagini
+        : news.immagine && news.immagine.trim()
+          ? [news.immagine.trim()]
+          : [];
+
+    const senzaImmagine = listaImmagini.length === 0;
 
     if (notizia) {
       if (senzaImmagine) {
@@ -2348,17 +2502,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (immagine) {
       if (senzaImmagine) {
         immagine.style.backgroundImage = "none";
+        const vecchioSelettore = immagine.querySelector(
+          ".selettore_immagini_notizia",
+        );
+        if (vecchioSelettore) {
+          vecchioSelettore.style.display = "none";
+        }
       } else {
-        immagine.style.backgroundImage = `url("${news.immagine}")`;
+        aggiornaSelettoreImmaginiFocusAdmin(immagine, listaImmagini);
       }
     }
 
     if (pulsanteDestra) {
-      pulsanteDestra.style.display = senzaImmagine ? "none" : "";
+      pulsanteDestra.style.display = "";
     }
 
     if (pulsanteSinistra) {
-      pulsanteSinistra.style.display = senzaImmagine ? "none" : "";
+      pulsanteSinistra.style.display = "";
     }
 
     requestAnimationFrame(() => {

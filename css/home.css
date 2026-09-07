@@ -878,6 +878,12 @@
   top: 9.5vw;
 }
 
+.notizia.notizia_senza_immagine .pulsante_scorri_destra,
+.notizia.notizia_senza_immagine .pulsante_scorri_sinistra {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* ====================================================== */
 /* PULSANTE ESCI */
 /* ====================================================== */

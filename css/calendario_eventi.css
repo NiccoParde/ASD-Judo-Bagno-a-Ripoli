@@ -1,0 +1,277 @@
+/* =========================================================
+   PAGINA CALENDARIO EVENTI
+   Riferimento Figma: 1920 x 3024 px
+   Formula conversione vw: valore_px / 1920 * 100vw
+========================================================= */
+
+.calendario-eventi-page {
+  position: relative;
+  width: 100%;
+  height: calc(2524 / 1920 * 100vw);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* --- TITOLO PRINCIPALE --- */
+.titolo_calendario {
+  position: absolute;
+  top: calc(145 / 1920 * 100vw);
+  left: calc(103 / 1920 * 100vw);
+  width: calc(1495 / 1920 * 100vw);
+  color: #2a2a2a;
+  font-family: var(--font-title), sans-serif;
+  font-size: calc(166 / 1920 * 100vw);
+  font-weight: 400;
+  line-height: calc(168.77 / 1920 * 100vw);
+  letter-spacing: 0;
+  text-align: left;
+  margin: 0;
+}
+
+/* --- SEPARATORE TITOLO --- */
+.separatore_titolo {
+  position: absolute;
+  top: calc(545 / 1920 * 100vw);
+  left: calc(108 / 1920 * 100vw);
+  width: calc(1703 / 1920 * 100vw);
+  height: 0;
+  border-top: calc(4 / 1920 * 100vw) solid #000000;
+}
+
+/* --- PULSANTI DI SCORRIMENTO MESE --- */
+.pulsante_scorrimento {
+  position: absolute;
+  width: calc(105 / 1920 * 100vw);
+  height: calc(105 / 1920 * 100vw);
+  border-radius: 50%;
+  background-color: #2a2a2a;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.pulsante_scorrimento:hover {
+  transform: scale(1.06);
+  background-color: #1a1a1a;
+}
+
+.pulsante_scorrimento:active {
+  transform: scale(0.95);
+}
+
+.pulsante_scorrimento:focus-visible {
+  outline: 3px solid #2a2a2a;
+  outline-offset: 4px;
+}
+
+.pulsante_scorrimento--sinistra {
+  top: calc(1360 / 1920 * 100vw);
+  left: calc(37 / 1920 * 100vw);
+}
+
+.pulsante_scorrimento--destra {
+  top: calc(1361 / 1920 * 100vw);
+  left: calc(1778 / 1920 * 100vw);
+}
+
+.pulsante_scorrimento img {
+  width: calc(48 / 1920 * 100vw);
+  height: calc(48 / 1920 * 100vw);
+  pointer-events: none;
+}
+
+/* --- CONTENITORE CALENDARIO --- */
+.calendario_contenitore {
+  position: absolute;
+  top: calc(644 / 1920 * 100vw);
+  left: calc(179 / 1920 * 100vw);
+  width: calc(1562 / 1920 * 100vw);
+  height: calc(1465 / 1920 * 100vw);
+  box-sizing: border-box;
+}
+
+/* Header Calendario (mese, anno, separatore, giorni settimana) */
+.calendario_header {
+  position: relative;
+  width: 100%;
+  height: calc(337 / 1920 * 100vw);
+  background-color: #2a2a2a;
+  box-sizing: border-box;
+}
+
+.calendario_mese_anno {
+  position: absolute;
+  top: calc(73 / 1920 * 100vw);
+  left: calc(58 / 1920 * 100vw);
+  color: #ffffff;
+  font-family: var(--font-text), Georgia, serif;
+  font-size: calc(100 / 1920 * 100vw);
+  line-height: 1;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.calendario_header_separatore {
+  position: absolute;
+  top: calc(186 / 1920 * 100vw);
+  left: calc(58 / 1920 * 100vw);
+  width: calc(1409 / 1920 * 100vw);
+  height: 0;
+  border-top: calc(4 / 1920 * 100vw) solid #ffffff;
+}
+
+.calendario_giorni_settimana {
+  position: absolute;
+  top: calc(240 / 1920 * 100vw);
+  left: 0;
+  width: 100%;
+  height: calc(76 / 1920 * 100vw);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+}
+
+.giorno_settimana {
+  color: #ffffff;
+  font-family: var(--font-text), Georgia, serif;
+  font-size: calc(55 / 1920 * 100vw);
+  line-height: 1;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* Griglia Calendario (5 o 6 righe x 7 colonne) */
+.calendario_griglia {
+  position: relative;
+  width: 100%;
+  height: calc(1128 / 1920 * 100vw);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(var(--numero-righe, 5), 1fr);
+  border-left: calc(4 / 1920 * 100vw) solid #2a2a2a;
+  border-right: calc(4 / 1920 * 100vw) solid #2a2a2a;
+  border-bottom: calc(4 / 1920 * 100vw) solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+.calendario_cella {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-text), Georgia, serif;
+  font-size: calc(80 / 1920 * 100vw);
+  line-height: 1;
+  color: #2a2a2a;
+  border-right: calc(4 / 1920 * 100vw) solid #a7a7a7;
+  border-bottom: calc(4 / 1920 * 100vw) solid #a7a7a7;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* Rimuovi bordi interni sull'ultima colonna e sull'ultima riga */
+.calendario_cella:nth-child(7n) {
+  border-right: none;
+}
+
+.calendario_cella:nth-last-child(-n + 7) {
+  border-bottom: none;
+}
+
+/* Giorni del mese precedente / successivo (come il 31 in Figma) */
+.calendario_cella--altro-mese {
+  color: #878787;
+}
+
+/* Numero del giorno */
+.numero_giorno {
+  position: relative;
+  z-index: 2;
+}
+
+/* Elemento cerchio decorativo di evidenziazione per eventi */
+.decorazione_cerchio {
+  position: absolute;
+  width: calc(120 / 1920 * 100vw);
+  height: calc(120 / 1920 * 100vw);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Eventi passati: cerchio grigio come il 7 in Figma */
+.calendario_cella--evento-passato,
+.calendario_cella--evidenziata-cerchio-grigio {
+  color: #ffffff;
+}
+
+.calendario_cella--evento-passato .decorazione_cerchio,
+.calendario_cella--evidenziata-cerchio-grigio .decorazione_cerchio {
+  background-color: #878787;
+}
+
+/* Giorno corrente (oggi): cella piena scura come il 9 in Figma */
+.calendario_cella--oggi,
+.calendario_cella--evidenziata-pieno-scuro {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* Eventi futuri: cerchio scuro come il 24 in Figma */
+.calendario_cella--evento-futuro,
+.calendario_cella--evidenziata-cerchio-scuro {
+  color: #ffffff;
+}
+
+.calendario_cella--evento-futuro .decorazione_cerchio,
+.calendario_cella--evidenziata-cerchio-scuro .decorazione_cerchio {
+  background-color: #2a2a2a;
+}
+
+/* --- SEZIONE INFO PROPOSTE E SUGGERIMENTI --- */
+.info_proposte_suggerimenti {
+  position: absolute;
+  top: calc(2208 / 1920 * 100vw);
+  left: calc(103 / 1920 * 100vw);
+  width: calc(1411 / 1920 * 100vw);
+}
+
+.titolo_proposte {
+  color: #2a2a2a;
+  font-family: var(--font-title), sans-serif;
+  font-size: calc(80 / 1920 * 100vw);
+  font-weight: 400;
+  line-height: calc(81.34 / 1920 * 100vw);
+  margin: 0;
+}
+
+.contatto_proposte {
+  display: flex;
+  align-items: center;
+  gap: calc(26 / 1920 * 100vw);
+  margin-top: calc(23 / 1920 * 100vw);
+}
+
+.icona_mail_proposte {
+  width: calc(50 / 1920 * 100vw);
+  height: calc(50 / 1920 * 100vw);
+  flex-shrink: 0;
+}
+
+.email_proposte {
+  color: #2a2a2a;
+  font-family: var(--font-title), sans-serif;
+  font-size: calc(50 / 1920 * 100vw);
+  line-height: calc(72.4 / 1920 * 100vw);
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.email_proposte:hover {
+  opacity: 0.8;
+}
