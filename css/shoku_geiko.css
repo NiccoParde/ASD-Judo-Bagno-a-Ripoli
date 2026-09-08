@@ -188,6 +188,9 @@ footer {
   font-weight: 400;
   font-size: 1.71875vw;
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .sito_info_hotel {
@@ -200,6 +203,9 @@ footer {
   font-weight: 400;
   font-size: 1.71875vw;
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .numero_info_hotel {
@@ -224,6 +230,16 @@ footer {
   font-weight: 400;
   font-size: 1.71875vw;
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.indirizzo_info_hotel:hover,
+.sito_info_hotel:hover,
+.mail_info_hotel:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .icone_info_hotel {

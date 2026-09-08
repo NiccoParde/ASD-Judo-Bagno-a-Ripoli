@@ -46,6 +46,14 @@
     <!-- ================================================== -->
 
     <link href="./css/news.css" rel="stylesheet" />
+      <!-- Script anti-sfarfallio per il tema scuro (Dark Mode) -->
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <script type="module" src="./javascript/pagina_blocco.js"></script>
   <body data-pagina="news">
@@ -77,6 +85,14 @@
           Calendario eventi
         </a>
       </nav>
+      <!-- Pulsante menu hamburger per aprire il drawer laterale -->
+      <button class="site-header__menu-btn" id="menuToggle" aria-label="Apri menu e impostazioni" aria-expanded="false" aria-controls="sideDrawer">
+        <span class="site-header__menu-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </header>
 
     <!-- ================================================== -->
@@ -252,5 +268,63 @@
 
     <script type="module" src="./javascript/news.js"></script>
     <script type="module" src="./javascript/imagekit.js"></script>
+    <!-- Overlay scuro sfocato per il menu laterale -->
+    <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+    <!-- Menu laterale a comparsa (Drawer / Banner da destra) -->
+    <aside class="side-drawer" id="sideDrawer" aria-label="Menu laterale e impostazioni" aria-hidden="true">
+      <div class="side-drawer__header">
+        <span class="side-drawer__title">IMPOSTAZIONI</span>
+        <button class="side-drawer__close-btn" id="drawerClose" aria-label="Chiudi menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="side-drawer__body">
+        <!-- Card interruttore tema scuro -->
+        <div class="theme-card">
+          <div class="theme-card__info">
+            <div class="theme-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+            <div class="theme-card__text">
+              <span class="theme-card__title">Modalità Scura</span>
+              <span class="theme-card__desc" id="themeStatusLabel">Disattivata (Tema Chiaro)</span>
+            </div>
+          </div>
+          <label class="theme-switch" for="darkThemeSwitch">
+            <input type="checkbox" id="darkThemeSwitch" aria-label="Attiva o disattiva la modalità scura">
+            <span class="theme-switch__slider"></span>
+          </label>
+        </div>
+
+        <!-- Sezione link rapidi di navigazione -->
+        <div class="side-drawer__nav-section">
+          <span class="side-drawer__section-title">NAVIGAZIONE</span>
+          <nav class="side-drawer__nav" aria-label="Navigazione rapida">
+            <a href="index.html" class="side-drawer__nav-link">Home</a>
+            <a href="unisciti_a_noi.html" class="side-drawer__nav-link">Unisciti a noi</a>
+            <a href="storia.html" class="side-drawer__nav-link">Chi siamo</a>
+            <a href="info_e_orari.html" class="side-drawer__nav-link">Info e orari</a>
+            <a href="shoku_geiko.html" class="side-drawer__nav-link">Shoku Geiko</a>
+            <a href="news.html" class="side-drawer__nav-link">News</a>
+            <a href="calendario_eventi.html" class="side-drawer__nav-link">Calendario eventi</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="side-drawer__footer">
+        <p class="side-drawer__brand">ASD Judo Bagno a Ripoli</p>
+        <p class="side-drawer__sub">Via del Pratello, 1 — Bagno a Ripoli (FI)</p>
+      </div>
+    </aside>
+
+    <!-- Script condiviso per menu e tema scuro -->
+    <script src="./javascript/code.js" defer></script>
   </body>
 </html>

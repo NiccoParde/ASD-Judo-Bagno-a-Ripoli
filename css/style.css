@@ -744,3 +744,1410 @@ body.pagina_bloccata {
   background: var(--colore-bianco);
   transform: scale(1.25);
 }
+
+/* ==========================================================================
+   MENU TOGGLE BUTTON (NEL SELETTORE / SITE-HEADER)
+   Pulsante con le 3 righe (hamburger icon) posizionato a destra nell'header.
+   ========================================================================== */
+
+.site-header__menu-btn {
+  position: absolute;
+  right: 2.2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6vw;
+  height: 2.6vw;
+  min-width: 38px;
+  min-height: 38px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 0.08vw solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+  transition: background 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.site-header__menu-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.site-header__menu-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.site-header__menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1.15vw;
+  height: 0.85vw;
+  min-width: 18px;
+  min-height: 13px;
+}
+
+.site-header__menu-icon span {
+  display: block;
+  width: 100%;
+  height: 0.13vw;
+  min-height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* ==========================================================================
+   DRAWER OVERLAY (SFONDO MODALE CON SFOCATURA)
+   ========================================================================== */
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s;
+  z-index: 2000;
+}
+
+.drawer-overlay.drawer-overlay--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Blocco dello scroll del body quando il menu e' aperto */
+body.drawer-scroll-locked {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   SIDE DRAWER (FINESTRA / BANNER DA DESTRA)
+   ========================================================================== */
+
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 22vw;
+  min-width: 320px;
+  max-width: 420px;
+  height: 100vh;
+  background: var(--colore-bianco);
+  color: var(--colore-grigio-primario);
+  box-shadow: -0.6vw 0 2.5vw rgba(0, 0, 0, 0.35);
+  z-index: 2001;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 1.8vw 1.6vw;
+  border-left: 0.052vw solid var(--colore-bordo-grigio);
+}
+
+.side-drawer.side-drawer--open {
+  transform: translateX(0);
+}
+
+/* Header del Drawer */
+.side-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.2vw;
+  border-bottom: 0.052vw solid var(--colore-bordo-grigio);
+  margin-bottom: 1.6vw;
+}
+
+.side-drawer__title {
+  font-family: var(--font-titoli);
+  font-size: 1.1vw;
+  letter-spacing: 0.05vw;
+  color: var(--colore-grigio-primario);
+}
+
+@media (max-width: 900px) {
+  .side-drawer__title {
+    font-size: 16px;
+  }
+}
+
+.side-drawer__close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2vw;
+  height: 2vw;
+  min-width: 32px;
+  min-height: 32px;
+  background: transparent;
+  border: 0.052vw solid var(--colore-bordo-grigio);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--colore-grigio-primario);
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.side-drawer__close-btn:hover {
+  background: var(--colore-hover-chiaro);
+  transform: scale(1.08);
+}
+
+.side-drawer__close-btn:active {
+  transform: scale(0.92);
+}
+
+/* Corpo del Drawer */
+.side-drawer__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8vw;
+}
+
+/* Card Impostazione Tema Scuro */
+.theme-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--colore-grigio-chiaro);
+  padding: 1vw 1.2vw;
+  border-radius: 0.625vw;
+  border: 0.052vw solid var(--colore-bordo-card);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .theme-card {
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+}
+
+.theme-card__info {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+}
+
+.theme-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2vw;
+  height: 2.2vw;
+  min-width: 34px;
+  min-height: 34px;
+  background: var(--colore-bianco);
+  border-radius: 50%;
+  color: var(--colore-grigio-primario);
+  box-shadow: 0 0.1vw 0.4vw var(--colore-ombra-leggera);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-card__icon svg {
+  width: 1.1vw;
+  height: 1.1vw;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+.theme-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2vw;
+}
+
+.theme-card__title {
+  font-family: var(--font-titoli);
+  font-size: 0.85vw;
+  color: var(--colore-grigio-primario);
+}
+
+.theme-card__desc {
+  font-family: var(--font-testo);
+  font-size: 0.7vw;
+  color: var(--colore-testo-grigio);
+}
+
+@media (max-width: 900px) {
+  .theme-card__title {
+    font-size: 13px;
+  }
+  .theme-card__desc {
+    font-size: 11px;
+  }
+}
+
+/* Interruttore Dark Mode (Toggle Switch) */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 2.8vw;
+  height: 1.5vw;
+  min-width: 50px;
+  min-height: 28px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.theme-switch__slider {
+  position: absolute;
+  inset: 0;
+  background-color: var(--colore-bordo-grigio);
+  border-radius: 100vw;
+  transition: background-color 0.3s ease;
+}
+
+.theme-switch__slider::before {
+  content: "";
+  position: absolute;
+  height: 1.15vw;
+  width: 1.15vw;
+  min-height: 22px;
+  min-width: 22px;
+  left: 0.18vw;
+  bottom: 0.18vw;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0.1vw 0.3vw rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .theme-switch__slider::before {
+    left: 3px;
+    bottom: 3px;
+  }
+}
+
+.theme-switch input:checked + .theme-switch__slider {
+  background-color: #27ae60;
+}
+
+.theme-switch input:checked + .theme-switch__slider::before {
+  transform: translateX(1.3vw);
+}
+
+@media (max-width: 900px) {
+  .theme-switch input:checked + .theme-switch__slider::before {
+    transform: translateX(22px);
+  }
+}
+
+/* Sezione Link di Navigazione nel Drawer */
+.side-drawer__nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vw;
+}
+
+.side-drawer__section-title {
+  font-family: var(--font-titoli);
+  font-size: 0.75vw;
+  color: var(--colore-grigio-spento);
+  letter-spacing: 0.08vw;
+}
+
+@media (max-width: 900px) {
+  .side-drawer__section-title {
+    font-size: 11px;
+  }
+}
+
+.side-drawer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vw;
+}
+
+.side-drawer__nav-link {
+  font-family: var(--font-titoli);
+  font-size: 0.95vw;
+  color: var(--colore-grigio-primario);
+  text-decoration: none;
+  padding: 0.5vw 0.8vw;
+  border-radius: 0.4vw;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  .side-drawer__nav-link {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+.side-drawer__nav-link:hover {
+  background: var(--colore-hover-chiaro);
+  transform: translateX(0.3vw);
+}
+
+/* Footer del Drawer */
+.side-drawer__footer {
+  padding-top: 1.2vw;
+  border-top: 0.052vw solid var(--colore-bordo-grigio);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vw;
+}
+
+.side-drawer__brand {
+  margin: 0;
+  font-family: var(--font-titoli);
+  font-size: 0.75vw;
+  color: var(--colore-grigio-primario);
+}
+
+.side-drawer__sub {
+  margin: 0;
+  font-family: var(--font-testo);
+  font-size: 0.65vw;
+  color: var(--colore-testo-grigio);
+}
+
+@media (max-width: 900px) {
+  .side-drawer__brand {
+    font-size: 12px;
+  }
+  .side-drawer__sub {
+    font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   TEMA SCURO (DARK MODE) — INVERSIONE COMPLETA E ARMONIOSA
+   Applicato tramite [data-theme="dark"] sull'elemento <html>
+   ========================================================================== */
+
+[data-theme="dark"] {
+  /* Inversione della tavolozza colori globale */
+  --colore-bianco: #121212;                     /* Sfondi delle pagine e contenitori principali */
+  --color-white: #111111;                       /* Invertito per elementi su sfondi chiari */
+  --colore-nero: #ffffff;                       /* Testi e bordi prima neri diventano chiari */
+  
+  --colore-grigio-scuro: #f5f5f5;               /* Testi e intestazioni primarie */
+  --colore-grigio-primario: #f0f0f0;            /* Titoli e testi principali */
+  
+  --colore-fondo-body: #0d0d0d;                 /* Sfondo generale dark */
+  --colore-hover-scuro: #252525;
+  
+  --colore-testo-grigio: #cccccc;
+  --colore-testo-card: #e5e5e5;
+  --colore-testo-dettaglio: #e0e0e0;
+  --colore-testo-mutato: #aaaaaa;
+  --colore-testo-disattivato: #888888;
+  --colore-grigio-spento: #777777;
+  --colore-grigio-etichetta: #cccccc;
+
+  --colore-bordo-grigio: #383838;
+  --colore-placeholder: #888888;
+  --colore-bordo-card: #333333;
+  --colore-bordo-tag: #555555;
+  --colore-hover-tag: #333333;
+  --colore-grigio-chiaro: #1e1e1e;              /* Card news, card eventi, box secondari */
+  --colore-grigio-input: #3a3a3a;
+  --colore-sfondo-input: #1a1a1a;
+  --colore-hover-chiaro: #262626;
+
+  --colore-ombra-leggera: rgba(0, 0, 0, 0.4);
+  --colore-ombra-media: rgba(0, 0, 0, 0.6);
+  --colore-ombra-forte: rgba(0, 0, 0, 0.85);
+  --colore-overlay-modale: rgba(0, 0, 0, 0.8);
+  --colore-overlay-scuro: rgba(0, 0, 0, 0.9);
+  --colore-sfondo-header: rgba(0, 0, 0, 0.85);
+  --colore-bordo-mappa: rgba(255, 255, 255, 0.2);
+}
+
+/* Transizioni fluide al cambio di tema */
+body,
+.side-drawer,
+.theme-card,
+.site-nav__link,
+.sfondo_sezione_finale,
+.calendario_header,
+.calendario_cella {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   1. SELETTORE (HEADER) IN DARK MODE
+   Rimane NORMALE come in modalità standard: sfumatura scura e testi bianchi
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .site-header__background {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.85) 8.65%,
+    rgba(0, 0, 0, 0.7) 45%,
+    transparent 100%
+  ) !important;
+}
+
+[data-theme="dark"] .site-nav__link {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .site-nav__link + .site-nav__link::before {
+  background: #f0f0f0 !important;
+}
+
+[data-theme="dark"] .site-nav__link::after {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .site-header__menu-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .site-header__menu-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .site-header__menu-icon span {
+  background-color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. FOOTER (SEZIONE FINALE) IN DARK MODE
+   Rimane NORMALE come in modalità standard: sfondo scuro #292929 e testi bianchi
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .sfondo_sezione_finale {
+  background: #292929 !important;
+  border-top: none !important;
+}
+
+[data-theme="dark"] .sezione_finale .titolo_sezione_finale,
+[data-theme="dark"] .sezione_finale .testo_info_e_preventivi,
+[data-theme="dark"] .sezione_finale .indirizzo,
+[data-theme="dark"] .sezione_finale .email,
+[data-theme="dark"] .sezione_finale .instagram,
+[data-theme="dark"] .sezione_finale .form,
+[data-theme="dark"] .sezione_finale .crediti,
+[data-theme="dark"] .sezione_finale .testo_pulsante_pannello_amministratore,
+[data-theme="dark"] .titolo_sezione_finale,
+[data-theme="dark"] .testo_info_e_preventivi,
+[data-theme="dark"] .indirizzo,
+[data-theme="dark"] .email,
+[data-theme="dark"] .instagram,
+[data-theme="dark"] .form,
+[data-theme="dark"] .crediti,
+[data-theme="dark"] .testo_pulsante_pannello_amministratore {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .sezione_finale .indirizzo:hover,
+[data-theme="dark"] .sezione_finale .email:hover,
+[data-theme="dark"] .sezione_finale .instagram:hover,
+[data-theme="dark"] .sezione_finale .form:hover,
+[data-theme="dark"] .sezione_finale .crediti:hover {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .sfondo_sezione_finale .icone_contatti,
+[data-theme="dark"] .icone_contatti {
+  filter: none !important;
+}
+
+[data-theme="dark"] .pulsante_pannello_amministratore {
+  border: none !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .icona_pulsante_pannello_amministratore {
+  filter: none !important;
+}
+
+[data-theme="dark"] .sfondo_loghi_sezione_finale {
+  background: #ffffff !important;
+  border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. CALENDARIO EVENTI IN DARK MODE
+   Inversione completa: testata bianca con testi neri, griglia scura con testi bianchi
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .calendario-eventi-page {
+  background-color: #121212 !important;
+}
+
+[data-theme="dark"] .titolo_calendario {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .separatore_titolo {
+  border-top-color: #ffffff !important;
+}
+
+/* Pulsanti scorrimento mese: cerchio bianco con freccia nera */
+[data-theme="dark"] .pulsante_scorrimento {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .pulsante_scorrimento:hover {
+  background-color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .pulsante_scorrimento img {
+  filter: invert(1) !important;
+}
+
+/* Header del calendario (mese, anno, separatore, giorni) inverte a BIANCO */
+[data-theme="dark"] .calendario_header {
+  background-color: #ffffff !important;
+  border-bottom: calc(4 / 1920 * 100vw) solid #ffffff !important;
+}
+
+[data-theme="dark"] .calendario_mese_anno {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .calendario_header_separatore {
+  border-top-color: #111111 !important;
+}
+
+[data-theme="dark"] .giorno_settimana {
+  color: #111111 !important;
+}
+
+/* Griglia calendario */
+[data-theme="dark"] .calendario_griglia {
+  border-left-color: #ffffff !important;
+  border-right-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+}
+
+[data-theme="dark"] .calendario_cella {
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+  border-right-color: #333333 !important;
+  border-bottom-color: #333333 !important;
+}
+
+[data-theme="dark"] .calendario_cella--altro-mese {
+  color: #555555 !important;
+}
+
+/* Cella oggi: piena bianca con numero scuro */
+[data-theme="dark"] .calendario_cella--oggi,
+[data-theme="dark"] .calendario_cella--evidenziata-pieno-scuro {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+/* Eventi futuri: cerchio bianco con numero scuro */
+[data-theme="dark"] .calendario_cella--evento-futuro .decorazione_cerchio,
+[data-theme="dark"] .calendario_cella--evidenziata-cerchio-scuro .decorazione_cerchio {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .calendario_cella--evento-futuro,
+[data-theme="dark"] .calendario_cella--evidenziata-cerchio-scuro {
+  color: #111111 !important;
+}
+
+/* Eventi passati: cerchio grigio con numero bianco */
+[data-theme="dark"] .calendario_cella--evento-passato .decorazione_cerchio,
+[data-theme="dark"] .calendario_cella--evidenziata-cerchio-grigio .decorazione_cerchio {
+  background-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+/* Sezione elenco eventi pubblici */
+[data-theme="dark"] .titolo_sezione_elenco_eventi {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .messaggio_nessun_evento {
+  color: #aaaaaa !important;
+}
+
+/* Card evento pubblica */
+[data-theme="dark"] .evento_card_pubblica {
+  background: #1e1e1e !important;
+  border-color: #383838 !important;
+  box-shadow: -0.6vw 0.6vw 0.3vw rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Data box a sinistra: rettangolo bianco con giorno scuro */
+[data-theme="dark"] .evento_card_pubblica .evento_card_data_box {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_giorno {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_mese_anno {
+  color: #222222 !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_badge_orario {
+  background: rgba(0, 0, 0, 0.12) !important;
+  color: #111111 !important;
+}
+
+/* Corpo evento a destra */
+[data-theme="dark"] .evento_card_pubblica .evento_card_titolo {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_badge_tag {
+  background: #2a2a2a !important;
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_descrizione {
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] .evento_card_pubblica .evento_card_dettagli {
+  color: #e0e0e0 !important;
+}
+
+/* Sezione proposte e suggerimenti */
+[data-theme="dark"] .titolo_proposte {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .icona_mail_proposte {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .email_proposte {
+  color: #ffffff !important;
+}
+
+/* Modale anteprima evento */
+[data-theme="dark"] .popup_anteprima_evento {
+  background: #1c1c1c !important;
+  border: 0.1042vw solid #444444 !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_data_box {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_giorno {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_mese_anno {
+  color: #222222 !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_badge_orario {
+  background: rgba(0, 0, 0, 0.12) !important;
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_titolo {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_descrizione {
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .evento_anteprima_dettagli {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .popup_anteprima_evento .pulsante_chiudi_anteprima_evento {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. HOME PAGE IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .home-page {
+  background: #121212 !important;
+}
+
+[data-theme="dark"] .home-page .sfondo_titolo_sezione_1 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .titolo_sezione_1,
+[data-theme="dark"] .home-page .sottotitolo_sezione_1 {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .home-page .sfondo_titolo_sezione_2 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .titolo_sezione_2 {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] .home-page .descrizione_sezione_2 {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .home-page .pulsante_storia_sezione_2 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .linea_verticale_pulsante {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .freccia_pulsante {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .home-page .titolo_sezione_3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .testo_riempitivo_sezione_3 {
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] .home-page .pulsante_news_sezione_3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .testo_notizie_assenti {
+  color: #aaaaaa !important;
+}
+
+[data-theme="dark"] .home-page .contenitore_notizia_piccola {
+  background: #1e1e1e !important;
+  border: 0.052vw solid #383838 !important;
+}
+
+[data-theme="dark"] .home-page .titolo_notizia_piccola {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .home-page .testo_notizia_piccola {
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] .home-page .data_notizia_piccola {
+  color: #aaaaaa !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. STORIA IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] body[data-pagina="storia"],
+[data-theme="dark"] .storia-page {
+  background: #121212 !important;
+}
+
+[data-theme="dark"] body[data-pagina="storia"] .titolo_sezione_1,
+[data-theme="dark"] .storia-page .titolo_sezione_1,
+[data-theme="dark"] .storia-page ~ .sezione_1 .titolo_sezione_1,
+[data-theme="dark"] .sezione_1 .titolo_sezione_1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] body[data-pagina="storia"] .sfondo_titolo_sezione_2,
+[data-theme="dark"] .storia-page .sfondo_titolo_sezione_2 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] body[data-pagina="storia"] .titolo_sezione_2,
+[data-theme="dark"] .storia-page .titolo_sezione_2 {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] body[data-pagina="storia"] .separatore_sezione_2,
+[data-theme="dark"] .storia-page .separatore_sezione_2 {
+  background: #111111 !important;
+}
+
+[data-theme="dark"] body[data-pagina="storia"] .testo_sezione_2,
+[data-theme="dark"] body[data-pagina="storia"] .grassetto,
+[data-theme="dark"] .storia-page .testo_sezione_2,
+[data-theme="dark"] .storia-page .grassetto {
+  color: #f5f5f5 !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. SHOKU GEIKO IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] body[data-pagina="shoku_geiko"],
+[data-theme="dark"] .shoku-geiko-page,
+[data-theme="dark"] .shoku_geiko-page {
+  background: #121212 !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .testo_sezione_1,
+[data-theme="dark"] .shoku-geiko-page .testo_sezione_1,
+[data-theme="dark"] .shoku_geiko-page .testo_sezione_1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .sfondo_titolo_sezione_2,
+[data-theme="dark"] .shoku-geiko-page .sfondo_titolo_sezione_2,
+[data-theme="dark"] .shoku_geiko-page .sfondo_titolo_sezione_2 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .testo_titolo_sezione_2,
+[data-theme="dark"] .shoku-geiko-page .testo_titolo_sezione_2,
+[data-theme="dark"] .shoku_geiko-page .testo_titolo_sezione_2 {
+  color: #111111 !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .separatore_sezione_2,
+[data-theme="dark"] .shoku-geiko-page .separatore_sezione_2,
+[data-theme="dark"] .shoku_geiko-page .separatore_sezione_2 {
+  background: #111111 !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .testo_sezione_2,
+[data-theme="dark"] .shoku-geiko-page .testo_sezione_2,
+[data-theme="dark"] .shoku_geiko-page .testo_sezione_2 {
+  color: #f5f5f5 !important;
+}
+
+/* Sezione 3: Orari in Dark Mode con SVG dedicato a grafica e testi bianchi */
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .sezione_3,
+[data-theme="dark"] .shoku-geiko-page .sezione_3,
+[data-theme="dark"] .shoku_geiko-page .sezione_3 {
+  background-image: url("../assets/shoku_geiko/orari_sezione_3_dark.svg") !important;
+  filter: none !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .titolo_sezione_4,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .indirizzo_info_hotel,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .sito_info_hotel,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .numero_info_hotel,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .mail_info_hotel,
+[data-theme="dark"] .shoku-geiko-page .titolo_sezione_4,
+[data-theme="dark"] .shoku-geiko-page .indirizzo_info_hotel,
+[data-theme="dark"] .shoku-geiko-page .sito_info_hotel,
+[data-theme="dark"] .shoku-geiko-page .numero_info_hotel,
+[data-theme="dark"] .shoku-geiko-page .mail_info_hotel,
+[data-theme="dark"] .shoku_geiko-page .titolo_sezione_4,
+[data-theme="dark"] .shoku_geiko-page .indirizzo_info_hotel,
+[data-theme="dark"] .shoku_geiko-page .sito_info_hotel,
+[data-theme="dark"] .shoku_geiko-page .numero_info_hotel,
+[data-theme="dark"] .shoku_geiko-page .mail_info_hotel {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .indirizzo_info_hotel:hover,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .sito_info_hotel:hover,
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .mail_info_hotel:hover,
+[data-theme="dark"] .shoku-geiko-page .indirizzo_info_hotel:hover,
+[data-theme="dark"] .shoku-geiko-page .sito_info_hotel:hover,
+[data-theme="dark"] .shoku-geiko-page .mail_info_hotel:hover,
+[data-theme="dark"] .shoku_geiko-page .indirizzo_info_hotel:hover,
+[data-theme="dark"] .shoku_geiko-page .sito_info_hotel:hover,
+[data-theme="dark"] .shoku_geiko-page .mail_info_hotel:hover {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+
+/* Icone info hotel in Dark Mode: versione vettoriale bianca */
+[data-theme="dark"] body[data-pagina="shoku_geiko"] .icone_info_hotel,
+[data-theme="dark"] .shoku-geiko-page .icone_info_hotel,
+[data-theme="dark"] .shoku_geiko-page .icone_info_hotel {
+  background-image: url("../assets/shoku_geiko/icone_info_hotel_dark.svg") !important;
+  filter: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. INFO E ORARI IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .info-e-orari-page,
+[data-theme="dark"] .info_e_orari-page,
+[data-theme="dark"] body[data-pagina="info_e_orari"],
+[data-theme="dark"] body[data-pagina="info_e_orari"] main {
+  background: #121212 !important;
+}
+
+/* Sezione 1 in Dark Mode: sfondo nero e testi bianchi */
+[data-theme="dark"] .info-e-orari-page .sezione_1,
+[data-theme="dark"] .info_e_orari-page .sezione_1,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .sezione_1 {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .titolo_sezione_1,
+[data-theme="dark"] .info_e_orari-page .titolo_sezione_1,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .titolo_sezione_1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .testo_sezione_1,
+[data-theme="dark"] .info-e-orari-page .testo_sezione_1 a,
+[data-theme="dark"] .info_e_orari-page .testo_sezione_1,
+[data-theme="dark"] .info_e_orari-page .testo_sezione_1 a,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .testo_sezione_1,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .testo_sezione_1 a {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .testo_indirizzo_sezione_1,
+[data-theme="dark"] .info-e-orari-page .link_indirizzo_info_e_orari,
+[data-theme="dark"] .info-e-orari-page .indirizzo_info_e_orari,
+[data-theme="dark"] .info_e_orari-page .testo_indirizzo_sezione_1,
+[data-theme="dark"] .info_e_orari-page .link_indirizzo_info_e_orari,
+[data-theme="dark"] .info_e_orari-page .indirizzo_info_e_orari,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .testo_indirizzo_sezione_1,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .link_indirizzo_info_e_orari,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .indirizzo_info_e_orari {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .icona_pin,
+[data-theme="dark"] .info_e_orari-page .icona_pin,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .icona_pin {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .testo_info_contatto,
+[data-theme="dark"] .info-e-orari-page .link_email_info_e_orari,
+[data-theme="dark"] .info-e-orari-page .email_info_e_orari,
+[data-theme="dark"] .info_e_orari-page .testo_info_contatto,
+[data-theme="dark"] .info_e_orari-page .link_email_info_e_orari,
+[data-theme="dark"] .info_e_orari-page .email_info_e_orari,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .testo_info_contatto,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .link_email_info_e_orari,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .email_info_e_orari {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .icona_mail,
+[data-theme="dark"] .info_e_orari-page .icona_mail,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .icona_mail {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .testo_prezzi_sezione_1,
+[data-theme="dark"] .info-e-orari-page .prezzi_adulti,
+[data-theme="dark"] .info-e-orari-page .prezzi_bambini,
+[data-theme="dark"] .info_e_orari-page .testo_prezzi_sezione_1,
+[data-theme="dark"] .info_e_orari-page .prezzi_adulti,
+[data-theme="dark"] .info_e_orari-page .prezzi_bambini,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .testo_prezzi_sezione_1,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .prezzi_adulti,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .prezzi_bambini {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .contenitore_mappa iframe,
+[data-theme="dark"] .info_e_orari-page .contenitore_mappa iframe,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .contenitore_mappa iframe {
+  filter: none !important;
+}
+
+/* Sezione 2: orari e grafico invertiti in Dark Mode */
+[data-theme="dark"] .info-e-orari-page .titolo_sezione_2,
+[data-theme="dark"] .info-e-orari-page .titolo_orari_adulti,
+[data-theme="dark"] .info-e-orari-page .orario_1_adulti,
+[data-theme="dark"] .info-e-orari-page .orario_2_adulti,
+[data-theme="dark"] .info-e-orari-page .orario_3_adulti,
+[data-theme="dark"] .info-e-orari-page .titolo_orari_medie,
+[data-theme="dark"] .info-e-orari-page .orario_1_medie,
+[data-theme="dark"] .info-e-orari-page .orario_2_medie,
+[data-theme="dark"] .info-e-orari-page .orario_3_medie,
+[data-theme="dark"] .info-e-orari-page .titolo_orari_elementari,
+[data-theme="dark"] .info-e-orari-page .orario_1_elementari,
+[data-theme="dark"] .info-e-orari-page .orario_2_elementari,
+[data-theme="dark"] .info-e-orari-page .orario_3_elementari,
+[data-theme="dark"] .info_e_orari-page .titolo_sezione_2,
+[data-theme="dark"] .info_e_orari-page .titolo_orari_adulti,
+[data-theme="dark"] .info_e_orari-page .orario_1_adulti,
+[data-theme="dark"] .info_e_orari-page .orario_2_adulti,
+[data-theme="dark"] .info_e_orari-page .orario_3_adulti,
+[data-theme="dark"] .info_e_orari-page .titolo_orari_medie,
+[data-theme="dark"] .info_e_orari-page .orario_1_medie,
+[data-theme="dark"] .info_e_orari-page .orario_2_medie,
+[data-theme="dark"] .info_e_orari-page .orario_3_medie,
+[data-theme="dark"] .info_e_orari-page .titolo_orari_elementari,
+[data-theme="dark"] .info_e_orari-page .orario_1_elementari,
+[data-theme="dark"] .info_e_orari-page .orario_2_elementari,
+[data-theme="dark"] .info_e_orari-page .orario_3_elementari {
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .linea_grafico_1,
+[data-theme="dark"] .info-e-orari-page .linea_grafico_2,
+[data-theme="dark"] .info-e-orari-page .linea_grafico_3,
+[data-theme="dark"] .info-e-orari-page .linea_grafico_4,
+[data-theme="dark"] .info_e_orari-page .linea_grafico_1,
+[data-theme="dark"] .info_e_orari-page .linea_grafico_2,
+[data-theme="dark"] .info_e_orari-page .linea_grafico_3,
+[data-theme="dark"] .info_e_orari-page .linea_grafico_4 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .orario_1,
+[data-theme="dark"] .info-e-orari-page .titolo_elementari_grafico,
+[data-theme="dark"] .info-e-orari-page .titolo_medie_grafico,
+[data-theme="dark"] .info-e-orari-page .titolo_adulti_grafico,
+[data-theme="dark"] .info-e-orari-page .orario_2,
+[data-theme="dark"] .info-e-orari-page .orario_3,
+[data-theme="dark"] .info-e-orari-page .orario_4,
+[data-theme="dark"] .info_e_orari-page .orario_1,
+[data-theme="dark"] .info_e_orari-page .titolo_elementari_grafico,
+[data-theme="dark"] .info_e_orari-page .titolo_medie_grafico,
+[data-theme="dark"] .info_e_orari-page .titolo_adulti_grafico,
+[data-theme="dark"] .info_e_orari-page .orario_2,
+[data-theme="dark"] .info_e_orari-page .orario_3,
+[data-theme="dark"] .info_e_orari-page .orario_4 {
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .info-e-orari-page .calendario_annuale,
+[data-theme="dark"] .info_e_orari-page .calendario_annuale {
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. NEWS IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .news-page {
+  background-color: #121212 !important;
+}
+
+[data-theme="dark"] .news-page .titolo_sezione_1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .separatore_sezione_1 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .sottotitolo_sezione_1 {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .news-page .contenitore_barra_di_ricerca {
+  background: #1e1e1e !important;
+  border: 0.052vw solid #383838 !important;
+}
+
+[data-theme="dark"] .news-page .input_barra_di_ricerca {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .input_barra_di_ricerca::placeholder {
+  color: #888888 !important;
+}
+
+[data-theme="dark"] .news-page .icona_barra_di_ricerca {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .news-page .testo_notizie_assenti {
+  color: #aaaaaa !important;
+}
+
+[data-theme="dark"] .news-page .contenitore_notizia_piccola {
+  background: #1e1e1e !important;
+  border: 0.052vw solid #383838 !important;
+}
+
+[data-theme="dark"] .news-page .titolo_notizia_piccola {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .testo_notizia_piccola {
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] .news-page .data_notizia_piccola {
+  color: #aaaaaa !important;
+}
+
+[data-theme="dark"] .news-page .pulsante_carica_altro {
+  border-color: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .testo_pulsante_carica_altro {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .news-page .icona_carica_altro {
+  filter: invert(1) !important;
+}
+
+[data-theme="dark"] .sfondo_notizia {
+  background: #1c1c1c !important;
+  border: 0.052vw solid #444444;
+}
+
+[data-theme="dark"] .titolo_notizia {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .testo_notizia {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .data_notizia {
+  color: #aaaaaa !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. UNISCITI A NOI IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .unisciti-a-noi-page,
+[data-theme="dark"] .unisciti_a_noi-page,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] {
+  background-color: #121212 !important;
+}
+
+/* Sezione 1 in Dark Mode: sfondo nero e testi bianchi */
+[data-theme="dark"] .unisciti-a-noi-page .contenitore_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .contenitore_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .contenitore_sezione_1 {
+  background: #121212 !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .titolo_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .sottotitolo_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_1_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .sottotitolo_2_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_2_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_2_sezione_1 li::marker,
+[data-theme="dark"] .unisciti-a-noi-page .sottotitolo_3_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_3_sezione_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_3_sezione_1 li::marker,
+[data-theme="dark"] .unisciti_a_noi-page .titolo_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .sottotitolo_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_1_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .sottotitolo_2_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_2_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_2_sezione_1 li::marker,
+[data-theme="dark"] .unisciti_a_noi-page .sottotitolo_3_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_3_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_3_sezione_1 li::marker,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .titolo_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .sottotitolo_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_1_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .sottotitolo_2_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_2_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_2_sezione_1 li::marker,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .sottotitolo_3_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_3_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_3_sezione_1 li::marker {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .separatore_sezione_1,
+[data-theme="dark"] .unisciti_a_noi-page .separatore_sezione_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .separatore_sezione_1 {
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .titolo_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .titolo_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .titolo_sezione_2 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .testo_1_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_2_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_3_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_4_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_5_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_6_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_7_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_8_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_9_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_10_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_11_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_12_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_13_sezione_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_14_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_1_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_2_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_3_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_4_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_5_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_6_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_7_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_8_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_9_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_10_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_11_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_12_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_13_sezione_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_14_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_1_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_2_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_3_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_4_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_5_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_6_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_7_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_8_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_9_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_10_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_11_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_12_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_13_sezione_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_14_sezione_2 {
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .titolo_sezione_3,
+[data-theme="dark"] .unisciti-a-noi-page .sottotitolo_sezione_3,
+[data-theme="dark"] .unisciti_a_noi-page .titolo_sezione_3,
+[data-theme="dark"] .unisciti_a_noi-page .sottotitolo_sezione_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .titolo_sezione_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .sottotitolo_sezione_3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .testo_pulsante_1,
+[data-theme="dark"] .unisciti-a-noi-page .testo_pulsante_2,
+[data-theme="dark"] .unisciti-a-noi-page .testo_pulsante_3,
+[data-theme="dark"] .unisciti_a_noi-page .testo_pulsante_1,
+[data-theme="dark"] .unisciti_a_noi-page .testo_pulsante_2,
+[data-theme="dark"] .unisciti_a_noi-page .testo_pulsante_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_pulsante_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_pulsante_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .testo_pulsante_3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_1,
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_2,
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_3,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_1,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_2,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_3 {
+  background: #1e1e1e !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .clicca_qui_1,
+[data-theme="dark"] .unisciti-a-noi-page .clicca_qui_2,
+[data-theme="dark"] .unisciti-a-noi-page .clicca_qui_3,
+[data-theme="dark"] .unisciti_a_noi-page .clicca_qui_1,
+[data-theme="dark"] .unisciti_a_noi-page .clicca_qui_2,
+[data-theme="dark"] .unisciti_a_noi-page .clicca_qui_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .clicca_qui_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .clicca_qui_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .clicca_qui_3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_1::after,
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_2::after,
+[data-theme="dark"] .unisciti-a-noi-page .box_pulsante_3::after,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_1::after,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_2::after,
+[data-theme="dark"] .unisciti_a_noi-page .box_pulsante_3::after,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_1::after,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_2::after,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .box_pulsante_3::after {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .unisciti-a-noi-page .pulsante_1:hover .clicca_qui_1,
+[data-theme="dark"] .unisciti-a-noi-page .pulsante_2:hover .clicca_qui_2,
+[data-theme="dark"] .unisciti-a-noi-page .pulsante_3:hover .clicca_qui_3,
+[data-theme="dark"] .unisciti_a_noi-page .pulsante_1:hover .clicca_qui_1,
+[data-theme="dark"] .unisciti_a_noi-page .pulsante_2:hover .clicca_qui_2,
+[data-theme="dark"] .unisciti_a_noi-page .pulsante_3:hover .clicca_qui_3,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .pulsante_1:hover .clicca_qui_1,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .pulsante_2:hover .clicca_qui_2,
+[data-theme="dark"] body[data-pagina="unisciti_a_noi"] .pulsante_3:hover .clicca_qui_3 {
+  color: #111111 !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. DRAWER E MENU LATERALE IN DARK MODE
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .side-drawer {
+  background: #181818 !important;
+  color: #f5f5f5 !important;
+  border-left-color: #333333 !important;
+}
+
+[data-theme="dark"] .side-drawer__header {
+  border-bottom-color: #333333 !important;
+}
+
+[data-theme="dark"] .side-drawer__title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .side-drawer__close-btn {
+  border-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .side-drawer__close-btn:hover {
+  background: #282828 !important;
+}
+
+[data-theme="dark"] .theme-card {
+  background: #222222 !important;
+  border-color: #383838 !important;
+}
+
+[data-theme="dark"] .theme-card__icon {
+  background: #2e2e2e !important;
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .theme-card__title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .theme-card__desc {
+  color: #aaaaaa !important;
+}
+
+[data-theme="dark"] .side-drawer__section-title {
+  color: #888888 !important;
+}
+
+[data-theme="dark"] .side-drawer__nav-link {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .side-drawer__nav-link:hover {
+  background: #282828 !important;
+}
+
+[data-theme="dark"] .side-drawer__footer {
+  border-top-color: #333333 !important;
+}
+
+[data-theme="dark"] .side-drawer__brand {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .side-drawer__sub {
+  color: #888888 !important;
+}
+
+
