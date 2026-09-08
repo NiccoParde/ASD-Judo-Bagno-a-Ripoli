@@ -9,7 +9,7 @@
   width: 100%;
   min-height: 145vw;
   height: 145vw;
-  background-color: #ffffff;
+  background-color: var(--colore-bianco);
   overflow: hidden;
 }
 
@@ -19,7 +19,7 @@
   top: calc(145 / 1920 * 100vw);
   left: calc(103 / 1920 * 100vw);
   width: calc(1495 / 1920 * 100vw);
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   font-family: var(--font-title), sans-serif;
   font-size: calc(166 / 1920 * 100vw);
   font-weight: 400;
@@ -36,7 +36,7 @@
   left: calc(108 / 1920 * 100vw);
   width: calc(1703 / 1920 * 100vw);
   height: 0;
-  border-top: calc(4 / 1920 * 100vw) solid #000000;
+  border-top: calc(4 / 1920 * 100vw) solid var(--colore-nero);
 }
 
 /* --- PULSANTI DI SCORRIMENTO MESE --- */
@@ -45,7 +45,7 @@
   width: calc(105 / 1920 * 100vw);
   height: calc(105 / 1920 * 100vw);
   border-radius: 50%;
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
   border: none;
   padding: 0;
   display: flex;
@@ -58,7 +58,7 @@
 
 .pulsante_scorrimento:hover {
   transform: scale(1.06);
-  background-color: #1a1a1a;
+  background-color: var(--colore-hover-scuro);
 }
 
 .pulsante_scorrimento:active {
@@ -66,7 +66,7 @@
 }
 
 .pulsante_scorrimento:focus-visible {
-  outline: 0.1563vw solid #2a2a2a;
+  outline: 0.1563vw solid var(--colore-grigio-scuro);
   outline-offset: 0.2083vw;
 }
 
@@ -101,7 +101,7 @@
   position: relative;
   width: 100%;
   height: calc(337 / 1920 * 100vw);
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
   box-sizing: border-box;
 }
 
@@ -109,7 +109,7 @@
   position: absolute;
   top: calc(73 / 1920 * 100vw);
   left: calc(58 / 1920 * 100vw);
-  color: #ffffff;
+  color: var(--colore-bianco);
   font-family: var(--font-text), Georgia, serif;
   font-size: calc(100 / 1920 * 100vw);
   line-height: 1;
@@ -123,7 +123,7 @@
   left: calc(58 / 1920 * 100vw);
   width: calc(1409 / 1920 * 100vw);
   height: 0;
-  border-top: calc(4 / 1920 * 100vw) solid #ffffff;
+  border-top: calc(4 / 1920 * 100vw) solid var(--colore-bianco);
 }
 
 .calendario_giorni_settimana {
@@ -138,7 +138,7 @@
 }
 
 .giorno_settimana {
-  color: #ffffff;
+  color: var(--colore-bianco);
   font-family: var(--font-text), Georgia, serif;
   font-size: calc(55 / 1920 * 100vw);
   line-height: 1;
@@ -154,9 +154,9 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(var(--numero-righe, 5), 1fr);
-  border-left: calc(4 / 1920 * 100vw) solid #2a2a2a;
-  border-right: calc(4 / 1920 * 100vw) solid #2a2a2a;
-  border-bottom: calc(4 / 1920 * 100vw) solid #2a2a2a;
+  border-left: calc(4 / 1920 * 100vw) solid var(--colore-grigio-scuro);
+  border-right: calc(4 / 1920 * 100vw) solid var(--colore-grigio-scuro);
+  border-bottom: calc(4 / 1920 * 100vw) solid var(--colore-grigio-scuro);
   box-sizing: border-box;
 }
 
@@ -168,9 +168,9 @@
   font-family: var(--font-text), Georgia, serif;
   font-size: calc(80 / 1920 * 100vw);
   line-height: 1;
-  color: #2a2a2a;
-  border-right: calc(4 / 1920 * 100vw) solid #a7a7a7;
-  border-bottom: calc(4 / 1920 * 100vw) solid #a7a7a7;
+  color: var(--colore-grigio-scuro);
+  border-right: calc(4 / 1920 * 100vw) solid var(--colore-bordo-grigio);
+  border-bottom: calc(4 / 1920 * 100vw) solid var(--colore-bordo-grigio);
   box-sizing: border-box;
   user-select: none;
 }
@@ -186,7 +186,7 @@
 
 /* Giorni del mese precedente / successivo (come il 31 in Figma) */
 .calendario_cella--altro-mese {
-  color: #878787;
+  color: var(--colore-grigio-spento);
 }
 
 /* Numero del giorno */
@@ -207,30 +207,30 @@
 /* Eventi passati: cerchio grigio come il 7 in Figma */
 .calendario_cella--evento-passato,
 .calendario_cella--evidenziata-cerchio-grigio {
-  color: #ffffff;
+  color: var(--colore-bianco);
 }
 
 .calendario_cella--evento-passato .decorazione_cerchio,
 .calendario_cella--evidenziata-cerchio-grigio .decorazione_cerchio {
-  background-color: #878787;
+  background-color: var(--colore-grigio-spento);
 }
 
 /* Giorno corrente (oggi): cella piena scura come il 9 in Figma */
 .calendario_cella--oggi,
 .calendario_cella--evidenziata-pieno-scuro {
-  background-color: #2a2a2a;
-  color: #ffffff;
+  background-color: var(--colore-grigio-scuro);
+  color: var(--colore-bianco);
 }
 
 /* Eventi futuri: cerchio scuro come il 24 in Figma */
 .calendario_cella--evento-futuro,
 .calendario_cella--evidenziata-cerchio-scuro {
-  color: #ffffff;
+  color: var(--colore-bianco);
 }
 
 .calendario_cella--evento-futuro .decorazione_cerchio,
 .calendario_cella--evidenziata-cerchio-scuro .decorazione_cerchio {
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
 }
 
 /* --- SEZIONE ELENCO EVENTI PUBBLICI (STILE PANNELLO AMMINISTRATORE) --- */
@@ -244,7 +244,7 @@
 }
 
 .titolo_sezione_elenco_eventi {
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   font-family: var(--font-title), sans-serif;
   font-size: 3.6458vw;
   line-height: 1.1;
@@ -259,9 +259,9 @@
 }
 
 .messaggio_nessun_evento {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 1.4vw;
-  color: #666666;
+  color: var(--colore-testo-mutato);
   font-style: italic;
   margin: 1vw 0 3vw 0;
 }
@@ -272,9 +272,9 @@
   min-height: 14vw;
   position: relative;
   margin-bottom: 1.5vw;
-  background: #d9d9d9;
-  border: 0.1042vw solid #c4c4c4;
-  box-shadow: -0.6vw 0.6vw 0.3vw rgba(0, 0, 0, 0.15);
+  background: var(--colore-grigio-chiaro);
+  border: 0.1042vw solid var(--colore-bordo-card);
+  box-shadow: -0.6vw 0.6vw 0.3vw var(--colore-ombra-media);
   display: flex;
   overflow: hidden;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -284,7 +284,7 @@
 
 .evento_card_pubblica:hover {
   transform: translateY(-0.2vw);
-  box-shadow: -0.8vw 0.8vw 0.5vw rgba(0, 0, 0, 0.22);
+  box-shadow: -0.8vw 0.8vw 0.5vw var(--colore-ombra-forte);
 }
 
 .evento_card_pubblica:active {
@@ -294,7 +294,7 @@
 .evento_card_pubblica .evento_card_data_box {
   width: 18vw;
   min-height: 14vw;
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,17 +306,17 @@
 }
 
 .evento_card_pubblica .evento_card_giorno {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 4.5vw;
   line-height: 1;
-  color: #ffffff;
+  color: var(--colore-bianco);
 }
 
 .evento_card_pubblica .evento_card_mese_anno {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 600;
-  color: #d9d9d9;
+  color: var(--colore-grigio-chiaro);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 0.4vw;
@@ -324,11 +324,11 @@
 
 .evento_card_pubblica .evento_card_badge_orario {
   margin-top: 0.7vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.95vw;
   font-weight: 500;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.18);
+  color: var(--colore-bianco);
+  background: var(--colore-badge-bianco);
   padding: 0.25vw 0.7vw;
   border-radius: 0.25vw;
 }
@@ -351,10 +351,10 @@
 }
 
 .evento_card_pubblica .evento_card_titolo {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.65vw;
   font-weight: 700;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   margin: 0;
   line-height: 1.3;
 }
@@ -362,22 +362,22 @@
 .evento_card_pubblica .evento_card_badge_tag {
   display: inline-block;
   width: fit-content;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.8vw;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #ffffff;
-  background: #2a2a2a;
+  color: var(--colore-bianco);
+  background: var(--colore-grigio-scuro);
   padding: 0.2vw 0.6vw;
   border-radius: 0.2vw;
 }
 
 .evento_card_pubblica .evento_card_descrizione {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 1.15vw;
   line-height: 1.5;
-  color: #444444;
+  color: var(--colore-testo-card);
   margin-top: 0.7vw;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -394,7 +394,7 @@
 }
 
 .titolo_proposte {
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   font-family: var(--font-title), sans-serif;
   font-size: calc(80 / 1920 * 100vw);
   font-weight: 400;
@@ -416,7 +416,7 @@
 }
 
 .email_proposte {
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   font-family: var(--font-title), sans-serif;
   font-size: calc(50 / 1920 * 100vw);
   line-height: calc(72.4 / 1920 * 100vw);
@@ -441,7 +441,7 @@
 
 .calendario_cella--con-evento:hover .decorazione_cerchio {
   transform: scale(1.08);
-  box-shadow: 0 0.2vw 0.8vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.2vw 0.8vw var(--colore-ombra-forte);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -453,7 +453,7 @@
   transform: translateX(-50%);
   width: calc(10 / 1920 * 100vw);
   height: calc(10 / 1920 * 100vw);
-  background-color: #ffffff;
+  background-color: var(--colore-bianco);
   border-radius: 50%;
   z-index: 3;
 }
@@ -472,7 +472,7 @@ body.anteprima_evento_aperta {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
+  background: var(--colore-overlay-scuro);
   backdrop-filter: blur(0.2604vw);
   -webkit-backdrop-filter: blur(0.2604vw);
   z-index: 1000;
@@ -496,9 +496,9 @@ body.anteprima_evento_aperta {
   max-width: 57.2917vw;
   min-width: 16.6667vw;
   max-height: 85vh;
-  background: #ffffff;
+  background: var(--colore-bianco);
   border-radius: 1vw;
-  box-shadow: -1vw 1vw 3vw rgba(0, 0, 0, 0.4);
+  box-shadow: -1vw 1vw 3vw var(--colore-overlay-modale);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -517,8 +517,8 @@ body.anteprima_evento_aperta {
   width: 3vw;
   height: 3vw;
   border-radius: 50%;
-  background: #2a2a2a;
-  color: #ffffff;
+  background: var(--colore-grigio-scuro);
+  color: var(--colore-bianco);
   border: none;
   font-size: 2vw;
   line-height: 1;
@@ -527,12 +527,12 @@ body.anteprima_evento_aperta {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.2vw 0.5vw var(--colore-ombra-forte);
   transition: transform 0.12s ease, background-color 0.15s ease;
 }
 
 .pulsante_chiudi_anteprima_evento:hover {
-  background: #000000;
+  background: var(--colore-nero);
   transform: scale(1.08);
 }
 
@@ -555,24 +555,24 @@ body.anteprima_evento_aperta {
 }
 
 .contenuto_anteprima_eventi::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: var(--colore-grigio-scuro);
   border-radius: 0.25vw;
 }
 
 .evento_anteprima_card {
   display: flex;
-  background: #d9d9d9;
-  border: 0.1042vw solid #c4c4c4;
+  background: var(--colore-grigio-chiaro);
+  border: 0.1042vw solid var(--colore-bordo-card);
   border-radius: 0.6vw;
   overflow: hidden;
-  box-shadow: -0.4vw 0.4vw 0.8vw rgba(0, 0, 0, 0.12);
+  box-shadow: -0.4vw 0.4vw 0.8vw var(--colore-ombra-media);
   flex-shrink: 0;
   min-height: 14vw;
 }
 
 .evento_anteprima_data_box {
   width: 17vw;
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -584,17 +584,17 @@ body.anteprima_evento_aperta {
 }
 
 .evento_anteprima_giorno {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 4.5vw;
   line-height: 1;
-  color: #ffffff;
+  color: var(--colore-bianco);
 }
 
 .evento_anteprima_mese_anno {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.15vw;
   font-weight: 600;
-  color: #d9d9d9;
+  color: var(--colore-grigio-chiaro);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 0.4vw;
@@ -602,11 +602,11 @@ body.anteprima_evento_aperta {
 
 .evento_anteprima_badge_orario {
   margin-top: 0.8vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.95vw;
   font-weight: 500;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.18);
+  color: var(--colore-bianco);
+  background: var(--colore-badge-bianco);
   padding: 0.3vw 0.8vw;
   border-radius: 0.3vw;
 }
@@ -623,23 +623,23 @@ body.anteprima_evento_aperta {
 .evento_anteprima_badge_tipo {
   display: inline-block;
   width: fit-content;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.8vw;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #ffffff;
-  background: #2a2a2a;
+  color: var(--colore-bianco);
+  background: var(--colore-grigio-scuro);
   padding: 0.25vw 0.65vw;
   border-radius: 0.25vw;
   margin-bottom: 0.6vw;
 }
 
 .evento_anteprima_titolo {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.75vw;
   font-weight: 700;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   margin: 0;
   line-height: 1.3;
 }
@@ -647,15 +647,15 @@ body.anteprima_evento_aperta {
 .evento_anteprima_separatore {
   width: 100%;
   height: 0.1vw;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--colore-ombra-media);
   margin: 0.8vw 0;
 }
 
 .evento_anteprima_descrizione {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 1.2vw;
   line-height: 1.6;
-  color: #333333;
+  color: var(--colore-testo-dettaglio);
   white-space: pre-wrap;
 }
 

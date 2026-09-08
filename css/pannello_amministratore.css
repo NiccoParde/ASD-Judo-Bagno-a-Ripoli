@@ -36,11 +36,11 @@ body.popup_aperto_admin {
 
 .schermata_accesso .testo_pannello_amministratore {
   width: 41.67vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 7.45vw;
   left: 29.17vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 800;
   font-size: 3.33vw;
   text-align: center;
@@ -49,11 +49,11 @@ body.popup_aperto_admin {
 .testo_accedi {
   width: 14.16vw;
   height: 4.27vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 14.16vw;
   left: 42.91vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   text-decoration: underline;
   font-size: 3.33vw;
@@ -62,11 +62,11 @@ body.popup_aperto_admin {
 
 .testo_nome_utente {
   width: 25.52vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 20.73vw;
   left: 36.3vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.67vw;
   text-align: left;
@@ -87,27 +87,26 @@ body.popup_aperto_admin {
   padding: 0 0.36vw;
   border: none;
   outline: none;
-  background: rgba(217, 217, 217, 1);
-  box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
-  font-family: Inter, sans-serif;
+  background: var(--colore-grigio-chiaro);
+  box-shadow: -0.21vw 0.21vw 0.21vw var(--colore-ombra-forte);
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 400;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   border-radius: 0;
 }
 
 .input_nome_utente::placeholder {
-  color: rgba(166, 166, 166, 1);
-  opacity: 1;
+  color: var(--colore-placeholder);
 }
 
 .testo_password {
   width: 25.52vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 27.76vw;
   left: 36.3vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.67vw;
   text-align: left;
@@ -128,18 +127,17 @@ body.popup_aperto_admin {
   padding: 0 0.36vw;
   border: none;
   outline: none;
-  background: rgba(217, 217, 217, 1);
-  box-shadow: -0.21vw 0.21vw 0.21vw rgba(0, 0, 0, 0.25);
-  font-family: Inter, sans-serif;
+  background: var(--colore-grigio-chiaro);
+  box-shadow: -0.21vw 0.21vw 0.21vw var(--colore-ombra-forte);
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 400;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   border-radius: 0;
 }
 
 .input_password::placeholder {
-  color: rgba(166, 166, 166, 1);
-  opacity: 1;
+  color: var(--colore-placeholder);
 }
 
 .pulsante_mostra_password {
@@ -180,8 +178,8 @@ body.popup_aperto_admin {
   position: absolute;
   top: 33.55vw;
   left: 36.3vw;
-  color: #ff5b5b;
-  font-family: Inter, sans-serif;
+  color: var(--colore-errore);
+  font-family: var(--font-admin);
   font-size: 1.05vw;
   font-weight: 500;
   line-height: 1.2;
@@ -199,8 +197,8 @@ body.popup_aperto_admin {
   padding: 0;
   border: none;
   border-radius: 0.31vw;
-  background: rgba(41, 41, 41, 1);
-  box-shadow: -0.208vw 0.208vw 0.2vw rgba(0, 0, 0, 0.25);
+  background: var(--colore-grigio-primario);
+  box-shadow: -0.208vw 0.208vw 0.2vw var(--colore-ombra-forte);
   cursor: pointer;
   z-index: 20;
   transition: transform 0.1s ease;
@@ -219,8 +217,8 @@ body.popup_aperto_admin {
   position: absolute;
   top: 1.66vw;
   left: 0;
-  color: rgba(255, 255, 255, 1);
-  font-family: Inter, sans-serif;
+  color: var(--colore-bianco);
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.66vw;
   text-align: center;
@@ -244,11 +242,11 @@ body.popup_aperto_admin {
 .titolo_pannello_amministratore {
   width: 41.6667vw;
   height: 4.2708vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 6.25vw;
   left: 2.3438vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 800;
   font-size: 3.3333vw;
   text-align: left;
@@ -257,7 +255,7 @@ body.popup_aperto_admin {
 .separatore_titolo {
   width: 94.7917vw;
   height: 0.2604vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 11.3021vw;
   left: 2.3438vw;
@@ -270,10 +268,6 @@ body.popup_aperto_admin {
 .selettore_pannello {
   width: 39.0104vw;
   height: 3.6458vw;
-  background: url("../assets/pannello_amministratore/v2140_67.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 13.1771vw;
   left: 2.4479vw;
@@ -305,11 +299,11 @@ body.popup_aperto_admin {
 
 .testo_selettore_impostazioni {
   width: 14.3229vw;
-  color: rgba(166, 166, 166, 1);
+  color: var(--colore-placeholder);
   position: absolute;
   top: 0.5729vw;
   left: 2.6042vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.0833vw;
   text-align: left;
@@ -318,7 +312,7 @@ body.popup_aperto_admin {
 .icona_selettore_impostazioni {
   width: 2.0833vw;
   height: 2.0833vw;
-  background: url("../assets/pannello_amministratore/icona_impostazioni_disattiva.svg");
+  background: url("../assets/pannello_amministratore/icona_impostazioni_disattivo.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -330,7 +324,7 @@ body.popup_aperto_admin {
 .separatore_selettore_1 {
   width: 0.0521vw;
   height: 3.6458vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 17.3958vw;
@@ -346,11 +340,11 @@ body.popup_aperto_admin {
 
 .testo_selettore_news {
   width: 6.5104vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0.5729vw;
   left: 2.6vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.0833vw;
   text-align: left;
@@ -359,7 +353,7 @@ body.popup_aperto_admin {
 .icona_selettore_news {
   width: 2.0833vw;
   height: 2.0833vw;
-  background: url("../assets/pannello_amministratore/icona_notizie_disattiva.svg");
+  background: url("../assets/pannello_amministratore/icona_notizie_disattivo.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -371,7 +365,7 @@ body.popup_aperto_admin {
 .separatore_selettore_2 {
   width: 0.0521vw;
   height: 3.6458vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 28.0208vw;
@@ -388,7 +382,7 @@ body.popup_aperto_admin {
 .icona_selettore_eventi {
   width: 2.0833vw;
   height: 2.0833vw;
-  background: url("../assets/pannello_amministratore/icona_calendario_disattiva.svg");
+  background: url("../assets/pannello_amministratore/icona_calendario_disattivo.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -399,11 +393,11 @@ body.popup_aperto_admin {
 
 .testo_selettore_eventi {
   width: 7.3438vw;
-  color: rgba(134, 134, 134, 1);
+  color: var(--colore-grigio-etichetta);
   position: absolute;
   top: 0.5729vw;
   left: 2.6vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.0833vw;
   text-align: left;
@@ -435,11 +429,11 @@ body.popup_aperto_admin {
 .titolo_sezione_blocca_pagina {
   width: 25.5208vw;
   height: 3.0208vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0.2604vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.6042vw;
   text-align: left;
@@ -458,19 +452,16 @@ body.popup_aperto_admin {
 }
 
 .pulsante_home {
-  background-image: url("../assets/pannello_amministratore/v2135_109.png");
   top: 5.4688vw;
   left: 1.9271vw;
 }
 
 .pulsante_unisciti_a_noi {
-  background-image: url("../assets/pannello_amministratore/v2135_110.png");
   top: 5.4688vw;
   left: 31.875vw;
 }
 
 .pulsante_storia {
-  background-image: url("../assets/pannello_amministratore/v2135_111.png");
   top: 5.4688vw;
   left: 61.9792vw;
 }
@@ -479,10 +470,6 @@ body.popup_aperto_admin {
   width: 26.0938vw;
   height: 3.6979vw;
   position: absolute;
-  background: url("../assets/pannello_amministratore/v2135_112.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   top: 11.4583vw;
   left: 1.9271vw;
   overflow: hidden;
@@ -492,10 +479,6 @@ body.popup_aperto_admin {
   width: 26.0938vw;
   height: 3.6979vw;
   position: absolute;
-  background: url("../assets/pannello_amministratore/v2135_113.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   top: 11.4583vw;
   left: 31.875vw;
   overflow: hidden;
@@ -505,10 +488,6 @@ body.popup_aperto_admin {
   width: 26.0938vw;
   height: 3.6979vw;
   position: absolute;
-  background: url("../assets/pannello_amministratore/v2135_114.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   top: 11.4583vw;
   left: 61.9792vw;
   overflow: hidden;
@@ -518,10 +497,6 @@ body.popup_aperto_admin {
   width: 27.7604vw;
   height: 3.6979vw;
   position: absolute;
-  background: url("../assets/pannello_amministratore/v2135_115.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   top: 17.4479vw;
   left: 0.2604vw;
   overflow: hidden;
@@ -534,11 +509,11 @@ body.popup_aperto_admin {
 .testo_pulsante_shoku_geiko,
 .testo_pulsante_news,
 .testo_pulsante_calendario_eventi {
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0.7292vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 1.6667vw;
   text-align: center;
@@ -572,12 +547,12 @@ body.popup_aperto_admin {
 .sfondo_pulsante_blocca {
   width: 11.5625vw;
   height: 3.6979vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
   transition:
     background 0.15s ease,
     border 0.15s ease,
@@ -587,11 +562,11 @@ body.popup_aperto_admin {
 .testo_pulsante_blocca {
   width: 100%;
   height: 100%;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.6667vw;
   text-align: center;
@@ -603,13 +578,13 @@ body.popup_aperto_admin {
 }
 
 .pulsante_blocca.attivo .sfondo_pulsante_blocca {
-  background: #ffffff;
-  border: 0.2083vw solid #2a2a2a;
+  background: var(--colore-bianco);
+  border: 0.2083vw solid var(--colore-grigio-scuro);
   box-shadow: none;
 }
 
 .pulsante_blocca.attivo .testo_pulsante_blocca {
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 }
 
 .pulsante_blocca:active {
@@ -637,10 +612,6 @@ body.popup_aperto_admin {
 .pannello_creazione_notizia {
   width: 100%;
   height: 67.7604vw;
-  background: url("../assets/pannello_amministratore/v2213_62.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 20.05vw;
   left: 2.6042vw;
@@ -649,11 +620,11 @@ body.popup_aperto_admin {
 
 .titolo_pannello_creazione_notizia {
   width: 25.3125vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.6042vw;
   text-align: left;
@@ -661,11 +632,11 @@ body.popup_aperto_admin {
 
 .testo_titolo_notizia {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 5.3125vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -690,27 +661,26 @@ body.popup_aperto_admin {
   resize: none;
   overflow: hidden;
   display: block;
-  background: rgba(217, 217, 217, 1);
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
-  color: rgba(41, 41, 41, 1);
-  font-family: Inter, sans-serif;
+  background: var(--colore-grigio-chiaro);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-admin);
   font-weight: 400;
   font-size: 1.25vw;
   line-height: 1.4;
 }
 
 .input_titolo_notizia::placeholder {
-  color: rgba(166, 166, 166, 1);
-  opacity: 1;
+  color: var(--colore-placeholder);
 }
 
 .etichetta_data {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 13.5938vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -735,8 +705,8 @@ body.popup_aperto_admin {
   border: none;
   outline: none;
   background: transparent;
-  color: rgba(41, 41, 41, 1);
-  font-family: Inter, sans-serif;
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.3vw;
   line-height: 2.7604vw;
@@ -752,7 +722,7 @@ body.popup_aperto_admin {
 .separatore_data_1 {
   width: 0.1042vw;
   height: 2.7604vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 4.81vw;
@@ -766,7 +736,7 @@ body.popup_aperto_admin {
 .separatore_data_2 {
   width: 0.1042vw;
   height: 2.7604vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 11.11vw;
@@ -780,8 +750,7 @@ body.popup_aperto_admin {
 .input_giorno::placeholder,
 .input_mese::placeholder,
 .input_anno::placeholder {
-  color: rgba(166, 166, 166, 1);
-  opacity: 1;
+  color: var(--colore-placeholder);
   text-align: center;
   font-weight: 500;
   font-size: 2vw;
@@ -790,11 +759,11 @@ body.popup_aperto_admin {
 
 .etichetta_immagini {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 22.1875vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -803,10 +772,6 @@ body.popup_aperto_admin {
 .pulsante_carica_immagini {
   width: 11.25vw;
   height: 3.6458vw;
-  background: url("../assets/pannello_amministratore/v2237_62.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 26.6146vw;
   left: 9.4792vw;
@@ -817,10 +782,6 @@ body.popup_aperto_admin {
 .sfondo_pulsante_immagini_1 {
   width: 11.25vw;
   height: 3.6458vw;
-  background: url("../assets/pannello_amministratore/v2135_304.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -829,13 +790,13 @@ body.popup_aperto_admin {
 .sfondo_pulsante_immagini_2 {
   width: 11.25vw;
   height: 3.6458vw;
-  background: #ffffff;
+  background: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
-  border: 0.1562vw solid rgba(41, 41, 41, 1);
+  border: 0.1562vw solid var(--colore-grigio-primario);
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
 }
 
 .icona_pulsante_immagini {
@@ -852,11 +813,11 @@ body.popup_aperto_admin {
 
 .etichetta_testo {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 32.7604vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -883,18 +844,17 @@ body.popup_aperto_admin {
   resize: none;
   overflow: hidden;
   display: block;
-  background: rgba(217, 217, 217, 1);
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
-  color: rgba(41, 41, 41, 1);
-  font-family: Inter, sans-serif;
+  background: var(--colore-grigio-chiaro);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-admin);
   font-weight: 400;
   font-size: 1.25vw;
   line-height: 1.4;
 }
 
 .input_testo_notizia::placeholder {
-  color: rgba(166, 166, 166, 1);
-  opacity: 1;
+  color: var(--colore-placeholder);
 }
 
 /* ====================================================== */
@@ -923,8 +883,8 @@ body.popup_aperto_admin {
   width: 100%;
   height: 1.6vw;
   margin-bottom: 0.45vw;
-  color: #2a2a2a;
-  font-family: Inter, sans-serif;
+  color: var(--colore-grigio-scuro);
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 500;
   line-height: 1.4;
@@ -934,7 +894,7 @@ body.popup_aperto_admin {
 .loader_creazione_notizia {
   height: 3.125vw;
   aspect-ratio: 1;
-  --c: no-repeat linear-gradient(#2a2a2a 0 0);
+  --c: no-repeat linear-gradient(var(--colore-grigio-scuro) 0 0);
   background: var(--c), var(--c), var(--c), var(--c);
   background-size: 33.4% 33.4%;
   animation: l7 1.5s infinite linear;
@@ -994,8 +954,8 @@ body.popup_aperto_admin {
   position: absolute;
   top: 60.15vw;
   left: 14.8vw;
-  color: #ff5b5b;
-  font-family: Inter, sans-serif;
+  color: var(--colore-errore);
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 500;
   line-height: 1.45;
@@ -1009,7 +969,7 @@ body.popup_aperto_admin {
 }
 
 .errore_pubblicazione.visibile.successo {
-  color: #27ae60 !important;
+  color: var(--colore-successo) !important;
 }
 
 /* ====================================================== */
@@ -1032,22 +992,22 @@ body.popup_aperto_admin {
 .sfondo_pulsante_salva_bozza {
   width: 22.8125vw;
   height: 4.375vw;
-  background: #ffffff;
+  background: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
-  border: 0.2083vw solid rgba(41, 41, 41, 1);
+  border: 0.2083vw solid var(--colore-grigio-primario);
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
 }
 
 .testo_pulsante_salva_bozza {
   width: 14.4271vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 1.3021vw;
   left: 4.1667vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.6667vw;
   text-align: center;
@@ -1073,21 +1033,21 @@ body.popup_aperto_admin {
 .sfondo_pulsante_pubblica {
   width: 13.6979vw;
   height: 4.375vw;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
 }
 
 .testo_pulsante_pubblica {
   width: 8.6979vw;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 1.3021vw;
   left: 2.5vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.6667vw;
   text-align: center;
@@ -1114,10 +1074,10 @@ body.popup_aperto_admin {
   position: absolute;
   left: 0;
   top: 26.6146vw;
-  background: #ffffff;
-  border: 0.1562vw solid rgba(41, 41, 41, 1);
+  background: var(--colore-bianco);
+  border: 0.1562vw solid var(--colore-grigio-primario);
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -1139,7 +1099,7 @@ body.popup_aperto_admin {
   object-fit: cover;
   margin-left: 0.5vw;
   flex-shrink: 0;
-  border: 0.05vw solid rgba(0, 0, 0, 0.15);
+  border: 0.05vw solid var(--colore-ombra-media);
   display: block;
 }
 
@@ -1150,10 +1110,6 @@ body.popup_aperto_admin {
 .pannello_notizie {
   width: 100%;
   height: 67.3438vw;
-  background: url("../assets/pannello_amministratore/v2140_46.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 92.44vw;
   left: 2.6042vw;
@@ -1162,11 +1118,11 @@ body.popup_aperto_admin {
 
 .titolo_pannello_notizie {
   width: 21.6667vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 2.0833vw;
   text-align: left;
@@ -1197,8 +1153,8 @@ body.popup_aperto_admin {
   top: 25vw;
   left: 46.48vw;
   transform: translate(-50%, -50%);
-  color: #2a2a2a;
-  font-family: "DM Serif Text", Georgia, serif;
+  color: var(--colore-grigio-scuro);
+  font-family: var(--font-testo);
   font-style: italic;
   font-weight: 600;
   font-size: 1.875vw;
@@ -1214,7 +1170,7 @@ body.popup_aperto_admin {
   height: 16.04vw;
   position: relative;
   margin-bottom: 1.5vw;
-  box-shadow: -1.042vw 1.042vw 0.208vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.042vw 1.042vw 0.208vw var(--colore-ombra-forte);
   overflow: visible;
   z-index: 10;
   cursor: pointer;
@@ -1233,7 +1189,7 @@ body.popup_aperto_admin {
 .sfondo_notizia_piccola_admin {
   width: 100%;
   height: 100%;
-  background: rgba(217, 217, 217, 1);
+  background: var(--colore-grigio-chiaro);
   position: absolute;
   top: 0;
   left: 0;
@@ -1290,8 +1246,8 @@ body.popup_aperto_admin {
 }
 
 .data_notizia_piccola_admin {
-  color: rgba(41, 41, 41, 1);
-  font-family: "DM Serif Text", Georgia, serif;
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-testo);
   font-weight: normal;
   font-size: 0.938vw;
   text-align: left;
@@ -1306,8 +1262,8 @@ body.popup_aperto_admin {
 
 .titolo_notizia_piccola_admin {
   width: 100%;
-  color: rgba(41, 41, 41, 1);
-  font-family: Inter, sans-serif;
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-admin);
   font-weight: 700;
   font-size: 1.35vw;
   line-height: 1.3;
@@ -1323,8 +1279,8 @@ body.popup_aperto_admin {
 
 .testo_notizia_piccola_admin {
   width: 100%;
-  color: rgba(41, 41, 41, 1);
-  font-family: "DM Serif Text", Georgia, serif;
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-testo);
   font-weight: normal;
   font-size: 0.938vw;
   line-height: 1.45;
@@ -1352,10 +1308,6 @@ body.popup_aperto_admin {
 .pannello_notizie .pulsante_carica_altro {
   width: 15.5208vw;
   height: 6.1146vw;
-  background: url("../assets/pannello_amministratore/v2136_41.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   position: absolute;
   top: 63.5vw;
   left: 39.6354vw;
@@ -1373,11 +1325,11 @@ body.popup_aperto_admin {
 
 .pannello_notizie .testo_pulsante_carica_altro {
   width: 15.5208vw;
-  color: rgba(0, 0, 0, 1);
+  color: var(--colore-nero);
   position: absolute;
   top: 1.5vw;
   left: 0;
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-weight: 700;
   font-size: 1.6667vw;
   text-align: center;
@@ -1417,7 +1369,6 @@ body.popup_aperto_admin {
 }
 
 .notizia_grande_admin.aperta {
-  opacity: 1;
   pointer-events: auto;
 }
 
@@ -1438,16 +1389,16 @@ body.popup_aperto_admin {
 }
 
 .notizia_grande_admin::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--colore-ombra-media);
 }
 
 .notizia_grande_admin::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--colore-scrollbar);
   border-radius: 1vw;
 }
 
 .notizia_grande_admin::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--colore-scrollbar-hover);
 }
 
 /* ====================================================== */
@@ -1457,7 +1408,7 @@ body.popup_aperto_admin {
 .offuscamento_background_admin {
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
   position: fixed;
   top: 0;
   left: 0;
@@ -1475,7 +1426,6 @@ body.popup_aperto_admin {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: relative;
   top: 6.25vw;
   left: 3.48vw;
@@ -1492,12 +1442,11 @@ body.popup_aperto_admin {
 .sfondo_notizia_admin {
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 1);
-  opacity: 1;
+  background: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
-  box-shadow: -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.04vw 1.04vw 0.2vw var(--colore-ombra-forte);
   z-index: 1;
   pointer-events: none;
 }
@@ -1512,7 +1461,6 @@ body.popup_aperto_admin {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -1528,11 +1476,11 @@ body.popup_aperto_admin {
 .data_notizia_admin {
   width: 13.85vw;
   height: 3.125vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 61.35vw;
   left: 2.44vw;
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-weight: normal;
   font-size: 1.875vw;
   text-align: left;
@@ -1547,11 +1495,11 @@ body.popup_aperto_admin {
 .titolo_notizia_admin_focus {
   width: 93.9vw;
   height: 3.75vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 64.11vw;
   left: 2.44vw;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 2.5vw;
   line-height: normal;
@@ -1567,11 +1515,11 @@ body.popup_aperto_admin {
 .testo_notizia_admin_focus {
   width: 88.02vw;
   height: auto;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 68.43vw;
   left: 2.81vw;
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-weight: normal;
   font-size: 1.87vw;
   line-height: normal;
@@ -1636,7 +1584,7 @@ body.popup_aperto_admin {
 .sfondo_pulsante_esci_admin {
   width: 3.64vw;
   height: 3.64vw;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
   position: absolute;
   top: 0;
   left: 0;
@@ -1675,7 +1623,7 @@ body.popup_aperto_admin {
 .sfondo_pulsante_scorri_destra_admin {
   width: 3.64vw;
   height: 3.64vw;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
   position: absolute;
   top: 0;
   left: 0;
@@ -1714,7 +1662,7 @@ body.popup_aperto_admin {
 .sfondo_pulsante_scorri_sinistra_admin {
   width: 3.64vw;
   height: 3.64vw;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
   position: absolute;
   top: 0;
   left: 0;
@@ -1740,7 +1688,7 @@ body.popup_aperto_admin {
 /* ====================================================== */
 
 .evidenzia_ricerca_admin {
-  background: #ffff00;
+  background: var(--colore-evidenziatore);
   color: inherit;
   padding: 0;
 }
@@ -1808,7 +1756,6 @@ body.popup_aperto_admin {
 }
 
 .popup_conferma_eliminazione_admin.aperto {
-  opacity: 1;
   visibility: visible;
   pointer-events: auto;
 
@@ -1824,7 +1771,7 @@ body.popup_aperto_admin {
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: fixed;
   top: 0;
@@ -1845,11 +1792,11 @@ body.popup_aperto_admin {
 
   transform: translate(-50%, -50%);
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
   z-index: 2;
 
-  box-shadow: -0.52vw 0.52vw 0.2vw rgba(0, 0, 0, 0.25);
+  box-shadow: -0.52vw 0.52vw 0.2vw var(--colore-ombra-forte);
 
   display: flex;
   flex-direction: column;
@@ -1863,9 +1810,9 @@ body.popup_aperto_admin {
 .testo_conferma_eliminazione_admin {
   width: 100%;
 
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
 
   font-size: 2.0833vw;
 
@@ -1896,11 +1843,11 @@ body.popup_aperto_admin {
 
   border-radius: 0.3125vw;
 
-  background: #2a2a2a;
+  background: var(--colore-grigio-scuro);
 
-  color: #ffffff;
+  color: var(--colore-bianco);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
 
   font-size: 1.4583vw;
 
@@ -1922,15 +1869,15 @@ body.popup_aperto_admin {
 
   padding: 0;
 
-  border: 0.2083vw solid #2a2a2a;
+  border: 0.2083vw solid var(--colore-grigio-scuro);
 
   border-radius: 0.3125vw;
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
 
   font-size: 1.4583vw;
 
@@ -1969,7 +1916,6 @@ body.popup_aperto_admin {
 }
 
 .contenitore_pulsanti_modifica_notizia_admin.aperto {
-  opacity: 1;
   pointer-events: auto;
 }
 
@@ -1986,10 +1932,10 @@ body.popup_aperto_admin {
   border: none;
   border-radius: 0.3125vw;
 
-  background: #2a2a2a;
-  color: #ffffff;
+  background: var(--colore-grigio-scuro);
+  color: var(--colore-bianco);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.4583vw;
   font-weight: 500;
 
@@ -2014,13 +1960,13 @@ body.popup_aperto_admin {
 
   padding: 0;
 
-  border: 0.2083vw solid #2a2a2a;
+  border: 0.2083vw solid var(--colore-grigio-scuro);
   border-radius: 0.3125vw;
 
-  background: #ffffff;
-  color: #2a2a2a;
+  background: var(--colore-bianco);
+  color: var(--colore-grigio-scuro);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.4583vw;
   font-weight: 500;
 
@@ -2053,10 +1999,10 @@ body.popup_aperto_admin {
 
   padding: 3vw;
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
   box-shadow:
-    -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+    -1.04vw 1.04vw 0.2vw var(--colore-ombra-forte);
 
   z-index: 2;
 
@@ -2076,9 +2022,9 @@ body.popup_aperto_admin {
 
   position: relative;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
@@ -2105,9 +2051,9 @@ body.popup_aperto_admin {
 
   position: relative;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -2132,9 +2078,9 @@ body.popup_aperto_admin {
 
   position: relative;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -2171,15 +2117,15 @@ body.popup_aperto_admin {
 
   margin: 0;
 
-  border: 0.1042vw solid #d9d9d9;
+  border: 0.1042vw solid var(--colore-grigio-chiaro);
 
   outline: none;
 
-  background: #f5f5f5;
+  background: var(--colore-sfondo-input);
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-size: 2.5vw;
 
@@ -2202,9 +2148,9 @@ body.popup_aperto_admin {
 
 .input_titolo_modifica_notizia_admin:focus {
 
-  border: 0.1042vw solid #2a2a2a;
+  border: 0.1042vw solid var(--colore-grigio-scuro);
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
 }
 
@@ -2225,15 +2171,15 @@ body.popup_aperto_admin {
 
   margin: 0;
 
-  border: 0.1042vw solid #d9d9d9;
+  border: 0.1042vw solid var(--colore-grigio-chiaro);
 
   outline: none;
 
-  background: #f5f5f5;
+  background: var(--colore-sfondo-input);
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-size: 1.87vw;
 
@@ -2256,9 +2202,9 @@ body.popup_aperto_admin {
 
 .textarea_testo_modifica_notizia_admin:focus {
 
-  border: 0.1042vw solid #2a2a2a;
+  border: 0.1042vw solid var(--colore-grigio-scuro);
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
 }
 
@@ -2277,13 +2223,13 @@ body.popup_aperto_admin {
   width: 3.5vw;
   height: 2.5vw;
 
-  border: 0.1042vw solid #2a2a2a;
+  border: 0.1042vw solid var(--colore-grigio-scuro);
   border-radius: 0.2083vw;
 
-  background: #ffffff;
-  color: #2a2a2a;
+  background: var(--colore-bianco);
+  color: var(--colore-grigio-scuro);
 
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.0417vw;
 
   text-align: center;
@@ -2296,7 +2242,7 @@ body.popup_aperto_admin {
 }
 
 .input_data_modifica_notizia_admin:focus {
-  outline: 0.1042vw solid #2a2a2a;
+  outline: 0.1042vw solid var(--colore-grigio-scuro);
 }
 
 /* ====================================================== */
@@ -2317,11 +2263,11 @@ body.popup_aperto_admin {
 
 .etichetta_durata_evento {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 22vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -2358,9 +2304,9 @@ body.popup_aperto_admin {
   display: inline-block;
   width: 3.6vw;
   height: 2vw;
-  background-color: #d9d9d9;
+  background-color: var(--colore-grigio-chiaro);
   border-radius: 2vw;
-  box-shadow: inset 0.1vw 0.1vw 0.2vw rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0.1vw 0.1vw 0.2vw var(--colore-ombra-forte);
   transition: background-color 0.2s ease;
 }
 
@@ -2371,14 +2317,14 @@ body.popup_aperto_admin {
   height: 1.6vw;
   left: 0.2vw;
   top: 0.2vw;
-  background-color: #ffffff;
+  background-color: var(--colore-bianco);
   border-radius: 50%;
-  box-shadow: 0 0.1vw 0.2vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.1vw 0.2vw var(--colore-ombra-forte);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .checkbox_tutto_il_giorno:checked + .slider_tutto_il_giorno {
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
 }
 
 .checkbox_tutto_il_giorno:checked + .slider_tutto_il_giorno::after {
@@ -2386,10 +2332,10 @@ body.popup_aperto_admin {
 }
 
 .testo_tutto_il_giorno {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 500;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 }
 
 /* RIGA ORARI */
@@ -2413,10 +2359,10 @@ body.popup_aperto_admin {
 }
 
 .label_orario {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.15vw;
   font-weight: 500;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 }
 
 .input_orario_evento {
@@ -2425,10 +2371,10 @@ body.popup_aperto_admin {
   padding: 0.3vw 0.6vw;
   border: none;
   outline: none;
-  background: rgba(217, 217, 217, 1);
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
-  color: rgba(41, 41, 41, 1);
-  font-family: Inter, sans-serif;
+  background: var(--colore-grigio-chiaro);
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
+  color: var(--colore-grigio-primario);
+  font-family: var(--font-admin);
   font-size: 1.2vw;
   font-weight: 500;
   border-radius: 0.15vw;
@@ -2436,17 +2382,17 @@ body.popup_aperto_admin {
 }
 
 .input_orario_evento:focus {
-  outline: 0.1042vw solid #2a2a2a;
+  outline: 0.1042vw solid var(--colore-grigio-scuro);
 }
 
 /* TIPOLOGIA / TAG EVENTO */
 .etichetta_tag_evento {
   width: 30.2604vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 31vw;
   left: 0;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 2.0833vw;
   text-align: left;
@@ -2464,11 +2410,11 @@ body.popup_aperto_admin {
 }
 
 .btn_tag_evento {
-  background: #e0e0e0;
-  color: #2a2a2a;
-  border: 0.1042vw solid #cccccc;
+  background: var(--colore-grigio-input);
+  color: var(--colore-grigio-scuro);
+  border: 0.1042vw solid var(--colore-bordo-tag);
   border-radius: 0.25vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.95vw;
   font-weight: 600;
   padding: 0.45vw 1vw;
@@ -2481,14 +2427,14 @@ body.popup_aperto_admin {
 }
 
 .btn_tag_evento:hover {
-  background: #d0d0d0;
+  background: var(--colore-hover-tag);
 }
 
 .btn_tag_evento.attivo {
-  background: #2a2a2a;
-  color: #ffffff;
-  border-color: #2a2a2a;
-  box-shadow: -0.15vw 0.15vw 0.25vw rgba(0, 0, 0, 0.25);
+  background: var(--colore-grigio-scuro);
+  color: var(--colore-bianco);
+  border-color: var(--colore-grigio-scuro);
+  box-shadow: -0.15vw 0.15vw 0.25vw var(--colore-ombra-forte);
 }
 
 .icona_matita_tag {
@@ -2497,21 +2443,21 @@ body.popup_aperto_admin {
 }
 
 .input_tag_personalizzato {
-  background: #ffffff;
-  border: 0.1042vw solid #2a2a2a;
+  background: var(--colore-bianco);
+  border: 0.1042vw solid var(--colore-grigio-scuro);
   border-radius: 0.25vw;
   padding: 0.4vw 0.75vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.95vw;
   font-weight: 600;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   outline: none;
   width: 12vw;
-  box-shadow: -0.15vw 0.15vw 0.2vw rgba(0, 0, 0, 0.15);
+  box-shadow: -0.15vw 0.15vw 0.2vw var(--colore-ombra-media);
 }
 
 .input_tag_personalizzato:focus {
-  outline: 0.1042vw solid #2a2a2a;
+  outline: 0.1042vw solid var(--colore-grigio-scuro);
 }
 
 /* DESCRIZIONE EVENTO */
@@ -2549,12 +2495,12 @@ body.popup_aperto_admin {
   min-width: 15vw;
   padding: 0 2vw;
   height: 4.375vw;
-  background: #ffffff;
-  border: 0.2083vw solid #878787;
+  background: var(--colore-bianco);
+  border: 0.2083vw solid var(--colore-grigio-spento);
   border-radius: 0.3125vw;
-  box-shadow: -0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
-  color: #2a2a2a;
-  font-family: Inter, sans-serif;
+  box-shadow: -0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
+  color: var(--colore-grigio-scuro);
+  font-family: var(--font-admin);
   font-weight: 500;
   font-size: 1.5vw;
   cursor: pointer;
@@ -2566,7 +2512,7 @@ body.popup_aperto_admin {
 }
 
 .riga_pulsanti_azione_evento .pulsante_annulla_modifica_evento:hover {
-  background-color: #f0f0f0;
+  background-color: var(--colore-hover-chiaro);
 }
 
 .riga_pulsanti_azione_evento .pulsante_annulla_modifica_evento:active {
@@ -2659,9 +2605,9 @@ body.popup_aperto_admin {
   min-height: 14vw;
   position: relative;
   margin-bottom: 1.5vw;
-  background: #d9d9d9;
-  border: 0.1042vw solid #c4c4c4;
-  box-shadow: -0.6vw 0.6vw 0.3vw rgba(0, 0, 0, 0.15);
+  background: var(--colore-grigio-chiaro);
+  border: 0.1042vw solid var(--colore-bordo-card);
+  box-shadow: -0.6vw 0.6vw 0.3vw var(--colore-ombra-media);
   display: flex;
   overflow: hidden;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -2669,14 +2615,14 @@ body.popup_aperto_admin {
 
 .evento_card_admin:hover {
   transform: translateY(-0.15vw);
-  box-shadow: -0.8vw 0.8vw 0.4vw rgba(0, 0, 0, 0.2);
+  box-shadow: -0.8vw 0.8vw 0.4vw var(--colore-ombra-forte);
 }
 
 /* BLOCCO DATA A SINISTRA */
 .evento_card_data_box {
   width: 18vw;
   min-height: 14vw;
-  background-color: #2a2a2a;
+  background-color: var(--colore-grigio-scuro);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2688,17 +2634,17 @@ body.popup_aperto_admin {
 }
 
 .evento_card_giorno {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 4.5vw;
   line-height: 1;
-  color: #ffffff;
+  color: var(--colore-bianco);
 }
 
 .evento_card_mese_anno {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.25vw;
   font-weight: 600;
-  color: #d9d9d9;
+  color: var(--colore-grigio-chiaro);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 0.4vw;
@@ -2706,11 +2652,11 @@ body.popup_aperto_admin {
 
 .evento_card_badge_orario {
   margin-top: 0.7vw;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.95vw;
   font-weight: 500;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.18);
+  color: var(--colore-bianco);
+  background: var(--colore-badge-bianco);
   padding: 0.25vw 0.7vw;
   border-radius: 0.25vw;
 }
@@ -2734,16 +2680,16 @@ body.popup_aperto_admin {
 }
 
 .evento_card_titolo {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 1.65vw;
   font-weight: 700;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   margin: 0;
   line-height: 1.3;
 }
 
 .evento_card_badge_stato {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.85vw;
   font-weight: 600;
   text-transform: uppercase;
@@ -2753,34 +2699,34 @@ body.popup_aperto_admin {
 }
 
 .evento_card_badge_stato--pubblicato {
-  background: #2a2a2a;
-  color: #ffffff;
+  background: var(--colore-grigio-scuro);
+  color: var(--colore-bianco);
 }
 
 .evento_card_badge_stato--bozza {
-  background: #d9d9d9;
-  color: #555555;
+  background: var(--colore-grigio-chiaro);
+  color: var(--colore-testo-disattivato);
 }
 
 .evento_card_badge_tag {
   display: inline-block;
   width: fit-content;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-admin);
   font-size: 0.8vw;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #ffffff;
-  background: #2a2a2a;
+  color: var(--colore-bianco);
+  background: var(--colore-grigio-scuro);
   padding: 0.2vw 0.6vw;
   border-radius: 0.2vw;
 }
 
 .evento_card_descrizione {
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-size: 1.15vw;
   line-height: 1.5;
-  color: #444444;
+  color: var(--colore-testo-card);
   margin-top: 0.7vw;
   display: -webkit-box;
   -webkit-line-clamp: 4;

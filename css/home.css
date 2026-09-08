@@ -2,7 +2,7 @@
 .home-page {
   min-height: 100vh;
   padding-top: 0;
-  background: #ffffff;
+  background: var(--colore-bianco);
 }
 
 /* Sezione 1: immagine principale della home */
@@ -47,7 +47,7 @@
 .sfondo_titolo_sezione_1 {
   position: absolute;
   inset: 0;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
 }
 
 /* Titolo principale della sezione */
@@ -56,7 +56,7 @@
   top: 3.0729vw;
   left: 3.0208vw;
   width: calc(100% - 6.0417vw);
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   font-size: 3.6458vw;
   line-height: 1.05;
   text-align: left;
@@ -69,8 +69,8 @@
   left: 3.0208vw;
   width: 51.1979vw;
   margin: 0;
-  color: rgba(255, 255, 255, 1);
-  font-family: var(--font-title);
+  color: var(--colore-bianco);
+  font-family: var(--font-titoli);
   font-size: 2.0833vw;
   line-height: 1.15;
   text-align: left;
@@ -120,7 +120,7 @@
 .sfondo_titolo_sezione_2 {
   position: absolute;
   inset: 0;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
 }
 
 /* Titolo della seconda sezione */
@@ -129,7 +129,7 @@
   top: 0;
   left: 1.0417vw;
   width: calc(100% - 2.0833vw);
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   font-size: 2.8646vw;
   line-height: 4.6875vw;
   text-align: left;
@@ -148,7 +148,7 @@
   height: 0.2083vw;
   margin-top: 1.25vw;
   margin-left: var(--distanza-sinistra-sezioni);
-  background: #2a2a2a;
+  background: var(--colore-grigio-scuro);
 }
 
 /* Testo descrittivo sotto la linea */
@@ -164,8 +164,8 @@
   min-height: 27.2396vw;
   margin-top: 1.0417vw;
   margin-left: var(--distanza-sinistra-sezioni);
-  color: #4d4d4d;
-  font-family: var(--font-text);
+  color: var(--colore-testo-grigio);
+  font-family: var(--font-testo);
   font-size: 2.0833vw;
   font-weight: 400;
   line-height: 1.14;
@@ -193,8 +193,8 @@
   margin-top: 2.6563vw;
   margin-left: var(--distanza-sinistra-sezioni);
 
-  color: #000;
-  font-family: var(--font-text);
+  color: var(--colore-nero);
+  font-family: var(--font-testo);
   text-decoration: none;
 }
 
@@ -202,7 +202,7 @@
 .linea_verticale_pulsante {
   width: 0.1042vw;
   height: 1.5104vw;
-  background: #000;
+  background: var(--colore-nero);
   flex-shrink: 0;
 }
 
@@ -252,7 +252,7 @@
   height: 4.6875vw;
   margin-top: 5vw;
   margin-left: var(--distanza-sinistra-sezioni);
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
   font-size: 2.8646vw;
   line-height: 4.6875vw;
   overflow: hidden;
@@ -278,9 +278,9 @@
 .testo_riempitivo_sezione_3 {
   margin: 0;
 
-  font-family: var(--font-text2);
+  font-family: var(--font-display);
   font-style: italic;
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
   font-size: 2.8646vw;
   line-height: 1.2;
@@ -299,8 +299,8 @@
   margin-top: 2.6563vw;
   margin-left: var(--distanza-sinistra-sezioni);
 
-  color: #000;
-  font-family: var(--font-text);
+  color: var(--colore-nero);
+  font-family: var(--font-testo);
   text-decoration: none;
 }
 
@@ -323,9 +323,9 @@
 
   transform: translate(-50%, -50%);
 
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: var(--font-display);
 
   font-style: italic;
 
@@ -335,7 +335,6 @@
 
   text-align: center;
 
-  opacity: 1;
 }
 
 /* ====================================================== */
@@ -351,7 +350,7 @@
 
   margin-bottom: 2vw;
 
-  box-shadow: -1.042vw 1.042vw 0.208vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.042vw 1.042vw 0.208vw var(--colore-ombra-forte);
 
   overflow: visible;
 
@@ -377,7 +376,7 @@
 
   height: 100%;
 
-  background: rgba(217, 217, 217, 1);
+  background: var(--colore-grigio-chiaro);
 
   position: absolute;
 
@@ -423,7 +422,7 @@
 .data_notizia_piccola {
   width: 13.854vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -431,13 +430,12 @@
 
   left: 25.625vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 0.938vw;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -455,7 +453,7 @@
 
   height: 2.39vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -463,7 +461,7 @@
 
   left: 25.625vw;
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
@@ -471,7 +469,6 @@
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -497,7 +494,7 @@
 
   height: 9.21875vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -505,7 +502,7 @@
 
   left: 25.625vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -513,7 +510,6 @@
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -561,7 +557,7 @@
 /* ====================================================== */
 
 .evidenzia_ricerca {
-  background: #ffff00;
+  background: var(--colore-evidenziatore);
 
   color: inherit;
 
@@ -625,17 +621,17 @@
 }
 
 .notizia_grande::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--colore-ombra-media);
 }
 
 .notizia_grande::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--colore-scrollbar);
 
   border-radius: 1vw;
 }
 
 .notizia_grande::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--colore-scrollbar-hover);
 }
 
 /* ====================================================== */
@@ -647,7 +643,7 @@
 
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: fixed;
 
@@ -675,7 +671,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: relative;
 
@@ -701,9 +696,8 @@
 
   height: 100%;
 
-  background: rgba(255, 255, 255, 1);
+  background: var(--colore-bianco);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -711,7 +705,7 @@
 
   left: 0;
 
-  box-shadow: -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.04vw 1.04vw 0.2vw var(--colore-ombra-forte);
 
   z-index: 1;
 
@@ -733,7 +727,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -757,7 +750,7 @@
 
   height: 3.125vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -765,13 +758,12 @@
 
   left: 2.44vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 1.875vw;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -789,7 +781,7 @@
 
   height: 3.75vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -797,7 +789,7 @@
 
   left: 2.44vw;
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
@@ -805,7 +797,6 @@
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -823,7 +814,7 @@
 
   height: auto;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -831,7 +822,7 @@
 
   left: 2.81vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -839,7 +830,6 @@
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -899,7 +889,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -925,9 +914,8 @@
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -953,7 +941,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -981,7 +968,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1001,7 +987,7 @@
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: absolute;
 
@@ -1027,7 +1013,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1055,7 +1040,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1075,7 +1059,7 @@
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: absolute;
 
@@ -1101,7 +1085,6 @@
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 

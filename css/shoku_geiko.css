@@ -20,11 +20,6 @@ footer {
 .sezione_1 {
   width: 100%;
   height: 50vw;
-  background: url("../images/v2035_35.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +33,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 50%;
   left: 0;
@@ -48,16 +42,15 @@ footer {
 
 .testo_sezione_1 {
   width: 100%;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  text-shadow: -0.4166667vw 0.4166667vw 0.2083333vw rgba(0, 0, 0, 0.25);
-  font-family: "Dela Gothic One", sans-serif;
+  text-shadow: -0.4166667vw 0.4166667vw 0.2083333vw var(--colore-ombra-forte);
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 10.6770833vw;
-  opacity: 1;
   text-align: center;
 }
 
@@ -66,11 +59,6 @@ footer {
 .sezione_2 {
   width: 91.14vw;
   height: 83.05vw;
-  background: url("../images/v2035_36.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 55vw;
   left: 4.42vw;
@@ -80,10 +68,6 @@ footer {
 .titolo_sezione_2 {
   width: 48.12vw;
   height: 13vh;
-  background: url("../images/v2032_92.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +77,7 @@ footer {
 .sfondo_titolo_sezione_2 {
   width: 100%;
   height: 100%;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
@@ -103,15 +87,14 @@ footer {
 .testo_titolo_sezione_2 {
   width: 100%;
   height: 100%;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: -1vh;
   left: 0;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 3.6979167vw;
   line-height: 1;
-  opacity: 1;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -122,8 +105,7 @@ footer {
 .separatore_sezione_2 {
   width: 100%;
   height: 0.2604167vw;
-  background: rgba(41, 41, 41, 1);
-  opacity: 1;
+  background: var(--colore-grigio-primario);
   position: absolute;
   top: 7.7604167vw;
   left: 0;
@@ -132,14 +114,13 @@ footer {
 
 .testo_sezione_2 {
   width: 100%;
-  color: rgba(77, 77, 77, 1);
+  color: var(--colore-testo-grigio);
   position: absolute;
   top: 9.0625vw;
   left: 0;
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
   font-weight: 400;
   font-size: 2.0833333vw;
-  opacity: 1;
   text-align: left;
 }
 
@@ -170,11 +151,6 @@ footer {
 .sezione_4 {
   width: 55.83vw;
   height: 18.125vw;
-  background: url("../images/v2035_37.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 318vw;
   left: 4.21875vw;
@@ -184,11 +160,6 @@ footer {
 .info_hotel {
   width: 100%;
   height: 18.125vw;
-  background: url("../images/v2035_33.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -197,66 +168,61 @@ footer {
 
 .titolo_sezione_4 {
   width: 22.9166667vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 1.71875vw;
-  opacity: 1;
   text-align: left;
 }
 
 .indirizzo_info_hotel {
   width: 100%;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 3.90625vw;
   left: 3.3854167vw;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 1.71875vw;
-  opacity: 1;
   text-align: left;
 }
 
 .sito_info_hotel {
   width: 20.625vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 7.8125vw;
   left: 3.3854167vw;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 1.71875vw;
-  opacity: 1;
   text-align: left;
 }
 
 .numero_info_hotel {
   width: 15.8854167vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 11.71875vw;
   left: 3.3854167vw;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 1.71875vw;
-  opacity: 1;
   text-align: left;
 }
 
 .mail_info_hotel {
   width: 25.78125vw;
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
   position: absolute;
   top: 15.625vw;
   left: 3.3854167vw;
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
   font-size: 1.71875vw;
-  opacity: 1;
   text-align: left;
 }
 
@@ -276,11 +242,6 @@ footer {
 .sezione_5 {
   width: 100%;
   height: 222vw;
-  background: url("../assets/shoku_geiko/v2035_38.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 345vw;
   left: 0;
@@ -290,11 +251,6 @@ footer {
 .immagini_sezione_5 {
   width: 100%;
   height: 222vw;
-  background: url("../assets/shoku_geiko/v2035_34.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -308,7 +264,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -322,7 +277,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 0;
   left: 51.6145833vw;
@@ -336,7 +290,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 38.6979167vw;
   left: 0;
@@ -350,7 +303,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 21.71875vw;
   left: 51.6145833vw;
@@ -364,7 +316,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 73.0729167vw;
   left: 0;
@@ -378,7 +329,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 58.125vw;
   left: 51.6145833vw;
@@ -392,7 +342,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 111.7708333vw;
   left: 0;
@@ -406,7 +355,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 94.4270833vw;
   left: 51.6145833vw;
@@ -420,7 +368,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 146.25vw;
   left: 0;
@@ -434,7 +381,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 154.8958333vw;
   left: 51.6145833vw;
@@ -448,7 +394,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 180.6770833vw;
   left: 0;
@@ -462,7 +407,6 @@ footer {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 193.59375vw;
   left: 51.6145833vw;

@@ -10,16 +10,7 @@ Tutto scala proporzionalmente alla larghezza della viewport.
 .sezione_1 {
   width: 100%;
   height: 61.25vw;
-
-  background: url("../images/v2047_72.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-
-  opacity: 1;
-
   position: relative;
-
   overflow: hidden;
 }
 
@@ -41,8 +32,6 @@ Occupa esattamente tutta la sezione.
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -68,21 +57,19 @@ font = 275px
 .titolo_sezione_1 {
   width: 100%;
 
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
 
   position: absolute;
 
   top: 15vw;
   left: 0;
 
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
 
   font-size: 14.3229167vw;
 
   line-height: 1;
-
-  opacity: 1;
 
   text-align: center;
 
@@ -96,16 +83,7 @@ font = 275px
 .sezione_2 {
   width: 100%;
   height: 130.2083333vw;
-
-  background: url("../images/v2047_73.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-
-  opacity: 1;
-
   position: relative;
-
   overflow: hidden;
 }
 
@@ -113,9 +91,7 @@ font = 275px
   width: 100%;
   height: 11.0416667vw;
 
-  background: rgba(41, 41, 41, 1);
-
-  opacity: 1;
+  background: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -129,7 +105,7 @@ font = 275px
   width: 84.375vw;
   height: 8.4375vw;
 
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
 
   position: absolute;
 
@@ -138,14 +114,12 @@ font = 275px
 
   margin-left: 0.8333333vw;
 
-  font-family: "Dela Gothic One", sans-serif;
+  font-family: var(--font-titoli);
   font-weight: 400;
 
   font-size: 3.1770833vw;
 
   line-height: 1;
-
-  opacity: 1;
 
   text-align: left;
 
@@ -157,9 +131,7 @@ font = 275px
   width: 93.9583333vw;
   height: 0.2604167vw;
 
-  background: rgba(255, 255, 255, 1);
-
-  opacity: 1;
+  background: var(--colore-bianco);
 
   position: absolute;
 
@@ -173,23 +145,20 @@ font = 275px
   width: 88.9583333vw;
   height: 117.4479167vw;
 
-  color: rgba(77, 77, 77, 1);
+  color: var(--colore-nero);
 
   position: absolute;
 
   top: 11.0416667vw;
-  margin-left: 1.5vw;
 
   margin-top: 1.71875vw;
 
-  font-family: "DM Serif Text";
-  font-weight: 500;
+  font-family: var(--font-testo);
+  font-weight: 400;
 
   font-size: 2.0833333vw;
 
   line-height: 1.2;
-
-  opacity: 1;
 
   text-align: left;
 
@@ -197,46 +166,23 @@ font = 275px
 }
 
 .grassetto {
-  color: rgba(0, 0, 0, 1);
-  font-weight: 600;
-  font-family: "DM Serif Text";
+  color: var(--colore-nero);
+  font-family: var(--font-testo);
 }
 
 .sezione_3 {
   width: 100%;
   height: 200.46875vw;
-
-  background: url("../images/v2047_74.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-
-  opacity: 1;
-
   position: relative;
-
-  top: 0;
-  left: 0;
-
   overflow: hidden;
 }
 
 .foto_sezione_3 {
   width: 100%;
   height: 200.46875vw;
-
-  background: url("../images/v2047_71.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-
-  opacity: 1;
-
   position: absolute;
-
   top: 0;
   left: 0;
-
   overflow: hidden;
 }
 
@@ -248,8 +194,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -268,8 +212,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 39.5833333vw;
@@ -286,8 +228,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -306,8 +246,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 172.96875vw;
@@ -324,8 +262,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -344,8 +280,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 85.2083333vw;
@@ -362,8 +296,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -382,8 +314,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 96.25vw;
@@ -400,8 +330,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 
@@ -420,8 +348,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 125.7291667vw;
@@ -439,8 +365,6 @@ font = 275px
   background-position: center center;
   background-size: 100% 100%;
 
-  opacity: 1;
-
   position: absolute;
 
   top: 46.4583333vw;
@@ -457,8 +381,6 @@ font = 275px
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-
-  opacity: 1;
 
   position: absolute;
 

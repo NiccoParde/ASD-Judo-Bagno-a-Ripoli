@@ -40,7 +40,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -54,17 +53,16 @@ body.popup_aperto {
 .titolo_sezione_1 {
   width: 48.28vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
   font-size: 2.865vw;
 
-  opacity: 1;
 
   text-align: left;
 }
@@ -74,9 +72,8 @@ body.popup_aperto {
 
   height: 0.26vw;
 
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -90,13 +87,13 @@ body.popup_aperto {
 .sottotitolo_sezione_1 {
   width: 29.74vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
   top: 5.352vw;
 
-  font-family: "DM Serif Display";
+  font-family: var(--font-display);
 
   font-style: italic;
 
@@ -104,7 +101,6 @@ body.popup_aperto {
 
   font-size: 1.754vw;
 
-  opacity: 1;
 
   text-align: left;
 }
@@ -124,7 +120,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -142,9 +137,8 @@ body.popup_aperto {
 
   height: 2.86vw;
 
-  background: rgba(217, 217, 217, 1);
+  background: var(--colore-grigio-chiaro);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -152,7 +146,7 @@ body.popup_aperto {
 
   left: 0;
 
-  box-shadow: 0.2083vw 0.2083vw 0.2083vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0.2083vw 0.2083vw 0.2083vw var(--colore-ombra-forte);
 
   overflow: hidden;
 
@@ -204,13 +198,13 @@ body.popup_aperto {
 
   background: transparent;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 1.25vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   text-align: left;
 
@@ -232,11 +226,10 @@ body.popup_aperto {
 }
 
 .input_barra_di_ricerca::placeholder {
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
-  opacity: 1;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-style: italic;
 
@@ -284,9 +277,9 @@ body.popup_aperto {
 
   transform: translate(-50%, -50%);
 
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: var(--font-display);
 
   font-style: italic;
 
@@ -296,7 +289,6 @@ body.popup_aperto {
 
   text-align: center;
 
-  opacity: 1;
 }
 
 /* ====================================================== */
@@ -312,7 +304,7 @@ body.popup_aperto {
 
   margin-bottom: 2vw;
 
-  box-shadow: -1.042vw 1.042vw 0.208vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.042vw 1.042vw 0.208vw var(--colore-ombra-forte);
 
   overflow: visible;
 
@@ -338,7 +330,7 @@ body.popup_aperto {
 
   height: 100%;
 
-  background: rgba(217, 217, 217, 1);
+  background: var(--colore-grigio-chiaro);
 
   position: absolute;
 
@@ -384,7 +376,7 @@ body.popup_aperto {
 .data_notizia_piccola {
   width: 13.854vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -392,13 +384,12 @@ body.popup_aperto {
 
   left: 25.625vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 0.938vw;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -416,7 +407,7 @@ body.popup_aperto {
 
   height: 2.39vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -424,7 +415,7 @@ body.popup_aperto {
 
   left: 25.625vw;
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
@@ -432,7 +423,6 @@ body.popup_aperto {
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -458,7 +448,7 @@ body.popup_aperto {
 
   height: 9.21875vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -466,7 +456,7 @@ body.popup_aperto {
 
   left: 25.625vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -474,7 +464,6 @@ body.popup_aperto {
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -522,7 +511,7 @@ body.popup_aperto {
 /* ====================================================== */
 
 .evidenzia_ricerca {
-  background: #ffff00;
+  background: var(--colore-evidenziatore);
 
   color: inherit;
 
@@ -586,17 +575,17 @@ body.popup_aperto {
 }
 
 .notizia_grande::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--colore-ombra-media);
 }
 
 .notizia_grande::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--colore-scrollbar);
 
   border-radius: 1vw;
 }
 
 .notizia_grande::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--colore-scrollbar-hover);
 }
 
 /* ====================================================== */
@@ -608,7 +597,7 @@ body.popup_aperto {
 
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: fixed;
 
@@ -636,7 +625,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: relative;
 
@@ -662,9 +650,8 @@ body.popup_aperto {
 
   height: 100%;
 
-  background: rgba(255, 255, 255, 1);
+  background: var(--colore-bianco);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -672,7 +659,7 @@ body.popup_aperto {
 
   left: 0;
 
-  box-shadow: -1.04vw 1.04vw 0.2vw rgba(0, 0, 0, 0.25);
+  box-shadow: -1.04vw 1.04vw 0.2vw var(--colore-ombra-forte);
 
   z-index: 1;
 
@@ -694,7 +681,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -718,7 +704,7 @@ body.popup_aperto {
 
   height: 3.125vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -726,13 +712,12 @@ body.popup_aperto {
 
   left: 2.44vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 1.875vw;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -750,7 +735,7 @@ body.popup_aperto {
 
   height: 3.75vw;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -758,7 +743,7 @@ body.popup_aperto {
 
   left: 2.44vw;
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-weight: normal;
 
@@ -766,7 +751,6 @@ body.popup_aperto {
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -784,7 +768,7 @@ body.popup_aperto {
 
   height: auto;
 
-  color: rgba(41, 41, 41, 1);
+  color: var(--colore-grigio-primario);
 
   position: absolute;
 
@@ -792,7 +776,7 @@ body.popup_aperto {
 
   left: 2.81vw;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
@@ -800,7 +784,6 @@ body.popup_aperto {
 
   line-height: normal;
 
-  opacity: 1;
 
   text-align: left;
 
@@ -860,7 +843,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -886,9 +868,8 @@ body.popup_aperto {
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
-  opacity: 1;
 
   position: absolute;
 
@@ -914,7 +895,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -942,7 +922,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -962,7 +941,7 @@ body.popup_aperto {
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: absolute;
 
@@ -988,7 +967,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1016,7 +994,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1036,7 +1013,7 @@ body.popup_aperto {
 
   height: 3.64vw;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--colore-overlay-modale);
 
   position: absolute;
 
@@ -1062,7 +1039,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: absolute;
 
@@ -1090,7 +1066,6 @@ body.popup_aperto {
 
   background-size: cover;
 
-  opacity: 1;
 
   position: relative;
 
@@ -1112,17 +1087,16 @@ body.popup_aperto {
 .testo_pulsante_carica_altro {
   width: 15.52vw;
 
-  color: rgba(0, 0, 0, 1);
+  color: var(--colore-nero);
 
   position: absolute;
 
-  font-family: "DM Serif Text", Georgia, serif;
+  font-family: var(--font-testo);
 
   font-weight: normal;
 
   font-size: 1.66vw;
 
-  opacity: 1;
 
   text-align: center;
 }

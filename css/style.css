@@ -1,12 +1,93 @@
-/* Variabili condivise del sito */
+/* ==========================================================================
+   VARIABILI GLOBALI DEL SITO (DESIGN SYSTEM & TOKENS)
+   Definite centralmente in style.css e riutilizzabili in tutte le pagine.
+   Modificando un valore qui, verrà aggiornato ovunque nel sito.
+   ========================================================================== */
+
 :root {
-  --font-title: "Dela Gothic One", Arial, sans-serif;
-  --font-text: "DM Serif Text", Georgia, serif;
-  --font-text2: "DM Serif Display", Georgia, serif italic;
-  --color-white: #ffffff;
+  /* ------------------------------------------------------------------------
+     1. TIPOGRAFIA & FONT FAMILY
+     ------------------------------------------------------------------------ */
+  --font-titoli: "Dela Gothic One", Arial, sans-serif;       /* Titoli principali, intestazioni, numeri grandi */
+  --font-title: var(--font-titoli);                          /* Alias retrocompatibilità */
+  
+  --font-testo: "DM Serif Text", Georgia, serif;             /* Testo narrativo, paragrafi descrittivi */
+  --font-text: var(--font-testo);                            /* Alias retrocompatibilità */
+  
+  --font-display: "DM Serif Display", Georgia, serif;        /* Testo display per enfasi grafiche */
+  --font-text2: var(--font-display);                         /* Alias retrocompatibilità */
+  
+  --font-inter: "Inter", Arial, sans-serif;                  /* Testi interfaccia e form (pannello amministratore) */
+  --font-admin: var(--font-inter);                           /* Alias semantico interfaccia admin */
+
+  /* ------------------------------------------------------------------------
+     2. COLORI FONDAMENTALI (PALETTE PRINCIPALE)
+     ------------------------------------------------------------------------ */
+  --colore-bianco: #ffffff;                                  /* Bianco puro per sfondi, titoli e testi chiari */
+  --color-white: var(--colore-bianco);                       /* Alias retrocompatibilità */
+  
+  --colore-nero: #000000;                                    /* Nero puro per testi ad alto contrasto, bordi e dettagli */
+  
+  --colore-grigio-scuro: #2a2a2a;                            /* Grigio scuro istituzionale (celle oggi calendario, tag, loader) */
+  --colore-grigio-primario: #292929;                         /* Grigio scuro testate, barre, footer e testi principali (rgba 41, 41, 41) */
+  
+  --colore-fondo-body: #111111;                              /* Sfondo scuro di base dell'elemento body */
+  --colore-hover-scuro: #1a1a1a;                             /* Stato hover per elementi scuri (es. frecce navigazione) */
+
+  /* ------------------------------------------------------------------------
+     3. GRIGI INTERMEDI & TESTI SECONDARI
+     ------------------------------------------------------------------------ */
+  --colore-testo-grigio: #4d4d4d;                            /* Grigio medio per descrizioni (home sez. 2, shoku geiko) */
+  --colore-testo-card: #444444;                              /* Grigio scuro per corpo testo delle card eventi */
+  --colore-testo-dettaglio: #333333;                         /* Grigio scuro per dettagli ed anteprime evento */
+  --colore-testo-mutato: #666666;                            /* Grigio neutro per messaggi secondari ("Nessun evento") */
+  --colore-testo-disattivato: #555555;                       /* Grigio per testi disattivati o stato bozza */
+  --colore-grigio-spento: #878787;                           /* Grigio per elementi disattivati o date di mesi adiacenti */
+  --colore-grigio-etichetta: #868686;                        /* Grigio chiaro per etichette e testi secondari admin */
+
+  /* ------------------------------------------------------------------------
+     4. GRIGI CHIARI, BORDI & SFONDI FORM
+     ------------------------------------------------------------------------ */
+  --colore-bordo-grigio: #a7a7a7;                            /* Linee divisorie e bordi griglia calendario */
+  --colore-placeholder: #a6a6a6;                             /* Testo segnaposto (placeholder) dei campi di input */
+  --colore-bordo-card: #c4c4c4;                              /* Bordo perimetrale neutro delle card eventi */
+  --colore-bordo-tag: #cccccc;                               /* Bordo pulsanti tag/categorie */
+  --colore-hover-tag: #d0d0d0;                               /* Sfondo hover pulsanti tag */
+  --colore-grigio-chiaro: #d9d9d9;                           /* Sfondo card news piccole, barra ricerca, card eventi */
+  --colore-grigio-input: #e0e0e0;                            /* Bordi e dettagli input admin */
+  --colore-sfondo-input: #f5f5f5;                            /* Sfondo chiaro campi di testo e textarea admin */
+  --colore-hover-chiaro: #f0f0f0;                            /* Hover su pulsanti o sfondi chiari */
+
+  /* ------------------------------------------------------------------------
+     5. COLORI FUNZIONALI / ACCENTI
+     ------------------------------------------------------------------------ */
+  --colore-evidenziatore: #ffff00;                           /* Giallo evidenziatore per parole trovate nelle news */
+  --colore-errore: #ff5b5b;                                  /* Rosso avviso/errore per login e validazioni form */
+  --colore-successo: #27ae60;                                /* Verde smeraldo per notifiche di operazione riuscita */
+
+  /* ------------------------------------------------------------------------
+     6. TRASPARENZE E OVERLAY (LIVELLI RGBA)
+     ------------------------------------------------------------------------ */
+  --colore-ombra-leggera: rgba(0, 0, 0, 0.1);                /* Ombreggiatura soffice per elementi in rilievo */
+  --colore-ombra-media: rgba(0, 0, 0, 0.15);                 /* Ombreggiatura standard per card e box */
+  --colore-ombra-forte: rgba(0, 0, 0, 0.25);                 /* Ombra marcata per card sollevate e pulsanti attivi */
+  --colore-overlay-modale: rgba(0, 0, 0, 0.5);               /* Sfondo semitrasparente per modali notizie e conferme */
+  --colore-overlay-scuro: rgba(0, 0, 0, 0.65);               /* Sfondo semitrasparente modale anteprima eventi */
+  --colore-scrollbar: rgba(0, 0, 0, 0.55);                   /* Cursore scrollbar notizie lunghe */
+  --colore-scrollbar-hover: rgba(0, 0, 0, 0.75);             /* Cursore scrollbar su hover */
+  --colore-sfondo-header: rgba(0, 0, 0, 0.85);               /* Sfumatura scura superiore dell'header nav */
+  --colore-badge-bianco: rgba(255, 255, 255, 0.18);          /* Badge orario traslucido su fondo scuro */
+  --colore-pallino-inattivo: rgba(255, 255, 255, 0.45);      /* Pallini non selezionati del carosello */
+  --colore-pallino-hover: rgba(255, 255, 255, 0.8);          /* Pallini carosello al passaggio del mouse */
+  --colore-bordo-mappa: rgba(41, 41, 41, 0.2);               /* Bordo semitrasparente per la mappa interattiva */
+
+  /* ------------------------------------------------------------------------
+     7. DIMENSIONI E DISTANZE GLOBALI
+     ------------------------------------------------------------------------ */
   --header-height: 6.25vw;
   --distanza-sinistra-sezioni: 3.0208vw;
 }
+
 
 /* Reset leggero per rendere le misure piu' prevedibili */
 * {
@@ -21,9 +102,9 @@ body {
   min-height: 100vh;
   margin: 0;
   font-size: 0.8333vw;
-  font-family: var(--font-text);
-  color: #111111;
-  background: #ffffff;
+  font-family: var(--font-testo);
+  color: var(--colore-fondo-body);
+  background: var(--colore-bianco);
   display: flex;
   flex-direction: column;
 }
@@ -48,7 +129,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: var(--font-title);
+  font-family: var(--font-titoli);
   font-weight: 400;
 }
 
@@ -69,8 +150,8 @@ h6 {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.85) 8.65%,
-    rgba(0, 0, 0, 0) 100%
+    var(--colore-sfondo-header) 8.65%,
+    transparent 100%
   );
   pointer-events: none;
 }
@@ -94,7 +175,7 @@ h6 {
   position: relative;
   flex: 0 0 auto;
   padding: 0.4167vw 1.5625vw;
-  font-family: var(--font-title);
+  font-family: var(--font-titoli);
   font-size: 1.25vw;
   line-height: 1.2;
   color: var(--color-white);
@@ -112,7 +193,7 @@ h6 {
   width: 0.1563vw;
   height: 1.5625vw;
   border-radius: 0.5208vw;
-  background: #d9d9d9;
+  background: var(--colore-grigio-chiaro);
   transform: translateY(-50%);
 }
 
@@ -125,7 +206,7 @@ h6 {
   width: calc(100% - 3.125vw);
   height: 0.1563vw;
   border-radius: 0.5208vw;
-  background: #ffffff;
+  background: var(--colore-bianco);
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 300ms ease;
@@ -180,7 +261,7 @@ main {
 .sfondo_sezione_finale {
   width: 100%;
   height: 100%;
-  background: rgba(41, 41, 41, 1);
+  background: var(--colore-grigio-primario);
   position: relative;
 }
 
@@ -226,44 +307,44 @@ main {
 }
 
 .indirizzo {
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.0417vw;
   text-align: left;
 }
 
 .email {
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 2.4479vw;
   left: 0;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.0417vw;
   text-align: left;
 }
 
 .instagram {
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 5.5729vw;
   left: 0;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.0417vw;
   text-align: left;
 }
 
 .form {
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 8.6458vw;
   left: 0;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.0417vw;
   text-align: left;
@@ -271,11 +352,11 @@ main {
 
 .testo_info_e_preventivi {
   width: 26.6667vw;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 6.4063vw;
   left: 31.8229vw;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.25vw;
   text-align: left;
@@ -283,11 +364,11 @@ main {
 
 .crediti {
   width: 8.8021vw;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 24.4271vw;
   left: 45.5729vw;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 0.5208vw;
   text-align: center;
@@ -304,11 +385,11 @@ main {
 
 .titolo_sezione_finale {
   width: 26.6667vw;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
   top: 3.3333vw;
   left: 36.6667vw;
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
   font-weight: normal;
   font-size: 1.25vw;
   text-align: center;
@@ -326,7 +407,7 @@ main {
 .sfondo_loghi_sezione_finale {
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 1);
+  background: var(--colore-bianco);
   position: absolute;
   top: 0;
   left: 0;
@@ -395,9 +476,9 @@ main {
 .testo_pulsante_pannello_amministratore {
   width: 21.66vw;
   height: 2.08vw;
-  color: rgba(255, 255, 255, 1);
+  color: var(--colore-bianco);
   position: absolute;
-  font-family: Dela Gothic One;
+  font-family: var(--font-titoli);
   font-weight: Regular;
   text-decoration: underline;
   font-size: 1.04vw;
@@ -439,7 +520,7 @@ main {
   top: 0;
   left: 0;
 
-  background: #ffffff;
+  background: var(--colore-bianco);
 
   display: flex;
 
@@ -494,9 +575,9 @@ main {
 /* ====================================================== */
 
 .testo_manutenzione {
-  color: #2a2a2a;
+  color: var(--colore-grigio-scuro);
 
-  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-family: var(--font-titoli);
 
   font-size: 3.3333vw;
 
@@ -516,7 +597,7 @@ main {
 
   aspect-ratio: 1;
 
-  --c: no-repeat linear-gradient(#2a2a2a 0 0);
+  --c: no-repeat linear-gradient(var(--colore-grigio-scuro) 0 0);
 
   background: var(--c), var(--c), var(--c), var(--c);
 
@@ -594,13 +675,13 @@ body.pagina_bloccata {
   align-items: center;
   justify-content: center;
   gap: 0.6vw;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--colore-overlay-scuro);
   backdrop-filter: blur(0.35vw);
   -webkit-backdrop-filter: blur(0.35vw);
   padding: 0.35vw 0.75vw;
   border-radius: 100vw;
-  border: 0.08vw solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0.2vw 0.6vw rgba(0, 0, 0, 0.35);
+  border: 0.08vw solid var(--colore-badge-bianco);
+  box-shadow: 0 0.2vw 0.6vw var(--colore-ombra-forte);
   z-index: 10;
   pointer-events: auto;
   user-select: none;
@@ -614,7 +695,7 @@ body.pagina_bloccata {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--colore-bianco);
   width: 1.25vw;
   height: 1.25vw;
   opacity: 0.85;
@@ -648,7 +729,7 @@ body.pagina_bloccata {
   width: 0.52vw;
   height: 0.52vw;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--colore-pallino-inattivo);
   border: none;
   padding: 0;
   cursor: pointer;
@@ -656,10 +737,10 @@ body.pagina_bloccata {
 }
 
 .pallino_selettore:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--colore-pallino-hover);
 }
 
 .pallino_selettore.attivo {
-  background: #ffffff;
+  background: var(--colore-bianco);
   transform: scale(1.25);
 }
