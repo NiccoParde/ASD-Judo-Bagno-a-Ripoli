@@ -26,9 +26,9 @@
 .logo_judo {
   position: absolute;
   top: 50%;
-  left: clamp(18px, 3.02vw, 58px);
+  left: 3.0208vw;
   z-index: 2;
-  width: clamp(130px, 20.83vw, 400px);
+  width: 20.8333vw;
   aspect-ratio: 1 / 1;
   height: auto;
   transform: translateY(-50%);
@@ -39,7 +39,7 @@
 .testo_sezione_1 {
   position: relative;
   width: 100%;
-  height: clamp(132px, 14.58vw, 280px);
+  height: 14.5833vw;
   overflow: hidden;
 }
 
@@ -53,11 +53,11 @@
 /* Titolo principale della sezione */
 .titolo_sezione_1 {
   position: absolute;
-  top: clamp(28px, 3.07vw, 59px);
-  left: clamp(18px, 3.02vw, 58px);
-  width: calc(100% - (clamp(18px, 3.02vw, 58px) * 2));
+  top: 3.0729vw;
+  left: 3.0208vw;
+  width: calc(100% - 6.0417vw);
   color: rgba(255, 255, 255, 1);
-  font-size: clamp(17px, 3.65vw, 70px);
+  font-size: 3.6458vw;
   line-height: 1.05;
   text-align: left;
 }
@@ -65,25 +65,25 @@
 /* Sottotitolo della sezione */
 .sottotitolo_sezione_1 {
   position: absolute;
-  top: clamp(72px, 7.66vw, 147px);
-  left: clamp(18px, 3.02vw, 58px);
-  width: min(983px, calc(100% - (clamp(18px, 3.02vw, 58px) * 2)));
+  top: 7.6563vw;
+  left: 3.0208vw;
+  width: 51.1979vw;
   margin: 0;
   color: rgba(255, 255, 255, 1);
   font-family: var(--font-title);
-  font-size: clamp(13px, 2.08vw, 40px);
+  font-size: 2.0833vw;
   line-height: 1.15;
   text-align: left;
 }
 
 /* Sezione 2 attaccata alla sezione precedente */
 .sezione_2 {
-  --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
-  --larghezza-immagine-sezione-2: clamp(160px, 30.63vw, 588px);
-  --spazio-da-immagine-sezione-2: clamp(16px, 4.43vw, 85px);
-  --spazio-testo-immagine-sezione-2: clamp(16px, 2.29vw, 44px);
+  --distanza-sinistra-sezioni: 3.0208vw;
+  --larghezza-immagine-sezione-2: 30.625vw;
+  --spazio-da-immagine-sezione-2: 4.4271vw;
+  --spazio-testo-immagine-sezione-2: 2.2917vw;
   position: relative;
-  min-height: clamp(294px, 56.25vw, 1080px);
+  min-height: 56.25vw;
   overflow: hidden;
 }
 
@@ -103,15 +103,15 @@
 .testo_sezione_2 {
   position: relative;
   width: min(
-    811px,
+    42.2396vw,
     calc(
       100% - var(--distanza-sinistra-sezioni) -
         var(--larghezza-immagine-sezione-2) -
         var(--spazio-da-immagine-sezione-2)
     )
   );
-  height: clamp(28px, 4.69vw, 90px);
-  margin-top: clamp(32px, 5vw, 96px);
+  height: 4.6875vw;
+  margin-top: 5vw;
   margin-left: var(--distanza-sinistra-sezioni);
   overflow: hidden;
 }
@@ -127,26 +127,26 @@
 .titolo_sezione_2 {
   position: absolute;
   top: 0;
-  left: clamp(8px, 1.04vw, 20px);
-  width: calc(100% - (clamp(8px, 1.04vw, 20px) * 2));
+  left: 1.0417vw;
+  width: calc(100% - 2.0833vw);
   color: rgba(255, 255, 255, 1);
-  font-size: clamp(10px, 2.86vw, 55px);
-  line-height: clamp(28px, 4.69vw, 90px);
+  font-size: 2.8646vw;
+  line-height: 4.6875vw;
   text-align: left;
 }
 
 /* Linea divisoria della seconda sezione */
 .linea_sezione_2 {
   width: min(
-    1189px,
+    61.9271vw,
     calc(
       100% - var(--distanza-sinistra-sezioni) -
         var(--larghezza-immagine-sezione-2) -
         var(--spazio-da-immagine-sezione-2)
     )
   );
-  height: clamp(2px, 0.21vw, 4px);
-  margin-top: clamp(12px, 1.25vw, 24px);
+  height: 0.2083vw;
+  margin-top: 1.25vw;
   margin-left: var(--distanza-sinistra-sezioni);
   background: #2a2a2a;
 }
@@ -154,19 +154,19 @@
 /* Testo descrittivo sotto la linea */
 .descrizione_sezione_2 {
   width: min(
-    1230px,
+    64.0625vw,
     calc(
       100% - var(--distanza-sinistra-sezioni) -
         var(--larghezza-immagine-sezione-2) -
         var(--spazio-testo-immagine-sezione-2)
     )
   );
-  min-height: clamp(210px, 27.24vw, 523px);
-  margin-top: clamp(10px, 1.04vw, 20px);
+  min-height: 27.2396vw;
+  margin-top: 1.0417vw;
   margin-left: var(--distanza-sinistra-sezioni);
   color: #4d4d4d;
   font-family: var(--font-text);
-  font-size: clamp(16px, 2.08vw, 40px);
+  font-size: 2.0833vw;
   font-weight: 400;
   line-height: 1.14;
   text-align: left;
@@ -178,19 +178,19 @@
 }
 
 .descrizione_sezione_2 p + p {
-  margin-top: clamp(18px, 2.08vw, 40px);
+  margin-top: 2.0833vw;
 }
 
 /* Pulsante che porta alla pagina Storia */
 .pulsante_storia_sezione_2 {
   display: inline-flex;
   align-items: center;
-  gap: clamp(12px, 1.25vw, 24px); /* distanza testo-freccia */
+  gap: 1.25vw; /* distanza testo-freccia */
 
-  min-height: clamp(24px, 2.29vw, 44px);
-  padding-right: 4px;
+  min-height: 2.2917vw;
+  padding-right: 0.2083vw;
 
-  margin-top: clamp(20px, 2.66vw, 51px);
+  margin-top: 2.6563vw;
   margin-left: var(--distanza-sinistra-sezioni);
 
   color: #000;
@@ -200,8 +200,8 @@
 
 /* Linea verticale */
 .linea_verticale_pulsante {
-  width: clamp(1px, 0.1vw, 2px);
-  height: clamp(16px, 1.51vw, 29px);
+  width: 0.1042vw;
+  height: 1.5104vw;
   background: #000;
   flex-shrink: 0;
 }
@@ -211,8 +211,8 @@
   position: static;
   width: auto;
 
-  font-size: clamp(16px, 1.67vw, 32px);
-  line-height: clamp(24px, 2.29vw, 44px);
+  font-size: 1.6667vw;
+  line-height: 2.2917vw;
   white-space: nowrap;
 }
 
@@ -220,8 +220,8 @@
 .freccia_pulsante {
   position: static;
 
-  width: clamp(8px, 0.78vw, 15px);
-  height: clamp(14px, 1.46vw, 28px);
+  width: 0.7813vw;
+  height: 1.4583vw;
 
   display: flex;
   align-items: center;
@@ -238,32 +238,32 @@
 
 /* Sezione 3 */
 .sezione_3 {
-  --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
+  --distanza-sinistra-sezioni: 3.0208vw;
   position: relative;
-  min-height: clamp(294px, 56.25vw, 1080px);
-  margin-bottom: clamp(19px, 1.97vw, 38px);
+  min-height: 56.25vw;
+  margin-bottom: 1.9792vw;
   overflow: hidden;
 }
 
 /* Titolo sezione 3 */
 .titolo_sezione_3 {
   position: relative;
-  width: min(811px, calc(100% - var(--distanza-sinistra-sezioni)));
-  height: clamp(28px, 4.69vw, 90px);
-  margin-top: clamp(32px, 5vw, 96px);
+  width: min(42.2396vw, calc(100% - var(--distanza-sinistra-sezioni)));
+  height: 4.6875vw;
+  margin-top: 5vw;
   margin-left: var(--distanza-sinistra-sezioni);
   color: #2a2a2a;
-  font-size: clamp(10px, 2.86vw, 55px);
-  line-height: clamp(28px, 4.69vw, 90px);
+  font-size: 2.8646vw;
+  line-height: 4.6875vw;
   overflow: hidden;
 }
 
 /* Testo riempitivo zona notizie (nessuna notizia) */
 
 .pannello_notizie_sezione_3 {
-  width: min(1634px, 100%);
+  width: min(85.1042vw, 100%);
   height: auto;
-  margin: clamp(32px, 5vw, 96px) auto 0;
+  margin: 5vw auto 0;
 
   display: flex;
   flex-direction: column;
@@ -282,7 +282,7 @@
   font-style: italic;
   color: #2a2a2a;
 
-  font-size: clamp(10px, 2.86vw, 55px);
+  font-size: 2.8646vw;
   line-height: 1.2;
 
   text-align: center;
@@ -291,12 +291,12 @@
 .pulsante_news_sezione_3 {
   display: inline-flex;
   align-items: center;
-  gap: clamp(12px, 1.25vw, 24px); /* distanza testo-freccia */
+  gap: 1.25vw; /* distanza testo-freccia */
 
-  min-height: clamp(24px, 2.29vw, 44px);
-  padding-right: 4px;
+  min-height: 2.2917vw;
+  padding-right: 0.2083vw;
 
-  margin-top: clamp(20px, 2.66vw, 51px);
+  margin-top: 2.6563vw;
   margin-left: var(--distanza-sinistra-sezioni);
 
   color: #000;

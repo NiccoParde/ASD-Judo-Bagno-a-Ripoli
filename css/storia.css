@@ -173,7 +173,7 @@ font = 275px
   width: 88.9583333vw;
   height: 117.4479167vw;
 
-  color: rgba(0, 0, 0, 1);
+  color: rgba(77, 77, 77, 1);
 
   position: absolute;
 
@@ -197,6 +197,7 @@ font = 275px
 }
 
 .grassetto {
+  color: rgba(0, 0, 0, 1);
   font-weight: 600;
   font-family: "DM Serif Text";
 }
@@ -278,22 +279,20 @@ font = 275px
 }
 
 .foto_3 {
-  width: 31.6145833vw;
-  height: 22.34375vw;
+  width: 22.34375vw;
+  height: 31.6145833vw;
 
   background: url("../assets/storia/foto_3.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: cover;
 
   opacity: 1;
 
   position: absolute;
 
-  top: 200.46875vw;
+  top: 168.8541667vw;
   left: 77.65625vw;
-
-  transform: rotate(-90deg);
 
   overflow: hidden;
 }

@@ -7,7 +7,8 @@
 .calendario-eventi-page {
   position: relative;
   width: 100%;
-  height: calc(2524 / 1920 * 100vw);
+  min-height: 145vw;
+  height: 145vw;
   background-color: #ffffff;
   overflow: hidden;
 }
@@ -65,8 +66,8 @@
 }
 
 .pulsante_scorrimento:focus-visible {
-  outline: 3px solid #2a2a2a;
-  outline-offset: 4px;
+  outline: 0.1563vw solid #2a2a2a;
+  outline-offset: 0.2083vw;
 }
 
 .pulsante_scorrimento--sinistra {
@@ -232,12 +233,164 @@
   background-color: #2a2a2a;
 }
 
+/* --- SEZIONE ELENCO EVENTI PUBBLICI (STILE PANNELLO AMMINISTRATORE) --- */
+.sezione_elenco_eventi {
+  position: absolute;
+  top: 114vw;
+  left: 3.52vw;
+  width: 92.96vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.titolo_sezione_elenco_eventi {
+  color: #2a2a2a;
+  font-family: var(--font-title), sans-serif;
+  font-size: 3.6458vw;
+  line-height: 1.1;
+  margin: 0 0 2vw 0;
+  text-align: left;
+}
+
+.lista_eventi_pubblici {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.messaggio_nessun_evento {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 1.4vw;
+  color: #666666;
+  font-style: italic;
+  margin: 1vw 0 3vw 0;
+}
+
+/* CARD EVENTO PUBBLICA (STILE PANNELLO AMMINISTRATORE) */
+.evento_card_pubblica {
+  width: 100%;
+  min-height: 14vw;
+  position: relative;
+  margin-bottom: 1.5vw;
+  background: #d9d9d9;
+  border: 0.1042vw solid #c4c4c4;
+  box-shadow: -0.6vw 0.6vw 0.3vw rgba(0, 0, 0, 0.15);
+  display: flex;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.evento_card_pubblica:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: -0.8vw 0.8vw 0.5vw rgba(0, 0, 0, 0.22);
+}
+
+.evento_card_pubblica:active {
+  transform: translateY(-0.05vw);
+}
+
+.evento_card_pubblica .evento_card_data_box {
+  width: 18vw;
+  min-height: 14vw;
+  background-color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vw;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.evento_card_pubblica .evento_card_giorno {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 4.5vw;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.evento_card_pubblica .evento_card_mese_anno {
+  font-family: Inter, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 600;
+  color: #d9d9d9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.4vw;
+}
+
+.evento_card_pubblica .evento_card_badge_orario {
+  margin-top: 0.7vw;
+  font-family: Inter, sans-serif;
+  font-size: 0.95vw;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.25vw 0.7vw;
+  border-radius: 0.25vw;
+}
+
+.evento_card_pubblica .evento_card_corpo {
+  flex-grow: 1;
+  padding: 1.5vw 2.5vw;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.evento_card_pubblica .evento_card_header_riga {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  flex-wrap: wrap;
+}
+
+.evento_card_pubblica .evento_card_titolo {
+  font-family: Inter, sans-serif;
+  font-size: 1.65vw;
+  font-weight: 700;
+  color: #2a2a2a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.evento_card_pubblica .evento_card_badge_tag {
+  display: inline-block;
+  width: fit-content;
+  font-family: Inter, sans-serif;
+  font-size: 0.8vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: #2a2a2a;
+  padding: 0.2vw 0.6vw;
+  border-radius: 0.2vw;
+}
+
+.evento_card_pubblica .evento_card_descrizione {
+  font-family: "DM Serif Text", Georgia, serif;
+  font-size: 1.15vw;
+  line-height: 1.5;
+  color: #444444;
+  margin-top: 0.7vw;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* --- SEZIONE INFO PROPOSTE E SUGGERIMENTI --- */
 .info_proposte_suggerimenti {
-  position: absolute;
-  top: calc(2208 / 1920 * 100vw);
-  left: calc(103 / 1920 * 100vw);
-  width: calc(1411 / 1920 * 100vw);
+  position: relative;
+  width: 100%;
+  margin-top: 3.5vw;
+  margin-bottom: 2vw;
 }
 
 .titolo_proposte {
@@ -274,6 +427,7 @@
 
 .email_proposte:hover {
   opacity: 0.8;
+  text-decoration: underline;
 }
 
 /* ====================================================== */
@@ -319,8 +473,8 @@ body.anteprima_evento_aperta {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(0.2604vw);
+  -webkit-backdrop-filter: blur(0.2604vw);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -339,8 +493,8 @@ body.anteprima_evento_aperta {
 .popup_anteprima_evento {
   position: relative;
   width: 60vw;
-  max-width: 1100px;
-  min-width: 320px;
+  max-width: 57.2917vw;
+  min-width: 16.6667vw;
   max-height: 85vh;
   background: #ffffff;
   border-radius: 1vw;

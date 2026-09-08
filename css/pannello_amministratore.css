@@ -932,7 +932,7 @@ body.popup_aperto_admin {
 }
 
 .loader_creazione_notizia {
-  height: 60px;
+  height: 3.125vw;
   aspect-ratio: 1;
   --c: no-repeat linear-gradient(#2a2a2a 0 0);
   background: var(--c), var(--c), var(--c), var(--c);

@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  font-size: 14px;
+  font-size: 0.7292vw;
   overflow-x: hidden;
 }
 
@@ -83,7 +83,7 @@ font = 70px
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(32px, 3.646vw, 70px);
+  font-size: 3.6458vw;
 
   line-height: 1.05;
 
@@ -108,7 +108,7 @@ SOTTOTITOLO 1
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(20px, 2.083vw, 40px);
+  font-size: 2.0833vw;
 
   line-height: 1.1;
 
@@ -116,8 +116,8 @@ SOTTOTITOLO 1
   text-align: left;
 
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 0.1042vw;
+  text-underline-offset: 0.2604vw;
 }
 
 /* =========================================================
@@ -137,7 +137,7 @@ TESTO PRINCIPALE
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(14px, 1.406vw, 27px);
+  font-size: 1.4063vw;
 
   line-height: 1.25;
 
@@ -162,7 +162,7 @@ SOTTOTITOLO 2
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(20px, 2.083vw, 40px);
+  font-size: 2.0833vw;
 
   line-height: 1.1;
 
@@ -170,8 +170,8 @@ SOTTOTITOLO 2
   text-align: left;
 
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 0.1042vw;
+  text-underline-offset: 0.2604vw;
 }
 
 /* =========================================================
@@ -194,7 +194,7 @@ ELENCO 1
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(14px, 1.406vw, 27px);
+  font-size: 1.4063vw;
 
   line-height: 1.25;
 
@@ -229,7 +229,7 @@ SOTTOTITOLO 3
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(20px, 2.083vw, 40px);
+  font-size: 2.0833vw;
 
   line-height: 1.1;
 
@@ -237,8 +237,8 @@ SOTTOTITOLO 3
   text-align: left;
 
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 0.1042vw;
+  text-underline-offset: 0.2604vw;
 }
 
 /* =========================================================
@@ -261,7 +261,7 @@ ELENCO 2
   font-family: "Dela Gothic One", sans-serif;
   font-weight: 400;
 
-  font-size: clamp(14px, 1.406vw, 27px);
+  font-size: 1.4063vw;
 
   line-height: 1.25;
 
@@ -286,7 +286,7 @@ SEPARATORE
 .separatore_sezione_1 {
   width: calc(100% - 6.04vw);
 
-  height: clamp(2px, 0.26vw, 5px);
+  height: 0.2604vw;
 
   background: rgba(255, 255, 255, 1);
 
@@ -1060,14 +1060,14 @@ TESTO SOPRA I PULSANTI
 ========================================================= */
 
 .testo_pulsante_1 {
-  width: 18.4895833vw;
+  width: 30vw;
 
   color: rgba(0, 0, 0, 1);
 
   position: absolute;
 
   top: 11.9791667vw;
-  left: 2.5520833vw;
+  left: 1.6667vw;
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1082,14 +1082,14 @@ TESTO SOPRA I PULSANTI
 }
 
 .testo_pulsante_2 {
-  width: 29.7916667vw;
+  width: 30vw;
 
   color: rgba(0, 0, 0, 1);
 
   position: absolute;
 
   top: 11.9791667vw;
-  left: 26.8229167vw;
+  left: 35vw;
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1104,14 +1104,14 @@ TESTO SOPRA I PULSANTI
 }
 
 .testo_pulsante_3 {
-  width: 28.90625vw;
+  width: 30vw;
 
   color: rgba(0, 0, 0, 1);
 
   position: absolute;
 
   top: 11.9791667vw;
-  left: 62.3958333vw;
+  left: 68.3333vw;
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1143,7 +1143,7 @@ PULSANTE 1
   position: absolute;
 
   top: 16.1458333vw;
-  left: 5.3125vw;
+  left: 10.1563vw;
 
   overflow: hidden;
 
@@ -1157,14 +1157,15 @@ TESTO "CLICCA QUI"
 --------------------------------------------------------- */
 
 .clicca_qui_1 {
-  width: 7.8125vw;
+  width: 100%;
 
   color: rgba(41, 41, 41, 1);
 
   position: absolute;
 
-  top: 1.40625vw;
-  left: 2.6041667vw;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1200,7 +1201,7 @@ BOX
   top: 0;
   left: 0;
 
-  border: 1px solid rgba(41, 41, 41, 1);
+  border: 0.0521vw solid rgba(41, 41, 41, 1);
 
   overflow: hidden;
 }
@@ -1251,7 +1252,7 @@ PULSANTE 2
   position: absolute;
 
   top: 16.1458333vw;
-  left: 35.2083333vw;
+  left: 43.4896vw;
 
   overflow: hidden;
 
@@ -1265,14 +1266,15 @@ TESTO "CLICCA QUI"
 --------------------------------------------------------- */
 
 .clicca_qui_2 {
-  width: 7.8125vw;
+  width: 100%;
 
   color: rgba(41, 41, 41, 1);
 
   position: absolute;
 
-  top: 1.40625vw;
-  left: 2.6041667vw;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1308,7 +1310,7 @@ BOX
   top: 0;
   left: 0;
 
-  border: 1px solid rgba(41, 41, 41, 1);
+  border: 0.0521vw solid rgba(41, 41, 41, 1);
 
   overflow: hidden;
 }
@@ -1359,7 +1361,7 @@ PULSANTE 3
   position: absolute;
 
   top: 16.1458333vw;
-  left: 70.3645833vw;
+  left: 76.8229vw;
 
   overflow: hidden;
 
@@ -1373,14 +1375,15 @@ TESTO "CLICCA QUI"
 --------------------------------------------------------- */
 
 .clicca_qui_3 {
-  width: 7.8125vw;
+  width: 100%;
 
   color: rgba(41, 41, 41, 1);
 
   position: absolute;
 
-  top: 1.40625vw;
-  left: 2.6041667vw;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -1416,7 +1419,7 @@ BOX
   top: 0;
   left: 0;
 
-  border: 1px solid rgba(41, 41, 41, 1);
+  border: 0.0521vw solid rgba(41, 41, 41, 1);
 
   overflow: hidden;
 }

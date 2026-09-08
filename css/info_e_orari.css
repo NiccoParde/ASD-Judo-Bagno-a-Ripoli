@@ -2,7 +2,7 @@
 
 body:has(.sezione_2) main {
     position: relative;
-    height: 87vw;
+    height: 104vw;
     min-height: 0;
 }
 
@@ -11,7 +11,7 @@ body:has(.sezione_2) main {
 
 .sezione_1 {
     width: 93vw;
-    height: 48vw;
+    height: 49vw;
     background: url("../images/v2023_45.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -40,7 +40,7 @@ body:has(.sezione_2) main {
 
 .info_sezione_1 {
     width: 93vw;
-    height: 39.07vw;
+    height: 42vw;
     background: url("../images/v2023_44.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -70,92 +70,138 @@ body:has(.sezione_2) main {
     text-decoration: underline;
 }
 
-.testo_indirizzo_sezione_1 {
+/* RIGA DOVE CI TROVI */
+.riga_dove_ci_trovi {
+    position: absolute;
+    top: 6.5vw;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
     width: 100%;
-    height: 10.18vw;
-    color: rgba(41, 41, 41, 1);
-    position: absolute;
-    top: 6.875vw;
-    left: 0;
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-size: 1.4583333vw;
-    opacity: 1;
-    text-align: left;
 }
 
-.indirizzo_info_e_orari {
-    width: 33.3333333vw;
+.testo_indirizzo_sezione_1 {
     color: rgba(41, 41, 41, 1);
-    position: absolute;
-    top: 7.03125vw;
-    left: 14.6875vw;
     font-family: "Dela Gothic One", sans-serif;
     font-weight: 400;
     font-size: 1.4583333vw;
-    opacity: 1;
-    text-align: left;
+    white-space: nowrap;
 }
 
-.testo_info_contatto {
-    width: 16.25vw;
+.link_indirizzo_info_e_orari {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6vw;
+    text-decoration: none;
     color: rgba(41, 41, 41, 1);
-    position: absolute;
-    top: 9.6354167vw;
-    left: 0;
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-size: 1.4583333vw;
-    opacity: 1;
-    text-align: left;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.link_indirizzo_info_e_orari:hover {
+    opacity: 0.8;
+}
+
+.link_indirizzo_info_e_orari:hover .indirizzo_info_e_orari {
+    text-decoration: underline;
 }
 
 .icona_pin {
     width: 1.6145833vw;
     height: 1.9791667vw;
-    background: url("../assets/info_e_orari/icona_pin.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    opacity: 1;
-    position: absolute;
-    top: 7.2916667vw;
-    left: 12.30vw;
-    border: 0;
+    background: url("../assets/info_e_orari/icona_pin.png") no-repeat center center / contain;
+    flex-shrink: 0;
+    display: inline-block;
 }
 
-.email_info_e_orari {
-    width: 33.3333333vw;
+.indirizzo_info_e_orari {
     color: rgba(41, 41, 41, 1);
-    position: absolute;
-    top: 9.53125vw;
-    left: 19.7395833vw;
     font-family: "Dela Gothic One", sans-serif;
     font-weight: 400;
     font-size: 1.4583333vw;
-    opacity: 1;
-    text-align: left;
+    white-space: nowrap;
+}
+
+/* CONTENITORE MAPPA INTERATTIVA */
+.contenitore_mappa {
+    position: absolute;
+    top: 9.6vw;
+    left: 0;
+    width: 88.4375vw;
+    height: 18vw;
+    border-radius: 0.6vw;
+    overflow: hidden;
+    border: 0.1042vw solid rgba(41, 41, 41, 0.2);
+    box-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.1);
+}
+
+.mappa_google {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* RIGA COME CONTATTARCI */
+.riga_come_contattarci {
+    position: absolute;
+    top: 29.2vw;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
+    width: 100%;
+}
+
+.testo_info_contatto {
+    color: rgba(41, 41, 41, 1);
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    white-space: nowrap;
+}
+
+.link_email_info_e_orari {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6vw;
+    text-decoration: none;
+    color: rgba(41, 41, 41, 1);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.link_email_info_e_orari:hover {
+    opacity: 0.8;
+}
+
+.link_email_info_e_orari:hover .email_info_e_orari {
+    text-decoration: underline;
 }
 
 .icona_mail {
     width: 1.6145833vw;
     height: 1.3020833vw;
-    background: url("../assets/info_e_orari/icona_mail.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    opacity: 1;
-    position: absolute;
-    top: 10.2083333vw;
-    left: 17.0833333vw;
-    border: 0;
+    background: url("../assets/info_e_orari/icona_mail.png") no-repeat center center / contain;
+    flex-shrink: 0;
+    display: inline-block;
 }
 
+.email_info_e_orari {
+    color: rgba(41, 41, 41, 1);
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    white-space: nowrap;
+}
+
+/* PREZZI CORSI */
 .testo_prezzi_sezione_1 {
     width: 15.2604167vw;
     color: rgba(41, 41, 41, 1);
     position: absolute;
-    top: 13.6979167vw;
+    top: 32.5vw;
     left: 0;
     font-family: "Dela Gothic One", sans-serif;
     font-weight: 400;
@@ -169,7 +215,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: rgba(41, 41, 41, 1);
     position: absolute;
-    top: 16.9791667vw;
+    top: 35.5vw;
     left: 0;
     font-family: "Dela Gothic One", sans-serif;
     font-weight: 400;
@@ -182,7 +228,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: rgba(41, 41, 41, 1);
     position: absolute;
-    top: 19.4791667vw;
+    top: 38.0vw;
     left: 0.0520833vw;
     font-family: "Dela Gothic One", sans-serif;
     font-weight: 400;
@@ -196,14 +242,14 @@ body:has(.sezione_2) main {
 
 .sezione_2 {
     width: 88.4375vw;
-    height: 67vw;
+    height: 48vw;
     background: url("../images/v2023_46.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100% 100%;
     opacity: 1;
     position: absolute;
-    top: 36vw;
+    top: 57.5vw;
     left: 3.59vw;
     overflow: hidden;
 }

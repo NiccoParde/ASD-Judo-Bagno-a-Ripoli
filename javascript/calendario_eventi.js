@@ -40,10 +40,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const contenutoAnteprimaEventi = document.getElementById(
     "contenutoAnteprimaEventi",
   );
+  const listaEventiPubblici = document.getElementById("listaEventiPubblici");
 
   if (!elementoMeseAnno || !elementoGriglia) {
     return;
   }
+
+  // Nomi brevi dei mesi
+  const NOMI_MESI_BREVI = [
+    "Gen",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mag",
+    "Giu",
+    "Lug",
+    "Ago",
+    "Set",
+    "Ott",
+    "Nov",
+    "Dic",
+  ];
 
   // Nomi dei mesi in italiano
   const NOMI_MESI = [
@@ -137,11 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       elencoEventi = caricati;
       renderCalendario();
+      renderizzaEventiPubblici();
     } catch (errore) {
       console.warn(
         "Avviso: impossibile caricare gli eventi da Firestore (verificare le regole di sicurezza):",
         errore,
       );
+      renderizzaEventiPubblici();
     }
   }
 
@@ -492,6 +511,129 @@ document.addEventListener("DOMContentLoaded", () => {
       cambiaMese(1);
     }
   });
+
+  /**
+   * Adatta l'altezza della pagina del calendario per contenere tutti gli eventi e la sezione contatti
+   */
+  function adattaAltezzaPagina() {
+    const container = document.querySelector(".calendario-eventi-page");
+    const sezione = document.getElementById("sezioneElencoEventi");
+    if (container && sezione) {
+      const topVw = 114;
+      const altezzaSezioneVw = (sezione.offsetHeight / window.innerWidth) * 100;
+      container.style.height = `${topVw + altezzaSezioneVw + 6}vw`;
+    }
+  }
+
+  /**
+   * Renderizza l'elenco degli eventi pubblici (in stile pannello amministratore)
+   */
+  function renderizzaEventiPubblici() {
+    if (!listaEventiPubblici) {
+      return;
+    }
+
+    listaEventiPubblici.innerHTML = "";
+
+    if (!elencoEventi || elencoEventi.length === 0) {
+      const msg = document.createElement("div");
+      msg.className = "messaggio_nessun_evento";
+      msg.textContent = "Nessun evento in programma al momento.";
+      listaEventiPubblici.appendChild(msg);
+      requestAnimationFrame(adattaAltezzaPagina);
+      return;
+    }
+
+    elencoEventi.forEach((evento) => {
+      const card = document.createElement("div");
+      card.className = "evento_card_pubblica";
+
+      const giornoNum =
+        evento.giorno ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getDate()
+          : "--");
+      const meseNum =
+        evento.mese ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getMonth() + 1
+          : 1);
+      const annoNum =
+        evento.anno ||
+        (evento.data && evento.data.toDate
+          ? evento.data.toDate().getFullYear()
+          : "----");
+
+      // 1. Blocco Data a sinistra
+      const dataBox = document.createElement("div");
+      dataBox.className = "evento_card_data_box";
+
+      const spanGiorno = document.createElement("span");
+      spanGiorno.className = "evento_card_giorno";
+      spanGiorno.textContent = giornoNum;
+
+      const spanMeseAnno = document.createElement("span");
+      spanMeseAnno.className = "evento_card_mese_anno";
+      spanMeseAnno.textContent = `${NOMI_MESI_BREVI[meseNum - 1] || ""} ${annoNum}`;
+
+      const badgeOrario = document.createElement("span");
+      badgeOrario.className = "evento_card_badge_orario";
+      if (evento.tuttoIlGiorno) {
+        badgeOrario.textContent = "Tutto il giorno";
+      } else if (evento.oraInizio && evento.oraFine) {
+        badgeOrario.textContent = `${evento.oraInizio} - ${evento.oraFine}`;
+      } else if (evento.oraInizio) {
+        badgeOrario.textContent = `Dalle ${evento.oraInizio}`;
+      } else {
+        badgeOrario.textContent = "Orario non spec.";
+      }
+
+      dataBox.appendChild(spanGiorno);
+      dataBox.appendChild(spanMeseAnno);
+      dataBox.appendChild(badgeOrario);
+
+      // 2. Blocco Contenuto a destra
+      const corpo = document.createElement("div");
+      corpo.className = "evento_card_corpo";
+
+      const rigaHeader = document.createElement("div");
+      rigaHeader.className = "evento_card_header_riga";
+
+      const titolo = document.createElement("h3");
+      titolo.className = "evento_card_titolo";
+      titolo.textContent = evento.titolo || "Senza titolo";
+      rigaHeader.appendChild(titolo);
+
+      if (evento.tag) {
+        const badgeTag = document.createElement("span");
+        badgeTag.className = "evento_card_badge_tag";
+        badgeTag.textContent = evento.tag;
+        rigaHeader.appendChild(badgeTag);
+      }
+
+      const descrizione = document.createElement("div");
+      descrizione.className = "evento_card_descrizione";
+      descrizione.textContent =
+        evento.descrizione || "Nessuna descrizione disponibile.";
+
+      corpo.appendChild(rigaHeader);
+      corpo.appendChild(descrizione);
+
+      card.appendChild(dataBox);
+      card.appendChild(corpo);
+
+      // Click sulla card: apre la stessa interfaccia modale di anteprima
+      card.addEventListener("click", () => {
+        apriAnteprimaEventi([evento], giornoNum, meseNum - 1, annoNum);
+      });
+
+      listaEventiPubblici.appendChild(card);
+    });
+
+    requestAnimationFrame(adattaAltezzaPagina);
+  }
+
+  window.addEventListener("resize", adattaAltezzaPagina);
 
   // Rendering iniziale
   renderCalendario();

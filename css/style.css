@@ -4,8 +4,8 @@
   --font-text: "DM Serif Text", Georgia, serif;
   --font-text2: "DM Serif Display", Georgia, serif italic;
   --color-white: #ffffff;
-  --header-height: 120px;
-  --distanza-sinistra-sezioni: clamp(18px, 3.02vw, 58px);
+  --header-height: 6.25vw;
+  --distanza-sinistra-sezioni: 3.0208vw;
 }
 
 /* Reset leggero per rendere le misure piu' prevedibili */
@@ -20,7 +20,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  font-size: 16px;
+  font-size: 0.8333vw;
   font-family: var(--font-text);
   color: #111111;
   background: #ffffff;
@@ -83,9 +83,9 @@ h6 {
   justify-content: center;
   min-height: var(--header-height);
   width: 100%;
-  max-width: 1706px;
+  max-width: 88.8542vw;
   margin: 0 auto;
-  padding: 0 clamp(2px, 1.2vw, 48px);
+  padding: 0 2.5vw;
   overflow: hidden;
 }
 
@@ -93,9 +93,9 @@ h6 {
 .site-nav__link {
   position: relative;
   flex: 0 0 auto;
-  padding: 8px clamp(2px, 1.6vw, 30px);
+  padding: 0.4167vw 1.5625vw;
   font-family: var(--font-title);
-  font-size: clamp(6px, 1.8vw, 24px);
+  font-size: 1.25vw;
   line-height: 1.2;
   color: var(--color-white);
   text-align: center;
@@ -109,9 +109,9 @@ h6 {
   position: absolute;
   top: 50%;
   left: 0;
-  width: clamp(1px, 0.16vw, 3px);
-  height: clamp(10px, 1.56vw, 30px);
-  border-radius: 10px;
+  width: 0.1563vw;
+  height: 1.5625vw;
+  border-radius: 0.5208vw;
   background: #d9d9d9;
   transform: translateY(-50%);
 }
@@ -122,9 +122,9 @@ h6 {
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: calc(100% - clamp(4px, 3.2vw, 60px));
-  height: clamp(1px, 0.16vw, 3px);
-  border-radius: 10px;
+  width: calc(100% - 3.125vw);
+  height: 0.1563vw;
+  border-radius: 0.5208vw;
   background: #ffffff;
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
@@ -154,16 +154,16 @@ main {
 /* Adattamento del menu su schermi stretti */
 @media (max-width: 900px) {
   :root {
-    --header-height: 120px;
+    --header-height: 6.25vw;
   }
 
   .site-nav {
     justify-content: center;
-    padding-inline: 2px;
+    padding-inline: 0.1042vw;
   }
 
   .site-nav__link {
-    padding-inline: clamp(2px, 0.8vw, 18px);
+    padding-inline: 0.9375vw;
   }
 }
 
@@ -184,126 +184,142 @@ main {
   position: relative;
 }
 
-/* Usiamo clamp o vw basati su 1920px (es. 170px su 1920px = ~8.85vw) */
+/* Misure basate su 1920px Figma (px / 1920 * 100) */
 .contenitore_testo_sezione_finale {
-  width: calc(640 / 1920 * 100vw);
-  height: calc(206 / 1920 * 100vw);
+  width: 33.3333vw;
+  height: 10.4688vw;
   position: absolute;
-  top: 9.05vw;
-  left: calc(668 / 1920 * 100vw);
+  top: 8.8542vw;
+  left: 34.6875vw;
   overflow: hidden;
 }
 
 .icone_contatti {
   position: absolute;
-
-  /* calcolo dimensioni .svg in base alla dimensione dello schermo (aumentate dimensioni standard di 5px per un bug ignoto che le mostrava poco più piccole con i rapporti originali) */
-  width: clamp(17px, calc(45 / 1920 * 100vw), 45px);
-  height: clamp(50px, calc(211 / 1920 * 100vw), 211px);
-
-  /* posizione relativa al footer */
-  top: 8.8vw;
-  left: 31.82vw;
-
+  width: 1.8229vw;
+  height: 10.4688vw;
+  top: 8.8542vw;
+  left: 31.8229vw;
   margin: 0;
-
   display: block;
 }
 
-.email {
+.email,
+.indirizzo,
+.instagram,
+.form {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 1.8229vw;
   width: 100%;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: calc(50 / 206 * 100%);
-  left: 0;
-  font-family: "Dela Gothic One", Arial, sans-serif;
-  font-weight: normal;
-  font-size: clamp(
-    10px,
-    calc(20 / 1920 * 100vw),
-    20px
-  ); /* dimensione del font basata sulla grandezza dello schermo */
-  text-align: left;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.email:hover,
+.indirizzo:hover,
+.instagram:hover,
+.form:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .indirizzo {
-  width: 100%;
   color: rgba(255, 255, 255, 1);
   position: absolute;
   top: 0;
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  font-size: 1.0417vw;
+  text-align: left;
+}
+
+.email {
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 2.4479vw;
+  left: 0;
+  font-family: "Dela Gothic One", Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1.0417vw;
   text-align: left;
 }
 
 .instagram {
-  width: 100%;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: calc(109 / 206 * 100%);
+  top: 5.5729vw;
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  font-size: 1.0417vw;
   text-align: left;
 }
 
 .form {
-  width: 100%;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: 8.95vw;
+  top: 8.6458vw;
   left: 0;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(20 / 1920 * 100vw), 20px);
+  font-size: 1.0417vw;
   text-align: left;
 }
 
 .testo_info_e_preventivi {
-  width: calc(512 / 1920 * 100vw);
+  width: 26.6667vw;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: calc(123 / 500 * 100%);
-  left: calc(611 / 1920 * 100vw);
+  top: 6.4063vw;
+  left: 31.8229vw;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(24 / 1920 * 100vw), 24px);
+  font-size: 1.25vw;
   text-align: left;
 }
 
 .crediti {
-  width: calc(169 / 1920 * 100vw);
+  width: 8.8021vw;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: calc(469 / 500 * 100%);
-  left: calc(875 / 1920 * 100vw);
+  top: 24.4271vw;
+  left: 45.5729vw;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(6px, calc(10 / 1920 * 100vw), 10px);
+  font-size: 0.5208vw;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  display: block;
+}
+
+.crediti:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .titolo_sezione_finale {
-  width: calc(512 / 1920 * 100vw);
+  width: 26.6667vw;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: calc(64 / 500 * 100%);
-  left: calc(704 / 1920 * 100vw);
+  top: 3.3333vw;
+  left: 36.6667vw;
   font-family: "Dela Gothic One", Arial, sans-serif;
   font-weight: normal;
-  font-size: clamp(10px, calc(24 / 1920 * 100vw), 24px);
+  font-size: 1.25vw;
   text-align: center;
 }
 
 .contenitore_loghi_sezione_finale {
-  width: calc(391 / 1920 * 100vw);
-  height: calc(80 / 500 * 100%);
+  width: 20.3646vw;
+  height: 4.1667vw;
   position: absolute;
-  top: calc(411 / 500 * 100%);
-  left: calc(9 / 1920 * 100vw);
+  top: 21.4063vw;
+  left: 0.4688vw;
   overflow: hidden;
 }
 
@@ -582,7 +598,7 @@ body.pagina_bloccata {
   backdrop-filter: blur(0.35vw);
   -webkit-backdrop-filter: blur(0.35vw);
   padding: 0.35vw 0.75vw;
-  border-radius: 9999px;
+  border-radius: 100vw;
   border: 0.08vw solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0.2vw 0.6vw rgba(0, 0, 0, 0.35);
   z-index: 10;
