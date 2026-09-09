@@ -79,12 +79,16 @@ $$\text{valore\_vw} = \frac{\text{valore\_px}}{1920} \times 100$$
 - `275 px` $\rightarrow$ `14.3229vw`
 - `8 px` $\rightarrow$ `0.4167vw`
 
+### Comportamento su Dispositivi Mobili (Smartphone e Tablet)
+Da mobile il sito non adotta un layout riorganizzato o un responsive design tradizionale che stravolge la composizione: **la versione mobile è semplicemente la versione da PC rimpicciolita in scala**.
+Grazie all'utilizzo sistematico dell'unità di misura `vw` calcolata sulla base di 1920px (per font, immagini, altezze, larghezze e posizioni), l'intera interfaccia grafica scala fluidamente e proporzionalmente al ridursi della larghezza dello schermo dello smartphone, mantenendo la composizione e i rapporti dimensionali identici a quelli desktop senza rompere il design.
+
 ### Il Layout a Posizionamento Assoluto
 Il sito adotta intenzionalmente un layout basato su `position: absolute` calibrato con coordinate `vw`. 
 
 > [!IMPORTANT]
 > **Regola fondamentale per chi modifica il codice:**
-> **Non rimpiazzare arbitrariamente il sistema a coordinate assolute con Flexbox o CSS Grid globali.**
+> **Non rimpiazzare arbitrariamente il sistema a coordinate assolute con Flexbox o CSS Grid globali, né inserire media query o breakpoint con font e posizioni fisse in pixel (`px`).**
 > Modifiche strutturali invasive al sistema di posizionamento possono alterare le proporzioni del design originale Figma. Flexbox e Grid sono ammessi esclusivamente a livello locale dove già adottati (es. griglia calendario, flex per bottoni, liste interne).
 
 ---
@@ -308,6 +312,7 @@ Prima di apportare modifiche al codice, attenersi rigorosamente alle seguenti re
 
 ### 1. Modifiche di Layout e Dimensioni
 - Calcolare ogni nuova misura partendo dal design a **1920px**: `px / 1920 * 100vw`.
+- **Comportamento Mobile**: Ricordare che la versione per dispositivi mobili è semplicemente la versione desktop rimpicciolita in scala: evitare media query o breakpoint che impongano font-size o altezze fisse in pixel (`px`), altrimenti si rompe la proporzionalità fluida rispetto agli altri elementi.
 - Se un testo o una card deve essere centrata verticalmente in un contenitore con altezza `vw`, utilizzare:
   ```css
   top: 50%;
