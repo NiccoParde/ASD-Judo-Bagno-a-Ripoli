@@ -67,7 +67,7 @@ footer {
 
 .titolo_sezione_2 {
   width: 48.12vw;
-  height: 13vh;
+  height: 7.7604167vw;
   position: absolute;
   top: 0;
   left: 0;
@@ -89,7 +89,7 @@ footer {
   height: 100%;
   color: var(--colore-bianco);
   position: absolute;
-  top: -1vh;
+  top: 0;
   left: 0;
   font-family: var(--font-titoli);
   font-weight: 400;

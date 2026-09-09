@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body {
@@ -23,19 +23,11 @@ Tutte le proporzioni sono rapportate alla viewport.
 
 .sezione_1 {
   width: 100%;
-  min-height: 100vh;
-
+  height: 56.25vw;
 
   position: relative;
 
   overflow: hidden;
-
-  /*
-  * Rapporto di riferimento 1920x1080.
-  * min-height evita che la sezione collassi su viewport
-  * particolarmente basse.
-  */
-  aspect-ratio: 16 / 9;
 }
 
 /* =========================================================
@@ -48,7 +40,6 @@ SFONDO SCURO
 
   background: var(--colore-grigio-primario);
 
-
   position: absolute;
   top: 0;
   left: 0;
@@ -60,8 +51,8 @@ SFONDO SCURO
 TITOLO
 Posizione reference:
 x = 58px / 1920
-y = 156px / 1080
-font = 70px
+y = 156px / 1920
+font = 70px / 1920
 ========================================================= */
 
 .titolo_sezione_1 {
@@ -71,7 +62,7 @@ font = 70px
 
   position: absolute;
 
-  top: 14.444vh;
+  top: 8.125vw;
   left: 3.021vw;
 
   font-family: var(--font-titoli);
@@ -95,7 +86,7 @@ SOTTOTITOLO 1
 
   position: absolute;
 
-  top: 29.352vh;
+  top: 16.51vw;
   left: 3.021vw;
 
   font-family: var(--font-titoli);
@@ -123,7 +114,7 @@ TESTO PRINCIPALE
 
   position: absolute;
 
-  top: 37.222vh;
+  top: 20.9375vw;
   left: 3.021vw;
 
   font-family: var(--font-titoli);
@@ -147,7 +138,7 @@ SOTTOTITOLO 2
 
   position: absolute;
 
-  top: 50.37vh;
+  top: 28.333vw;
   left: 3.021vw;
 
   font-family: var(--font-titoli);
@@ -175,7 +166,7 @@ ELENCO 1
 
   position: absolute;
 
-  top: 58.24vh;
+  top: 32.76vw;
   left: 3.021vw;
 
   margin: 0;
@@ -212,7 +203,7 @@ SOTTOTITOLO 3
 
   position: absolute;
 
-  top: 72.222vh;
+  top: 40.625vw;
   left: 3.021vw;
 
   font-family: var(--font-titoli);
@@ -240,7 +231,7 @@ ELENCO 2
 
   position: absolute;
 
-  top: 78.333vh;
+  top: 44.0625vw;
   left: 3.021vw;
 
   margin: 0;
@@ -277,94 +268,14 @@ SEPARATORE
 
   background: var(--colore-bianco);
 
-
   position: absolute;
 
-  top: 25.556vh;
+  top: 14.375vw;
   left: 3.021vw;
 
   overflow: hidden;
 }
 
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
-@media (max-width: 900px) {
-  .sezione_1 {
-    min-height: 700px;
-    aspect-ratio: auto;
-  }
-
-  .titolo_sezione_1 {
-    top: 70px;
-  }
-
-  .sottotitolo_sezione_1 {
-    top: 145px;
-  }
-
-  .testo_1_sezione_1 {
-    top: 210px;
-  }
-
-  .sottotitolo_2_sezione_1 {
-    top: 330px;
-  }
-
-  .testo_2_sezione_1 {
-    top: 390px;
-  }
-
-  .sottotitolo_3_sezione_1 {
-    top: 500px;
-  }
-
-  .testo_3_sezione_1 {
-    top: 560px;
-  }
-
-  .separatore_sezione_1 {
-    top: 125px;
-  }
-}
-
-/* =========================================================
-SMARTPHONE
-========================================================= */
-
-@media (max-width: 600px) {
-  .sezione_1 {
-    min-height: 900px;
-  }
-
-  .titolo_sezione_1 {
-    left: 24px;
-    width: calc(100% - 48px);
-    font-size: clamp(28px, 9vw, 45px);
-  }
-
-  .sottotitolo_sezione_1,
-  .sottotitolo_2_sezione_1,
-  .sottotitolo_3_sezione_1 {
-    left: 24px;
-    width: calc(100% - 48px);
-    font-size: clamp(19px, 6vw, 30px);
-  }
-
-  .testo_1_sezione_1,
-  .testo_2_sezione_1,
-  .testo_3_sezione_1 {
-    left: 24px;
-    width: calc(100% - 48px);
-    font-size: clamp(14px, 4vw, 20px);
-  }
-
-  .separatore_sezione_1 {
-    left: 24px;
-    width: calc(100% - 48px);
-  }
-}
 
 /* =========================================================
 SEZIONE 2

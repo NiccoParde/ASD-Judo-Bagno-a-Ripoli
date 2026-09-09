@@ -119,6 +119,7 @@ img {
 footer {
   width: 100%;
   margin-top: auto;
+  flex-shrink: 0;
 }
 
 /* Titoli principali */
@@ -229,6 +230,7 @@ h6 {
 
 /* Spazio sotto l'header fisso per le pagine */
 main {
+  flex: 1 0 auto;
   padding-top: 0;
 }
 
@@ -760,8 +762,6 @@ body.pagina_bloccata {
   justify-content: center;
   width: 2.6vw;
   height: 2.6vw;
-  min-width: 38px;
-  min-height: 38px;
   background: rgba(255, 255, 255, 0.12);
   border: 0.08vw solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
@@ -789,15 +789,13 @@ body.pagina_bloccata {
   justify-content: space-between;
   width: 1.15vw;
   height: 0.85vw;
-  min-width: 18px;
-  min-height: 13px;
 }
 
 .site-header__menu-icon span {
   display: block;
   width: 100%;
   height: 0.13vw;
-  min-height: 2px;
+  min-height: 1px;
   background-color: #ffffff;
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease;

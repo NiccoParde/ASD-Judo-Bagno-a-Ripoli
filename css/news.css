@@ -1069,7 +1069,7 @@ body.popup_aperto {
 
   position: relative;
 
-  margin: 2vw auto 0 auto;
+  margin: 2vw auto 4vw auto;
 
   overflow: hidden;
 
@@ -1142,7 +1142,9 @@ footer {
 
   width: 100%;
 
-  margin-top: 4vw;
+  margin-top: auto;
+
+  flex-shrink: 0;
 
   top: auto;
 
