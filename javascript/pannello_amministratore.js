@@ -2617,6 +2617,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <div class="contenuto_notizia_grande_admin">
 
+      <div
+        class="pulsante_esci_admin"
+        id="pulsanteEsciModificaAdmin"
+        role="button"
+        tabindex="0"
+        aria-label="Chiudi modifica notizia"
+      >
+        <div class="sfondo_pulsante_esci_admin"></div>
+        <div class="icona_pulsante_esci_admin"></div>
+      </div>
+
       <div class="titolo_notizia_grande_admin campo_modifica_notizia_admin">
         <input
           type="text"
@@ -2668,6 +2679,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </div>
   `;
+
+    const pulsanteEsciModifica = notiziaFocusAdmin.querySelector(
+      "#pulsanteEsciModificaAdmin",
+    );
+    if (pulsanteEsciModifica) {
+      pulsanteEsciModifica.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        chiudiModificaNotiziaAdmin();
+      });
+    }
+
+    const offuscamentoModifica = notiziaFocusAdmin.querySelector(
+      ".offuscamento_background_admin",
+    );
+    if (offuscamentoModifica) {
+      offuscamentoModifica.addEventListener("click", () => {
+        chiudiModificaNotiziaAdmin();
+      });
+    }
 
     /* ---------------------------------------------- */
     /* APRE I PULSANTI SALVA / ANNULLA */
@@ -2920,7 +2951,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       notizia.style.height = `${Math.max(
         altezzaNotizia,
-        (94.42 * window.innerWidth) / 100,
+        (86.3 * window.innerWidth) / 100,
       )}px`;
     }
   }

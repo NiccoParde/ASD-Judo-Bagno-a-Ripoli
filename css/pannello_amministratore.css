@@ -1423,7 +1423,7 @@ body.popup_aperto_admin {
 
 .notizia_admin {
   width: 92.96vw;
-  height: 94.42vw;
+  height: 86.3vw;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1458,7 +1458,7 @@ body.popup_aperto_admin {
 
 .immagine_notizia_admin {
   width: 100%;
-  height: 60.41vw;
+  height: 52.29vw;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1479,7 +1479,7 @@ body.popup_aperto_admin {
   height: 3.125vw;
   color: var(--colore-grigio-primario);
   position: absolute;
-  top: 61.35vw;
+  top: 53.23vw;
   left: 2.44vw;
   font-family: var(--font-testo);
   font-weight: normal;
@@ -1498,7 +1498,7 @@ body.popup_aperto_admin {
   height: 3.75vw;
   color: var(--colore-grigio-primario);
   position: absolute;
-  top: 64.11vw;
+  top: 55.99vw;
   left: 2.44vw;
   font-family: var(--font-titoli);
   font-weight: normal;
@@ -1518,7 +1518,7 @@ body.popup_aperto_admin {
   height: auto;
   color: var(--colore-grigio-primario);
   position: absolute;
-  top: 68.43vw;
+  top: 60.31vw;
   left: 2.81vw;
   font-family: var(--font-testo);
   font-weight: normal;
@@ -1527,9 +1527,9 @@ body.popup_aperto_admin {
   text-align: left;
   z-index: 4;
   pointer-events: none;
-  white-space: normal;
+  white-space: pre-line;
   overflow-wrap: anywhere;
-  word-break: normal;
+  word-break: break-word;
 }
 
 /* ====================================================== */
@@ -1614,7 +1614,7 @@ body.popup_aperto_admin {
   width: 3.64vw;
   height: 3.64vw;
   position: absolute;
-  top: 28.6458vw;
+  top: 24.58vw;
   right: 0.9375vw;
   overflow: hidden;
   z-index: 20;
@@ -1653,7 +1653,7 @@ body.popup_aperto_admin {
   width: 3.64vw;
   height: 3.64vw;
   position: absolute;
-  top: 28.6458vw;
+  top: 24.58vw;
   left: 0.9375vw;
   overflow: hidden;
   z-index: 20;

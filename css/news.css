@@ -617,7 +617,7 @@ body.popup_aperto {
 .notizia {
   width: 92.96vw;
 
-  height: 94.42vw;
+  height: 86.3vw;
 
   background-repeat: no-repeat;
 
@@ -673,7 +673,7 @@ body.popup_aperto {
 .immagine_notizia {
   width: 100%;
 
-  height: 60.41vw;
+  height: 52.29vw;
 
   background-repeat: no-repeat;
 
@@ -708,7 +708,7 @@ body.popup_aperto {
 
   position: absolute;
 
-  top: 61.35vw;
+  top: 53.23vw;
 
   left: 2.44vw;
 
@@ -739,7 +739,7 @@ body.popup_aperto {
 
   position: absolute;
 
-  top: 64.11vw;
+  top: 55.99vw;
 
   left: 2.44vw;
 
@@ -772,7 +772,7 @@ body.popup_aperto {
 
   position: absolute;
 
-  top: 68.43vw;
+  top: 60.31vw;
 
   left: 2.81vw;
 
@@ -791,11 +791,11 @@ body.popup_aperto {
 
   pointer-events: none;
 
-  white-space: normal;
+  white-space: pre-line;
 
   overflow-wrap: anywhere;
 
-  word-break: normal;
+  word-break: break-word;
 }
 
 /* ====================================================== */
@@ -925,7 +925,7 @@ body.popup_aperto {
 
   position: absolute;
 
-  top: 28.6458vw;
+  top: 24.58vw;
 
   right: 0.9375vw;
 
@@ -997,7 +997,7 @@ body.popup_aperto {
 
   position: absolute;
 
-  top: 28.6458vw;
+  top: 24.58vw;
 
   left: 0.9375vw;
 

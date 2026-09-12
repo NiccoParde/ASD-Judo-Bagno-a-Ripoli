@@ -362,8 +362,8 @@ Aprire il browser su `http://localhost:8000` (o porta indicata).
   - Instagram: [@nicco.parde](https://www.instagram.com/nicco.parde/)
 - **Associazione Sportiva**:
   **A.S.D. Judo Bagno a Ripoli**
-  - Sede: Via del Pratello, 1 — Bagno a Ripoli (FI), Italia
-  - Email ufficiale: `Judobagnoaripoli@gmail.com`
+  - Sede: Via del Pratello 15 — Bagno a Ripoli (FI), Italia
+  - Email ufficiale: `judobagnoaripoli@gmail.com`
   - Instagram Associazione: [@judo_bagno_a_ripoli](https://www.instagram.com/judo_bagno_a_ripoli/)
 
 ---

@@ -2,7 +2,7 @@
 
 body:has(.sezione_2) main {
     position: relative;
-    height: 104vw;
+    height: 125vw;
     min-height: 0;
 }
 
@@ -11,7 +11,7 @@ body:has(.sezione_2) main {
 
 .sezione_1 {
     width: 93vw;
-    height: 49.5vw;
+    height: 61.5vw;
     position: absolute;
     top: 7.3958333vw;
     left: 3.59vw;
@@ -34,7 +34,7 @@ body:has(.sezione_2) main {
 
 .info_sezione_1 {
     width: 93vw;
-    height: 43vw;
+    height: 55vw;
     position: absolute;
     top: 6.44vw;
     left: 0;
@@ -117,7 +117,7 @@ body:has(.sezione_2) main {
     top: 9.6vw;
     left: 0;
     width: 88.4375vw;
-    height: 18vw;
+    height: 30vw;
     border-radius: 0.6vw;
     overflow: hidden;
     border: 0.1042vw solid var(--colore-bordo-mappa);
@@ -134,7 +134,7 @@ body:has(.sezione_2) main {
 /* RIGA COME CONTATTARCI */
 .riga_come_contattarci {
     position: absolute;
-    top: 29.2vw;
+    top: 41.2vw;
     left: 0;
     display: flex;
     align-items: center;
@@ -189,7 +189,7 @@ body:has(.sezione_2) main {
     width: 15.2604167vw;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 32.2vw;
+    top: 44.2vw;
     left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -202,7 +202,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 34.8vw;
+    top: 46.8vw;
     left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -214,7 +214,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 37.3vw;
+    top: 49.3vw;
     left: 0.0520833vw;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -226,7 +226,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 39.8vw;
+    top: 51.8vw;
     left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -239,9 +239,9 @@ body:has(.sezione_2) main {
 
 .sezione_2 {
     width: 88.4375vw;
-    height: 48vw;
+    height: 49vw;
     position: absolute;
-    top: 57.5vw;
+    top: 69.5vw;
     left: 3.59vw;
     overflow: hidden;
 }
