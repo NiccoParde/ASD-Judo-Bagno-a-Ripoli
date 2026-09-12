@@ -11,7 +11,7 @@ body:has(.sezione_2) main {
 
 .sezione_1 {
     width: 93vw;
-    height: 49vw;
+    height: 49.5vw;
     position: absolute;
     top: 7.3958333vw;
     left: 3.59vw;
@@ -34,7 +34,7 @@ body:has(.sezione_2) main {
 
 .info_sezione_1 {
     width: 93vw;
-    height: 42vw;
+    height: 43vw;
     position: absolute;
     top: 6.44vw;
     left: 0;
@@ -189,7 +189,7 @@ body:has(.sezione_2) main {
     width: 15.2604167vw;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 32.5vw;
+    top: 32.2vw;
     left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -202,7 +202,7 @@ body:has(.sezione_2) main {
     width: 100%;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 35.5vw;
+    top: 34.8vw;
     left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
@@ -214,8 +214,20 @@ body:has(.sezione_2) main {
     width: 100%;
     color: var(--colore-grigio-primario);
     position: absolute;
-    top: 38.0vw;
+    top: 37.3vw;
     left: 0.0520833vw;
+    font-family: var(--font-titoli);
+    font-weight: 400;
+    font-size: 1.4583333vw;
+    text-align: left;
+}
+
+.quota_associativa {
+    width: 100%;
+    color: var(--colore-grigio-primario);
+    position: absolute;
+    top: 39.8vw;
+    left: 0;
     font-family: var(--font-titoli);
     font-weight: 400;
     font-size: 1.4583333vw;

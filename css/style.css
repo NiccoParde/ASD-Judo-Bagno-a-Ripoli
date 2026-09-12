@@ -1743,12 +1743,15 @@ body,
 [data-theme="dark"] .info-e-orari-page .testo_prezzi_sezione_1,
 [data-theme="dark"] .info-e-orari-page .prezzi_adulti,
 [data-theme="dark"] .info-e-orari-page .prezzi_bambini,
+[data-theme="dark"] .info-e-orari-page .quota_associativa,
 [data-theme="dark"] .info_e_orari-page .testo_prezzi_sezione_1,
 [data-theme="dark"] .info_e_orari-page .prezzi_adulti,
 [data-theme="dark"] .info_e_orari-page .prezzi_bambini,
+[data-theme="dark"] .info_e_orari-page .quota_associativa,
 [data-theme="dark"] body[data-pagina="info_e_orari"] .testo_prezzi_sezione_1,
 [data-theme="dark"] body[data-pagina="info_e_orari"] .prezzi_adulti,
-[data-theme="dark"] body[data-pagina="info_e_orari"] .prezzi_bambini {
+[data-theme="dark"] body[data-pagina="info_e_orari"] .prezzi_bambini,
+[data-theme="dark"] body[data-pagina="info_e_orari"] .quota_associativa {
   color: #ffffff !important;
 }
 

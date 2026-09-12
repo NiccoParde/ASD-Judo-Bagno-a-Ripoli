@@ -1369,6 +1369,7 @@ body.popup_aperto_admin {
 }
 
 .notizia_grande_admin.aperta {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -1756,6 +1757,7 @@ body.popup_aperto_admin {
 }
 
 .popup_conferma_eliminazione_admin.aperto {
+  opacity: 1;
   visibility: visible;
   pointer-events: auto;
 
@@ -1916,6 +1918,7 @@ body.popup_aperto_admin {
 }
 
 .contenitore_pulsanti_modifica_notizia_admin.aperto {
+  opacity: 1;
   pointer-events: auto;
 }
 
